@@ -1,1 +1,11 @@
-# Hand-labeled ground truth: 30–50 candidate profiles scored 0–3 against the JD. Used by evaluate.py and train_ltr.py.
+candidate_id,relevance_label,notes
+CAND_0000031,3,Recsys engineer Swiggy/Uber/Zomato — genuine ranking+retrieval+embeddings career; only real match in sample
+CAND_0000010,1,Data engineer Ola — adjacent but no ML production; outside India + not open; marginal
+CAND_0000001,1,Backend/data engineer Mindtree — adjacent skills aspirational; Toronto not relocating
+CAND_0000015,0,Software engineer Razorpay — DevOps+mobile career; Qdrant/PyTorch skills unsupported by any career description
+CAND_0000014,0,Frontend engineer Zomato — FAISS/OpenSearch in skills but career is frontend+QA; classic trap
+CAND_0000011,0,QA engineer 2YOE — too junior wrong domain Recsys skill is keyword stuffing
+CAND_0000002,0,Operations manager Wipro — wrong domain consulting inactive Nov 2025
+CAND_0000004,0,Marketing manager wrong country not looking 120d notice
+CAND_0000005,0,Accountant wrong career inactive 8 months
+CAND_0000003,0,Customer support TCS junior wrong domain 150d notice USA not looking

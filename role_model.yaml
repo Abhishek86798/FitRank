@@ -1,2 +1,145 @@
-# The JD encoded as structured rules (experience band, must-have domains, disqualifying titles/companies, ideal signals, location prefs).
-# Every feature in feature_builder.py and every weight in scorer.py references values defined here.
+# Brain of the FitRank scorer.
+# Every feature in feature_builder.py and every weight in scorer.py references values from here.
+# Owner: B | Last reviewed: 2026-06-26
+# Source: job_description.docx (Redrob AI, Senior AI Engineer — Founding Team)
+
+# ── EXPERIENCE ────────────────────────────────────────────────────────────────
+experience_band:
+  min: 5
+  max: 9
+  # JD says "5-9 years" but notes "some hit senior judgment at 4 years."
+  # We score outside the band as partial fit, not hard disqualify.
+  # Ideal sweet spot per JD text: 6-8 years with 4-5 in applied ML.
+
+# ── MUST-HAVE DOMAINS (career history must show evidence) ─────────────────────
+must_have_domains:
+  - information retrieval
+  - ranking
+  - embeddings
+  - recommendation systems
+  - search
+  - nlp
+  # JD requires production experience in embeddings-based retrieval AND vector
+  # search infrastructure. Domain keywords in career descriptions are the signal.
+
+# ── MUST-HAVE SKILLS (hard requirements from JD "things you absolutely need") ──
+must_have_skills:
+  - embeddings
+  - retrieval
+  - ranking
+  - vector search
+  - evaluation framework
+  # Specific tech doesn't matter per JD — operational production experience does.
+
+# ── PRODUCTION SIGNALS (career history evidence of shipping real systems) ───────
+ideal_profile_signals:
+  - production_retrieval_system    # embedding-based retrieval deployed to real users
+  - production_ranking_system      # LTR / reranking in production
+  - production_recommendation_system
+  - shipped_search_system
+  - evaluation_framework_built     # NDCG/MAP/offline-online eval infra
+  - ab_testing_experience
+  - vector_db_experience           # Pinecone, Qdrant, Milvus, FAISS, Weaviate, etc.
+  # JD: "We are explicit about this — pure research without production = no move forward."
+
+# ── DISQUALIFYING TITLES (current OR dominant career title) ───────────────────
+disqualifying_titles:
+  - marketing manager
+  - hr manager
+  - content writer
+  - graphic designer
+  - business analyst
+  - operations manager
+  - civil engineer
+  - mechanical engineer
+  - accountant
+  - project manager
+  - customer support
+  - sales
+  # JD explicitly calls out non-engineer profiles as traps.
+  # Rule: if current_title matches any of these AND career shows no ML engineering
+  # roles, apply hard disqualify penalty (-1.0).
+
+# ── DISQUALIFYING COMPANY TYPES (entire career at consulting = disqualify) ─────
+disqualifying_company_types:
+  - tcs
+  - infosys
+  - wipro
+  - accenture
+  - cognizant
+  - capgemini
+  - tech mahindra
+  # JD: "people who have only worked at consulting firms in their ENTIRE career."
+  # If candidate has prior product-company experience, this is NOT a disqualifier.
+  # Applies only when ALL career history is at consulting firms.
+
+# ── DISQUALIFYING EXPERIENCE PATTERNS ────────────────────────────────────────
+disqualifying_patterns:
+  pure_research_no_production: true   # academic-only / research-only, no shipping
+  llm_api_wrapper_only: true          # "AI experience" = LangChain calling OpenAI < 12mo
+  no_code_written_18mo: true          # moved to pure architecture/tech-lead, no code
+
+# ── LOCATION PREFERENCES ──────────────────────────────────────────────────────
+location_preferences:
+  preferred_cities:
+    - pune
+    - noida
+    - delhi
+    - delhi ncr
+    - new delhi
+    - gurgaon
+    - hyderabad
+    - mumbai
+  preferred_country: India
+  willing_to_relocate_bonus: true
+  # JD: "Outside India: case-by-case, but we don't sponsor work visas."
+  # Candidates outside India with willing_to_relocate=false are soft-penalised.
+
+# ── NOTICE PERIOD ─────────────────────────────────────────────────────────────
+notice_period_preference_days: 30
+notice_period_max_days: 60
+  # JD: "sub-30-day notice preferred. Can buy out up to 30 days."
+  # "30+ day notice candidates are still in scope but bar gets higher."
+  # >90 days = significant penalty; >120 days = strong penalty.
+
+# ── BEHAVIORAL SIGNAL WEIGHTS (for behavioral_multiplier in feature_builder) ──
+behavioral_weights:
+  open_to_work_flag: 0.25           # marked available on platform
+  recruiter_response_rate: 0.30     # most predictive of actual reachability
+  last_active_recency_days: 0.20    # logged in within last 90 days = good
+  interview_completion_rate: 0.15   # shows up when scheduled
+  profile_completeness_score: 0.10  # proxy for platform engagement
+  # JD: "perfect-on-paper candidate who hasn't logged in for 6 months and has
+  # 5% recruiter response rate is, for hiring purposes, not actually available."
+
+# ── NICE-TO-HAVE SIGNALS (bonus, not required) ────────────────────────────────
+nice_to_have:
+  - llm_fine_tuning           # LoRA, QLoRA, PEFT
+  - learning_to_rank          # XGBoost LTR, LambdaMART, neural LTR
+  - open_source_contributions # GitHub activity, papers, talks
+  - product_company_background
+  - hrtech_or_marketplace_experience
+  - distributed_systems
+  # These shift score upward but absence doesn't penalise.
+
+# ── HONEYPOT DETECTION SIGNALS ────────────────────────────────────────────────
+honeypot_checks:
+  experience_vs_company_age: true   # YOE > company founding year diff = suspicious
+  expert_skills_zero_duration: true # proficiency=expert but duration_months=0
+  inconsistent_title_description: true  # title says "ML Engineer" but description is customer support
+  # ~80 honeypots in dataset. The consistency_score feature uses these checks.
+
+# ── SCORING WEIGHTS (for weighted-sum fallback in scorer.py) ──────────────────
+feature_weights:
+  cosine_similarity: 0.20
+  domain_alignment: 0.20          # NLP/IR/ranking keyword density in career text
+  production_ml_score: 0.20       # evidence of shipping real systems
+  experience_fit_score: 0.10
+  is_ml_engineer: 0.10            # current/past title is ML engineering role
+  behavioral_multiplier: 0.10
+  title_disqualified: -1.0        # hard gate — overrides everything if triggered
+  consulting_penalty: -0.08       # fraction of career at consulting firms
+  consistency_score: 0.05         # honeypot detector
+  location_score: 0.03
+  notice_penalty: -0.02
+  github_activity: 0.02
