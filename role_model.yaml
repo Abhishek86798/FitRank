@@ -1,0 +1,2 @@
+# The JD encoded as structured rules (experience band, must-have domains, disqualifying titles/companies, ideal signals, location prefs).
+# Every feature in feature_builder.py and every weight in scorer.py references values defined here.

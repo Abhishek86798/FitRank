@@ -1,0 +1,1 @@
+# Logged results of signal ablation experiments (behavioral signals off, domain gate off). Used in the Stage 5 defense deck.

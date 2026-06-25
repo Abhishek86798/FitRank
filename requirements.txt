@@ -1,0 +1,12 @@
+# NOTE: Pinned to latest Python-3.14-compatible versions (dev machine).
+# Contest submission targets Python 3.11 — re-pin to the contest spec versions before submitting.
+sentence-transformers==3.4.1
+lightgbm==4.6.0
+rank-bm25==0.2.2
+polars==1.42.0
+orjson==3.11.9
+numpy==2.2.6
+pyyaml==6.0.1
+python-dateutil==2.9.0
+scikit-learn==1.6.1
+streamlit==1.45.1

@@ -1,0 +1,1 @@
+# Raw hand-ranking scratchpad from initial JD analysis. Not machine-readable — seeds golden_set.csv.

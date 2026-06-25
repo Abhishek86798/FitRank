@@ -1,0 +1,9 @@
+# Added by code-review-graph
+.code-review-graph/
+.venv
+.claude
+data\candidates.jsonl
+data\sample_candidates.json
+
+data/
+.venv/
