@@ -9,3 +9,23 @@ CAND_0000002,0,Operations manager Wipro — wrong domain consulting inactive Nov
 CAND_0000004,0,Marketing manager wrong country not looking 120d notice
 CAND_0000005,0,Accountant wrong career inactive 8 months
 CAND_0000003,0,Customer support TCS junior wrong domain 150d notice USA not looking
+CAND_0000043,2,Cloud Eng @ Swiggy with Elasticsearch+OpenSearch+Haystack+PEFT+FineTuning skills and assessments — but career history is QA/Cloud/Mobile not ML production; skills are credible unlike most traps; worth a screen
+CAND_0000032,1,.NET/Cloud/Mobile dev at Cognizant/HCL/Globex — Embeddings+Speech Rec declared as advanced but career is Java enterprise/QA/mobile; no NLP or ranking production work anywhere; Gurgaon India location positive
+CAND_0000021,1,PM @ Wipro with Recsys+Embeddings+FineTuning skills declared — 14.5yr career is entirely PM/Marketing/Sales at Wipro+Infosys; classic consulting PM claiming ML skills; aspirational only
+CAND_0000038,1,Java Dev @ Swiggy with Weaviate skill and MLOps listed — career is frontend/DevOps not ML; Swiggy brand positive but no retrieval production evidence; 90d notice India location fine
+CAND_0000035,1,Full Stack @ Globex with Recommendation Systems skill and BentoML — actual career is web full-stack/frontend; skills not backed by any ML work in descriptions; 60d notice Hyderabad India
+CAND_0000027,1,DevOps Eng @ Infosys 3.9yr with PEFT+Weights&Biases+Data Science skills and assessment scores — career is Java backend/full-stack not ML; PEFT assessment 50.5 suggests some exposure; open to work Kolkata India
+CAND_0000025,0,Frontend engineer Tech Mahindra 7yr — LangChain skill with assessment score 40 but entire career is mobile/Android/frontend; no NLP or IR work; 120d notice Vizag India
+CAND_0000018,0,Frontend/QA engineer 6.6yr — CNN skill only; career is QA test automation and Android mobile; no ML production; 120d notice Bhubaneswar India
+CAND_0000020,0,Mechanical Engineer career @ Wipro — Weights&Biases skill with assessment 53.7 but all career descriptions are marketing; consulting background; not open to work Ahmedabad 30d notice but last active Oct 2025
+CAND_0000007,0,Civil Engineer @ Wipro — wrong domain consulting career; not open to work; Gurgaon India 30d notice but irrelevant background
+CAND_0000006,0,Business Analyst @ Wayne Enterprises — accounting/consulting career; USA location; not open; 150d notice; no ML
+CAND_0000009,0,Mechanical Engineer 11yr — USA location not open 150d notice; career is consulting/customer support/mechanical; wrong domain
+CAND_0000016,0,Accountant @ Infosys — Kubeflow skill but career is sales/customer support; wrong domain; open to work but irrelevant background Gurgaon India
+CAND_0000017,0,Accountant @ Wipro 12.3yr — wrong domain; career is customer support/mechanical/sales consulting; Bangalore India 90d notice not open
+CAND_0000019,0,Project Manager @ Wayne Enterprises — consulting BA/PM/marketing career; wrong domain; not open; 60d notice Trivandrum India
+CAND_0000022,0,Mechanical Engineer 1yr @ Hooli — Australia location; 150d notice; not open; <2yr exp; wrong domain
+CAND_0000024,0,HR Manager @ TCS 7.5yr — explicit not-a-fit profile per JD; consulting company; wrong title; not open; 60d notice Trivandrum India
+CAND_0000026,0,Graphic Designer @ Initech — wrong domain; customer support/sales career; not open; last active Oct 2025 Kochi India
+CAND_0000033,0,Graphic Designer @ Wipro — wrong domain consulting; open to work and 30d notice but career is BA/PM/sales; Pune India
+CAND_0000034,0,Business Analyst @ Wipro/Infosys — consulting career; 14.5yr but all BA/mechanical; not open; 90d notice Ahmedabad India
