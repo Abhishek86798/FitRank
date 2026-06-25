@@ -1,1 +1,267 @@
-# Raw hand-ranking scratchpad from initial JD analysis. Not machine-readable — seeds golden_set.csv.
+# Hand-ranking notes — JD Analysis vs Sample Candidates
+# Owner: B | Date: 2026-06-26
+# Source: job_description.docx + manual review of sample_candidates.json
+# Purpose: Seeds golden_set.csv. These are MY JUDGMENTS, not ground truth.
+#
+# JD Summary (what I'm ranking against):
+#   Role: Senior AI Engineer, Founding Team — Redrob AI (Series A)
+#   Core need: Own ranking/retrieval/matching layer. Ship things. Write code.
+#   Hard requirements: production embeddings retrieval, vector DB ops, eval frameworks
+#   Hard disqualifiers: pure consulting career, non-engineer titles, no production code
+#   Ideal: 6-8 yrs, applied ML at product co, shipped search/ranking/recsys, India-based
+#   Behavioral: must be reachable — open to work, active, responds to recruiters
+# ─────────────────────────────────────────────────────────────────────────────
+
+===========================================================================
+RANK 1 — CAND_0000031 — Relevance: 3 (Excellent)
+===========================================================================
+Title:    Recommendation Systems Engineer @ Swiggy (Food Delivery)
+YOE:      6.0 years
+Location: Hyderabad, India
+Notice:   60 days
+Signals:  open_to_work=True, response_rate=0.91, last_active=2026-05-24, github=32.6
+
+Why rank 1:
+  This is the only candidate in the 50-sample who actually IS the role.
+  Career arc: Applied ML Engineer (Zomato) → NLP Engineer (Uber) → Search Engineer
+  (Mad Street Den) → Recommendation Systems Engineer (Swiggy). Every role is at a
+  product company, every role involves production ML.
+
+  Career description (repeated across roles, which is suspicious but let's take it
+  at face value for now): shipped ranking models with XGBoost/LightGBM, designed
+  feature pipelines, owned offline-online correlation analysis, built relevance
+  labeling pipelines. Summary explicitly says "led migration from keyword-search
+  to embedding-based retrieval." This hits every hard requirement in the JD.
+
+  Skills: FAISS (advanced), Pinecone (expert), Embeddings (expert), Information
+  Retrieval (expert), Sentence Transformers (expert), Hugging Face Transformers
+  (expert), MLflow (advanced), Feature Engineering (advanced). This is not keyword
+  stuffing — duration_months on these skills are 35-88 months, consistent with
+  career length.
+
+  Behavioral: 0.91 response rate (best in sample), open to work, active May 2026.
+  High recruiter saves (13), high search appearances (778).
+
+Concerns:
+  - Same description repeated across 4 companies — possible data artifact or lazy
+    profile, but could be coincidence. Flag for manual check.
+  - Notice period 60 days (JD prefers ≤30). Not a dealbreaker but noted.
+  - Hyderabad — JD prefers Pune/Noida but lists Hyderabad as welcome.
+  - interview_completion_rate only 0.6 — drops out of 40% of interviews.
+  - offer_acceptance_rate 0.38 — accepts only ~1 in 3 offers. May be selective.
+
+Net verdict: Clear rank 1. Only genuine ML/retrieval/ranking engineer in the sample.
+
+===========================================================================
+RANK 2 — CAND_0000010 — Relevance: 1 (Weak)
+===========================================================================
+Title:    Data Engineer @ Ola (Transportation)
+YOE:      4.6 years
+Location: London, UK
+Notice:   120 days
+Signals:  open_to_work=False, response_rate=0.40, github=33.7
+
+Why rank 2 (weakly):
+  Mixed data science + analytics engineering at Ola. Description mentions "30% of time
+  on lightweight ML." Has Elasticsearch in skills. Kubeflow, Java, GCP stack.
+  The role is data engineering, not ML engineering — but there's adjacent exposure.
+
+Concerns:
+  - Not open to work. 120-day notice period. Both are significant red flags.
+  - London-based, not India. Won't relocate.
+  - YOE at 4.6 is slightly below band (minimum is 5).
+  - No evidence of shipping ranking/retrieval/recommendation systems.
+  - Biggest problem: career history is data engineering, not applied ML.
+
+Net verdict: Weak adjacency. Would include only if pool is very thin.
+
+===========================================================================
+RANK 3 — CAND_0000001 — Relevance: 1 (Weak)
+===========================================================================
+Title:    Backend Engineer @ Mindtree (IT Services)
+YOE:      6.9 years
+Location: Toronto, Canada
+Notice:   60 days
+Signals:  open_to_work=True, response_rate=0.34, github=9.2
+
+Why rank 3 (weakly):
+  Backend + data engineering background. Kafka, Spark, data pipelines. Some NLP
+  skills listed (NLP, Fine-tuning LLMs) but described as self-directed / aspirational.
+  Summary explicitly says "building competence on the ML side" — i.e., not there yet.
+
+Concerns:
+  - Currently at Mindtree (IT Services / consulting-adjacent). Not full consulting
+    disqualifier since only current role is there.
+  - Toronto-based, not India. Not willing to relocate.
+  - No production ML evidence. Skills like "Fine-tuning LLMs" appear to be aspirational,
+    not confirmed by career descriptions.
+  - YOE in the band (6.9) but years in applied ML = 0.
+
+Net verdict: Weak. Adjacent domain, no production ML delivery.
+
+===========================================================================
+RANK 4 — CAND_0000015 — Relevance: 0 (Irrelevant — trap)
+===========================================================================
+Title:    Software Engineer @ Razorpay (Fintech)
+YOE:      5.4 years
+Location: Trivandrum, Kerala
+Notice:   90 days
+Signals:  open_to_work=True, response_rate=0.32, github=-1
+
+Why so low despite Razorpay (product company):
+  Career descriptions: Cloud infrastructure/DevOps at enterprise SaaS, Android mobile
+  development. Neither role has anything to do with ML or retrieval.
+  Skills include Qdrant and PyTorch — but these appear to be skills listed with no
+  career evidence. Qdrant expert with 0 production history? Classic keyword stuffer.
+  No GitHub linked. Not open to ML work in practice.
+
+Concerns:
+  - Skills (Qdrant, PyTorch, Weights & Biases) are ML keywords with no career evidence.
+    This is exactly the trap the JD warns about.
+  - Core career is DevOps + mobile — not relevant at all.
+
+Net verdict: Trap candidate. Penalise hard.
+
+===========================================================================
+RANK 5 — CAND_0000011 — Relevance: 0 (Irrelevant)
+===========================================================================
+Title:    QA Engineer @ Pied Piper (Software)
+YOE:      2.0 years
+Location: Hyderabad, India
+Notice:   90 days
+Signals:  open_to_work=False, response_rate=0.56, github=32.3
+
+Why rank 5:
+  Skills include "Recommendation Systems", "Hugging Face Transformers", "FastAPI" —
+  but career is entirely test automation and Android development. 2 years total.
+  "Recommendation Systems" as a skill with QA engineer career = keyword stuffer.
+
+Concerns:
+  - YOE too low (2.0 years, minimum is 5).
+  - Career: QA/automation, not ML.
+  - Skills are aspirational, not career-proven.
+
+Net verdict: Hard disqualify on YOE + wrong career domain.
+
+===========================================================================
+RANK 6 — CAND_0000014 — Relevance: 0 (Irrelevant — trap)
+===========================================================================
+Title:    Frontend Engineer @ Zomato (Food Delivery)
+YOE:      8.4 years
+Location: Hyderabad, India
+Notice:   90 days
+Signals:  open_to_work=False, response_rate=0.80
+
+Why rank 6 (trap, but tempting):
+  Zomato brand + 8.4 YOE + high response rate. Skills: FAISS, OpenSearch — exactly
+  what the JD asks for. BUT: career descriptions are "Frontend engineering" and
+  "test automation." Title is Frontend Engineer. The FAISS/OpenSearch skills have no
+  career support. Pure keyword stuffing at a recognisable company.
+
+Concerns:
+  - Not open to work.
+  - Career is entirely frontend + QA, not ML/IR.
+  - FAISS and OpenSearch in skills are almost certainly not genuine.
+
+Net verdict: Classic honeypot-style trap. High brand recognition, wrong career.
+
+===========================================================================
+RANK 7 — CAND_0000002 — Relevance: 0 (Irrelevant)
+===========================================================================
+Title:    Operations Manager @ Wipro (IT Services)
+YOE:      12.5 years
+Location: Chennai, India
+Notice:   60 days
+Signals:  open_to_work=True, response_rate=0.29, github=-1, last_active=2025-11-12
+
+Why: Operations Manager entire career + Wipro = double disqualifier.
+Not willing to relocate. Last active Nov 2025 (7 months ago). No ML/IR background.
+
+Net verdict: Hard disqualify. Wrong domain, wrong company type.
+
+===========================================================================
+RANK 8 — CAND_0000003 — Relevance: 0 (Irrelevant)
+===========================================================================
+Title:    Customer Support @ TCS
+YOE:      1.1 years
+Location: Austin, USA
+Notice:   150 days
+Signals:  open_to_work=False, response_rate=0.46, github=-1
+
+Why: Wrong title, wrong company, wrong country, too junior, not looking.
+150-day notice is the longest possible. Nothing in this profile fits.
+
+Net verdict: Hard disqualify on everything.
+
+===========================================================================
+RANK 9 — CAND_0000004 — Relevance: 0 (Irrelevant — trap)
+===========================================================================
+Title:    Marketing Manager @ Dunder Mifflin
+YOE:      3.8 years
+Location: Sydney, Australia
+Notice:   120 days
+Signals:  open_to_work=False, response_rate=0.26
+
+Why: Marketing Manager + wrong country + not open to work + 120-day notice.
+Skills include "Airflow" and "Redux" — irrelevant to the role.
+The career descriptions are Mechanical Engineer and content writing roles.
+Multiple red flags stacked.
+
+Net verdict: Hard disqualify. Prototypical trap candidate from JD warning.
+
+===========================================================================
+RANK 10 — CAND_0000005 — Relevance: 0 (Irrelevant)
+===========================================================================
+Title:    Accountant @ Stark Industries
+YOE:      11.0 years
+Location: Gurgaon, India
+Notice:   30 days
+Signals:  open_to_work=True, response_rate=0.37, github=-1, last_active=2025-10-01
+
+Why: Accountant. Career shows accounting + HR roles. Skills: SQL, PowerPoint,
+Apache Flink (likely aspirational). Gurgaon is preferred location and notice period
+is excellent — but wrong career domain entirely. Last active Oct 2025 (8 months ago).
+
+Net verdict: Hard disqualify. Wrong career, inactive.
+
+===========================================================================
+OBSERVATIONS FOR golden_set.csv
+===========================================================================
+
+  1. Only 1 genuine ML/ranking/retrieval engineer in 50 candidates (CAND_0000031).
+     This is realistic — the JD says "narrow profile, we expect 10 great in 100K."
+
+  2. Most of the sample are trap/honeypot-style profiles: wrong titles, consulting
+     firms, keyword-stuffed skills with no career evidence.
+
+  3. Key discriminators we must get right in feature_builder.py:
+     a. Title vs career description alignment — a "Frontend Engineer" with FAISS
+        skills is a trap; the description must confirm the skill.
+     b. Company type penalty must apply to entire career, not just current role.
+     c. Open_to_work + response_rate + last_active together determine reachability.
+        All three must be combined, not checked individually.
+     d. Notice period >90 days is a strong downranking signal.
+
+  4. The data appears to have profile-description mismatches (same description
+     repeated across different roles in CAND_0000031). This is likely a synthetic
+     data artifact. We should NOT penalise for repeated descriptions across roles —
+     it's a data generation artifact, not a honeypot signal.
+
+  5. Candidates from outside India without willing_to_relocate need strong downgrade.
+     JD does not sponsor visas and is India-preferred.
+
+===========================================================================
+SEED FOR golden_set.csv (hand labels, 0=irrelevant, 1=weak, 2=good, 3=excellent)
+===========================================================================
+
+candidate_id,relevance_label,notes
+CAND_0000031,3,Recsys engineer Swiggy/Uber/Zomato — genuine ranking+retrieval+embeddings career; only real match in sample
+CAND_0000010,1,Data engineer Ola — adjacent but no ML production; outside India + not open; marginal
+CAND_0000001,1,Backend/data engineer Mindtree — adjacent skills but no production ML; Toronto + not relocating
+CAND_0000015,0,Software engineer Razorpay — DevOps+mobile career; Qdrant/PyTorch in skills unsupported by career
+CAND_0000014,0,Frontend engineer Zomato — FAISS/OpenSearch in skills not supported by frontend+QA career; trap
+CAND_0000011,0,QA engineer — 2 YOE, wrong domain, Recsys skill is keyword stuffing
+CAND_0000002,0,Operations manager Wipro — wrong domain + consulting + inactive Nov 2025
+CAND_0000004,0,Marketing manager + wrong country + not looking; textbook trap
+CAND_0000005,0,Accountant — wrong career, inactive 8 months
+CAND_0000003,0,Customer support TCS — junior, wrong domain, 150-day notice, USA, not looking
