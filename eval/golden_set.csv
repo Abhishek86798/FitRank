@@ -1,5 +1,35 @@
 candidate_id,relevance_label,notes
+CAND_0018499,3,Sr ML Engineer Zomato 7.2yr — dense retrieval+embedding+FAISS in career desc; Weaviate+Recsys advanced skills; Noida preferred city; open+15d notice; strong all-round
 CAND_0000031,3,Recsys engineer Swiggy/Uber/Zomato — genuine ranking+retrieval+embeddings career; only real match in sample
+CAND_0046525,3,Sr ML Engineer Genpact AI 6.1yr — led embedding-based search migration 30M corpus; RAG ranking pipeline 50M qps at LinkedIn; Pune preferred city; open; 60d notice only deduct
+CAND_0011687,3,Sr NLP Engineer Niramai 7.8yr — a/b test+embedding+pinecone in career; TensorFlow+OpenSearch+FAISS+PEFT advanced; open+15d notice; Indore non-preferred city only deduct
+CAND_0081846,2,Lead AI Engineer Razorpay 6.7yr — dense retrieval+embedding+FAISS; Info Retrieval+LlamaIndex+pgvector advanced; Jaipur non-preferred; open+30d notice; product company good
+CAND_0046064,3,Sr NLP Engineer Salesforce 8.9yr — LoRA fine-tuning + RAG ranking pipeline 50M qps at Verloop + owned end-to-end ranking at Amazon; open+30d notice; Coimbatore non-preferred only deduct
+CAND_0071974,2,Sr AI Engineer Netflix 7.8yr — a/b test+embedding+pinecone; LoRA+LTR+Weaviate+PEFT advanced; LoRA assessment 87; open; 45d notice; Vizag non-preferred; genuine ML career
+CAND_0008425,2,Sr NLP Engineer Ola 7.8yr — a/b test+embedding+NDCG; LTR+Qdrant+WandB+pgvector advanced; LTR assessment 78; open; 90d notice is the main penalty; Kolkata non-preferred
+CAND_0020877,2,Applied ML Engineer CRED 5.1yr — elasticsearch+embedding+FAISS; QLoRA+Kubeflow+Elasticsearch advanced; YOLO assessment 89; Gurgaon preferred; not open; 60d notice
+CAND_0002025,2,Sr AI Engineer Apple 5.9yr — a/b test+embedding+ranking; FAISS+TF+sklearn+OpenSearch advanced; open+30d notice; Trivandrum non-preferred; product company positive
+CAND_0055905,2,Sr ML Engineer Flipkart 8.1yr — dense retrieval+embedding+FAISS; Elasticsearch+Haystack+HF Transformers advanced; Elasticsearch assessment 83; open+30d; London location penalise
+CAND_0005260,1,Sr NLP Engineer Netflix 5.2yr — dense retrieval+embedding+FAISS; Info Retrieval+Semantic Search advanced; Prompt Eng assessment 81; not open; 60d notice; Chennai non-preferred
+CAND_0094759,2,Lead AI Engineer Meta 8.6yr — a/b test+dense retrieval+embedding; LTR+HF Transformers advanced; Prompt Eng assessment 81; Mumbai preferred; not open; 30d notice; strong signals
+CAND_0044222,2,AI Engineer PolicyBazaar 7.7yr — a/b test+elasticsearch+FAISS; Vector Search+LlamaIndex+OpenSearch+Qdrant advanced; LlamaIndex assessment 85; open; 60d notice; Vizag non-preferred
+CAND_0096142,1,Applied ML Engineer upGrad 5.0yr — a/b test+embedding+ranking; LoRA+Weaviate+Pinecone advanced; LoRA assessment 92; Hyderabad preferred; open; 120d notice is heavy penalty
+CAND_0086022,2,Sr Applied Scientist Sarvam AI 5.3yr — a/b test+dense retrieval+embedding; Vector Search+MLflow+Recsys+DL advanced; Vector Search assessment 93; open; Kolkata non-preferred
+CAND_0006418,2,ML Engineer Verloop.io 5.7yr — a/b test+ranking; Semantic Search+Embeddings+Weaviate advanced; Semantic Search assessment 89; Gurgaon preferred; open; 60d notice
+CAND_0033861,1,Sr NLP Engineer Mad Street Den 8yr — a/b test+embedding+NDCG; RL+Weaviate+LoRA+LLMs advanced; RL assessment 90; not open; 30d notice; Vizag non-preferred; 4mo activity gap
+CAND_0095528,2,Sr Data Scientist Netflix 5.3yr — a/b test+embedding+ranking; OpenSearch+PyTorch+Semantic Search+Vector Search advanced; pgvector assessment 87; open; 45d notice; Indore non-preferred
+CAND_0088025,1,Staff ML Engineer Yellow.ai 8.6yr — a/b test+embedding+pinecone; Pinecone+QLoRA+LLMs+HF Transformers advanced; Pinecone assessment 94; open; 90d notice heavy penalty; Jaipur non-preferred
+CAND_0007411,1,Sr ML Engineer Amazon 8yr — a/b test+embedding+pinecone; OpenSearch+Prompt Eng+Fine-tuning+Vector Search advanced; Vector Search assessment 91; not open; 15d notice; Kochi non-preferred; 6mo gap
+CAND_0092278,1,Sr NLP Engineer Microsoft 6.8yr — a/b test+dense retrieval+embedding; TF+HF Transformers+QLoRA advanced; TF assessment 67; not open; 90d notice; Pune preferred; 7mo inactive — engagement risk
+CAND_0006557,1,NLP Engineer Paytm 7.9yr — a/b test+embedding+ranking; Kubeflow+Data Science+Elasticsearch+OpenSearch advanced; Elasticsearch assessment 76; open; 120d notice very heavy; Jaipur non-preferred
+CAND_0066376,2,Applied ML Engineer Dream11 5.7yr — a/b test+elasticsearch+embedding; Recsys+LoRA+LTR+LLMs advanced; LoRA assessment 82; Mumbai preferred; open; 90d notice penalty
+CAND_0079284,2,ML Engineer Google 4.9yr — ranking models XGBoost+LightGBM at Swiggy+Google; Hyderabad preferred; not open; 30d notice; 4.9yr slightly below band minimum of 5
+CAND_0091909,2,ML Engineer Rephrase.ai 6.9yr — a/b test+embedding+ranking; LLMs+Pinecone+QLoRA advanced; Image Classification assessment 90; Bangalore preferred; open; 45d notice
+CAND_0041611,2,Staff ML Engineer Locobuzz 6.4yr — RAG ranking pipeline 50M qps; semantic search 35M corpus at Genpact; embedding-based search 30M at Wysa; strong production evidence; Austin USA penalise; not open; 30d notice
+CAND_0039838,1,Recsys Engineer Amazon 4.9yr — a/b test+ranking; Embeddings+Semantic Search+LangChain+LoRA advanced; Embeddings assessment 53 (low); open; 90d notice; Kochi non-preferred; 4.9yr below band
+CAND_0042029,2,Sr Data Scientist Flipkart 6.5yr — ranking models XGBoost+LightGBM shipped; RAG pipeline at Observe.AI; NLP+RAG+PyTorch+YOLO advanced; YOLO assessment 83; Delhi preferred; not open; 45d notice
+CAND_0037944,1,Sr Data Scientist Vedantu 4.9yr — ranking models shipped; RAG chatbot at PolicyBazaar; Vector Search assessment 92; open+30d notice; Jaipur non-preferred; 4.9yr below band; 3mo activity gap
+CAND_0018549,2,Recsys Engineer Uber 6.8yr — a/b test+embedding+ranking; Weaviate+Elasticsearch+LangChain+Qdrant advanced; Elasticsearch assessment 90; open; 60d notice; Coimbatore non-preferred
 CAND_0000010,1,Data engineer Ola — adjacent but no ML production; outside India + not open; marginal
 CAND_0000001,1,Backend/data engineer Mindtree — adjacent skills aspirational; Toronto not relocating
 CAND_0000015,0,Software engineer Razorpay — DevOps+mobile career; Qdrant/PyTorch skills unsupported by any career description
