@@ -143,50 +143,52 @@ def _title_disqualified(candidate: dict, role_model: dict) -> float:
 
 def _production_ml_score(candidate: dict) -> float:
     """
-    Density of production-ML keywords across career descriptions and
-    advanced/expert skill names (vector DBs, ranking tools show up here).
-    Capped at 1.0; each unique matched keyword contributes.
+    Corroborated production-ML keyword density.
+
+    Career description hits count at full weight (1.0).
+    Skill-only hits (keyword present in skill name with duration_months > 0 but
+    absent from any career description) count at 0.4× — credible but unverified.
+    10 corroborated equivalent hits → 1.0.
     """
     career_text = _career_descriptions(candidate)
+    career_matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(career_text))
 
-    # Advanced/expert skills with duration_months > 0 are credible production signals
     credible_skills = " ".join(
         s.get("name", "") for s in candidate.get("skills", [])
         if isinstance(s, dict)
         and s.get("proficiency") in ("advanced", "expert")
         and (s.get("duration_months") or 0) > 0
     )
+    skill_matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(credible_skills))
 
-    combined = f"{career_text} {credible_skills}"
-    if not combined.strip():
-        return 0.0
-
-    matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(combined))
-    # 10+ unique production signals → full score; scales linearly below
-    return min(1.0, len(matches) / 10.0)
+    skill_only = skill_matches - career_matches
+    score = len(career_matches) + 0.4 * len(skill_only)
+    return min(1.0, score / 10.0)
 
 
 def _domain_alignment(candidate: dict) -> float:
     """
-    Density of NLP/IR/ranking domain keywords across career descriptions AND
-    advanced/expert skill names. Skills are the primary signal for domain
-    expertise in this dataset (descriptions are often sparse in the synthetic data).
-    Distinct keyword types matched; capped at 1.0.
+    Corroborated NLP/IR/ranking domain keyword density.
+
+    Career description hits count at full weight (1.0).
+    Skill-only hits (keyword in skill name but NOT in any career description)
+    count at 0.3× — they signal awareness but not demonstrated delivery.
+    Threshold: 6 corroborated equivalent hits → 1.0.
     """
     career_text = _career_descriptions(candidate)
+    career_matches = set(m.group(0).lower() for m in _DOMAIN_RE.finditer(career_text))
 
-    # Also scan advanced/expert skill names — these are hard to fake (duration_months)
     skill_names = " ".join(
         s.get("name", "") for s in candidate.get("skills", [])
         if isinstance(s, dict) and s.get("proficiency") in ("advanced", "expert")
     )
+    skill_matches = set(m.group(0).lower() for m in _DOMAIN_RE.finditer(skill_names))
 
-    combined = f"{career_text} {skill_names}"
-    if not combined.strip():
-        return 0.0
+    # Keywords that appear only in skills (not backed by career description evidence)
+    skill_only = skill_matches - career_matches
 
-    matches = set(m.group(0).lower() for m in _DOMAIN_RE.finditer(combined))
-    return min(1.0, len(matches) / 6.0)
+    score = len(career_matches) + 0.3 * len(skill_only)
+    return min(1.0, score / 6.0)
 
 
 def _consulting_penalty(candidate: dict) -> float:
