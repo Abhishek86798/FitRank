@@ -25,6 +25,12 @@ def score_with_weighted_sum(features: dict[str, float], role_model: dict) -> flo
 
     weights: dict[str, float] = role_model.get("feature_weights", {})
 
+    # Soft domain gate: no ML title AND zero domain alignment → cap at 0.25.
+    # Prevents behaviorally-active non-engineers from outranking weak-signal ML candidates.
+    no_ml_title  = features.get("is_ml_engineer", 0.0) == 0.0
+    no_domain    = features.get("domain_alignment", 0.0) == 0.0
+    domain_cap   = 0.25 if (no_ml_title and no_domain) else 1.0
+
     # Features that contribute positively
     POSITIVE = [
         "cosine_similarity",
@@ -61,7 +67,7 @@ def score_with_weighted_sum(features: dict[str, float], role_model: dict) -> flo
         w = abs(weights.get(key, 0.0))  # stored negative in yaml, take abs
         score -= w * features.get(key, 0.0)
 
-    return round(max(0.0, min(1.0, score)), 6)
+    return round(max(0.0, min(domain_cap, score)), 6)
 
 
 class LTRScorer:
@@ -103,10 +109,13 @@ class LTRScorer:
         ]
         vec = np.array([[features.get(k, 0.0) for k in FEATURE_ORDER]], dtype=np.float32)
         raw = float(self._booster.predict(vec)[0])
-        # LambdaMART outputs unbounded scores — sigmoid to 0-1
         import math
         score = 1.0 / (1.0 + math.exp(-raw))
-        return round(score, 6)
+        # Apply domain cap (same logic as weighted-sum path)
+        no_ml_title = features.get("is_ml_engineer", 0.0) == 0.0
+        no_domain   = features.get("domain_alignment", 0.0) == 0.0
+        domain_cap  = 0.25 if (no_ml_title and no_domain) else 1.0
+        return round(min(domain_cap, score), 6)
 
     def score_batch(self, feature_list: list[dict[str, float]]) -> list[float]:
         """Score a list of feature dicts. More efficient than calling score() in a loop."""
@@ -128,9 +137,11 @@ class LTRScorer:
         raws = self._booster.predict(matrix)
         scores = [round(1.0 / (1.0 + math.exp(-float(r))), 6) for r in raws]
 
-        # Override hard-gate candidates
+        # Override hard-gate and domain-capped candidates
         for i, f in enumerate(feature_list):
             if f.get("title_disqualified", 0.0) == -1.0:
                 scores[i] = 0.01
+            elif f.get("is_ml_engineer", 0.0) == 0.0 and f.get("domain_alignment", 0.0) == 0.0:
+                scores[i] = min(0.25, scores[i])
 
         return scores
