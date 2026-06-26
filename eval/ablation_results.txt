@@ -57,11 +57,18 @@
 #   Prevents behaviorally-active non-engineers from outranking weak ML candidates
 #   via behavioral_multiplier alone
 #
-# Final weighted-sum result (Day 3):
+# Final weighted-sum result (Day 3, sample-vs-sample — gold covers CAND_0000001–50):
 #   NDCG@10: 0.6586
 #   NDCG@50: 0.8065
 #   MAP:     0.6759  (up from 0.6038 pre-corroboration fix)
 #   P@10:    0.4000
+#
+# NOTE: When ranking full 100k candidates.jsonl against sample golden set:
+#   NDCG@10: 0.2951  ← NOT a regression. Golden set labels only 10 candidates
+#                       from CAND_0000001–0000050. Top-10 from full run are
+#                       legitimate ML engineers (CAND_0018499, CAND_0046525, etc.)
+#                       that the golden set has no label for → scored as 0.
+#   Correct eval: use a golden set covering the full 100k corpus.
 #
 # Top-5 after full feature integration:
 #   #1 CAND_0000031 [0.7048] Recommendation Systems Engineer @ Swiggy  ← correct
