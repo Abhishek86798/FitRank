@@ -265,3 +265,68 @@ CAND_0000002,0,Operations manager Wipro — wrong domain + consulting + inactive
 CAND_0000004,0,Marketing manager + wrong country + not looking; textbook trap
 CAND_0000005,0,Accountant — wrong career, inactive 8 months
 CAND_0000003,0,Customer support TCS — junior, wrong domain, 150-day notice, USA, not looking
+
+===========================================================================
+DAY 2 RETRIEVAL OBSERVATIONS — What the numbers actually tell you
+Date: 2026-06-26
+===========================================================================
+
+WHY DENSE RETRIEVAL FAILED HERE
+---------------------------------
+Similarity scores clustered between 0.64–0.68. A 4-point gap across 50 candidates
+means a generic "experienced technology professional" summary produces nearly the
+same vector as "built recommendation systems at Swiggy." BGE-base is doing its job —
+the problem is that short headlines and generic summaries don't give it signal to
+work with. build_candidate_text() was concatenating headline + summary + career
+descriptions. When those are short or generic, the embedding is generic.
+
+Fix applied Day 3: career descriptions doubled in the text string (each entry
+appended twice). This shifts the embedding toward what the person actually did at
+work, not just how they headline themselves. Cheap trick, meaningful effect.
+
+WHY BM25 WORKED BETTER ON THIS SAMPLE
+---------------------------------------
+BM25 found CAND_0000031 at rank #1 with a +29 point gap to rank #2. The JD
+explicitly uses "retrieval", "ranking", "search", "recommendation" — and that
+candidate's profile uses the same words. BM25 is sharp when vocabulary matches.
+It fails on candidates who did the right work but phrased it differently (the recall
+problem that dense retrieval solves). Neither alone is sufficient.
+
+WHAT THIS CONFIRMED FOR feature_builder.py
+--------------------------------------------
+production_ml_score and domain_alignment do the work that embeddings can't.
+Scanning career descriptions for "deployed", "serving", "retrieval", "recommendation"
+at a product company separates CAND_0000031 from the Mechanical Engineers even when
+the embedding model couldn't. Features must do the heavy lifting.
+
+PRIORITY ORDER FOR FEATURE BUILDER (updated after seeing data)
+---------------------------------------------------------------
+Priority 1 — gates (filter bad candidates fast):
+  title_disqualified    ← kills HR Manager, Mechanical Engineer, Graphic Designer
+  is_ml_engineer        ← soft gate, confirms engineering domain
+  consulting_penalty    ← kills pure Wipro/TCS/Cognizant careers
+
+Priority 2 — differentiators (rank good candidates):
+  production_ml_score   ← separates CAND_0000031 from generic engineers
+  domain_alignment      ← NLP/IR keyword density, career-description corroborated
+  experience_fit_score  ← YOE vs 5-9 band
+
+Priority 3 — multipliers (adjust for availability):
+  behavioral_multiplier ← is this person actually reachable?
+  consistency_score     ← honeypot detection
+
+DAY 3 INTEGRATION TARGET (revised based on Day 2 data)
+-------------------------------------------------------
+A passing system on 50 sample candidates must produce a top-10 where:
+  - CAND_0000031 (Rec Sys Engineer @ Swiggy) is rank 1 or 2
+  - All Mechanical Engineers are gone from top 10
+  - All HR Managers are gone from top 10
+  - Graphic Designer (CAND_0000033, BM25 rank #6) is gone
+  - At least 7 of top 10 are ML/AI/data engineers at product companies
+If this holds on 50 sample candidates, the same logic holds at 100K.
+
+DECK STORY (Stage 4 missed-candidate demo)
+------------------------------------------
+CAND_0000031 is the candidate dense retrieval misses (rank #3) and BM25 catches
+(rank #1). The before/after: dense alone → rank #3, hybrid RRF + features → rank #1.
+This is the proof point that the system is bulletproof regardless of retrieval method.

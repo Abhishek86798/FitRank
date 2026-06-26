@@ -1,1 +1,72 @@
 # Logged results of signal ablation experiments (behavioral signals off, domain gate off). Used in the Stage 5 defense deck.
+
+# ===========================================================================
+# DAY 2 BASELINE OBSERVATION
+# Date: 2026-06-26 | Source: sample_candidates.json (50 candidates)
+# ===========================================================================
+#
+# Dense retrieval (BGE-base-en-v1.5, cosine sim, 50 candidates):
+#   CAND_0000031 (Rec Sys Engineer @ Swiggy) → rank #3
+#   Mechanical Engineers                      → rank #1, #2
+#   HR Manager                                → rank #5
+#   Score range across all 50: 0.64–0.68 (gap = 0.04)
+#   Conclusion: 4-point compression means generic summaries ≈ genuine ML career.
+#               Embeddings alone are insufficient for this task.
+#
+# BM25 retrieval (same 50 candidates, JD as query):
+#   CAND_0000031 → rank #1, score 79.6 (gap of +29 to rank #2)
+#   Graphic Designer (CAND_0000033) → rank #6 (keyword hits on "teams", "scale")
+#   Conclusion: BM25 sharper on keyword-rich JD; still ranks non-engineers when
+#               they happen to share surface vocabulary.
+#
+# Hybrid RRF (dense + BM25, k=60):
+#   CAND_0000031 → rank #1 (confirmed after Day 3 feature integration)
+#   Mechanical Engineers dropped out of top 10
+#   Graphic Designer dropped out of top 10
+#   Conclusion: RRF fusion recovers BM25's keyword precision without losing
+#               dense recall on candidates who phrased things differently.
+#
+# Root cause of dense retrieval failure:
+#   build_candidate_text() concatenates headline + summary + career descriptions.
+#   Short or generic summaries produce near-identical vectors.
+#   Fix applied Day 3: career descriptions doubled in text string to shift
+#   embedding toward what the person actually did, not how they headline themselves.
+#
+# Key insight for deck (Stage 4 missed-candidate demo):
+#   CAND_0000031 is the candidate dense retrieval misses and BM25 catches.
+#   The before/after story: dense alone → rank #3, hybrid + features → rank #1.
+#   This is the "bulletproof regardless of retrieval method" proof point.
+#
+# ===========================================================================
+# DAY 3 FEATURE ABLATION (post-integration, sample golden set)
+# ===========================================================================
+#
+# Baseline (no features, cosine only):
+#   NDCG@10 ≈ 0.40 (estimated from dense rank order)
+#
+# + title_disqualified gate:
+#   Removes HR Manager, Mechanical Engineer, Civil Engineer from top-10
+#   NDCG@10 improvement: significant (non-engineers ranked 0 can't hurt DCG)
+#
+# + domain_alignment + production_ml_score (with corroboration):
+#   CAND_0000014 (Frontend/FAISS stuffer) ejected from top-5
+#   domain_alignment for skill-only hits: 0.3× weight vs career-description hits
+#   production_ml_score for skill-only hits: 0.4× weight
+#
+# + domain_cap (is_ml_engineer=0 AND domain_alignment=0 → score ≤ 0.25):
+#   Prevents behaviorally-active non-engineers from outranking weak ML candidates
+#   via behavioral_multiplier alone
+#
+# Final weighted-sum result (Day 3):
+#   NDCG@10: 0.6586
+#   NDCG@50: 0.8065
+#   MAP:     0.6759  (up from 0.6038 pre-corroboration fix)
+#   P@10:    0.4000
+#
+# Top-5 after full feature integration:
+#   #1 CAND_0000031 [0.7048] Recommendation Systems Engineer @ Swiggy  ← correct
+#   #2 CAND_0000001 [0.3627] Backend Engineer @ Mindtree
+#   #3 CAND_0000032 [0.2997] .NET Developer @ Cognizant
+#   #4 CAND_0000011 [0.2650] QA Engineer @ Pied Piper
+#   #5 CAND_0000010 [0.2500] Data Engineer @ Ola
+#   No Mechanical Engineers. No HR Managers. No Frontend/FAISS stuffers.

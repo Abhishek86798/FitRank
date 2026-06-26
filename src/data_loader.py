@@ -32,12 +32,15 @@ def build_candidate_text(candidate: dict) -> str:
 
     Priority order (highest signal first):
       1. headline + current title
-      2. career history descriptions (hard to fake, most signal-dense)
+      2. career history descriptions — appended TWICE to up-weight them.
+         Day 2 observation: 4-point cosine compression across 50 candidates means
+         generic summaries ≈ genuine ML career text. Doubling career descriptions
+         shifts the embedding toward what the person actually did, not how they
+         headline themselves. Skills appear once at the end, naturally down-weighted.
       3. summary
-      4. skills (easy to inflate — appended last, naturally down-weighted by position)
-         Only advanced/expert skills included to reduce noise.
+      4. skills (advanced/expert only to reduce keyword-stuffing noise)
 
-    Capped at 2048 characters.
+    Capped at 3000 characters.
     """
     parts: list[str] = []
 
@@ -56,26 +59,24 @@ def build_candidate_text(candidate: dict) -> str:
             title_line += f" ({yoe} yrs exp)"
         parts.append(title_line)
 
-    for role in candidate.get("career_history", []):
+    for role in candidate.get("career_history", [])[:5]:
         title = role.get("title", "").strip()
         company = role.get("company", "").strip()
-        duration = role.get("duration_months")
         description = role.get("description", "").strip()
 
         role_header = " | ".join(filter(None, [title, company]))
-        if duration:
-            role_header += f" ({duration // 12}y {duration % 12}m)"
         if role_header:
             parts.append(role_header)
         if description:
-            parts.append(description)
+            entry = f"{title} at {company}: {description}" if (title or company) else description
+            parts.append(entry)
+            parts.append(entry)  # doubled intentionally — career descriptions carry the real signal
 
     summary = profile.get("summary", "").strip()
     if summary:
         parts.append(summary)
 
-    # skills is list of {name, proficiency, endorsements, duration_months}
-    # only include advanced/expert to avoid noise from keyword-stuffing
+    # skills: advanced/expert only to avoid noise from aspirational keyword lists
     skills = candidate.get("skills", [])
     strong_skills = [
         s["name"] for s in skills
@@ -84,7 +85,7 @@ def build_candidate_text(candidate: dict) -> str:
     all_skills = [s["name"] for s in skills if isinstance(s, dict)]
     skill_list = strong_skills if strong_skills else all_skills
     if skill_list:
-        parts.append("Skills: " + ", ".join(skill_list))
+        parts.append("Technical skills: " + ", ".join(skill_list[:15]))
 
     text = " ".join(parts)
-    return text[:2048]
+    return text[:3000]
