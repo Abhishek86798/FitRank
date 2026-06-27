@@ -476,7 +476,41 @@ python -m src.precompute --candidates data/candidates.jsonl
 
 ---
 
-## 8. Submission Readiness Checklist
+## 8. Post-Audit Enhancement: Impossibility Flag Honeypot Gate
+
+**Commit:** `7d14be1`  
+**Files:** [src/feature_builder.py](src/feature_builder.py), [src/scorer.py](src/scorer.py)  
+**Status:** Implemented, 7 new tests, validate_submission passes
+
+### What it does
+
+`_impossibility_flag()` returns `-1.0` when any logically impossible claim is detected in a candidate record. All three scorer paths short-circuit to `0.01` on `-1.0`, identical to the `title_disqualified` gate.
+
+**Check 1 — Expert/advanced skill with `duration_months == 0`**  
+A candidate claiming expert or advanced proficiency with zero months of practice is physically impossible. A single such skill triggers the flag.
+
+**Check 2 — Role tenure exceeds company age**  
+If `duration_months > months elapsed since start_date`, the candidate claims to have worked at a company longer than it could have existed by the time they joined. Derived entirely from `start_date` (no `company_founded_year` field in schema).
+
+### Why this is stronger than `consistency_score`
+
+`consistency_score` is a soft 0–1 signal that gets weighted (`0.05`) against other features — a honeypot with high cosine similarity can still outrank clean candidates if its `consistency_score` is merely low rather than zero. `impossibility_flag` bypasses the model entirely, matching how the JD's explicit "not a fit" cases are handled.
+
+### Tests
+
+| Test | Asserts |
+|---|---|
+| `test_impossibility_flag_clean_candidate` | real CAND_0000031 → 0.0 |
+| `test_impossibility_flag_expert_skill_zero_duration` | expert + duration=0 → -1.0 |
+| `test_impossibility_flag_advanced_skill_zero_duration` | advanced + duration=0 → -1.0 |
+| `test_impossibility_flag_intermediate_zero_duration_ok` | intermediate + duration=0 → 0.0 (not triggered) |
+| `test_impossibility_flag_tenure_exceeds_company_age` | duration > months since start → -1.0 |
+| `test_impossibility_flag_plausible_tenure_ok` | normal tenure → 0.0 |
+| `test_impossibility_flag_gates_score_to_001` | flag overrides cosine=0.9 → score=0.01 |
+
+---
+
+## 9. Submission Readiness Checklist
 
 | Check | Result | Detail |
 |---|---|---|
@@ -488,7 +522,7 @@ python -m src.precompute --candidates data/candidates.jsonl
 | No network calls in `rank.py` | ✅ **YES** | Zero network imports; comment in file confirms this |
 | `ltr_model.txt` loads without error | ✅ **YES** | 344 KB file; valid LightGBM v4 format (`tree`, `version=v4`, `num_class=1`) |
 | Clean git history (multiple real commits) | ✅ **YES** | 22+ commits with meaningful messages across 6 days of work + audit fixes |
-| `pytest tests/` all pass | ✅ **YES** | 28/28 tests pass (9 new expand_query tests + 19 existing + pipeline) |
+| `pytest tests/` all pass | ✅ **YES** | 35/35 tests pass (7 new impossibility_flag + 9 expand_query + 19 existing) |
 | `sandbox_url` field | ⚠️ **"not deployed"** | Portal may require a live URL; Streamlit demo (`app.py`) exists but not deployed |
 
 ---
