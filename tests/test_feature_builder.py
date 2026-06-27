@@ -1,10 +1,11 @@
 import json
 import yaml
+from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
 
-from src.feature_builder import build_feature_vector
+from src.feature_builder import build_feature_vector, _role_recency_weight
 
 SAMPLE_JSON = Path("data/sample_candidates.json")
 
@@ -160,6 +161,111 @@ def test_impossibility_flag_plausible_tenure_ok(role_model):
     }
     feats = build_feature_vector(cand, role_model, cosine_sim=0.7)
     assert feats["impossibility_flag"] == 0.0
+
+
+# ── recency weighting tests ───────────────────────────────────────────────────
+
+def test_role_recency_weight_current_role():
+    """is_current=True always returns the recency boost."""
+    role = {"is_current": True, "end_date": None}
+    assert _role_recency_weight(role) == 3.0
+
+
+def test_role_recency_weight_recent_ended_role():
+    """Role that ended 12 months ago is within the 36-month window."""
+    recent_end = (date.today() - timedelta(days=365)).strftime("%Y-%m-%d")
+    role = {"is_current": False, "end_date": recent_end}
+    assert _role_recency_weight(role) == 3.0
+
+
+def test_role_recency_weight_old_role():
+    """Role that ended 5 years ago gets weight 1.0."""
+    old_end = (date.today() - timedelta(days=5 * 365)).strftime("%Y-%m-%d")
+    role = {"is_current": False, "end_date": old_end}
+    assert _role_recency_weight(role) == 1.0
+
+
+def test_role_recency_weight_missing_end_date_treated_as_recent():
+    """No end_date and not explicitly current → treated as recent (safe default)."""
+    role = {"is_current": False, "end_date": None}
+    assert _role_recency_weight(role) == 3.0
+
+
+def test_production_ml_score_recent_beats_old_same_keywords(role_model):
+    """
+    Two candidates with identical keywords in descriptions, but one role is
+    current and the other ended 5 years ago.  The recent candidate must score
+    strictly higher.
+    """
+    desc = "shipped faiss-based dense retrieval system in production with embedding search"
+
+    old_end = (date.today() - timedelta(days=5 * 365)).strftime("%Y-%m-%d")
+    cand_old = {
+        "candidate_id": "TEST_OLD",
+        "profile": {"current_title": "ML Engineer", "years_of_experience": 6.0},
+        "skills": [],
+        "career_history": [{
+            "title": "ML Engineer", "company": "OldCo",
+            "start_date": "2015-01-01", "end_date": old_end,
+            "is_current": False, "duration_months": 36,
+            "description": desc,
+        }],
+    }
+    cand_recent = {
+        "candidate_id": "TEST_RECENT",
+        "profile": {"current_title": "ML Engineer", "years_of_experience": 6.0},
+        "skills": [],
+        "career_history": [{
+            "title": "ML Engineer", "company": "NewCo",
+            "start_date": "2023-01-01", "end_date": None,
+            "is_current": True, "duration_months": 18,
+            "description": desc,
+        }],
+    }
+    score_old    = build_feature_vector(cand_old,    role_model, cosine_sim=0.5)["production_ml_score"]
+    score_recent = build_feature_vector(cand_recent, role_model, cosine_sim=0.5)["production_ml_score"]
+    assert score_recent > score_old, (
+        f"Recent role should outscore old role: {score_recent} vs {score_old}"
+    )
+
+
+def test_production_ml_score_old_role_still_positive(role_model):
+    """An older role with strong keywords still gets a positive score (weight 1.0 not 0)."""
+    old_end = (date.today() - timedelta(days=5 * 365)).strftime("%Y-%m-%d")
+    cand = {
+        "candidate_id": "TEST_OLD_POSITIVE",
+        "profile": {"current_title": "ML Engineer", "years_of_experience": 8.0},
+        "skills": [],
+        "career_history": [{
+            "title": "ML Engineer", "company": "OldCo",
+            "start_date": "2015-01-01", "end_date": old_end,
+            "is_current": False, "duration_months": 48,
+            "description": "deployed faiss ranking system production embedding a/b test ndcg",
+        }],
+    }
+    score = build_feature_vector(cand, role_model, cosine_sim=0.5)["production_ml_score"]
+    assert score > 0.0
+
+
+def test_production_ml_score_capped_at_1(role_model):
+    """Many keywords in a recent role should not exceed 1.0."""
+    dense_desc = " ".join([
+        "deployed shipped launched production serving faiss weaviate qdrant milvus pinecone",
+        "ndcg mrr embedding semantic ranking recsys lambdamart experiment a/b test",
+    ])
+    cand = {
+        "candidate_id": "TEST_CAP",
+        "profile": {"current_title": "ML Engineer", "years_of_experience": 7.0},
+        "skills": [],
+        "career_history": [{
+            "title": "ML Engineer", "company": "BigCo",
+            "start_date": "2022-01-01", "end_date": None,
+            "is_current": True, "duration_months": 30,
+            "description": dense_desc,
+        }],
+    }
+    score = build_feature_vector(cand, role_model, cosine_sim=0.5)["production_ml_score"]
+    assert score == 1.0
 
 
 def test_impossibility_flag_gates_score_to_001(role_model):

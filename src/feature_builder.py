@@ -78,6 +78,26 @@ def _career_descriptions(candidate: dict) -> str:
     return " ".join(parts)
 
 
+_RECENT_MONTHS = 36          # roles ending within this window get the recency boost
+_RECENCY_WEIGHT = 3.0        # multiplier for recent roles
+
+
+def _role_recency_weight(role: dict) -> float:
+    """
+    Returns _RECENCY_WEIGHT (3.0) if the role ended within _RECENT_MONTHS of
+    today, 1.0 otherwise.  Current roles (is_current=True or end_date=None)
+    are always treated as recent.
+    """
+    if role.get("is_current") or not role.get("end_date"):
+        return _RECENCY_WEIGHT
+    try:
+        end = datetime.strptime(role["end_date"][:10], "%Y-%m-%d").date()
+        months_ago = (_today().year - end.year) * 12 + (_today().month - end.month)
+        return _RECENCY_WEIGHT if months_ago <= _RECENT_MONTHS else 1.0
+    except (ValueError, KeyError):
+        return 1.0
+
+
 def _today() -> date:
     return datetime.utcnow().date()
 
@@ -143,16 +163,34 @@ def _title_disqualified(candidate: dict, role_model: dict) -> float:
 
 def _production_ml_score(candidate: dict) -> float:
     """
-    Corroborated production-ML keyword density.
+    Recency-weighted production-ML keyword density.
 
-    Career description hits count at full weight (1.0).
-    Skill-only hits (keyword present in skill name with duration_months > 0 but
-    absent from any career description) count at 0.4× — credible but unverified.
-    10 corroborated equivalent hits → 1.0.
+    Each career role is scored independently and multiplied by a recency weight:
+      - Role ended within 36 months (or is current): weight 3.0
+      - Role ended more than 36 months ago:          weight 1.0
+
+    Per role, each unique production-ML keyword match contributes weight × 1.0.
+    Skill-only hits (advanced/expert skill with duration > 0, keyword absent from
+    all career descriptions) add 0.4 each regardless of recency — skills don't
+    carry per-role timestamps.
+
+    Normalisation: 10 equivalent career-hit units → 1.0.  A single recent role
+    with 4 distinct keyword matches contributes 4 × 3.0 = 12 units → capped 1.0.
+    An older role with the same 4 matches contributes 4 units.
     """
-    career_text = _career_descriptions(candidate)
-    career_matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(career_text))
+    # Accumulate weighted career hits per role
+    all_career_keywords: set[str] = set()
+    weighted_career_score = 0.0
+    for role in candidate.get("career_history", []):
+        desc = role.get("description", "").strip()
+        if not desc:
+            continue
+        w = _role_recency_weight(role)
+        matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(desc))
+        weighted_career_score += w * len(matches)
+        all_career_keywords |= matches
 
+    # Skill-only bonus: advanced/expert skills with duration > 0 not already in career text
     credible_skills = " ".join(
         s.get("name", "") for s in candidate.get("skills", [])
         if isinstance(s, dict)
@@ -160,9 +198,9 @@ def _production_ml_score(candidate: dict) -> float:
         and (s.get("duration_months") or 0) > 0
     )
     skill_matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(credible_skills))
+    skill_only = skill_matches - all_career_keywords
 
-    skill_only = skill_matches - career_matches
-    score = len(career_matches) + 0.4 * len(skill_only)
+    score = weighted_career_score + 0.4 * len(skill_only)
     return min(1.0, score / 10.0)
 
 
