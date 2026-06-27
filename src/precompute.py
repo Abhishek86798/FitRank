@@ -213,11 +213,28 @@ def run(candidates_path: Path, artifacts_dir: Path, prefix: str = "") -> None:
     total = time.perf_counter() - t0
     print(f"Encoding done in {total/60:.1f} min  ({n_done/total:.0f} cands/s)", flush=True)
 
-    # ── 6. Embed JD (shared across sample and full runs) ──────────────────────
+    # ── 6. Build JD query vector (shared across sample and full runs) ───────────
+    # Default: persona-based query expansion via Claude (offline, ~5 API calls).
+    # Falls back to raw-JD embedding when ANTHROPIC_API_KEY is not set.
     jd_path = artifacts_dir / "jd_vector.npy"
     if not jd_path.exists():
-        print("Encoding JD text with query prefix ...", flush=True)
-        jd_vec = embed_texts(model, [BGE_QUERY_PREFIX + JD_TEXT], show_progress=False)
+        import os
+        from src.expand_query import expand_query
+
+        def _embed_for_expansion(texts: list[str]) -> np.ndarray:
+            prefixed = [BGE_QUERY_PREFIX + t for t in texts]
+            return embed_texts(model, prefixed, show_progress=False)
+
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            jd_vec = expand_query(JD_TEXT, _embed_for_expansion, verbose=True)
+        else:
+            print(
+                "ANTHROPIC_API_KEY not set — falling back to raw-JD embedding "
+                "(set the key and delete jd_vector.npy to use persona expansion).",
+                flush=True,
+            )
+            jd_vec = embed_texts(model, [BGE_QUERY_PREFIX + JD_TEXT], show_progress=False)
+
         np.save(jd_path, jd_vec.astype(np.float16))
         print(f"Saved {jd_path.name}  shape={jd_vec.shape}", flush=True)
     else:

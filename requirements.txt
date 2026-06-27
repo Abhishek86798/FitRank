@@ -1,5 +1,6 @@
 # NOTE: Pinned to latest Python-3.14-compatible versions (dev machine).
 # Contest submission targets Python 3.11 — re-pin to the contest spec versions before submitting.
+anthropic==0.112.0
 sentence-transformers==3.4.1
 lightgbm==4.6.0
 rank-bm25==0.2.2
