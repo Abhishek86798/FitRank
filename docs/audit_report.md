@@ -510,7 +510,48 @@ If `duration_months > months elapsed since start_date`, the candidate claims to 
 
 ---
 
-## 9. Submission Readiness Checklist
+## 9. Post-Audit Enhancement: Recency-Weighted Career Scoring
+
+**Commit:** `ab91163`  
+**File:** [src/feature_builder.py](src/feature_builder.py)  
+**Status:** Implemented, 7 new tests (20 total in test_feature_builder.py), validate_submission passes
+
+### What it does
+
+`_production_ml_score` now processes each career role independently and multiplies its keyword match count by a recency weight before summing:
+
+| Role recency | Weight |
+|---|---|
+| Current role (`is_current=True` or no `end_date`) | **3.0** |
+| Ended within 36 months | **3.0** |
+| Ended more than 36 months ago | **1.0** |
+
+The previous implementation concatenated all descriptions into a flat string, so a FAISS deployment from 5 years ago contributed identically to one shipped last quarter. Under the new scheme, a single recent role with 4 distinct production-ML keyword matches contributes 4 × 3.0 = 12 units against a normalisation threshold of 10 (capped at 1.0), while the same keywords from an old role contribute 4 units.
+
+Skill-only hits retain their existing 0.4× bonus — skills carry no per-role timestamp, so recency cannot be determined.
+
+### Design decisions
+
+- **Window = 36 months, weight = 3.0** — named constants `_RECENT_MONTHS` and `_RECENCY_WEIGHT` in [src/feature_builder.py](src/feature_builder.py), easy to tune.
+- **Old roles not zeroed** — weight 1.0 preserves signal from older careers; the boost is relative, not a cliff.
+- **Missing `end_date` defaults to recent** — avoids penalising current roles with incomplete data.
+- **Normalisation denominator unchanged (10)** — calibrated so a strong recent role saturates the score without requiring multiple roles.
+
+### Tests
+
+| Test | Asserts |
+|---|---|
+| `test_role_recency_weight_current_role` | `is_current=True` → 3.0 |
+| `test_role_recency_weight_recent_ended_role` | ended 12 months ago → 3.0 |
+| `test_role_recency_weight_old_role` | ended 5 years ago → 1.0 |
+| `test_role_recency_weight_missing_end_date_treated_as_recent` | `end_date=None` → 3.0 |
+| `test_production_ml_score_recent_beats_old_same_keywords` | same keywords, recent > old |
+| `test_production_ml_score_old_role_still_positive` | old role still > 0.0 |
+| `test_production_ml_score_capped_at_1` | keyword-dense recent role → 1.0 |
+
+---
+
+## 10. Submission Readiness Checklist
 
 | Check | Result | Detail |
 |---|---|---|
@@ -522,7 +563,7 @@ If `duration_months > months elapsed since start_date`, the candidate claims to 
 | No network calls in `rank.py` | ✅ **YES** | Zero network imports; comment in file confirms this |
 | `ltr_model.txt` loads without error | ✅ **YES** | 344 KB file; valid LightGBM v4 format (`tree`, `version=v4`, `num_class=1`) |
 | Clean git history (multiple real commits) | ✅ **YES** | 22+ commits with meaningful messages across 6 days of work + audit fixes |
-| `pytest tests/` all pass | ✅ **YES** | 35/35 tests pass (7 new impossibility_flag + 9 expand_query + 19 existing) |
+| `pytest tests/` all pass | ✅ **YES** | 42/42 tests pass (7 new recency + 7 impossibility_flag + 9 expand_query + 19 existing) |
 | `sandbox_url` field | ⚠️ **"not deployed"** | Portal may require a live URL; Streamlit demo (`app.py`) exists but not deployed |
 
 ---
