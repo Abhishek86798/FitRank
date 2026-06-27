@@ -1,0 +1,5 @@
+# Prevent CRLF corruption of LightGBM model file on Windows checkout
+artifacts/ltr_model.txt  text eol=lf
+
+# Treat .npy files as binary
+artifacts/*.npy  binary

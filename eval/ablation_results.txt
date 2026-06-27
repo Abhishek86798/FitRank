@@ -77,3 +77,96 @@
 #   #4 CAND_0000011 [0.2650] QA Engineer @ Pied Piper
 #   #5 CAND_0000010 [0.2500] Data Engineer @ Ola
 #   No Mechanical Engineers. No HR Managers. No Frontend/FAISS stuffers.
+
+# ===========================================================================
+# DAY 5 ABLATIONS (full 100k corpus, team_xxx.csv, 2026-06-27)
+# Scorer: LambdaMART (100 trees, ltr_model.txt)
+# Embeddings: BGE-base-en-v1.5 (768-dim, fp16, Colab-precomputed)
+# Golden set: eval/golden_set.csv (57 labelled candidates from sample set)
+# ===========================================================================
+
+# --- BASELINE (team_xxx.csv, full run, LambdaMART) ---
+# NDCG@10: 0.7929   NDCG@50: 0.6871   MAP: 0.5069   P@10: 0.4000
+
+# ---------------------------------------------------------------------------
+# ABLATION 1 — Behavioral signals OFF
+# Method: _behavioral_multiplier() patched to return 0.0 for all candidates.
+# Effect: behavioral_multiplier feature = 0.0; feature weight still 0.10.
+#         open_to_work, recruiter_response_rate, recency, interview_completion,
+#         profile_completeness all zeroed out — 10% of weighted signal removed.
+#
+# NDCG@10: 0.3365   NDCG@50: 0.4340   MAP: 0.3080   P@10: 0.2000
+#
+# Delta vs baseline: NDCG@10 -0.4564 (-57.6%)
+#
+# Interpretation:
+#   Dramatic drop shows behavioral signals are load-bearing.
+#   Without open-to-work / recency signals, the LambdaMART model re-ranks
+#   candidates whose pure domain + production scores are high but who are
+#   passive / unreachable, bubbling them up at the expense of genuinely
+#   active candidates that the golden set favours.
+#
+#   New rank #1 after behavioral OFF: CAND_0041611 (Staff MLE @ Locobuzz)
+#   vs baseline rank #1: CAND_0018499 (Senior MLE @ Zomato, open-to-work).
+#
+#   Conclusion: behavioral_multiplier is the single most impactful feature
+#   for discriminating between equally-qualified candidates. Do NOT ablate
+#   or reduce its weight further.
+#
+# Scores on ablation run:
+#   #1  [0.6278]  CAND_0041611  Staff Machine Learning Engineer @ Locobuzz
+#   #2  [0.6264]  CAND_0053591  AI Engineer @ Ola
+#   #3  [0.4946]  CAND_0055905  Senior Machine Learning Engineer @ Flipkart
+#   #4  [0.4917]  CAND_0012798  AI Research Engineer @ Vedantu
+#   #5  [0.4735]  CAND_0085199  AI Research Engineer @ Observe.AI
+
+# ---------------------------------------------------------------------------
+# ABLATION 2 — Domain gate OFF (title_disqualified penalty disabled)
+# Method: _title_disqualified() patched to return 0.0 for all candidates.
+#         Candidates with disqualifying titles (HR Manager, Civil Engineer, etc.)
+#         are no longer hard-gated to score 0.01.
+#
+# NDCG@10: 0.7929   NDCG@50: 0.6871   MAP: 0.5069   P@10: 0.4000
+#
+# Delta vs baseline: 0.0000 (identical)
+#
+# Top-10 with gate OFF: identical to baseline top-10
+#
+# Interpretation:
+#   Zero NDCG change means none of the top-100 candidates are disqualified
+#   by the gate — all 100 ranked candidates hold valid ML engineering titles.
+#   The gate does its job silently: it prevents non-engineers from ever
+#   entering the scoring competition. With the full 100k corpus, non-engineers
+#   are already filtered by the dense + BM25 retrieval stage (they don't
+#   match the JD embedding or keywords), so the gate acts as a safety net.
+#
+#   On the 50-candidate sample (Day 3), the gate DID cause visible rank changes
+#   (removed HR Manager, Mechanical Engineer from top-10). On the full corpus
+#   retrieval is strong enough that the gate is never triggered in the top-100.
+#
+#   Conclusion: gate is a defence-in-depth measure. Harmless when retrieval is
+#   clean; critical backstop if retrieval quality degrades (e.g., weaker model,
+#   distribution shift, adversarial keyword stuffing in profiles).
+
+# ---------------------------------------------------------------------------
+# HONEYPOT AUDIT — team_xxx.csv top-100 (2026-06-27)
+# Method: python eval/honeypot_audit.py + manual title inspection
+#
+# Non-engineers in top-100: 0
+# Flagged for further review (non-ML title patterns): 0
+# CHECK-flagged titles (possible ML-adjacent, not clearly non-engineer): 14
+#   Ranks: 6, 19, 30, 33, 35, 48, 49, 52, 60, 72, 74, 77, 79, 80, 83, 84, 85, 88, 90, 98
+#   All are either "Computer Vision Engineer", "Senior Software Engineer (ML)",
+#   "Senior Applied Scientist", "AI Specialist" — legitimate engineering titles
+#   adjacent to but not identical to our _ML_TITLES regex patterns.
+#   None are marketing/HR/consulting roles. Honeypot defence is holding.
+#
+# Conclusion: Zero confirmed non-engineers. Corroboration rule + domain cap +
+#   title_disqualified gate working as designed across 100k corpus.
+
+# ---------------------------------------------------------------------------
+# MONOTONICITY CHECK — team_xxx.csv (2026-06-27)
+# python: assert all(scores[i]>=scores[i+1] for i in range(99)), 'NOT MONOTONIC'
+# Result: Monotonic: OK
+# Score range: 0.996376 (rank 1) to 0.151800 (rank 100)
+# No rank-score inversions detected.

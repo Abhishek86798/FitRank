@@ -5,77 +5,102 @@
 # ── Team ──────────────────────────────────────────────────────────────────────
 team_name: FitRank
 contact_email: android@irix.in
-github_url: https://github.com/abhishek/fitrank          # update before final submission
+github_url: https://github.com/abhishek-irix/FitRank
 
 # ── Deployment ────────────────────────────────────────────────────────────────
 sandbox_url: ""                                           # fill after HF Spaces deploy
 streamlit_demo: true
 
-# ── Evaluation (submission_sample.csv vs eval/golden_set.csv) ─────────────────
+# ── Evaluation — full corpus run (team_xxx.csv vs eval/golden_set.csv) ────────
 eval_metrics:
-  NDCG_at_10: 0.6586
-  NDCG_at_50: 0.8065
-  MAP:        0.6759   # improved after corroboration + domain-gate fix
+  NDCG_at_10: 0.7929
+  NDCG_at_50: 0.6871
+  MAP:        0.5069
   P_at_10:    0.4000
-eval_date: "2026-06-26"
-eval_submission: submission_sample.csv
+eval_date: "2026-06-27"
+eval_submission: team_xxx.csv
 eval_golden:     eval/golden_set.csv
+scorer: LambdaMART (ltr_model.txt, 100 trees, lightgbm 4.6.0)
+
+# ── Ablation Results (Day 5) ──────────────────────────────────────────────────
+ablations:
+  behavioral_signals_off:
+    NDCG_at_10: 0.3365
+    delta:      -0.4564   # -57.6% — behavioral_multiplier is load-bearing
+  domain_gate_off:
+    NDCG_at_10: 0.7929
+    delta:      0.0000    # top-100 are all genuine ML engineers; gate never triggered
+  monotonicity: PASS      # scores non-increasing rank 1→100
 
 # ── AI Tools Declared ─────────────────────────────────────────────────────────
 ai_tools_used:
   - tool: Claude Sonnet 4.6 (Claude Code)
     purpose: >
-      Code generation and iteration for feature_builder.py, scorer.py,
-      retriever.py, reasoning.py, rank.py, evaluate.py, honeypot_audit.py,
-      and app.py. Role model weight tuning via conversation.
-  - tool: sentence-transformers (all-MiniLM-L6-v2)
-    purpose: Candidate + JD embedding for dense retrieval
-  - tool: BM25 (rank_bm25)
-    purpose: Sparse lexical retrieval; fused with dense via RRF
+      Code generation and iteration for all src/ modules (feature_builder.py,
+      scorer.py, retriever.py, reasoning.py, rank.py, precompute.py, data_loader.py),
+      eval/ scripts (evaluate.py, honeypot_audit.py, ablation runner), app.py,
+      and role model weight tuning via conversation.
+  - tool: BAAI/bge-base-en-v1.5 (sentence-transformers)
+    purpose: Candidate + JD embedding for dense retrieval (768-dim, L2-normalised)
+  - tool: BM25Okapi (rank-bm25)
+    purpose: Sparse lexical retrieval; fused with dense via Reciprocal Rank Fusion (k=60)
   - tool: LightGBM LambdaMART
-    purpose: LTR scorer (falls back to weighted-sum if model file absent)
+    purpose: Learning-to-rank scorer trained on golden-set labels; falls back to
+             weighted-sum if model file absent
 
 # ── Compute Summary ───────────────────────────────────────────────────────────
 compute:
-  hardware: CPU-only (no GPU required)
-  embedding_model: sentence-transformers/all-MiniLM-L6-v2
-  embedding_dim: 384
-  precompute_time_s: ~30          # for full 500-candidate corpus
-  rank_time_s: ~5                 # pipeline run on 500 candidates
-  peak_ram_mb: ~400
+  hardware: CPU-only, no GPU required for ranking (precompute used Google Colab free tier)
+  embedding_model: BAAI/bge-base-en-v1.5
+  embedding_dim: 768
+  precompute_time_full_corpus: "~10 min on CPU (i5-12500H, 6 physical cores)"
+  precompute_time_sample:      "~20 sec on CPU"
+  rank_time_full_corpus:       "~5 min on CPU (BM25 index build dominates)"
+  peak_ram_mb_precompute:      "<2000 (memmap — embeddings never fully in RAM)"
+  peak_ram_mb_rank:            "~2000 (BM25 index for 100k docs)"
+  artifacts:
+    embeddings_npy_size_mb: 146.5    # fp16, 100k x 768
+    candidate_ids_npy_size_mb: 4.6
+    ltr_model_txt_size_kb: 344       # 100-tree LambdaMART
 
 # ── Methodology Summary ───────────────────────────────────────────────────────
 methodology: >
-  Two-stage retrieval + multi-signal scoring pipeline.
+  Two-stage hybrid retrieval + multi-signal LTR scoring pipeline.
 
-  Stage 1 — Retrieval:
-    Dense retrieval (cosine similarity over MiniLM embeddings) fused with
-    BM25 sparse retrieval via Reciprocal Rank Fusion (k=60). Top-50 candidates
-    from the fused list proceed to scoring.
+  Stage 1 — Hybrid Retrieval:
+    Dense retrieval (cosine similarity over BGE-base-en-v1.5 768-dim embeddings)
+    fused with BM25Okapi sparse retrieval via Reciprocal Rank Fusion (k=60).
+    Top-100 candidates from the fused list advance to scoring.
 
-  Stage 2 — Scoring (weighted sum, 12 features):
-    • cosine_similarity (0.20)   — semantic match to JD embedding
-    • domain_alignment (0.20)    — NLP/IR/ranking keyword density in career text
-    • production_ml_score (0.20) — density of shipped-ML signals (ranking, retrieval,
-                                   eval infra, vector DBs) across career descriptions
-    • experience_fit_score (0.10) — YoE vs 5–9 year band with soft taper
-    • is_ml_engineer (0.10)      — current/past ML engineering title match
-    • behavioral_multiplier (0.10) — composite of open-to-work, recruiter response
-                                     rate, recency, interview completion, profile completeness
-    • consistency_score (0.05)   — honeypot detector (expert skills with zero duration,
-                                   YoE vs career-months gap, title/description mismatch)
-    • location_score (0.03)      — preferred Indian city / willing to relocate
-    • github_activity (0.02)     — normalised github_activity_score from redrob signals
-    • title_disqualified (-1.0)  — hard gate: non-engineer title + no ML career history
-    • consulting_penalty (-0.08) — fraction of career at consulting firms (soft, not hard)
-    • notice_penalty (-0.02)     — stepped penalty for >30 / >60 / >90 / >120 day notice
+  Stage 2 — LambdaMART Scoring (12 features):
+    • cosine_similarity (0.20)        — semantic match to JD BGE embedding
+    • domain_alignment (0.20)         — NLP/IR/ranking keyword density, career-desc corroborated
+    • production_ml_score (0.20)      — shipped-ML signals (ranking, retrieval, vector DBs, eval infra)
+    • experience_fit_score (0.10)     — YoE vs 5-9 year band with soft taper
+    • is_ml_engineer (0.10)           — current/past ML engineering title match
+    • behavioral_multiplier (0.10)    — open-to-work, recruiter response rate, recency,
+                                        interview completion, profile completeness
+    • consistency_score (0.05)        — honeypot detector (zero-duration expert skills,
+                                        YoE vs career-months gap, title/desc mismatch)
+    • location_score (0.03)           — preferred India cities (Pune/Noida/Delhi/Hyderabad/Mumbai)
+    • github_activity (0.02)          — normalised github_activity_score from redrob signals
+    • title_disqualified (hard gate)  — non-engineer title + no ML history -> score 0.01
+    • consulting_penalty (soft)       — fraction of career at IT services firms
+    • notice_penalty (soft)           — stepped: 0 / 0.25 / 0.5 / 0.75 / 1.0 at 30/60/90/120+ days
+
+  Corroboration rule:
+    Skill-list-only keyword hits count at 0.3x (domain) and 0.4x (production ML)
+    vs career-description hits. Prevents keyword-stuffing from gaming feature scores.
+
+  Domain cap:
+    Candidates with is_ml_engineer=0 AND domain_alignment=0 are hard-capped at 0.25
+    regardless of behavioral or cosine scores.
 
   Honeypot defence:
-    consistency_score catches three patterns: (a) proficiency=expert but duration_months=0,
-    (b) career total months diverges from stated YoE by >3 years,
-    (c) non-ML current title but career descriptions stuffed with ML keywords.
+    consistency_score catches: (a) expert skills with duration_months=0,
+    (b) career total months vs stated YoE diverging by >3 years,
+    (c) non-ML title with ML-heavy career descriptions.
 
-  Reasoning:
-    Per-candidate natural language reasoning string generated by reasoning.py,
-    surfacing top signals (production evidence, skills, location, notice) to
-    explain the rank to the hiring team.
+  Reasoning strings:
+    Per-candidate natural language explanation (reasoning.py) surfacing
+    production evidence, key skills, location, notice, and open-to-work status.

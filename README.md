@@ -57,6 +57,20 @@ with no retrieval work in their history scores near zero on both signals.
 
 ---
 
+## Reproduce in one shot
+
+```bash
+pip install -r requirements.txt
+python src/precompute.py
+python src/rank.py --candidates ./data/candidates.jsonl --out ./team_xxx.csv
+```
+
+`precompute.py` defaults to `data/sample_candidates.json`; for the full 100k corpus pass
+`--candidates data/candidates.jsonl`. `rank.py` auto-detects available artifacts (falls back
+to `sample_` prefix if full embeddings are absent). No network calls occur during `rank.py`.
+
+---
+
 ## Quickstart
 
 ### 1. Install dependencies
