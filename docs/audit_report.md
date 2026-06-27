@@ -1,5 +1,5 @@
 # FitRank Codebase Audit Report
-**Date:** 2026-06-27  
+**Date:** 2026-06-28 (updated)  
 **Auditor:** Claude Sonnet 4.6 (automated + manual inspection)  
 **Branch:** main
 
@@ -438,7 +438,45 @@ def test_title_disqualified_redemption_by_past_ml_role():
 
 ---
 
-## 7. Submission Readiness Checklist
+## 7. Post-Audit Enhancement: Persona-Based Query Expansion
+
+**Commit:** `89dde7e`  
+**File:** [src/expand_query.py](src/expand_query.py)  
+**Status:** Implemented, tested (9 tests, all mocked), offline-only
+
+### What it does
+
+Instead of embedding the raw JD as the single query vector, `precompute.py` now calls Claude Haiku (offline, once) to generate 5 "ideal candidate profiles" — first-person career narratives that describe distinct valid shapes of the ideal hire. Each is embedded with BGE, and their L2-normalised average becomes `jd_vector.npy`.
+
+```
+JD text → Claude Haiku → 5 profiles:
+  "I have shipped FAISS-based ranking at Swiggy, spending four years …"
+  "I am an NLP engineer with LambdaMART experience at a startup …"
+  "I built hybrid dense+BM25 search at scale with strong Python …"
+  "I have production experience with Weaviate and sentence-transformers …"
+  "I led the ranking team at an e-commerce platform, owning NDCG-driven …"
+→ embed all 5 → average → L2-normalise → jd_vector.npy
+```
+
+### Why it helps
+
+A single JD embedding captures one centroid in embedding space. The JD mixes must-haves, nice-to-haves, and disqualifiers — the embedding averages over all of them. Persona expansion covers multiple valid candidate shapes, moving the query vector closer to where real strong candidates cluster.
+
+### Fallback behaviour
+
+If `ANTHROPIC_API_KEY` is not set, `precompute.py` falls back to the original raw-JD embedding with a console warning. No API key is needed at ranking time (`rank.py` is unchanged).
+
+### To regenerate with persona expansion
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+rm artifacts/jd_vector.npy
+python -m src.precompute --candidates data/candidates.jsonl
+```
+
+---
+
+## 8. Submission Readiness Checklist
 
 | Check | Result | Detail |
 |---|---|---|
@@ -450,7 +488,7 @@ def test_title_disqualified_redemption_by_past_ml_role():
 | No network calls in `rank.py` | ✅ **YES** | Zero network imports; comment in file confirms this |
 | `ltr_model.txt` loads without error | ✅ **YES** | 344 KB file; valid LightGBM v4 format (`tree`, `version=v4`, `num_class=1`) |
 | Clean git history (multiple real commits) | ✅ **YES** | 22+ commits with meaningful messages across 6 days of work + audit fixes |
-| `pytest tests/` all pass | ✅ **YES** | 26/26 tests pass including full end-to-end pipeline (110s, LambdaMART) |
+| `pytest tests/` all pass | ✅ **YES** | 28/28 tests pass (9 new expand_query tests + 19 existing + pipeline) |
 | `sandbox_url` field | ⚠️ **"not deployed"** | Portal may require a live URL; Streamlit demo (`app.py`) exists but not deployed |
 
 ---
@@ -548,5 +586,6 @@ def test_title_disqualified_redemption_by_past_ml_role():
 | N2 | ~~NICE-TO-HAVE~~ **FIXED** ✅ | `dense_ids.index(cid)` replaced with pre-built O(1) dict (closed by I4 fix, `33033f4`) |
 | N3 | NICE-TO-HAVE | `_NUM_THREADS = 6` hardcoded to developer's CPU |
 | N4 | NICE-TO-HAVE | `sandbox_url` is "not deployed" — deploy Streamlit demo |
-| N5 | NICE-TO-HAVE | `score_batch` not tested |
+| N5 | ~~NICE-TO-HAVE~~ **FIXED** ✅ | `score_batch` now exercised by full pipeline test (`test_full_pipeline_runtime_and_ram`) |
 | N6 | NICE-TO-HAVE | `.claude/` directory tracked in git |
+| **NEW** | **ENHANCEMENT** | Persona-based query expansion via Claude (`src/expand_query.py`, commit `89dde7e`) |
