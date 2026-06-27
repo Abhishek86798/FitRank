@@ -235,7 +235,7 @@ def compose_reasoning(
     parts: list[str] = []
 
     # ── Opening: who is this person ──────────────────────────────────────────
-    cosine = features.get("cosine_sim", 0.0)
+    cosine = features.get("cosine_similarity", 0.0)
     if cosine >= 0.70 or retrieval_hits:
         opener = _pick(_OPENS_STRONG, seed)
     else:
