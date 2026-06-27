@@ -19,8 +19,10 @@ def score_with_weighted_sum(features: dict[str, float], role_model: dict) -> flo
     weights in role_model are negative — so the subtraction happens via
     weight × value where weight < 0.
     """
-    # Hard gate — short-circuit before computing anything else
+    # Hard gates — short-circuit before computing anything else
     if features.get("title_disqualified", 0.0) == -1.0:
+        return 0.01
+    if features.get("impossibility_flag", 0.0) == -1.0:
         return 0.01
 
     weights: dict[str, float] = role_model.get("feature_weights", {})
@@ -95,6 +97,8 @@ class LTRScorer:
         """Score a single candidate's feature dict. Returns 0.0–1.0."""
         if features.get("title_disqualified", 0.0) == -1.0:
             return 0.01
+        if features.get("impossibility_flag", 0.0) == -1.0:
+            return 0.01
 
         if self._booster is None:
             return score_with_weighted_sum(features, self._role_model)
@@ -139,7 +143,7 @@ class LTRScorer:
 
         # Override hard-gate and domain-capped candidates
         for i, f in enumerate(feature_list):
-            if f.get("title_disqualified", 0.0) == -1.0:
+            if f.get("title_disqualified", 0.0) == -1.0 or f.get("impossibility_flag", 0.0) == -1.0:
                 scores[i] = 0.01
             elif f.get("is_ml_engineer", 0.0) == 0.0 and f.get("domain_alignment", 0.0) == 0.0:
                 scores[i] = min(0.25, scores[i])

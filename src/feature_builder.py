@@ -377,6 +377,48 @@ def _notice_penalty(candidate: dict, role_model: dict) -> float:
     return 1.0
 
 
+def _impossibility_flag(candidate: dict) -> float:
+    """
+    Hard honeypot gate.  Returns -1.0 when any logically impossible claim is
+    detected; 0.0 otherwise.  Two checks:
+
+    1. Expert/advanced skill with duration_months == 0
+       A candidate who claims expert proficiency but zero months of practice
+       is statistically impossible.  A single such skill triggers the flag.
+
+    2. Role duration exceeds company age
+       If duration_months > months elapsed since the role's start_date (i.e.
+       the candidate claims to have worked there longer than the company could
+       have existed by the time they joined), the record is fabricated.
+    """
+    # Check 1 — expert/advanced skill with zero duration
+    for s in candidate.get("skills", []):
+        if not isinstance(s, dict):
+            continue
+        if s.get("proficiency") in ("expert", "advanced"):
+            duration = s.get("duration_months")
+            if duration is not None and duration == 0:
+                return -1.0
+
+    # Check 2 — role tenure exceeds company age implied by start_date
+    today = _today()
+    for role in candidate.get("career_history", []):
+        duration = role.get("duration_months")
+        start_raw = role.get("start_date")
+        if not duration or not start_raw:
+            continue
+        try:
+            start = datetime.strptime(start_raw[:10], "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        # Max plausible duration for this role: months from start_date to today
+        max_months = max(0, (today.year - start.year) * 12 + (today.month - start.month))
+        if duration > max_months:
+            return -1.0
+
+    return 0.0
+
+
 def _github_activity(candidate: dict) -> float:
     """
     Normalise github_activity_score (0–100, or -1 if no GitHub linked) → 0–1.
@@ -415,6 +457,7 @@ def build_feature_vector(
         "experience_fit_score": _experience_fit_score(candidate, role_model),
         "is_ml_engineer":       _is_ml_engineer(candidate),
         "title_disqualified":   _title_disqualified(candidate, role_model),
+        "impossibility_flag":   _impossibility_flag(candidate),
         "production_ml_score":  _production_ml_score(candidate),
         "domain_alignment":     _domain_alignment(candidate),
         "consulting_penalty":   _consulting_penalty(candidate),
