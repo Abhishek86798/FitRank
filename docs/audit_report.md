@@ -350,7 +350,7 @@ These also run as **scripts** (not pytest-style), so `pytest` won't collect them
 - `days = _notice_days(candidate)` → returns `None` → guarded by `if days is not None`
 - Missing `redrob_signals` → all `.get()` calls return `None` or `{}`, handled gracefully ✅
 
-**Bug found:** Line 238: `cosine = features.get("cosine_sim", 0.0)` — but the feature dict key is `"cosine_similarity"` (set in `feature_builder.py` line 414), not `"cosine_sim"`. This means `cosine` is always `0.0` in reasoning.py, so the strong-opener threshold `cosine >= 0.70` is never met from the feature key. The strong opener fires only via `retrieval_hits`, never via cosine. **This is a silent bug** — the opener selection logic is partially dead.
+**Bug fixed (commit `3fe3cd1`):** Line 238 previously used `features.get("cosine_sim", 0.0)` — but the feature dict key is `"cosine_similarity"` (set in `feature_builder.py` line 414). Fixed to `features.get("cosine_similarity", 0.0)`. The strong-opener threshold `cosine >= 0.70` now fires correctly for high-cosine candidates. `validate_submission.py team_xxx.csv` confirmed: **"Submission is valid."** ✅
 
 ---
 
@@ -456,13 +456,13 @@ def test_title_disqualified_redemption_by_past_ml_role():
 
 ## 8. Recommendations — Priority Order
 
-### [BLOCKER]
+### [BLOCKER — FIXED]
 
-**B1. `reasoning.py` wrong feature key — cosine opener never fires**
+**B1. `reasoning.py` wrong feature key — cosine opener never fires** ✅ FIXED in commit `3fe3cd1`
 - **File:** [src/reasoning.py:238](src/reasoning.py#L238)
-- **Issue:** `features.get("cosine_sim", 0.0)` should be `features.get("cosine_similarity", 0.0)`. The key `"cosine_sim"` doesn't exist in the feature dict, so this always returns `0.0` and the strong opener logic (`cosine >= 0.70`) is dead.
-- **Impact:** Top candidates with high cosine similarity (e.g., score 0.99) get the weak opener phrasing instead of the strong one. Reasoning quality is degraded for all top-ranked candidates.
-- **Fix:** Change `"cosine_sim"` → `"cosine_similarity"` on line 238.
+- **Issue:** `features.get("cosine_sim", 0.0)` should be `features.get("cosine_similarity", 0.0)`. The key `"cosine_sim"` didn't exist in the feature dict, so this always returned `0.0` and the strong opener logic (`cosine >= 0.70`) was dead.
+- **Fix applied:** Changed `"cosine_sim"` → `"cosine_similarity"` on line 238.
+- **Validation:** `validate_submission.py team_xxx.csv` → **"Submission is valid."** ✅
 
 ---
 
@@ -550,7 +550,7 @@ def test_title_disqualified_redemption_by_past_ml_role():
 
 | ID | Severity | One-line description |
 |---|---|---|
-| B1 | **BLOCKER** | `reasoning.py:238` wrong feature key `cosine_sim` → strong opener never fires |
+| B1 | ~~**BLOCKER**~~ **FIXED** ✅ | `reasoning.py:238` wrong feature key `cosine_sim` → fixed to `cosine_similarity` (commit `3fe3cd1`) |
 | I1 | IMPORTANT | 20 `__pycache__`/`.pyc` files tracked in git |
 | I2 | IMPORTANT | `sample_embeddings.npy`, `sample_candidate_ids.npy` not gitignored |
 | I3 | IMPORTANT | `test_*.py` files in root instead of `tests/` — not collected by pytest |
