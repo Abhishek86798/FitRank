@@ -51,9 +51,6 @@ def _advanced_skills(candidate: dict) -> list[str]:
     ]
 
 
-def _all_skill_names(candidate: dict) -> list[str]:
-    return [s["name"] for s in candidate.get("skills", []) if isinstance(s, dict)]
-
 
 def _assessment_scores(candidate: dict) -> dict[str, float]:
     return candidate.get("redrob_signals", {}).get("skill_assessment_scores", {})
@@ -84,7 +81,7 @@ def _months_since_active(candidate: dict) -> int | None:
         return None
     try:
         last = datetime.strptime(raw, "%Y-%m-%d").date()
-        today = date(2026, 6, 26)
+        today = date.today()
         return max(0, (today - last).days // 30)
     except ValueError:
         return None

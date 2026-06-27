@@ -154,39 +154,41 @@ def run(
     scorer = LTRScorer(ltr_path, role_model)
     print(f"  Scorer mode: {'LambdaMART' if scorer.is_ltr else 'weighted-sum'}")
 
-    # Build (id, score) for all merged candidates we have records for
-    scored: list[tuple[str, float]] = []
+    # Build feature vectors for all merged candidates we have records for,
+    # then score in one batch call instead of one-by-one.
+    dense_idx = {cid: i for i, cid in enumerate(dense_ids)}
+
+    cids_to_score: list[str] = []
+    feature_batch: list[dict] = []
     for cid in merged_ids:
         cand = top_records.get(cid)
         if cand is None:
             continue
-        # cosine score for this candidate (0.0 if it came only from BM25)
-        cosine = 0.0
-        if cid in dense_id_set:
-            idx = dense_ids.index(cid)
-            cosine = float(dense_scores[idx])
+        cosine = float(dense_scores[dense_idx[cid]]) if cid in dense_idx else 0.0
+        cids_to_score.append(cid)
+        feature_batch.append(build_feature_vector(cand, role_model, cosine_sim=cosine))
 
-        features = build_feature_vector(cand, role_model, cosine_sim=cosine)
-        score    = scorer.score(features)
-        scored.append((cid, score))
+    batch_scores = scorer.score_batch(feature_batch)
+    scored: list[tuple[str, float]] = list(zip(cids_to_score, batch_scores))
 
-    # Sort best-first; pad with hard-gated score if we have fewer than submission_size
+    # Sort best-first; pad with remaining candidates if fewer than submission_size
     scored.sort(key=lambda x: (-x[1], x[0]))   # score desc, id asc for equal scores
 
     # Pad to submission_size with remaining candidates from the merged set
     scored_ids = {cid for cid, _ in scored}
+    pad_cids: list[str] = []
+    pad_feats: list[dict] = []
     for cid in merged_ids:
-        if len(scored) >= submission_size:
+        if len(scored) + len(pad_cids) >= submission_size:
             break
-        if cid in scored_ids:
+        if cid in scored_ids or top_records.get(cid) is None:
             continue
-        cand = top_records.get(cid)
-        if cand is None:
-            continue
-        features = build_feature_vector(cand, role_model, cosine_sim=0.0)
-        score    = scorer.score(features)
-        scored.append((cid, score))
-        scored_ids.add(cid)
+        pad_cids.append(cid)
+        pad_feats.append(build_feature_vector(top_records[cid], role_model, cosine_sim=0.0))
+
+    if pad_cids:
+        pad_scores = scorer.score_batch(pad_feats)
+        scored.extend(zip(pad_cids, pad_scores))
 
     scored.sort(key=lambda x: (-x[1], x[0]))
     scored = scored[:submission_size]
