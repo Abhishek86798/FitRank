@@ -112,13 +112,20 @@ def run(
             for batch in stream_candidates(path):
                 yield from batch
 
+    # Stream once: build BM25 corpus AND collect dense top-K records.
+    # Early-stop: once all dense IDs are found we can stop collecting records,
+    # but we must finish the file to build a complete BM25 index.
+    # NOTE: BM25 needs all 100K texts, so we cannot break early here.
+    # The early-stop that matters is in the second pass (BM25-only candidates).
+    dense_found = 0
     for cand in _iter_candidates(candidates_path):
         cid  = cand["candidate_id"]
         text = build_candidate_text(cand)
         bm25_ids_list.append(cid)
         bm25_texts.append(text)
-        if cid in dense_id_set:
+        if cid in dense_id_set and cid not in top_records:
             top_records[cid] = cand
+            dense_found += 1
 
     print(f"  Collected {len(top_records)} records for dense top-{fetch_k}")
 
@@ -227,7 +234,7 @@ def main() -> None:
     parser.add_argument("--candidates",      default="data/candidates.jsonl", help="Candidate data file (.jsonl or .json)")
     parser.add_argument("--role-model",      default="role_model.yaml",      help="Role model YAML")
     parser.add_argument("--output",          default="submission.csv",       help="Output submission CSV path")
-    parser.add_argument("--top-k",           type=int, default=50,           help="Candidates to retrieve before scoring")
+    parser.add_argument("--top-k",           type=int, default=100,          help="Candidates to retrieve before scoring")
     parser.add_argument("--submission-size", type=int, default=100,          help="Rows in output CSV (must be 100 for validator)")
     parser.add_argument("--prefix",          default="",                     help="Artifact filename prefix (e.g. 'sample_')")
     args = parser.parse_args()
