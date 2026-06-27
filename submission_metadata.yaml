@@ -8,8 +8,11 @@ contact_email: android@irix.in
 github_url: https://github.com/Abhishek86798/FitRank
 
 # ── Deployment ────────────────────────────────────────────────────────────────
-sandbox_url: ""                                           # fill after HF Spaces deploy
+sandbox_url: "not deployed"
 streamlit_demo: true
+compute_environment: "CPU-only (no GPU). Ranking runs on any x86 machine with 4 GB RAM.
+  Precompute requires ~2 GB RAM; was run on Google Colab free tier (T4 GPU available
+  but not used — BGE embedding on CPU with 6 physical cores takes ~10 min for 100k)."
 
 # ── Evaluation — full corpus run (team_xxx.csv vs eval/golden_set.csv) ────────
 eval_metrics:

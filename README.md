@@ -4,11 +4,15 @@ Candidate ranking engine for Redrob AI's Senior AI Engineer (Founding Team) role
 Two-stage retrieval → multi-signal scoring pipeline that separates genuine ML engineers
 from keyword-stuffed profiles.
 
-**NDCG@10: 0.6586 · MAP: 0.6759 · `submission.csv` validates with 0 errors**
+**NDCG@10: 0.7929 · MAP: 0.5069 · `team_xxx.csv` validates with 0 errors · LambdaMART scorer**
 
 ---
 
 ## How it works
+
+FitRank is a two-stage pipeline that separates genuine ML engineers from keyword-stuffed profiles at 100k-candidate scale. **Stage 1 (Hybrid Retrieval)** encodes every candidate and the job description with BAAI/bge-base-en-v1.5 (768-dim, L2-normalised) and retrieves the top-K by cosine similarity. A BM25Okapi index runs in parallel on the same corpus; both ranked lists are merged via Reciprocal Rank Fusion (k=60) so that candidates strong on either semantic meaning or exact keyword match survive into the scoring stage.
+
+**Stage 2 (LambdaMART Scoring)** applies a 12-feature signal vector to every retrieved candidate. Three signals carry the most weight (0.20 each): `cosine_similarity` (semantic fit), `domain_alignment` (NLP/IR/ranking keyword density corroborated against career descriptions, not just skill lists), and `production_ml_score` (evidence of shipped retrieval/ranking systems). A behavioral composite (`open_to_work`, recruiter response rate, recency, interview completion) adds a further 0.10 and proved critical in ablation — removing it drops NDCG@10 by 57.6%. Hard gates (`title_disqualified`, domain cap) ensure no non-engineer can outrank genuine ML candidates regardless of behavioral or cosine scores.
 
 ```
 candidates.jsonl
@@ -17,18 +21,18 @@ candidates.jsonl
 ┌─────────────────────────────────────────────────────┐
 │  Stage 1 — Hybrid Retrieval                         │
 │  Dense (BGE cosine sim) + BM25 → RRF fusion         │
-│  Top-50 candidates advance to scoring               │
+│  Top-100 candidates advance to scoring              │
 └─────────────────────────────────────────────────────┘
       │
       ▼
 ┌─────────────────────────────────────────────────────┐
-│  Stage 2 — 12-Feature Weighted Scoring              │
+│  Stage 2 — LambdaMART Scoring (12 features)         │
 │  + domain cap (hard gate for non-ML profiles)       │
 │  + corroborated signals (career desc vs skill only) │
 └─────────────────────────────────────────────────────┘
       │
       ▼
-submission.csv  (candidate_id, rank, score, reasoning)
+team_xxx.csv  (candidate_id, rank, score, reasoning)
 ```
 
 ### Feature vector (12 features)
@@ -113,11 +117,11 @@ python eval/evaluate.py submission_sample.csv --golden eval/golden_set.csv
 ```
 
 ```
-Evaluation results
--------------------
-  NDCG@10  0.6586
-  NDCG@50  0.8065
-  MAP      0.6759
+Evaluation results (full 100k corpus, team_xxx.csv)
+----------------------------------------------------
+  NDCG@10  0.7929
+  NDCG@50  0.6871
+  MAP      0.5069
   P@10     0.4000
 ```
 
@@ -230,7 +234,20 @@ full 100k corpus (BM25 index dominates).
 
 | Step | Time (CPU) | Output |
 |---|---|---|
-| Precompute sample (50 candidates) | ~5s | `artifacts/sample_*.npy` |
-| Precompute full (100k candidates) | ~10 min | `artifacts/embeddings.npy` (~380 MB) |
+| Precompute sample (50 candidates) | ~20s | `artifacts/sample_*.npy` |
+| Precompute full (100k candidates) | ~10 min | `artifacts/embeddings.npy` (146 MB fp16) |
 | Rank sample | ~2s | `submission_sample.csv` |
-| Rank full | ~5 min | `submission.csv` |
+| Rank full | ~5 min | `team_xxx.csv` |
+
+---
+
+## Fairness statement
+
+All scoring signals are **attribute-blind**: no feature uses or proxies for candidate gender,
+age, religion, caste, nationality, or any other protected characteristic. The pipeline ranks
+solely on professional evidence — career descriptions, verified skill signals, production
+deployment history, and job-match proximity. Location and notice-period signals reflect
+operational constraints stated in the job description (Pune/Noida/Delhi preferred; sub-30-day
+notice), not demographic inferences. Honeypot defences target fabricated credentials, not
+any candidate demographic. The corroboration rule penalises keyword stuffing equally regardless
+of candidate background.
