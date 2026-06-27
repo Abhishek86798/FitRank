@@ -478,17 +478,14 @@ def test_title_disqualified_redemption_by_past_ml_role():
 - `test_data_loader.py`, `test_feature_builder.py`, `test_scorer.py` moved to `tests/` and refactored to proper `def test_*()` pytest functions. Root copies deleted.
 - 19 tests collected and passing: `pytest tests/test_data_loader.py tests/test_feature_builder.py tests/test_scorer.py` → **19 passed**.
 
-**I4. `score_batch()` not used in pipeline — single-item loop instead**
-- **File:** [src/rank.py:159-171](src/rank.py#L159), [src/scorer.py:120-147](src/scorer.py#L120)
-- Not fixed (no-op for k=100; correctness unaffected). Still open if perf matters.
+**I4. `score_batch()` not used in pipeline — single-item loop instead** ✅ FIXED (`33033f4`)
+- Replaced main and pad scoring loops in `rank.py` with `scorer.score_batch()`. Also replaced `dense_ids.index(cid)` (O(k) list scan) with a pre-built `dense_idx` dict for O(1) lookup — closes N2 as well.
 
-**I5. `HybridRetriever` class is dead code**
-- **File:** [src/retriever.py:99-137](src/retriever.py#L99)
-- Not fixed (safe dead code; left for potential future use).
+**I5. `HybridRetriever` class is dead code** ✅ FIXED (`33033f4`)
+- Deleted `HybridRetriever` class from [src/retriever.py](src/retriever.py).
 
-**I6. `_all_skill_names()` in reasoning.py is dead code**
-- **File:** [src/reasoning.py:54-55](src/reasoning.py#L54)
-- Not fixed (harmless; left in place).
+**I6. `_all_skill_names()` in reasoning.py is dead code** ✅ FIXED (`33033f4`)
+- Deleted `_all_skill_names()` from [src/reasoning.py](src/reasoning.py).
 
 **I7. `submission.csv` in repo root is a stale 5 KB partial output** ✅ FIXED
 - Deleted from repo and disk; added to `.gitignore`.
@@ -499,9 +496,8 @@ def test_title_disqualified_redemption_by_past_ml_role():
 **I9. No test for `compose_reasoning` output correctness** ✅ FIXED
 - `test_compose_reasoning_nonempty_and_bounded` added to `tests/test_scorer.py`. Verifies non-empty string ≤500 chars for CAND_0000031 with high cosine.
 
-**I10. `_months_since_active` has hardcoded date `2026-06-26`**
-- **File:** [src/reasoning.py:87](src/reasoning.py#L87)
-- Not fixed (acceptable for one-time competition submission; documented here as known drift risk).
+**I10. `_months_since_active` has hardcoded date `2026-06-26`** ✅ FIXED (`33033f4`)
+- Replaced `date(2026, 6, 26)` with `date.today()` in [src/reasoning.py](src/reasoning.py).
 
 ---
 
@@ -540,15 +536,15 @@ def test_title_disqualified_redemption_by_past_ml_role():
 | I1 | ~~IMPORTANT~~ **FIXED** ✅ | `__pycache__` `.pyc` files untracked from git (`bf5e13b`) |
 | I2 | ~~IMPORTANT~~ **FIXED** ✅ | `sample_embeddings.npy`, `sample_candidate_ids.npy` added to `.gitignore` (`bf5e13b`) |
 | I3 | ~~IMPORTANT~~ **FIXED** ✅ | `test_*.py` moved to `tests/`, refactored to pytest — 19 tests pass (`bf5e13b`) |
-| I4 | IMPORTANT | `score_batch()` unused — loop calls `score()` individually |
-| I5 | IMPORTANT | `HybridRetriever` class is dead code, never instantiated |
-| I6 | IMPORTANT | `_all_skill_names()` in reasoning.py is dead code |
+| I4 | ~~IMPORTANT~~ **FIXED** ✅ | `score_batch()` wired into rank.py main+pad passes; O(k)→O(1) lookup (`33033f4`) |
+| I5 | ~~IMPORTANT~~ **FIXED** ✅ | `HybridRetriever` deleted from retriever.py (`33033f4`) |
+| I6 | ~~IMPORTANT~~ **FIXED** ✅ | `_all_skill_names()` deleted from reasoning.py (`33033f4`) |
 | I7 | ~~IMPORTANT~~ **FIXED** ✅ | `submission.csv` deleted from repo and gitignored (`bf5e13b`) |
 | I8 | ~~IMPORTANT~~ **FIXED** ✅ | `FitRank.csv` deleted from repo and gitignored (`bf5e13b`) |
 | I9 | ~~IMPORTANT~~ **FIXED** ✅ | `test_compose_reasoning_nonempty_and_bounded` added to `tests/test_scorer.py` (`bf5e13b`) |
-| I10 | IMPORTANT | `reasoning.py:87` hardcoded date `2026-06-26` instead of `date.today()` |
+| I10 | ~~IMPORTANT~~ **FIXED** ✅ | `reasoning.py` hardcoded date replaced with `date.today()` (`33033f4`) |
 | N1 | NICE-TO-HAVE | `cosine_similarity` not clamped to `[0, 1]` |
-| N2 | NICE-TO-HAVE | `dense_ids.index(cid)` is O(k) linear scan — use dict |
+| N2 | ~~NICE-TO-HAVE~~ **FIXED** ✅ | `dense_ids.index(cid)` replaced with pre-built O(1) dict (closed by I4 fix, `33033f4`) |
 | N3 | NICE-TO-HAVE | `_NUM_THREADS = 6` hardcoded to developer's CPU |
 | N4 | NICE-TO-HAVE | `sandbox_url` is "not deployed" — deploy Streamlit demo |
 | N5 | NICE-TO-HAVE | `score_batch` not tested |
