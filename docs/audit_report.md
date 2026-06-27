@@ -466,56 +466,42 @@ def test_title_disqualified_redemption_by_past_ml_role():
 
 ---
 
-### [IMPORTANT]
+### [IMPORTANT — FIXED in commit `bf5e13b`]
 
-**I1. `__pycache__` / `.pyc` files are tracked in git**
-- **Issue:** 20 compiled bytecode files committed to repo history.
-- **Fix:** `git rm -r --cached src/__pycache__/ eval/__pycache__/ tests/__pycache__/` then commit. The `.gitignore` already excludes them going forward.
+**I1. `__pycache__` / `.pyc` files are tracked in git** ✅ FIXED
+- Removed 3 remaining tracked `.pyc` files (`src/__pycache__/`) via `git rm --cached`. `.gitignore` already covers them going forward.
 
-**I2. `artifacts/sample_embeddings.npy` and `artifacts/sample_candidate_ids.npy` not gitignored**
-- **File:** [.gitignore](.gitignore)
-- **Issue:** Generated binary artifacts not in `.gitignore`. If accidentally staged, bloats git history permanently.
-- **Fix:** Add to `.gitignore`:
-  ```
-  artifacts/sample_embeddings.npy
-  artifacts/sample_candidate_ids.npy
-  ```
+**I2. `artifacts/sample_embeddings.npy` and `artifacts/sample_candidate_ids.npy` not gitignored** ✅ FIXED
+- Added both to [.gitignore](.gitignore).
 
-**I3. Three test files in wrong location (root vs `tests/`)**
-- **Files:** `test_data_loader.py`, `test_feature_builder.py`, `test_scorer.py`
-- **Issue:** `pytest tests/` doesn't collect these. They're not part of CI, can't be run as `pytest`, and signal incomplete project organisation.
-- **Fix:** Move to `tests/`, refactor from script-style to `def test_*()` functions, add to pytest collection.
+**I3. Three test files in wrong location (root vs `tests/`)** ✅ FIXED
+- `test_data_loader.py`, `test_feature_builder.py`, `test_scorer.py` moved to `tests/` and refactored to proper `def test_*()` pytest functions. Root copies deleted.
+- 19 tests collected and passing: `pytest tests/test_data_loader.py tests/test_feature_builder.py tests/test_scorer.py` → **19 passed**.
 
 **I4. `score_batch()` not used in pipeline — single-item loop instead**
 - **File:** [src/rank.py:159-171](src/rank.py#L159), [src/scorer.py:120-147](src/scorer.py#L120)
-- **Issue:** `rank.py` calls `scorer.score(features)` in a loop. `LTRScorer.score_batch()` exists for batch efficiency but is never called. For 100 candidates this barely matters, but the implementation is sitting unused.
-- **Fix:** Replace the loop at rank.py:158-171 with a `score_batch()` call.
+- Not fixed (no-op for k=100; correctness unaffected). Still open if perf matters.
 
 **I5. `HybridRetriever` class is dead code**
 - **File:** [src/retriever.py:99-137](src/retriever.py#L99)
-- **Issue:** `HybridRetriever` is never instantiated. `rank.py` uses `BM25Retriever` + `reciprocal_rank_fusion` directly.
-- **Fix:** Delete `HybridRetriever` or document it as a future public API.
+- Not fixed (safe dead code; left for potential future use).
 
 **I6. `_all_skill_names()` in reasoning.py is dead code**
 - **File:** [src/reasoning.py:54-55](src/reasoning.py#L54)
-- **Issue:** Function defined but never called.
-- **Fix:** Delete it.
+- Not fixed (harmless; left in place).
 
-**I7. `submission.csv` in repo root is a stale 5 KB partial output**
-- **Issue:** `submission.csv` is only 5 KB while the real submission is 47 KB (`team_xxx.csv`). It's tracked in git and will confuse anyone trying to use it.
-- **Fix:** Add `submission.csv` to `.gitignore` or delete and don't track output CSVs other than `team_xxx.csv`.
+**I7. `submission.csv` in repo root is a stale 5 KB partial output** ✅ FIXED
+- Deleted from repo and disk; added to `.gitignore`.
 
-**I8. `FitRank.csv` is a duplicate of `team_xxx.csv` — no explanation**
-- **Issue:** Same byte size (47,475 bytes). If this is the submission file renamed for upload, it should be deleted from the repo after submission. If it's intentionally different, add a comment explaining why.
-- **Fix:** Delete from repo or add a `# same as team_xxx.csv — uploaded copy` note in README.
+**I8. `FitRank.csv` is a duplicate of `team_xxx.csv`** ✅ FIXED
+- Deleted from repo and disk; added to `.gitignore`.
 
-**I9. No test for `compose_reasoning` output correctness**
-- **Issue:** The wrong-key bug (B1) would be caught by a simple reasoning smoke test. Add P2 test from §6.
+**I9. No test for `compose_reasoning` output correctness** ✅ FIXED
+- `test_compose_reasoning_nonempty_and_bounded` added to `tests/test_scorer.py`. Verifies non-empty string ≤500 chars for CAND_0000031 with high cosine.
 
 **I10. `_months_since_active` has hardcoded date `2026-06-26`**
 - **File:** [src/reasoning.py:87](src/reasoning.py#L87)
-- **Issue:** `date(2026, 6, 26)` instead of `date.today()`. For a one-time competition submission this is acceptable, but it will silently produce stale staleness calculations if the pipeline is run later.
-- **Fix:** Replace with `date.today()` (matching the pattern in `feature_builder.py` which already uses `_today()` → `datetime.utcnow().date()`).
+- Not fixed (acceptable for one-time competition submission; documented here as known drift risk).
 
 ---
 
@@ -551,15 +537,15 @@ def test_title_disqualified_redemption_by_past_ml_role():
 | ID | Severity | One-line description |
 |---|---|---|
 | B1 | ~~**BLOCKER**~~ **FIXED** ✅ | `reasoning.py:238` wrong feature key `cosine_sim` → fixed to `cosine_similarity` (commit `3fe3cd1`) |
-| I1 | IMPORTANT | 20 `__pycache__`/`.pyc` files tracked in git |
-| I2 | IMPORTANT | `sample_embeddings.npy`, `sample_candidate_ids.npy` not gitignored |
-| I3 | IMPORTANT | `test_*.py` files in root instead of `tests/` — not collected by pytest |
+| I1 | ~~IMPORTANT~~ **FIXED** ✅ | `__pycache__` `.pyc` files untracked from git (`bf5e13b`) |
+| I2 | ~~IMPORTANT~~ **FIXED** ✅ | `sample_embeddings.npy`, `sample_candidate_ids.npy` added to `.gitignore` (`bf5e13b`) |
+| I3 | ~~IMPORTANT~~ **FIXED** ✅ | `test_*.py` moved to `tests/`, refactored to pytest — 19 tests pass (`bf5e13b`) |
 | I4 | IMPORTANT | `score_batch()` unused — loop calls `score()` individually |
 | I5 | IMPORTANT | `HybridRetriever` class is dead code, never instantiated |
 | I6 | IMPORTANT | `_all_skill_names()` in reasoning.py is dead code |
-| I7 | IMPORTANT | `submission.csv` (5 KB stale partial run) tracked in git |
-| I8 | IMPORTANT | `FitRank.csv` duplicate of `team_xxx.csv` with no explanation |
-| I9 | IMPORTANT | No pytest test for `compose_reasoning` — B1 bug uncatchable |
+| I7 | ~~IMPORTANT~~ **FIXED** ✅ | `submission.csv` deleted from repo and gitignored (`bf5e13b`) |
+| I8 | ~~IMPORTANT~~ **FIXED** ✅ | `FitRank.csv` deleted from repo and gitignored (`bf5e13b`) |
+| I9 | ~~IMPORTANT~~ **FIXED** ✅ | `test_compose_reasoning_nonempty_and_bounded` added to `tests/test_scorer.py` (`bf5e13b`) |
 | I10 | IMPORTANT | `reasoning.py:87` hardcoded date `2026-06-26` instead of `date.today()` |
 | N1 | NICE-TO-HAVE | `cosine_similarity` not clamped to `[0, 1]` |
 | N2 | NICE-TO-HAVE | `dense_ids.index(cid)` is O(k) linear scan — use dict |
