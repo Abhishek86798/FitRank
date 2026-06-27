@@ -20,3 +20,5 @@ src/__pycache__/
 
 # Scratch outputs
 submission_full_test.csv
+
+src\__pycache__
