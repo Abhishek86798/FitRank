@@ -442,14 +442,15 @@ def test_title_disqualified_redemption_by_past_ml_role():
 
 | Check | Result | Detail |
 |---|---|---|
-| `validate_submission.py` passes on `team_xxx.csv` | ✅ **YES** | Output: "Submission is valid." |
+| `validate_submission.py` passes on `team_xxx.csv` | ✅ **YES** | Confirmed post all audit fixes: "Submission is valid." |
 | Score monotonicity | ✅ **YES** | All 100 scores non-increasing; confirmed programmatically |
 | Honeypot rate in top-100 | ✅ **0/100** | No hard-gated scores (≤0.01) in top-100 rows |
 | `submission_metadata.yaml` all fields filled | ✅ **YES** | All sections populated: team, eval metrics, ablations, methodology, AI tools |
 | README has one-command reproduce | ✅ **YES** | Three-command reproduce block at lines 65–70 |
 | No network calls in `rank.py` | ✅ **YES** | Zero network imports; comment in file confirms this |
 | `ltr_model.txt` loads without error | ✅ **YES** | 344 KB file; valid LightGBM v4 format (`tree`, `version=v4`, `num_class=1`) |
-| Clean git history (multiple real commits) | ✅ **YES** | 17+ commits with meaningful messages across 6 days of work |
+| Clean git history (multiple real commits) | ✅ **YES** | 22+ commits with meaningful messages across 6 days of work + audit fixes |
+| `pytest tests/` all pass | ✅ **YES** | 26/26 tests pass including full end-to-end pipeline (110s, LambdaMART) |
 | `sandbox_url` field | ⚠️ **"not deployed"** | Portal may require a live URL; Streamlit demo (`app.py`) exists but not deployed |
 
 ---
