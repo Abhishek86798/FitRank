@@ -81,3 +81,33 @@ CAND_0087364,1,RecSys Eng @ Glance 4.9yr — MLOps/churn at Glance + ranking XGB
 CAND_0082086,1,Sr SWE ML Razorpay 6yr Delhi — CV career (image mod + NLP sentiment), zero ranking production; FAISS/Pinecone skills only; 45d notice
 CAND_0080472,0,Junior ML Eng Zomato 4.4yr Hyderabad — below 5yr band; predictive modeling only; 120d notice max penalty
 CAND_0096209,0,ML Eng Glance 4.2yr Trivandrum — under-exp 4.2yr; 90d notice; recsys side-work + fraud ML, not ranking career; 3 thin skills
+CAND_0008239,2,AI Eng Apple 4yr LTR pipeline real but below band + Jaipur non-preferred
+CAND_0012798,0,Predictive modeling+CV Dubai not open not relocating
+CAND_0064270,2,Shipped ranking models Verloop + LTR Uber; 4.2yr below band; not open
+CAND_0028838,0,3.1yr Wipro+Infosys consulting predictive modeling only
+CAND_0060257,1,Predictive modeling x2 no ranking 60d notice
+CAND_0093883,1,Time-series+recsys no ranking Bhubaneswar 60d
+CAND_0006821,1,CV+NLP sentiment not open resp=0.34 no ranking
+CAND_0041402,1,Fraud ML+recsys Vizag thin skills
+CAND_0049615,1,Recsys boilerplate x2 4 skills resp=0.28 60d
+CAND_0066999,3,Owned LTR pipeline Microsoft Delhi preferred open 15d notice relocates
+CAND_0021491,1,Predictive modeling+NLP sentiment Bhubaneswar 90d
+CAND_0057134,0,3.0yr recsys+time-series no ranking not open
+CAND_0041348,0,3.0yr fraud ML+recsys boilerplate no ranking
+CAND_0033749,0,CV engineer TCS consulting 120d notice
+CAND_0068351,3,Search discovery E2E Sarvam AI + relevance infra Verloop Delhi 0d notice; only penalty not open
+CAND_0054173,1,CV title time-series+recsys Indore resp=0.31
+CAND_0087316,0,4.1yr below band recsys+forecasting 4 thin skills not open
+CAND_0032271,1,Predictive modeling x2 only 2 skills 120d notice
+CAND_0088237,0,3.7yr CV engineer recsys boilerplate resp=0.30
+CAND_0042100,2,Owned LTR pipeline Freshworks + ranking Netflix 7.3yr Singapore location penalty
+CAND_0087006,1,Fraud ML+recsys SWE title Chennai resp=0.32
+CAND_0015065,0,3.9yr below band recsys boilerplate 3 skills 90d
+CAND_0078042,2,Shipped ranking models PolicyBazaar + LTR Ola; Dubai+not open both penalties
+CAND_0084681,0,3.5yr AI Specialist recsys+forecasting not open
+CAND_0072232,0,4.0yr recsys boilerplate x2 thin skills 90d
+CAND_0046924,0,CV engineer TCS+recsys not open 120d
+CAND_0078785,0,CV+NLP sentiment 4 skills 120d Chandigarh
+CAND_0018653,0,Recsys boilerplate x2 not open 90d Kochi
+CAND_0005704,0,3.3yr CV image mod x2 Wipro consulting
+CAND_0014683,0,CV career FAISS skills only 120d notice
