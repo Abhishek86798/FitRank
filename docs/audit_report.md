@@ -1,5 +1,5 @@
 # FitRank Codebase Audit Report
-**Date:** 2026-06-28 (updated)  
+**Date:** 2026-06-29 (updated)  
 **Auditor:** Claude Sonnet 4.6 (automated + manual inspection)  
 **Branch:** main
 
@@ -41,7 +41,15 @@
 | `eval/honeypot_audit.py` | 4 KB / 121 LOC | Manual inspection tool |
 | `eval/ablation_results.txt` | 9 KB | Tracked — ablation output |
 | `eval/missed_candidate_report.txt` | 6 KB | Tracked — ok |
-| `app.py` | 12 KB | Streamlit demo |
+| `app.py` | 21 KB | Streamlit Decision Audit dashboard (rebuilt Day 4) |
+| `src/counterfactual.py` | ~9 KB | Counterfactual engine + tied-band detection |
+| `eval/generate_audit.py` | ~4 KB | Runs explain_candidate on top-20, writes decision_audit.json |
+| `eval/decision_audit.json` | ~60 KB | Pre-computed audit for top-20 candidates |
+| `eval/honeypot_forensics.py` | ~9 KB | Evidence-backed contradiction finder |
+| `eval/honeypot_forensics_report.txt` | ~3 KB | Forensics run output (40 caught, 0 in top-100) |
+| `tests/test_counterfactual.py` | ~3 KB | 6 tests for counterfactual engine |
+| `tests/test_honeypot_forensics.py` | ~4 KB | 7 tests for forensics contradiction checks |
+| `.streamlit/config.toml` | 150 B | Streamlit theme + headless server config |
 | `role_model.yaml` | 7 KB | All weights/thresholds — tracked ✓ |
 | `validate_submission.py` | 5 KB | Validator — tracked ✓ |
 | `README.md` | 11 KB | Tracked ✓ |
@@ -563,8 +571,8 @@ Skill-only hits retain their existing 0.4× bonus — skills carry no per-role t
 | No network calls in `rank.py` | ✅ **YES** | Zero network imports; comment in file confirms this |
 | `ltr_model.txt` loads without error | ✅ **YES** | 344 KB file; valid LightGBM v4 format (`tree`, `version=v4`, `num_class=1`) |
 | Clean git history (multiple real commits) | ✅ **YES** | 22+ commits with meaningful messages across 6 days of work + audit fixes |
-| `pytest tests/` all pass | ✅ **YES** | 42/42 tests pass (7 new recency + 7 impossibility_flag + 9 expand_query + 19 existing) |
-| `sandbox_url` field | ⚠️ **"not deployed"** | Portal may require a live URL; Streamlit demo (`app.py`) exists but not deployed |
+| `pytest tests/` all pass | ✅ **YES** | 62/62 tests pass (6 counterfactual + 7 honeypot forensics + 7 recency + 7 impossibility_flag + 9 expand_query + 26 existing) |
+| `sandbox_url` field | ✅ **DEPLOYED** | `https://fitrank.streamlit.app` — Decision Audit dashboard live on Streamlit Cloud |
 
 ---
 
@@ -629,9 +637,9 @@ Skill-only hits retain their existing 0.4× bonus — skills carry no per-role t
 - **File:** [src/precompute.py:58](src/precompute.py#L58)
 - Consider `_NUM_THREADS = max(1, os.cpu_count() // 2)` for portability.
 
-**N4. `sandbox_url: "not deployed"` in metadata**
+**N4. `sandbox_url: "not deployed"` in metadata** ✅ FIXED (`2e115a8`)
 - **File:** [submission_metadata.yaml:12](submission_metadata.yaml#L12)
-- If the portal allows it, deploy `app.py` to Streamlit Cloud and update this field. Free and takes <5 min.
+- Deployed to Streamlit Cloud: `https://fitrank.streamlit.app`. `sandbox_url` updated.
 
 **N5. `score_batch` not exercised by any test**
 - **File:** [src/scorer.py:120](src/scorer.py#L120)
@@ -639,6 +647,109 @@ Skill-only hits retain their existing 0.4× bonus — skills carry no per-role t
 
 **N6. `.claude/` directory is tracked**
 - IDE-specific tooling. Add to `.gitignore` unless you want other contributors to have the same Claude Code setup.
+
+---
+
+## 11. Post-Audit Enhancement: Counterfactual Decision-Audit Engine
+
+**Commits:** `2992539` (engine + audit) · `e5ad700` (tied-band + forensics)  
+**Files:** [src/counterfactual.py](src/counterfactual.py), [eval/generate_audit.py](eval/generate_audit.py), [eval/decision_audit.json](eval/decision_audit.json)  
+**Status:** Implemented, 6 tests, `eval/decision_audit.json` generated and tracked
+
+### What it does
+
+For each of the top-20 ranked candidates, masks each scoring feature individually (sets it to 0), re-scores, re-ranks, and records the rank change. Returns a complete audit dict with:
+
+- `base_rank`, `base_score` — candidate's actual position
+- `top_reasons` — top 3 features by `rank_drop` (removing them hurts most)
+- `counterfactuals` — full table: remove `{feature}` → rank `{base}→{new}`, `rank_drop`, `score_drop`
+- `confidence` — margin to next candidate normalised to `[0, 1]`: `min(0.99, 0.5 + gap/(2*score_std))`
+- `risk_flags` — template-based strings (long notice, closed to work, outside geography, inactive profile, consulting-heavy career, YOE outside band)
+- `tied_band` — list of band member IDs if candidate is in a contested score cluster, `null` otherwise
+
+### Tied-band detection
+
+`detect_tied_bands(all_scored, epsilon=0.01)` groups consecutive candidates where each adjacent pair has a score gap `< epsilon`. Running on `team_xxx.csv` top-20 revealed **4 contested bands**, including a mega-band of 10 candidates at scores 0.987–0.996 — ranks 1–10 are statistically indistinguishable. Surfaced in the dashboard as "contested" badges.
+
+### Tests
+
+| Test | Asserts |
+|---|---|
+| `test_base_rank_matches_csv` | `base_rank` from audit matches position in `all_scored` |
+| `test_score_drop_sign_consistent_with_rank_drop` | sign invariant: `score_drop > 0` → `rank_drop >= 0` |
+| `test_confidence_in_unit_interval` | confidence ∈ `[0, 1]` |
+| `test_risk_flags_is_list_of_strings` | `risk_flags` type check |
+| `test_top_reasons_capped_at_three` | at most 3 top_reasons returned |
+| `test_second_candidate_has_meaningful_top_reason` | rank #2 has ≥1 feature whose removal drops their rank |
+
+---
+
+## 12. Post-Audit Enhancement: Honeypot Forensics Report
+
+**Commit:** `e5ad700`  
+**Files:** [eval/honeypot_forensics.py](eval/honeypot_forensics.py), [eval/honeypot_forensics_report.txt](eval/honeypot_forensics_report.txt)  
+**Status:** Implemented, 7 tests, report generated and tracked
+
+### What it does
+
+Turns the pipeline's passive `impossibility_flag` gate into an offensive evidence deck. `find_contradictions(candidate)` returns named, evidence-backed contradictions with `{type, detail, evidence}` for four contradiction types:
+
+| Contradiction | Check |
+|---|---|
+| `SKILL_DURATION_IMPOSSIBLE` | Expert/advanced skill with `duration_months == 0` |
+| `TENURE_EXCEEDS_COMPANY` | Role `duration_months > months elapsed since start_date` |
+| `YOE_MISMATCH` | `abs(stated_yoe - career_yoe) > 3` years |
+| `SKILL_COUNT_INFLATION` | 8+ expert skills, 0 with any word-level support in career descriptions |
+
+`SKILL_COUNT_INFLATION` uses word-level tokenization (not exact string match) to avoid false positives from abbreviations and case differences — e.g. "FAISS" → token `"faiss"` found in career text.
+
+### Results
+
+- **40 honeypots caught** across 100k candidates (most common: `SKILL_DURATION_IMPOSSIBLE`, `TENURE_EXCEEDS_COMPANY`)
+- **0 honeypots in final top-100** — confirmed in report: `[OK] CONFIRMED: 0 honeypots in final top-100`
+
+### Tests
+
+| Test | Asserts |
+|---|---|
+| `test_impossible_skill_duration_triggers_flag` | expert + duration=0 → `SKILL_DURATION_IMPOSSIBLE` |
+| `test_tenure_exceeds_start_date_triggers_flag` | duration > months since start → `TENURE_EXCEEDS_COMPANY` |
+| `test_yoe_mismatch_triggers_flag` | stated YoE 20, career sum 5 → `YOE_MISMATCH` |
+| `test_skill_count_inflation_triggers_flag` | 10 expert skills, 0 supported → `SKILL_COUNT_INFLATION` |
+| `test_clean_ml_engineer_has_no_contradictions` | clean synthetic profile → 0 contradictions |
+| `test_contradictions_return_type` | always `list[dict]` with `type`, `detail`, `evidence` keys |
+| `test_real_sample_clean_candidates_have_no_contradictions` | `CAND_0000031`, `CAND_0000010` → 0 contradictions |
+
+---
+
+## 13. Post-Audit Enhancement: Decision Audit Dashboard
+
+**Commit:** `2e115a8`  
+**Files:** [app.py](app.py), [.streamlit/config.toml](.streamlit/config.toml), [requirements.txt](requirements.txt)  
+**Status:** Live at `https://fitrank.streamlit.app`
+
+### What it does
+
+Read-only Streamlit recruiter dashboard. Reads pre-computed artifacts only — no live pipeline execution. All state in `st.session_state`.
+
+**Sidebar:** Scorer mode, candidate count, headline NDCG@10, honeypots-caught count — all sourced from `submission_metadata.yaml` and `eval/honeypot_forensics_report.txt`.
+
+**Ranked table:** rank | ID | title | company | score | confidence (green >0.8 / amber 0.5–0.8 / red <0.5 via `pandas Styler.map()`) | "contested" badge for tied-band rows | YoE | notice days.
+
+**Decision Audit Panel** (selectbox-driven):
+- **(a)** Top 3 load-bearing features as horizontal Altair bar chart (by `rank_drop`)
+- **(b)** Full counterfactual table — "Remove `{feature}` → rank `{base}→{new}`" with colour-coded rank_drop
+- **(c)** Confidence gauge (HTML div, colour-matched) + tied-band note listing all band members with title/company and rank range
+- **(d)** Risk flags displayed as `st.error()` chips
+- **(e)** Honeypot forensics: candidate lookup in `honeypot_forensics_report.txt`; shows contradictions or clean confirmation
+- **(f)** Interview focus lines keyed on the weakest contributing features (9 feature → question templates)
+
+### Key technical notes
+
+- `requirements.txt` drops `sentence-transformers` (pulls PyTorch, too heavy for Cloud); adds `altair==5.5.0` and `pandas>=2.0.0` explicitly
+- Uses `pandas Styler.map()` (not `.applymap()`, deprecated in pandas 2.x)
+- Altair 5.5 for bar charts (plotly not installed in Cloud environment)
+- Dashboard only needs 4 tracked files; `candidates.jsonl` and `embeddings.npy` are not required at serve time
 
 ---
 
@@ -660,7 +771,10 @@ Skill-only hits retain their existing 0.4× bonus — skills carry no per-role t
 | N1 | NICE-TO-HAVE | `cosine_similarity` not clamped to `[0, 1]` |
 | N2 | ~~NICE-TO-HAVE~~ **FIXED** ✅ | `dense_ids.index(cid)` replaced with pre-built O(1) dict (closed by I4 fix, `33033f4`) |
 | N3 | NICE-TO-HAVE | `_NUM_THREADS = 6` hardcoded to developer's CPU |
-| N4 | NICE-TO-HAVE | `sandbox_url` is "not deployed" — deploy Streamlit demo |
+| N4 | ~~NICE-TO-HAVE~~ **FIXED** ✅ | `sandbox_url` updated to `https://fitrank.streamlit.app` (`2e115a8`) |
 | N5 | ~~NICE-TO-HAVE~~ **FIXED** ✅ | `score_batch` now exercised by full pipeline test (`test_full_pipeline_runtime_and_ram`) |
 | N6 | NICE-TO-HAVE | `.claude/` directory tracked in git |
 | **NEW** | **ENHANCEMENT** | Persona-based query expansion via Claude (`src/expand_query.py`, commit `89dde7e`) |
+| **NEW** | **ENHANCEMENT** | Counterfactual decision-audit engine — `explain_candidate`, `detect_tied_bands`, `eval/decision_audit.json` (commits `2992539`, `e5ad700`) |
+| **NEW** | **ENHANCEMENT** | Honeypot forensics report — 4 named contradiction types, 40 caught, 0 in top-100, 7 tests (`e5ad700`) |
+| **NEW** | **ENHANCEMENT** | Decision Audit dashboard deployed at `https://fitrank.streamlit.app` — counterfactuals, confidence gauge, forensics, interview prompts (`2e115a8`) |
