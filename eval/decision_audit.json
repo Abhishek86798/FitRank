@@ -2,22 +2,23 @@
   {
     "candidate_id": "CAND_0061257",
     "base_rank": 1,
-    "base_score": 0.996312,
+    "base_score": 0.996356,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
@@ -26,19 +27,19 @@
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 7,
-        "rank_drop": 6,
-        "score_drop": 0.00082
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 19,
-        "score_drop": 0.209214
-      },
-      "production_ml_score": {
         "rank_if_removed": 1,
         "rank_drop": 0,
         "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 10,
+        "rank_drop": 9,
+        "score_drop": 0.002401
+      },
+      "production_ml_score": {
+        "rank_if_removed": 2,
+        "rank_drop": 1,
+        "score_drop": 6.2e-05
       },
       "domain_alignment": {
         "rank_if_removed": 1,
@@ -51,9 +52,9 @@
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
-        "rank_if_removed": 18,
-        "rank_drop": 17,
-        "score_drop": 0.079976
+        "rank_if_removed": 8,
+        "rank_drop": 7,
+        "score_drop": 0.00178
       },
       "consistency_score": {
         "rank_if_removed": 1,
@@ -61,9 +62,9 @@
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 7,
-        "rank_drop": 6,
-        "score_drop": 0.000789
+        "rank_if_removed": 10,
+        "rank_drop": 9,
+        "score_drop": 0.002367
       },
       "notice_penalty": {
         "rank_if_removed": 1,
@@ -79,21 +80,21 @@
     "top_reasons": [
       {
         "feature": "is_ml_engineer",
-        "rank_drop": 19,
-        "score_drop": 0.209214
+        "rank_drop": 9,
+        "score_drop": 0.002401
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 9,
+        "score_drop": 0.002367
       },
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 17,
-        "score_drop": 0.079976
-      },
-      {
-        "feature": "experience_fit_score",
-        "rank_drop": 6,
-        "score_drop": 0.00082
+        "rank_drop": 7,
+        "score_drop": 0.00178
       }
     ],
-    "confidence": 0.5001,
+    "confidence": 0.5,
     "risk_flags": [],
     "candidate_meta": {
       "title": "Staff Machine Learning Engineer",
@@ -105,183 +106,79 @@
     }
   },
   {
-    "candidate_id": "CAND_0006567",
+    "candidate_id": "CAND_0095619",
     "base_rank": 2,
-    "base_score": 0.996313,
+    "base_score": 0.996352,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 1,
-        "rank_drop": -1,
+        "rank_if_removed": 2,
+        "rank_drop": 0,
         "score_drop": 0.0
       },
       "experience_fit_score": {
         "rank_if_removed": 2,
         "rank_drop": 0,
-        "score_drop": 1.3e-05
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 18,
-        "score_drop": 0.219379
-      },
-      "production_ml_score": {
-        "rank_if_removed": 1,
-        "rank_drop": -1,
         "score_drop": 0.0
       },
+      "is_ml_engineer": {
+        "rank_if_removed": 12,
+        "rank_drop": 10,
+        "score_drop": 0.00353
+      },
+      "production_ml_score": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 6.3e-05
+      },
       "domain_alignment": {
-        "rank_if_removed": 3,
-        "rank_drop": 1,
-        "score_drop": 8.2e-05
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": -4e-06
       },
       "consulting_penalty": {
-        "rank_if_removed": 1,
-        "rank_drop": -1,
+        "rank_if_removed": 2,
+        "rank_drop": 0,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
+        "rank_if_removed": 8,
+        "rank_drop": 6,
+        "score_drop": 0.001887
+      },
+      "consistency_score": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
         "rank_if_removed": 10,
         "rank_drop": 8,
-        "score_drop": 0.004027
-      },
-      "consistency_score": {
-        "rank_if_removed": 1,
-        "rank_drop": -1,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 7,
-        "rank_drop": 5,
-        "score_drop": 0.000785
+        "score_drop": 0.002246
       },
       "notice_penalty": {
-        "rank_if_removed": 1,
-        "rank_drop": -1,
-        "score_drop": 0.0
-      },
-      "github_activity": {
-        "rank_if_removed": 1,
-        "rank_drop": -1,
-        "score_drop": 0.0
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "is_ml_engineer",
-        "rank_drop": 18,
-        "score_drop": 0.219379
-      },
-      {
-        "feature": "behavioral_multiplier",
-        "rank_drop": 8,
-        "score_drop": 0.004027
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 5,
-        "score_drop": 0.000785
-      }
-    ],
-    "confidence": 0.5002,
-    "risk_flags": [],
-    "candidate_meta": {
-      "title": "Senior AI Engineer",
-      "company": "Meta",
-      "yoe": 7.9,
-      "location": "Noida, Uttar Pradesh",
-      "notice_days": 60,
-      "open_to_work": true
-    }
-  },
-  {
-    "candidate_id": "CAND_0095619",
-    "base_rank": 3,
-    "base_score": 0.9963,
-    "tied_band": [
-      "CAND_0061257",
-      "CAND_0006567",
-      "CAND_0095619",
-      "CAND_0046064",
-      "CAND_0046525",
-      "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
-      "CAND_0039754",
-      "CAND_0051615",
-      "CAND_0046132",
-      "CAND_0065786",
-      "CAND_0066999"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 3,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 3,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 11,
-        "rank_drop": 8,
-        "score_drop": 0.00824
-      },
-      "production_ml_score": {
-        "rank_if_removed": 3,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "domain_alignment": {
-        "rank_if_removed": 7,
-        "rank_drop": 4,
-        "score_drop": 0.000808
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 3,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 9,
-        "rank_drop": 6,
-        "score_drop": 0.002769
-      },
-      "consistency_score": {
-        "rank_if_removed": 3,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 8,
-        "rank_drop": 5,
-        "score_drop": 0.000821
-      },
-      "notice_penalty": {
-        "rank_if_removed": 3,
+        "rank_if_removed": 2,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "github_activity": {
-        "rank_if_removed": 3,
+        "rank_if_removed": 2,
         "rank_drop": 0,
         "score_drop": 0.0
       }
@@ -289,21 +186,21 @@
     "top_reasons": [
       {
         "feature": "is_ml_engineer",
+        "rank_drop": 10,
+        "score_drop": 0.00353
+      },
+      {
+        "feature": "location_score",
         "rank_drop": 8,
-        "score_drop": 0.00824
+        "score_drop": 0.002246
       },
       {
         "feature": "behavioral_multiplier",
         "rank_drop": 6,
-        "score_drop": 0.002769
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 5,
-        "score_drop": 0.000821
+        "score_drop": 0.001887
       }
     ],
-    "confidence": 0.5056,
+    "confidence": 0.5011,
     "risk_flags": [
       "Significantly over-experienced: 15.6 yrs may signal seniority mismatch."
     ],
@@ -317,417 +214,101 @@
     }
   },
   {
-    "candidate_id": "CAND_0046064",
-    "base_rank": 4,
-    "base_score": 0.977222,
-    "tied_band": [
-      "CAND_0061257",
-      "CAND_0006567",
-      "CAND_0095619",
-      "CAND_0046064",
-      "CAND_0046525",
-      "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
-      "CAND_0039754",
-      "CAND_0051615",
-      "CAND_0046132",
-      "CAND_0065786",
-      "CAND_0066999"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 14,
-        "rank_drop": 10,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 16,
-        "score_drop": 0.118582
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 16,
-        "score_drop": 0.275676
-      },
-      "production_ml_score": {
-        "rank_if_removed": 12,
-        "rank_drop": 8,
-        "score_drop": -0.010248
-      },
-      "domain_alignment": {
-        "rank_if_removed": 19,
-        "rank_drop": 15,
-        "score_drop": 0.069146
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 14,
-        "rank_drop": 10,
-        "score_drop": 0.0
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 20,
-        "rank_drop": 16,
-        "score_drop": 0.778614
-      },
-      "consistency_score": {
-        "rank_if_removed": 14,
-        "rank_drop": 10,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 16,
-        "score_drop": 0.200426
-      },
-      "notice_penalty": {
-        "rank_if_removed": 14,
-        "rank_drop": 10,
-        "score_drop": 0.0
-      },
-      "github_activity": {
-        "rank_if_removed": 20,
-        "rank_drop": 16,
-        "score_drop": 0.182636
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "behavioral_multiplier",
-        "rank_drop": 16,
-        "score_drop": 0.778614
-      },
-      {
-        "feature": "is_ml_engineer",
-        "rank_drop": 16,
-        "score_drop": 0.275676
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 16,
-        "score_drop": 0.200426
-      }
-    ],
-    "confidence": 0.1923,
-    "risk_flags": [
-      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
-    ],
-    "candidate_meta": {
-      "title": "Senior NLP Engineer",
-      "company": "Salesforce",
-      "yoe": 8.9,
-      "location": "Coimbatore, Tamil Nadu",
-      "notice_days": 30,
-      "open_to_work": true
-    }
-  },
-  {
-    "candidate_id": "CAND_0046525",
-    "base_rank": 5,
-    "base_score": 0.995024,
-    "tied_band": [
-      "CAND_0061257",
-      "CAND_0006567",
-      "CAND_0095619",
-      "CAND_0046064",
-      "CAND_0046525",
-      "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
-      "CAND_0039754",
-      "CAND_0051615",
-      "CAND_0046132",
-      "CAND_0065786",
-      "CAND_0066999"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 8,
-        "rank_drop": 3,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 17,
-        "rank_drop": 12,
-        "score_drop": 0.049652
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 11,
-        "rank_drop": 6,
-        "score_drop": 0.006734
-      },
-      "production_ml_score": {
-        "rank_if_removed": 1,
-        "rank_drop": -4,
-        "score_drop": -0.001289
-      },
-      "domain_alignment": {
-        "rank_if_removed": 9,
-        "rank_drop": 4,
-        "score_drop": 0.000782
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 8,
-        "rank_drop": 3,
-        "score_drop": 0.0
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 20,
-        "rank_drop": 15,
-        "score_drop": 0.350368
-      },
-      "consistency_score": {
-        "rank_if_removed": 8,
-        "rank_drop": 3,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 18,
-        "rank_drop": 13,
-        "score_drop": 0.083641
-      },
-      "notice_penalty": {
-        "rank_if_removed": 8,
-        "rank_drop": 3,
-        "score_drop": 0.0
-      },
-      "github_activity": {
-        "rank_if_removed": 12,
-        "rank_drop": 7,
-        "score_drop": 0.008944
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "behavioral_multiplier",
-        "rank_drop": 15,
-        "score_drop": 0.350368
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 13,
-        "score_drop": 0.083641
-      },
-      {
-        "feature": "experience_fit_score",
-        "rank_drop": 12,
-        "score_drop": 0.049652
-      }
-    ],
-    "confidence": 0.4853,
-    "risk_flags": [],
-    "candidate_meta": {
-      "title": "Senior Machine Learning Engineer",
-      "company": "Genpact AI",
-      "yoe": 6.1,
-      "location": "Pune, Maharashtra",
-      "notice_days": 60,
-      "open_to_work": true
-    }
-  },
-  {
-    "candidate_id": "CAND_0008295",
-    "base_rank": 6,
-    "base_score": 0.995924,
-    "tied_band": [
-      "CAND_0061257",
-      "CAND_0006567",
-      "CAND_0095619",
-      "CAND_0046064",
-      "CAND_0046525",
-      "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
-      "CAND_0039754",
-      "CAND_0051615",
-      "CAND_0046132",
-      "CAND_0065786",
-      "CAND_0066999"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 6,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 8,
-        "rank_drop": 2,
-        "score_drop": 0.000907
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 12,
-        "rank_drop": 6,
-        "score_drop": 0.009531
-      },
-      "production_ml_score": {
-        "rank_if_removed": 6,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "domain_alignment": {
-        "rank_if_removed": 6,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 1,
-        "rank_drop": -5,
-        "score_drop": -0.000388
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 20,
-        "rank_drop": 14,
-        "score_drop": 0.168805
-      },
-      "consistency_score": {
-        "rank_if_removed": 6,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 8,
-        "rank_drop": 2,
-        "score_drop": 0.000892
-      },
-      "notice_penalty": {
-        "rank_if_removed": 6,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "github_activity": {
-        "rank_if_removed": 6,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "behavioral_multiplier",
-        "rank_drop": 14,
-        "score_drop": 0.168805
-      },
-      {
-        "feature": "is_ml_engineer",
-        "rank_drop": 6,
-        "score_drop": 0.009531
-      },
-      {
-        "feature": "experience_fit_score",
-        "rank_drop": 2,
-        "score_drop": 0.000907
-      }
-    ],
-    "confidence": 0.5018,
-    "risk_flags": [],
-    "candidate_meta": {
-      "title": "AI Research Engineer",
-      "company": "Razorpay",
-      "yoe": 6.5,
-      "location": "Pune, Maharashtra",
-      "notice_days": 45,
-      "open_to_work": true
-    }
-  },
-  {
     "candidate_id": "CAND_0068351",
-    "base_rank": 7,
-    "base_score": 0.99365,
+    "base_rank": 3,
+    "base_score": 0.99579,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
+        "rank_if_removed": 4,
+        "rank_drop": 1,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
+        "rank_if_removed": 4,
+        "rank_drop": 1,
         "score_drop": 0.0
       },
       "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 13,
-        "score_drop": 0.977297
+        "rank_if_removed": 12,
+        "rank_drop": 9,
+        "score_drop": 0.003514
       },
       "production_ml_score": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
-        "score_drop": 0.0
+        "rank_if_removed": 4,
+        "rank_drop": 1,
+        "score_drop": 7.2e-05
       },
       "domain_alignment": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
-        "score_drop": -2e-06
+        "rank_if_removed": 6,
+        "rank_drop": 3,
+        "score_drop": 0.000322
       },
       "consulting_penalty": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
+        "rank_if_removed": 4,
+        "rank_drop": 1,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
-        "rank_if_removed": 10,
-        "rank_drop": 3,
-        "score_drop": 0.001383
+        "rank_if_removed": 7,
+        "rank_drop": 4,
+        "score_drop": 0.000752
       },
       "consistency_score": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
+        "rank_if_removed": 4,
+        "rank_drop": 1,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 14,
-        "rank_drop": 7,
-        "score_drop": 0.022057
+        "rank_if_removed": 12,
+        "rank_drop": 9,
+        "score_drop": 0.003967
       },
       "notice_penalty": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
+        "rank_if_removed": 4,
+        "rank_drop": 1,
         "score_drop": 0.0
       },
       "github_activity": {
-        "rank_if_removed": 9,
-        "rank_drop": 2,
+        "rank_if_removed": 4,
+        "rank_drop": 1,
         "score_drop": 0.0
       }
     },
     "top_reasons": [
       {
-        "feature": "is_ml_engineer",
-        "rank_drop": 13,
-        "score_drop": 0.977297
+        "feature": "location_score",
+        "rank_drop": 9,
+        "score_drop": 0.003967
       },
       {
-        "feature": "location_score",
-        "rank_drop": 7,
-        "score_drop": 0.022057
+        "feature": "is_ml_engineer",
+        "rank_drop": 9,
+        "score_drop": 0.003514
       },
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 3,
-        "score_drop": 0.001383
+        "rank_drop": 4,
+        "score_drop": 0.000752
       }
     ],
-    "confidence": 0.4699,
+    "confidence": 0.4997,
     "risk_flags": [
       "Candidate is not flagged as open to work on platform."
     ],
@@ -741,308 +322,313 @@
     }
   },
   {
-    "candidate_id": "CAND_0016659",
-    "base_rank": 8,
-    "base_score": 0.995481,
+    "candidate_id": "CAND_0046525",
+    "base_rank": 4,
+    "base_score": 0.995843,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 8,
+        "rank_if_removed": 4,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 8,
+        "rank_if_removed": 4,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "is_ml_engineer": {
         "rank_if_removed": 12,
-        "rank_drop": 4,
-        "score_drop": 0.009177
+        "rank_drop": 8,
+        "score_drop": 0.004063
       },
       "production_ml_score": {
-        "rank_if_removed": 8,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 3,
+        "rank_drop": -1,
+        "score_drop": -0.000444
       },
       "domain_alignment": {
-        "rank_if_removed": 8,
-        "rank_drop": 0,
-        "score_drop": -1.1e-05
+        "rank_if_removed": 13,
+        "rank_drop": 9,
+        "score_drop": 0.007068
       },
       "consulting_penalty": {
-        "rank_if_removed": 8,
+        "rank_if_removed": 4,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
         "rank_if_removed": 20,
-        "rank_drop": 12,
-        "score_drop": 0.479157
+        "rank_drop": 16,
+        "score_drop": 0.876161
       },
       "consistency_score": {
-        "rank_if_removed": 8,
+        "rank_if_removed": 4,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 8,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 15,
+        "rank_drop": 11,
+        "score_drop": 0.030077
       },
       "notice_penalty": {
         "rank_if_removed": 8,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_drop": 4,
+        "score_drop": 0.001382
       },
       "github_activity": {
-        "rank_if_removed": 8,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 12,
+        "rank_drop": 8,
+        "score_drop": 0.002978
       }
     },
     "top_reasons": [
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 12,
-        "score_drop": 0.479157
+        "rank_drop": 16,
+        "score_drop": 0.876161
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 11,
+        "score_drop": 0.030077
+      },
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 9,
+        "score_drop": 0.007068
+      }
+    ],
+    "confidence": 0.5014,
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Senior Machine Learning Engineer",
+      "company": "Genpact AI",
+      "yoe": 6.1,
+      "location": "Pune, Maharashtra",
+      "notice_days": 60,
+      "open_to_work": true
+    }
+  },
+  {
+    "candidate_id": "CAND_0008295",
+    "base_rank": 5,
+    "base_score": 0.995559,
+    "tied_band": [
+      "CAND_0061257",
+      "CAND_0095619",
+      "CAND_0068351",
+      "CAND_0046525",
+      "CAND_0008295",
+      "CAND_0039754",
+      "CAND_0046064",
+      "CAND_0051615",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
+      "CAND_0065786",
+      "CAND_0077337",
+      "CAND_0046132"
+    ],
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 12,
+        "rank_drop": 7,
+        "score_drop": 0.003748
+      },
+      "production_ml_score": {
+        "rank_if_removed": 6,
+        "rank_drop": 1,
+        "score_drop": 7.6e-05
+      },
+      "domain_alignment": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 2,
+        "rank_drop": -3,
+        "score_drop": -0.000796
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 12,
+        "rank_drop": 7,
+        "score_drop": 0.003382
+      },
+      "consistency_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 7,
+        "score_drop": 0.004104
+      },
+      "notice_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": -2e-06
+      },
+      "github_activity": {
+        "rank_if_removed": 8,
+        "rank_drop": 3,
+        "score_drop": 0.000839
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "location_score",
+        "rank_drop": 7,
+        "score_drop": 0.004104
       },
       {
         "feature": "is_ml_engineer",
-        "rank_drop": 4,
-        "score_drop": 0.009177
+        "rank_drop": 7,
+        "score_drop": 0.003748
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 7,
+        "score_drop": 0.003382
       }
     ],
-    "confidence": 0.5185,
-    "risk_flags": [
-      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
-      "Under-experienced: 4.4 yrs vs. preferred 5-9 yrs."
-    ],
+    "confidence": 0.5003,
+    "risk_flags": [],
     "candidate_meta": {
-      "title": "ML Engineer",
-      "company": "Glance",
-      "yoe": 4.4,
-      "location": "Coimbatore, Tamil Nadu",
+      "title": "AI Research Engineer",
+      "company": "Razorpay",
+      "yoe": 6.5,
+      "location": "Pune, Maharashtra",
       "notice_days": 45,
       "open_to_work": true
     }
   },
   {
-    "candidate_id": "CAND_0018499",
-    "base_rank": 9,
-    "base_score": 0.979324,
-    "tied_band": [
-      "CAND_0061257",
-      "CAND_0006567",
-      "CAND_0095619",
-      "CAND_0046064",
-      "CAND_0046525",
-      "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
-      "CAND_0039754",
-      "CAND_0051615",
-      "CAND_0046132",
-      "CAND_0065786",
-      "CAND_0066999"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 14,
-        "rank_drop": 5,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 11,
-        "score_drop": 0.110866
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 11,
-        "score_drop": 0.276979
-      },
-      "production_ml_score": {
-        "rank_if_removed": 10,
-        "rank_drop": 1,
-        "score_drop": -0.010198
-      },
-      "domain_alignment": {
-        "rank_if_removed": 18,
-        "rank_drop": 9,
-        "score_drop": 0.052248
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 14,
-        "rank_drop": 5,
-        "score_drop": 0.0
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 18,
-        "rank_drop": 9,
-        "score_drop": 0.047946
-      },
-      "consistency_score": {
-        "rank_if_removed": 14,
-        "rank_drop": 5,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 11,
-        "score_drop": 0.241607
-      },
-      "notice_penalty": {
-        "rank_if_removed": 14,
-        "rank_drop": 5,
-        "score_drop": 0.0
-      },
-      "github_activity": {
-        "rank_if_removed": 20,
-        "rank_drop": 11,
-        "score_drop": 0.134433
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "is_ml_engineer",
-        "rank_drop": 11,
-        "score_drop": 0.276979
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 11,
-        "score_drop": 0.241607
-      },
-      {
-        "feature": "github_activity",
-        "rank_drop": 11,
-        "score_drop": 0.134433
-      }
-    ],
-    "confidence": 0.2864,
-    "risk_flags": [],
-    "candidate_meta": {
-      "title": "Senior Machine Learning Engineer",
-      "company": "Zomato",
-      "yoe": 7.2,
-      "location": "Noida, Uttar Pradesh",
-      "notice_days": 15,
-      "open_to_work": true
-    }
-  },
-  {
     "candidate_id": "CAND_0039754",
-    "base_rank": 10,
-    "base_score": 0.987624,
+    "base_rank": 6,
+    "base_score": 0.989487,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 11,
-        "rank_drop": 1,
+        "rank_if_removed": 13,
+        "rank_drop": 7,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 11,
-        "rank_drop": 1,
+        "rank_if_removed": 13,
+        "rank_drop": 7,
         "score_drop": 0.0
       },
       "is_ml_engineer": {
-        "rank_if_removed": 12,
-        "rank_drop": 2,
-        "score_drop": 0.002646
+        "rank_if_removed": 13,
+        "rank_drop": 7,
+        "score_drop": 0.002258
       },
       "production_ml_score": {
-        "rank_if_removed": 10,
-        "rank_drop": 0,
-        "score_drop": -0.002926
+        "rank_if_removed": 12,
+        "rank_drop": 6,
+        "score_drop": -0.000559
       },
       "domain_alignment": {
-        "rank_if_removed": 14,
-        "rank_drop": 4,
-        "score_drop": 0.013164
+        "rank_if_removed": 17,
+        "rank_drop": 11,
+        "score_drop": 0.210324
       },
       "consulting_penalty": {
-        "rank_if_removed": 11,
-        "rank_drop": 1,
+        "rank_if_removed": 13,
+        "rank_drop": 7,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
-        "rank_if_removed": 20,
+        "rank_if_removed": 16,
         "rank_drop": 10,
-        "score_drop": 0.973359
+        "score_drop": 0.096942
       },
       "consistency_score": {
-        "rank_if_removed": 11,
-        "rank_drop": 1,
+        "rank_if_removed": 13,
+        "rank_drop": 7,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 20,
+        "rank_if_removed": 16,
         "rank_drop": 10,
-        "score_drop": 0.140714
+        "score_drop": 0.059062
       },
       "notice_penalty": {
-        "rank_if_removed": 11,
-        "rank_drop": 1,
+        "rank_if_removed": 13,
+        "rank_drop": 7,
         "score_drop": 0.0
       },
       "github_activity": {
-        "rank_if_removed": 14,
-        "rank_drop": 4,
-        "score_drop": 0.023349
+        "rank_if_removed": 15,
+        "rank_drop": 9,
+        "score_drop": 0.024722
       }
     },
     "top_reasons": [
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 11,
+        "score_drop": 0.210324
+      },
       {
         "feature": "behavioral_multiplier",
         "rank_drop": 10,
-        "score_drop": 0.973359
+        "score_drop": 0.096942
       },
       {
         "feature": "location_score",
         "rank_drop": 10,
-        "score_drop": 0.140714
-      },
-      {
-        "feature": "github_activity",
-        "rank_drop": 4,
-        "score_drop": 0.023349
+        "score_drop": 0.059062
       }
     ],
-    "confidence": 0.4723,
+    "confidence": 0.4713,
     "risk_flags": [
       "Significantly over-experienced: 16.2 yrs may signal seniority mismatch."
     ],
@@ -1056,100 +642,209 @@
     }
   },
   {
-    "candidate_id": "CAND_0051615",
-    "base_rank": 11,
-    "base_score": 0.98931,
+    "candidate_id": "CAND_0046064",
+    "base_rank": 7,
+    "base_score": 0.650492,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
+        "rank_if_removed": 20,
+        "rank_drop": 13,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 12,
-        "rank_drop": 1,
-        "score_drop": 0.002319
+        "rank_if_removed": 14,
+        "rank_drop": 7,
+        "score_drop": -0.33039
       },
       "is_ml_engineer": {
         "rank_if_removed": 20,
-        "rank_drop": 9,
-        "score_drop": 0.232809
+        "rank_drop": 13,
+        "score_drop": 0.09473
       },
       "production_ml_score": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 16,
+        "rank_drop": 9,
+        "score_drop": -0.304103
       },
       "domain_alignment": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 20,
+        "rank_drop": 13,
+        "score_drop": 0.38216
       },
       "consulting_penalty": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
+        "rank_if_removed": 20,
+        "rank_drop": 13,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
-        "rank_if_removed": 17,
-        "rank_drop": 6,
-        "score_drop": 0.04249
+        "rank_if_removed": 20,
+        "rank_drop": 13,
+        "score_drop": 0.61171
       },
       "consistency_score": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
+        "rank_if_removed": 20,
+        "rank_drop": 13,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 20,
+        "rank_drop": 13,
+        "score_drop": 0.234169
       },
       "notice_penalty": {
-        "rank_if_removed": 11,
-        "rank_drop": 0,
+        "rank_if_removed": 20,
+        "rank_drop": 13,
         "score_drop": 0.0
       },
       "github_activity": {
-        "rank_if_removed": 9,
-        "rank_drop": -2,
-        "score_drop": -0.00509
+        "rank_if_removed": 20,
+        "rank_drop": 13,
+        "score_drop": 0.196646
       }
     },
     "top_reasons": [
       {
-        "feature": "is_ml_engineer",
-        "rank_drop": 9,
-        "score_drop": 0.232809
-      },
-      {
         "feature": "behavioral_multiplier",
-        "rank_drop": 6,
-        "score_drop": 0.04249
+        "rank_drop": 13,
+        "score_drop": 0.61171
       },
       {
-        "feature": "experience_fit_score",
-        "rank_drop": 1,
-        "score_drop": 0.002319
+        "feature": "domain_alignment",
+        "rank_drop": 13,
+        "score_drop": 0.38216
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 13,
+        "score_drop": 0.234169
       }
     ],
-    "confidence": 0.5295,
+    "confidence": 0.0,
+    "risk_flags": [
+      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
+    ],
+    "candidate_meta": {
+      "title": "Senior NLP Engineer",
+      "company": "Salesforce",
+      "yoe": 8.9,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 30,
+      "open_to_work": true
+    }
+  },
+  {
+    "candidate_id": "CAND_0051615",
+    "base_rank": 8,
+    "base_score": 0.994746,
+    "tied_band": [
+      "CAND_0061257",
+      "CAND_0095619",
+      "CAND_0068351",
+      "CAND_0046525",
+      "CAND_0008295",
+      "CAND_0039754",
+      "CAND_0046064",
+      "CAND_0051615",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
+      "CAND_0065786",
+      "CAND_0077337",
+      "CAND_0046132"
+    ],
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 12,
+        "rank_drop": 4,
+        "score_drop": 0.002755
+      },
+      "production_ml_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "domain_alignment": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 12,
+        "rank_drop": 4,
+        "score_drop": 0.004233
+      },
+      "consistency_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "notice_penalty": {
+        "rank_if_removed": 7,
+        "rank_drop": -1,
+        "score_drop": -0.000465
+      },
+      "github_activity": {
+        "rank_if_removed": 12,
+        "rank_drop": 4,
+        "score_drop": 0.002742
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 4,
+        "score_drop": 0.004233
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 4,
+        "score_drop": 0.002755
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 4,
+        "score_drop": 0.002742
+      }
+    ],
+    "confidence": 0.5015,
     "risk_flags": [
       "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
       "Profile inactive for ~3 month(s); outreach risk.",
@@ -1165,24 +860,343 @@
     }
   },
   {
-    "candidate_id": "CAND_0046132",
-    "base_rank": 12,
-    "base_score": 0.987515,
+    "candidate_id": "CAND_0018499",
+    "base_rank": 9,
+    "base_score": 0.990329,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
+    ],
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 12,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 3,
+        "score_drop": -0.002636
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 14,
+        "rank_drop": 5,
+        "score_drop": 0.008412
+      },
+      "production_ml_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 3,
+        "score_drop": -0.00219
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 11,
+        "score_drop": 0.701783
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 17,
+        "rank_drop": 8,
+        "score_drop": 0.153356
+      },
+      "consistency_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 16,
+        "rank_drop": 7,
+        "score_drop": 0.041745
+      },
+      "notice_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 11,
+        "score_drop": 0.462479
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 11,
+        "score_drop": 0.701783
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 11,
+        "score_drop": 0.462479
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 8,
+        "score_drop": 0.153356
+      }
+    ],
+    "confidence": 0.481,
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Senior Machine Learning Engineer",
+      "company": "Zomato",
+      "yoe": 7.2,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 15,
+      "open_to_work": true
+    }
+  },
+  {
+    "candidate_id": "CAND_0066999",
+    "base_rank": 10,
+    "base_score": 0.994117,
+    "tied_band": [
+      "CAND_0061257",
+      "CAND_0095619",
+      "CAND_0068351",
+      "CAND_0046525",
+      "CAND_0008295",
+      "CAND_0039754",
+      "CAND_0046064",
+      "CAND_0051615",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
+      "CAND_0065786",
+      "CAND_0077337",
+      "CAND_0046132"
+    ],
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.000283
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 13,
+        "rank_drop": 3,
+        "score_drop": 0.005155
+      },
+      "production_ml_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 1,
+        "score_drop": 0.001141
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 10,
+        "score_drop": 0.668145
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 16,
+        "rank_drop": 6,
+        "score_drop": 0.075302
+      },
+      "consistency_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 15,
+        "rank_drop": 5,
+        "score_drop": 0.02048
+      },
+      "notice_penalty": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 10,
+        "score_drop": 0.666242
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 10,
+        "score_drop": 0.668145
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 10,
+        "score_drop": 0.666242
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 6,
+        "score_drop": 0.075302
+      }
+    ],
+    "confidence": 0.5039,
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Recommendation Systems Engineer",
+      "company": "Microsoft",
+      "yoe": 5.9,
+      "location": "Delhi, Delhi",
+      "notice_days": 15,
+      "open_to_work": true
+    }
+  },
+  {
+    "candidate_id": "CAND_0006567",
+    "base_rank": 11,
+    "base_score": 0.979606,
+    "tied_band": [
+      "CAND_0061257",
+      "CAND_0095619",
+      "CAND_0068351",
+      "CAND_0046525",
+      "CAND_0008295",
+      "CAND_0039754",
+      "CAND_0046064",
+      "CAND_0051615",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
+      "CAND_0065786",
+      "CAND_0077337",
+      "CAND_0046132"
+    ],
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 14,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 13,
+        "rank_drop": 2,
+        "score_drop": -0.009297
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 16,
+        "rank_drop": 5,
+        "score_drop": 0.03023
+      },
+      "production_ml_score": {
+        "rank_if_removed": 14,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 9,
+        "score_drop": 0.61468
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 14,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 9,
+        "score_drop": 0.462988
+      },
+      "consistency_score": {
+        "rank_if_removed": 14,
+        "rank_drop": 3,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 16,
+        "rank_drop": 5,
+        "score_drop": 0.056785
+      },
+      "notice_penalty": {
+        "rank_if_removed": 14,
+        "rank_drop": 3,
+        "score_drop": 0.003859
+      },
+      "github_activity": {
+        "rank_if_removed": 16,
+        "rank_drop": 5,
+        "score_drop": 0.074213
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 9,
+        "score_drop": 0.61468
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 9,
+        "score_drop": 0.462988
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 5,
+        "score_drop": 0.074213
+      }
+    ],
+    "confidence": 0.4329,
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Senior AI Engineer",
+      "company": "Meta",
+      "yoe": 7.9,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 60,
+      "open_to_work": true
+    }
+  },
+  {
+    "candidate_id": "CAND_0016659",
+    "base_rank": 12,
+    "base_score": 0.992971,
+    "tied_band": [
+      "CAND_0061257",
+      "CAND_0095619",
+      "CAND_0068351",
+      "CAND_0046525",
+      "CAND_0008295",
+      "CAND_0039754",
+      "CAND_0046064",
+      "CAND_0051615",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
+      "CAND_0065786",
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
@@ -1191,24 +1205,24 @@
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 8,
-        "score_drop": 0.138752
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
       },
       "is_ml_engineer": {
-        "rank_if_removed": 14,
-        "rank_drop": 2,
-        "score_drop": 0.023313
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.00153
       },
       "production_ml_score": {
-        "rank_if_removed": 3,
-        "rank_drop": -9,
-        "score_drop": -0.008786
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.000121
       },
       "domain_alignment": {
         "rank_if_removed": 12,
         "rank_drop": 0,
-        "score_drop": 0.0
+        "score_drop": 0.001517
       },
       "consulting_penalty": {
         "rank_if_removed": 12,
@@ -1216,9 +1230,9 @@
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
-        "rank_if_removed": 20,
-        "rank_drop": 8,
-        "score_drop": 0.725224
+        "rank_if_removed": 13,
+        "rank_drop": 1,
+        "score_drop": 0.003618
       },
       "consistency_score": {
         "rank_if_removed": 12,
@@ -1226,14 +1240,14 @@
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 19,
-        "rank_drop": 7,
-        "score_drop": 0.094542
-      },
-      "notice_penalty": {
         "rank_if_removed": 12,
         "rank_drop": 0,
         "score_drop": 0.0
+      },
+      "notice_penalty": {
+        "rank_if_removed": 11,
+        "rank_drop": -1,
+        "score_drop": -0.001135
       },
       "github_activity": {
         "rank_if_removed": 12,
@@ -1244,52 +1258,44 @@
     "top_reasons": [
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 8,
-        "score_drop": 0.725224
-      },
-      {
-        "feature": "experience_fit_score",
-        "rank_drop": 8,
-        "score_drop": 0.138752
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 7,
-        "score_drop": 0.094542
+        "rank_drop": 1,
+        "score_drop": 0.003618
       }
     ],
-    "confidence": 0.5427,
+    "confidence": 0.5175,
     "risk_flags": [
-      "Under-experienced: 4.3 yrs vs. preferred 5-9 yrs."
+      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
+      "Under-experienced: 4.4 yrs vs. preferred 5-9 yrs."
     ],
     "candidate_meta": {
-      "title": "AI Research Engineer",
-      "company": "Verloop.io",
-      "yoe": 4.3,
-      "location": "Noida, Uttar Pradesh",
-      "notice_days": 30,
+      "title": "ML Engineer",
+      "company": "Glance",
+      "yoe": 4.4,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 45,
       "open_to_work": true
     }
   },
   {
     "candidate_id": "CAND_0065786",
     "base_rank": 13,
-    "base_score": 0.98492,
+    "base_score": 0.989489,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
+      "CAND_0077337",
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
@@ -1300,22 +1306,22 @@
       "experience_fit_score": {
         "rank_if_removed": 13,
         "rank_drop": 0,
-        "score_drop": -0.00032
+        "score_drop": 0.0
       },
       "is_ml_engineer": {
         "rank_if_removed": 13,
         "rank_drop": 0,
-        "score_drop": 0.003212
+        "score_drop": 0.002258
       },
       "production_ml_score": {
-        "rank_if_removed": 11,
-        "rank_drop": -2,
-        "score_drop": -0.005213
+        "rank_if_removed": 13,
+        "rank_drop": 0,
+        "score_drop": -0.00335
       },
       "domain_alignment": {
-        "rank_if_removed": 14,
-        "rank_drop": 1,
-        "score_drop": 0.004529
+        "rank_if_removed": 15,
+        "rank_drop": 2,
+        "score_drop": 0.016855
       },
       "consulting_penalty": {
         "rank_if_removed": 13,
@@ -1325,7 +1331,7 @@
       "behavioral_multiplier": {
         "rank_if_removed": 20,
         "rank_drop": 7,
-        "score_drop": 0.970994
+        "score_drop": 0.874116
       },
       "consistency_score": {
         "rank_if_removed": 13,
@@ -1333,39 +1339,39 @@
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 7,
-        "score_drop": 0.183437
+        "rank_if_removed": 16,
+        "rank_drop": 3,
+        "score_drop": 0.027514
       },
       "notice_penalty": {
         "rank_if_removed": 13,
         "rank_drop": 0,
-        "score_drop": 0.0
+        "score_drop": 0.000527
       },
       "github_activity": {
-        "rank_if_removed": 14,
-        "rank_drop": 1,
-        "score_drop": 0.017493
+        "rank_if_removed": 13,
+        "rank_drop": 0,
+        "score_drop": 0.003673
       }
     },
     "top_reasons": [
       {
         "feature": "behavioral_multiplier",
         "rank_drop": 7,
-        "score_drop": 0.970994
+        "score_drop": 0.874116
       },
       {
         "feature": "location_score",
-        "rank_drop": 7,
-        "score_drop": 0.183437
+        "rank_drop": 3,
+        "score_drop": 0.027514
       },
       {
-        "feature": "github_activity",
-        "rank_drop": 1,
-        "score_drop": 0.017493
+        "feature": "domain_alignment",
+        "rank_drop": 2,
+        "score_drop": 0.016855
       }
     ],
-    "confidence": 0.568,
+    "confidence": 0.5219,
     "risk_flags": [
       "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate.",
       "Under-experienced: 4.9 yrs vs. preferred 5-9 yrs."
@@ -1380,194 +1386,101 @@
     }
   },
   {
-    "candidate_id": "CAND_0066999",
+    "candidate_id": "CAND_0077337",
     "base_rank": 14,
-    "base_score": 0.980781,
+    "base_score": 0.98512,
     "tied_band": [
       "CAND_0061257",
-      "CAND_0006567",
       "CAND_0095619",
-      "CAND_0046064",
+      "CAND_0068351",
       "CAND_0046525",
       "CAND_0008295",
-      "CAND_0068351",
-      "CAND_0016659",
-      "CAND_0018499",
       "CAND_0039754",
+      "CAND_0046064",
       "CAND_0051615",
-      "CAND_0046132",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
       "CAND_0065786",
-      "CAND_0066999"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 14,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 6,
-        "score_drop": 0.10995
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 6,
-        "score_drop": 0.961807
-      },
-      "production_ml_score": {
-        "rank_if_removed": 12,
-        "rank_drop": -2,
-        "score_drop": -0.008209
-      },
-      "domain_alignment": {
-        "rank_if_removed": 15,
-        "rank_drop": 1,
-        "score_drop": 0.017902
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 14,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 14,
-        "rank_drop": 0,
-        "score_drop": 0.006221
-      },
-      "consistency_score": {
-        "rank_if_removed": 14,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 19,
-        "rank_drop": 5,
-        "score_drop": 0.07794
-      },
-      "notice_penalty": {
-        "rank_if_removed": 14,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "github_activity": {
-        "rank_if_removed": 18,
-        "rank_drop": 4,
-        "score_drop": 0.040457
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "is_ml_engineer",
-        "rank_drop": 6,
-        "score_drop": 0.961807
-      },
-      {
-        "feature": "experience_fit_score",
-        "rank_drop": 6,
-        "score_drop": 0.10995
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 5,
-        "score_drop": 0.07794
-      }
-    ],
-    "confidence": 0.7935,
-    "risk_flags": [],
-    "candidate_meta": {
-      "title": "Recommendation Systems Engineer",
-      "company": "Microsoft",
-      "yoe": 5.9,
-      "location": "Delhi, Delhi",
-      "notice_days": 15,
-      "open_to_work": true
-    }
-  },
-  {
-    "candidate_id": "CAND_0077337",
-    "base_rank": 15,
-    "base_score": 0.966275,
-    "tied_band": [
       "CAND_0077337",
-      "CAND_0007460",
-      "CAND_0011687"
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 15,
+        "rank_if_removed": 14,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 5,
-        "score_drop": 0.134133
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
       },
       "is_ml_engineer": {
-        "rank_if_removed": 15,
+        "rank_if_removed": 14,
         "rank_drop": 0,
-        "score_drop": -0.004335
+        "score_drop": 0.000376
       },
       "production_ml_score": {
-        "rank_if_removed": 11,
-        "rank_drop": -4,
-        "score_drop": -0.025119
+        "rank_if_removed": 13,
+        "rank_drop": -1,
+        "score_drop": -0.00773
       },
       "domain_alignment": {
-        "rank_if_removed": 17,
+        "rank_if_removed": 16,
         "rank_drop": 2,
-        "score_drop": 0.01517
+        "score_drop": 0.022744
       },
       "consulting_penalty": {
-        "rank_if_removed": 15,
+        "rank_if_removed": 14,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
         "rank_if_removed": 20,
-        "rank_drop": 5,
-        "score_drop": 0.841613
+        "rank_drop": 6,
+        "score_drop": 0.90545
       },
       "consistency_score": {
-        "rank_if_removed": 15,
+        "rank_if_removed": 14,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 5,
-        "score_drop": 0.178766
+        "rank_if_removed": 16,
+        "rank_drop": 2,
+        "score_drop": 0.038419
       },
       "notice_penalty": {
-        "rank_if_removed": 15,
+        "rank_if_removed": 14,
         "rank_drop": 0,
-        "score_drop": 0.0
+        "score_drop": -0.001606
       },
       "github_activity": {
         "rank_if_removed": 14,
-        "rank_drop": -1,
-        "score_drop": -0.017036
+        "rank_drop": 0,
+        "score_drop": 0.004418
       }
     },
     "top_reasons": [
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 5,
-        "score_drop": 0.841613
+        "rank_drop": 6,
+        "score_drop": 0.90545
       },
       {
         "feature": "location_score",
-        "rank_drop": 5,
-        "score_drop": 0.178766
+        "rank_drop": 2,
+        "score_drop": 0.038419
       },
       {
-        "feature": "experience_fit_score",
-        "rank_drop": 5,
-        "score_drop": 0.134133
+        "feature": "domain_alignment",
+        "rank_drop": 2,
+        "score_drop": 0.022744
       }
     ],
-    "confidence": 0.593,
+    "confidence": 0.5487,
     "risk_flags": [],
     "candidate_meta": {
       "title": "Staff Machine Learning Engineer",
@@ -1579,186 +1492,188 @@
     }
   },
   {
-    "candidate_id": "CAND_0007460",
-    "base_rank": 16,
-    "base_score": 0.960619,
+    "candidate_id": "CAND_0046132",
+    "base_rank": 15,
+    "base_score": 0.975417,
     "tied_band": [
+      "CAND_0061257",
+      "CAND_0095619",
+      "CAND_0068351",
+      "CAND_0046525",
+      "CAND_0008295",
+      "CAND_0039754",
+      "CAND_0046064",
+      "CAND_0051615",
+      "CAND_0018499",
+      "CAND_0066999",
+      "CAND_0006567",
+      "CAND_0016659",
+      "CAND_0065786",
       "CAND_0077337",
-      "CAND_0007460",
-      "CAND_0011687"
+      "CAND_0046132"
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 16,
+        "rank_if_removed": 15,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 16,
+        "rank_if_removed": 15,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 4,
-        "score_drop": 0.952776
-      },
-      "production_ml_score": {
         "rank_if_removed": 16,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "domain_alignment": {
-        "rank_if_removed": 18,
-        "rank_drop": 2,
-        "score_drop": 0.033928
-      },
-      "consulting_penalty": {
-        "rank_if_removed": 16,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "behavioral_multiplier": {
-        "rank_if_removed": 16,
-        "rank_drop": 0,
-        "score_drop": -3e-06
-      },
-      "consistency_score": {
-        "rank_if_removed": 16,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "location_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 4,
-        "score_drop": 0.117791
-      },
-      "notice_penalty": {
-        "rank_if_removed": 15,
-        "rank_drop": -1,
-        "score_drop": -0.01654
-      },
-      "github_activity": {
-        "rank_if_removed": 15,
-        "rank_drop": -1,
-        "score_drop": -0.018551
-      }
-    },
-    "top_reasons": [
-      {
-        "feature": "is_ml_engineer",
-        "rank_drop": 4,
-        "score_drop": 0.952776
-      },
-      {
-        "feature": "location_score",
-        "rank_drop": 4,
-        "score_drop": 0.117791
-      },
-      {
-        "feature": "domain_alignment",
-        "rank_drop": 2,
-        "score_drop": 0.033928
-      }
-    ],
-    "confidence": 0.5973,
-    "risk_flags": [
-      "Long notice period (120d) exceeds preferred maximum (60d).",
-      "Under-experienced: 4.7 yrs vs. preferred 5-9 yrs."
-    ],
-    "candidate_meta": {
-      "title": "AI Engineer",
-      "company": "Salesforce",
-      "yoe": 4.7,
-      "location": "Pune, Maharashtra",
-      "notice_days": 120,
-      "open_to_work": true
-    }
-  },
-  {
-    "candidate_id": "CAND_0011687",
-    "base_rank": 17,
-    "base_score": 0.954698,
-    "tied_band": [
-      "CAND_0077337",
-      "CAND_0007460",
-      "CAND_0011687"
-    ],
-    "counterfactuals": {
-      "cosine_similarity": {
-        "rank_if_removed": 17,
-        "rank_drop": 0,
-        "score_drop": 0.0
-      },
-      "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 3,
-        "score_drop": 0.094204
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 3,
-        "score_drop": 0.216318
-      },
-      "production_ml_score": {
-        "rank_if_removed": 11,
-        "rank_drop": -6,
-        "score_drop": -0.036696
-      },
-      "domain_alignment": {
-        "rank_if_removed": 18,
         "rank_drop": 1,
-        "score_drop": 0.024417
+        "score_drop": 0.022791
+      },
+      "production_ml_score": {
+        "rank_if_removed": 3,
+        "rank_drop": -12,
+        "score_drop": -0.020877
+      },
+      "domain_alignment": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
       },
       "consulting_penalty": {
-        "rank_if_removed": 17,
+        "rank_if_removed": 15,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
         "rank_if_removed": 20,
-        "rank_drop": 3,
-        "score_drop": 0.734063
+        "rank_drop": 5,
+        "score_drop": 0.765614
       },
       "consistency_score": {
-        "rank_if_removed": 17,
+        "rank_if_removed": 15,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 3,
-        "score_drop": 0.323769
+        "rank_if_removed": 16,
+        "rank_drop": 1,
+        "score_drop": 0.070673
       },
       "notice_penalty": {
-        "rank_if_removed": 17,
+        "rank_if_removed": 15,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "github_activity": {
-        "rank_if_removed": 18,
-        "rank_drop": 1,
-        "score_drop": 0.026835
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
       }
     },
     "top_reasons": [
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 3,
-        "score_drop": 0.734063
+        "rank_drop": 5,
+        "score_drop": 0.765614
       },
       {
         "feature": "location_score",
-        "rank_drop": 3,
-        "score_drop": 0.323769
+        "rank_drop": 1,
+        "score_drop": 0.070673
       },
       {
         "feature": "is_ml_engineer",
-        "rank_drop": 3,
-        "score_drop": 0.216318
+        "rank_drop": 1,
+        "score_drop": 0.022791
       }
     ],
-    "confidence": 0.7294,
+    "confidence": 0.559,
+    "risk_flags": [
+      "Under-experienced: 4.3 yrs vs. preferred 5-9 yrs."
+    ],
+    "candidate_meta": {
+      "title": "AI Research Engineer",
+      "company": "Verloop.io",
+      "yoe": 4.3,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 30,
+      "open_to_work": true
+    }
+  },
+  {
+    "candidate_id": "CAND_0011687",
+    "base_rank": 16,
+    "base_score": 0.963678,
+    "tied_band": null,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.019387
+      },
+      "production_ml_score": {
+        "rank_if_removed": 4,
+        "rank_drop": -12,
+        "score_drop": -0.032385
+      },
+      "domain_alignment": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.064966
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 4,
+        "score_drop": 0.680226
+      },
+      "consistency_score": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.079113
+      },
+      "notice_penalty": {
+        "rank_if_removed": 16,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 17,
+        "rank_drop": 1,
+        "score_drop": 0.137456
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 4,
+        "score_drop": 0.680226
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 1,
+        "score_drop": 0.137456
+      }
+    ],
+    "confidence": 0.99,
     "risk_flags": [
       "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate."
     ],
@@ -1772,183 +1687,290 @@
     }
   },
   {
-    "candidate_id": "CAND_0093193",
-    "base_rank": 18,
-    "base_score": 0.928947,
+    "candidate_id": "CAND_0005303",
+    "base_rank": 17,
+    "base_score": 0.845257,
     "tied_band": null,
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
-        "score_drop": 0.012832
+        "score_drop": 0.0
       },
       "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 2,
-        "score_drop": 0.91985
+        "rank_if_removed": 17,
+        "rank_drop": 0,
+        "score_drop": 0.052093
       },
       "production_ml_score": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
-        "score_drop": 0.0
+        "score_drop": -0.066369
       },
       "domain_alignment": {
-        "rank_if_removed": 18,
-        "rank_drop": 0,
-        "score_drop": 0.0
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.388066
       },
       "consulting_penalty": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
-        "rank_if_removed": 18,
-        "rank_drop": 0,
-        "score_drop": 0.006029
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.249867
       },
       "consistency_score": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "location_score": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
-        "score_drop": 0.0
+        "score_drop": 0.007145
       },
       "notice_penalty": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
-        "score_drop": 0.000228
+        "score_drop": -0.000292
       },
       "github_activity": {
-        "rank_if_removed": 18,
+        "rank_if_removed": 17,
         "rank_drop": 0,
-        "score_drop": 0.011917
+        "score_drop": 0.0
       }
     },
     "top_reasons": [
       {
-        "feature": "is_ml_engineer",
-        "rank_drop": 2,
-        "score_drop": 0.91985
+        "feature": "domain_alignment",
+        "rank_drop": 3,
+        "score_drop": 0.388066
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 3,
+        "score_drop": 0.249867
       }
     ],
-    "confidence": 0.7989,
+    "confidence": 0.99,
     "risk_flags": [
-      "Outside preferred hiring cities (Bangalore, Karnataka); not willing to relocate."
+      "Outside preferred hiring cities (Chandigarh, Chandigarh); not willing to relocate.",
+      "Profile inactive for ~3 month(s); outreach risk.",
+      "Under-experienced: 3.1 yrs vs. preferred 5-9 yrs."
     ],
     "candidate_meta": {
-      "title": "Senior Machine Learning Engineer",
-      "company": "Niramai",
-      "yoe": 7.9,
-      "location": "Bangalore, Karnataka",
+      "title": "Junior ML Engineer",
+      "company": "CRED",
+      "yoe": 3.1,
+      "location": "Chandigarh, Chandigarh",
       "notice_days": 45,
       "open_to_work": true
     }
   },
   {
-    "candidate_id": "CAND_0099806",
-    "base_rank": 19,
-    "base_score": 0.910759,
-    "tied_band": null,
+    "candidate_id": "CAND_0078002",
+    "base_rank": 18,
+    "base_score": 0.746505,
+    "tied_band": [
+      "CAND_0078002",
+      "CAND_0093547"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 19,
+        "rank_if_removed": 18,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 1,
-        "score_drop": 0.201532
-      },
-      "is_ml_engineer": {
-        "rank_if_removed": 20,
-        "rank_drop": 1,
-        "score_drop": 0.3321
-      },
-      "production_ml_score": {
-        "rank_if_removed": 11,
-        "rank_drop": -8,
-        "score_drop": -0.078832
-      },
-      "domain_alignment": {
-        "rank_if_removed": 19,
+        "rank_if_removed": 18,
         "rank_drop": 0,
         "score_drop": 0.0
       },
-      "consulting_penalty": {
+      "is_ml_engineer": {
         "rank_if_removed": 19,
+        "rank_drop": 1,
+        "score_drop": 0.004829
+      },
+      "production_ml_score": {
+        "rank_if_removed": 13,
+        "rank_drop": -5,
+        "score_drop": -0.246345
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 2,
+        "score_drop": 0.177468
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 18,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
         "rank_if_removed": 20,
-        "rank_drop": 1,
-        "score_drop": 0.857254
+        "rank_drop": 2,
+        "score_drop": 0.6853
       },
       "consistency_score": {
-        "rank_if_removed": 19,
+        "rank_if_removed": 18,
         "rank_drop": 0,
         "score_drop": 0.0
       },
       "location_score": {
         "rank_if_removed": 20,
-        "rank_drop": 1,
-        "score_drop": 0.437341
+        "rank_drop": 2,
+        "score_drop": 0.286888
       },
       "notice_penalty": {
-        "rank_if_removed": 19,
+        "rank_if_removed": 18,
         "rank_drop": 0,
-        "score_drop": 0.0
+        "score_drop": -0.044743
       },
       "github_activity": {
-        "rank_if_removed": 20,
+        "rank_if_removed": 19,
         "rank_drop": 1,
-        "score_drop": 0.168095
+        "score_drop": 0.045115
       }
     },
     "top_reasons": [
       {
         "feature": "behavioral_multiplier",
-        "rank_drop": 1,
-        "score_drop": 0.857254
+        "rank_drop": 2,
+        "score_drop": 0.6853
       },
       {
         "feature": "location_score",
-        "rank_drop": 1,
-        "score_drop": 0.437341
+        "rank_drop": 2,
+        "score_drop": 0.286888
       },
       {
-        "feature": "is_ml_engineer",
-        "rank_drop": 1,
-        "score_drop": 0.3321
+        "feature": "domain_alignment",
+        "rank_drop": 2,
+        "score_drop": 0.177468
       }
     ],
-    "confidence": 0.8034,
+    "confidence": 0.5106,
     "risk_flags": [
-      "Under-experienced: 4.6 yrs vs. preferred 5-9 yrs."
+      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
     ],
     "candidate_meta": {
-      "title": "AI Engineer",
-      "company": "Mad Street Den",
-      "yoe": 4.6,
-      "location": "Bhubaneswar, Odisha",
-      "notice_days": 30,
+      "title": "Machine Learning Engineer",
+      "company": "Meta",
+      "yoe": 6.3,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 60,
       "open_to_work": true
     }
   },
   {
-    "candidate_id": "CAND_0062247",
+    "candidate_id": "CAND_0093547",
+    "base_rank": 19,
+    "base_score": 0.727042,
+    "tied_band": [
+      "CAND_0078002",
+      "CAND_0093547"
+    ],
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 19,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 19,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.056023
+      },
+      "production_ml_score": {
+        "rank_if_removed": 18,
+        "rank_drop": -1,
+        "score_drop": -0.022782
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.262627
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 19,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.146118
+      },
+      "consistency_score": {
+        "rank_if_removed": 19,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 19,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "notice_penalty": {
+        "rank_if_removed": 19,
+        "rank_drop": 0,
+        "score_drop": 0.001222
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.067301
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 1,
+        "score_drop": 0.262627
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 1,
+        "score_drop": 0.146118
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 1,
+        "score_drop": 0.067301
+      }
+    ],
+    "confidence": 0.6733,
+    "risk_flags": [
+      "Candidate is not flagged as open to work on platform.",
+      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
+      "Under-experienced: 2.9 yrs vs. preferred 5-9 yrs."
+    ],
+    "candidate_meta": {
+      "title": "Senior Machine Learning Engineer",
+      "company": "PhonePe",
+      "yoe": 2.9,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 60,
+      "open_to_work": false
+    }
+  },
+  {
+    "candidate_id": "CAND_0043860",
     "base_rank": 20,
-    "base_score": 0.892302,
+    "base_score": 0.692547,
     "tied_band": null,
     "counterfactuals": {
       "cosine_similarity": {
@@ -1957,24 +1979,24 @@
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 20,
-        "rank_drop": 0,
-        "score_drop": 0.183666
+        "rank_if_removed": 18,
+        "rank_drop": -2,
+        "score_drop": -0.149644
       },
       "is_ml_engineer": {
         "rank_if_removed": 20,
         "rank_drop": 0,
-        "score_drop": 0.350187
+        "score_drop": 0.13534
       },
       "production_ml_score": {
-        "rank_if_removed": 13,
-        "rank_drop": -7,
-        "score_drop": -0.09511
+        "rank_if_removed": 17,
+        "rank_drop": -3,
+        "score_drop": -0.252432
       },
       "domain_alignment": {
         "rank_if_removed": 20,
         "rank_drop": 0,
-        "score_drop": 0.010563
+        "score_drop": 0.54054
       },
       "consulting_penalty": {
         "rank_if_removed": 20,
@@ -1984,7 +2006,7 @@
       "behavioral_multiplier": {
         "rank_if_removed": 20,
         "rank_drop": 0,
-        "score_drop": 0.839829
+        "score_drop": 0.437313
       },
       "consistency_score": {
         "rank_if_removed": 20,
@@ -1994,7 +2016,7 @@
       "location_score": {
         "rank_if_removed": 20,
         "rank_drop": 0,
-        "score_drop": 0.413895
+        "score_drop": 0.26714
       },
       "notice_penalty": {
         "rank_if_removed": 20,
@@ -2004,17 +2026,17 @@
       "github_activity": {
         "rank_if_removed": 20,
         "rank_drop": 0,
-        "score_drop": 0.104586
+        "score_drop": 0.0
       }
     },
     "top_reasons": [],
     "confidence": 0.99,
     "risk_flags": [],
     "candidate_meta": {
-      "title": "AI Engineer",
-      "company": "Google",
-      "yoe": 7.3,
-      "location": "Kochi, Kerala",
+      "title": "Junior ML Engineer",
+      "company": "Aganitha",
+      "yoe": 6.1,
+      "location": "Bhubaneswar, Odisha",
       "notice_days": 30,
       "open_to_work": true
     }
