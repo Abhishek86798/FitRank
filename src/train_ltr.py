@@ -35,6 +35,8 @@ FEATURE_ORDER = [
     "location_score",
     "notice_penalty",
     "github_activity",
+    "open_to_work_score",
+    "response_rate_score",
 ]
 
 

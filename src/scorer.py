@@ -110,6 +110,7 @@ class LTRScorer:
             "production_ml_score", "domain_alignment", "consulting_penalty",
             "behavioral_multiplier", "consistency_score", "location_score",
             "notice_penalty", "github_activity",
+            "open_to_work_score", "response_rate_score",
         ]
         vec = np.array([[features.get(k, 0.0) for k in FEATURE_ORDER]], dtype=np.float32)
         raw = float(self._booster.predict(vec)[0])
@@ -133,6 +134,7 @@ class LTRScorer:
             "production_ml_score", "domain_alignment", "consulting_penalty",
             "behavioral_multiplier", "consistency_score", "location_score",
             "notice_penalty", "github_activity",
+            "open_to_work_score", "response_rate_score",
         ]
         matrix = np.array(
             [[f.get(k, 0.0) for k in FEATURE_ORDER] for f in feature_list],

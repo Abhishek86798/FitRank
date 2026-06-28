@@ -59,3 +59,25 @@ CAND_0000024,0,HR Manager @ TCS 7.5yr — explicit not-a-fit profile per JD; con
 CAND_0000026,0,Graphic Designer @ Initech — wrong domain; customer support/sales career; not open; last active Oct 2025 Kochi India
 CAND_0000033,0,Graphic Designer @ Wipro — wrong domain consulting; open to work and 30d notice but career is BA/PM/sales; Pune India
 CAND_0000034,0,Business Analyst @ Wipro/Infosys — consulting career; 14.5yr but all BA/mechanical; not open; 90d notice Ahmedabad India
+CAND_0054318,0,AI Research Eng @ BYJU'S 3.5yr — too junior; career is ML infra/fraud engineering not ranking; Information Retrieval skill aspirational; Chandigarh; 60d notice
+CAND_0039754,3,Sr Applied Scientist @ Meta 16.2yr — end-to-end ranking pipeline BGE+FAISS+XGBoost LTR; 35M semantic search at Apple; RAG ranking 50M qps at Observe.AI; open+relocate; 30d notice; Indore non-preferred but relocates
+CAND_0095619,3,NLP Eng @ Nykaa 15.6yr — owned full LTR pipeline for e-comm search; relevance labeling; Learning to Rank advanced; Mumbai preferred; open+30d notice; strong production ranking career
+CAND_0006567,3,Sr AI Eng @ Meta 7.9yr — search & discovery ranking at Meta; ranking algos at Razorpay; personalization infra+A/B at Glance; BM25+Ranking Systems+Text Encoders advanced; Noida preferred; open; 60d notice only penalty
+CAND_0061257,3,Staff MLE @ LinkedIn 8.0yr — designed ranking layer flagship product; search & discovery E2E at Yellow.ai; PEFT+Haystack+Info Retrieval Systems+Search Infrastructure advanced; Noida preferred; open+30d notice; strong
+CAND_0054394,2,RecSys Eng @ PharmEasy 4.1yr — semantic search 500K docs + LTR e-comm ranking at Netflix; Embeddings+Haystack+Pinecone advanced; Pune preferred; open+30d notice; 4.1yr slightly below band minimum
+CAND_0004402,2,AI Research Eng @ Yellow.ai 6.0yr — recsys collab filtering + gradient-boosted re-ranking production; Learning to Rank advanced; Delhi preferred; open; 60d notice exceeds ceiling
+CAND_0030348,2,MLE @ BYJU'S 4.5yr — semantic search 500K docs + recsys 10M users; Vector Search+Elasticsearch+pgvector advanced; Noida preferred; open; 45d notice; 4.5yr below 5yr band minimum
+CAND_0042506,2,Search Eng @ Verloop.io 4.2yr — RAG chatbot + recsys 10M users; Semantic Search+Info Retrieval advanced; Mumbai preferred; open+15d notice; 4.2yr below band minimum
+CAND_0075249,2,Applied MLE @ Zomato 6.2yr — recsys 10M users + semantic search 500K docs; Sentence Transformers+LTR advanced; Ahmedabad non-preferred; open; 45d notice
+CAND_0040117,2,RecSys Eng @ PhonePe 6.5yr — recsys 10M users + RAG chatbot; Embeddings+FAISS+BM25+LTR advanced; Vizag non-preferred; open+15d notice; solid retrieval skills
+CAND_0052682,1,NLP Eng @ Aganitha 6.6yr — career is recsys+RAG chatbot not ranking; QLoRA+FAISS+Embeddings advanced; Vizag non-preferred; open+30d notice; skills credible but no dedicated ranking career
+CAND_0053591,1,AI Eng @ Ola 5.3yr — ranking models XGBoost/LightGBM production at Ola; good ranking evidence BUT Toronto Canada location is critical disqualifier; 60d notice
+CAND_0033179,1,AI Research Eng @ Wipro 6.9yr — recsys collab filtering + CV work; consulting company; Information Retrieval advanced; Ahmedabad non-preferred; open+30d; Wipro consulting career lacks ranking production depth
+CAND_0065195,1,Search Eng @ CRED 5.1yr — CRED role is RAG chatbot not ranking; LTR is skill not career; Kolkata non-preferred; open; 45d notice; some IR signal but insufficient career depth
+CAND_0081852,1,Sr Data Scientist @ Mad Street Den 5.9yr — career is RAG chatbot + MLOps; Semantic Search+Weaviate advanced; Delhi preferred; open; 45d notice; no dedicated ranking production
+CAND_0015097,1,Sr SWE (ML) @ Zoho 6.0yr — churn prediction + time-series forecasting career; NLP sentiment work; no retrieval or ranking production; Coimbatore non-preferred; open+30d notice
+CAND_0069638,1,CV Eng @ Swiggy 6.2yr — primarily computer vision career; recsys collab filtering is side work at Swiggy+Zomato; Semantic Search+Fine-tuning LLMs advanced; Chennai non-preferred; open+30d notice
+CAND_0087364,1,RecSys Eng @ Glance 4.9yr — MLOps/churn at Glance + ranking XGBoost/LightGBM at Rephrase.ai; Qdrant+RAG advanced; Gurgaon preferred but NOT open to work; 4.9yr below band; not open is key disqualifier
+CAND_0082086,1,Sr SWE ML Razorpay 6yr Delhi — CV career (image mod + NLP sentiment), zero ranking production; FAISS/Pinecone skills only; 45d notice
+CAND_0080472,0,Junior ML Eng Zomato 4.4yr Hyderabad — below 5yr band; predictive modeling only; 120d notice max penalty
+CAND_0096209,0,ML Eng Glance 4.2yr Trivandrum — under-exp 4.2yr; 90d notice; recsys side-work + fraud ML, not ranking career; 3 thin skills

@@ -468,6 +468,19 @@ def _github_activity(candidate: dict) -> float:
     return min(1.0, float(score) / 100.0)
 
 
+def _open_to_work_score(candidate: dict) -> float:
+    """1.0 if open_to_work_flag is True, 0.0 otherwise."""
+    return 1.0 if candidate.get("redrob_signals", {}).get("open_to_work_flag") else 0.0
+
+
+def _response_rate_score(candidate: dict) -> float:
+    """recruiter_response_rate is already 0–1; return as-is (missing → 0.0)."""
+    val = candidate.get("redrob_signals", {}).get("recruiter_response_rate")
+    if val is None:
+        return 0.0
+    return float(min(1.0, max(0.0, val)))
+
+
 # ── public API ────────────────────────────────────────────────────────────────
 
 def build_feature_vector(
@@ -504,4 +517,6 @@ def build_feature_vector(
         "location_score":       _location_score(candidate, role_model),
         "notice_penalty":       _notice_penalty(candidate, role_model),
         "github_activity":      _github_activity(candidate),
+        "open_to_work_score":   _open_to_work_score(candidate),
+        "response_rate_score":  _response_rate_score(candidate),
     }
