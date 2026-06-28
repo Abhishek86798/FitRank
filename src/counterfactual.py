@@ -69,6 +69,55 @@ def _rank_after_mask(
     raise RuntimeError("candidate_id disappeared after re-sort")  # should never happen
 
 
+def detect_tied_bands(
+    all_scored: list[tuple[str, float]],
+    epsilon: float = 0.01,
+) -> list[list[str]]:
+    """
+    Group consecutively-ranked candidates whose pairwise score gap < epsilon
+    into 'contested bands' — ranks statistically indistinguishable.
+
+    Parameters
+    ----------
+    all_scored : [(candidate_id, score), ...] sorted best-first
+    epsilon    : max score gap between adjacent candidates to be considered tied
+
+    Returns
+    -------
+    List of bands. Each band is a list of candidate_ids whose scores are
+    within epsilon of their immediate neighbours. Single-member groups are
+    *not* returned — only genuine multi-candidate bands.
+    """
+    if not all_scored:
+        return []
+
+    bands: list[list[str]] = []
+    current_band: list[str] = [all_scored[0][0]]
+
+    for i in range(1, len(all_scored)):
+        prev_score = all_scored[i - 1][1]
+        curr_score = all_scored[i][1]
+        if abs(prev_score - curr_score) < epsilon:
+            current_band.append(all_scored[i][0])
+        else:
+            if len(current_band) > 1:
+                bands.append(current_band)
+            current_band = [all_scored[i][0]]
+
+    if len(current_band) > 1:
+        bands.append(current_band)
+
+    return bands
+
+
+def _find_tied_band(candidate_id: str, bands: list[list[str]]) -> list[str] | None:
+    """Return the band containing candidate_id, or None if not in any tied band."""
+    for band in bands:
+        if candidate_id in band:
+            return band
+    return None
+
+
 def _build_risk_flags(candidate_record: dict, role_model: dict) -> list[str]:
     """
     Return a list of human-readable risk flags derived purely from candidate_record
@@ -160,6 +209,7 @@ def explain_candidate(
     all_scored: list[tuple[str, float]],
     candidate_record: dict,
     role_model: dict,
+    tied_bands: list[list[str]] | None = None,
 ) -> dict:
     """
     Return a decision-audit dict for one candidate.
@@ -173,6 +223,8 @@ def explain_candidate(
                       Used to compute ranks before/after masking.
     candidate_record: raw candidate dict from candidates.jsonl
     role_model      : parsed role_model.yaml dict
+    tied_bands      : pre-computed bands from detect_tied_bands(); if None,
+                      tied_band will be null in the output.
 
     Returns
     -------
@@ -180,6 +232,7 @@ def explain_candidate(
       candidate_id   : str
       base_rank      : int
       base_score     : float
+      tied_band      : list[str] | None  — band members if in a contested band
       counterfactuals: {feature: {rank_if_removed, rank_drop, score_drop}}
       top_reasons    : [{"feature", "rank_drop", "score_drop"}, ...]  (top 3 by rank_drop)
       confidence     : float in [0, 1]
@@ -187,6 +240,8 @@ def explain_candidate(
     """
     base_score = scorer.score(features)
     base_rank = _base_rank(candidate_id, all_scored)
+
+    tied_band = _find_tied_band(candidate_id, tied_bands) if tied_bands is not None else None
 
     scores_only = [s for _, s in all_scored]
     score_std = statistics.stdev(scores_only) if len(scores_only) > 1 else 1.0
@@ -236,6 +291,7 @@ def explain_candidate(
         "candidate_id": candidate_id,
         "base_rank": base_rank,
         "base_score": round(base_score, 6),
+        "tied_band": tied_band,
         "counterfactuals": counterfactuals,
         "top_reasons": top_reasons,
         "confidence": confidence,

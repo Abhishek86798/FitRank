@@ -63,6 +63,8 @@ def _print_audit_summary(audit: dict) -> None:
     print(f"Candidate : {audit['candidate_id']}")
     print(f"Base rank : #{audit['base_rank']}  (score={audit['base_score']:.4f})")
     print(f"Confidence: {audit['confidence']:.4f}")
+    if audit.get("tied_band"):
+        print(f"Tied band : {audit['tied_band']}  (ranks statistically indistinguishable)")
 
     print("\nTop reasons (features that matter most):")
     for i, r in enumerate(audit["top_reasons"], 1):
@@ -104,7 +106,7 @@ def main() -> None:
     import yaml
     from src.feature_builder import build_feature_vector
     from src.scorer import LTRScorer
-    from src.counterfactual import explain_candidate
+    from src.counterfactual import explain_candidate, detect_tied_bands
 
     print(f"Loading role model from {args.role_model} ...")
     with open(args.role_model, encoding="utf-8") as f:
@@ -128,6 +130,17 @@ def main() -> None:
     # rank is relative to this pool (the same pool used for the submission).
     all_scored: list[tuple[str, float]] = [(cid, score) for _, cid, score in top_rows]
 
+    # Detect contested bands (score gap < 0.01 between adjacent candidates)
+    bands = detect_tied_bands(all_scored, epsilon=0.01)
+    if bands:
+        print(f"\nContested bands detected ({len(bands)} band(s)):")
+        for band in bands:
+            band_scores = {cid: score for cid, score in all_scored if cid in band}
+            score_range = f"{min(band_scores.values()):.4f}–{max(band_scores.values()):.4f}"
+            print(f"  [{score_range}]  {band}")
+    else:
+        print("\nNo contested bands (all adjacent score gaps ≥ 0.01).")
+
     print(f"\nGenerating counterfactual audits for top-{args.top_n} candidates ...")
     audits: list[dict] = []
     for rank, cid, score in top_rows:
@@ -146,11 +159,14 @@ def main() -> None:
             all_scored=all_scored,
             candidate_record=cand,
             role_model=role_model,
+            tied_bands=bands,
         )
         audits.append(audit)
+        band_note = f"  [TIED BAND: {len(audit['tied_band'])} members]" if audit["tied_band"] else ""
         print(f"  #{rank:3d}  {cid}  base_score={audit['base_score']:.4f}  "
               f"confidence={audit['confidence']:.4f}  "
-              f"top_reason={audit['top_reasons'][0]['feature'] if audit['top_reasons'] else 'n/a'}")
+              f"top_reason={audit['top_reasons'][0]['feature'] if audit['top_reasons'] else 'n/a'}"
+              f"{band_note}")
 
     # Write JSON output
     out_path = Path(args.output)

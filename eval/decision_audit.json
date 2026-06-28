@@ -3,6 +3,18 @@
     "candidate_id": "CAND_0018499",
     "base_rank": 1,
     "base_score": 0.994439,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 5,
@@ -84,6 +96,18 @@
     "candidate_id": "CAND_0046525",
     "base_rank": 2,
     "base_score": 0.995996,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 2,
@@ -165,6 +189,18 @@
     "candidate_id": "CAND_0046064",
     "base_rank": 3,
     "base_score": 0.994472,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 5,
@@ -248,6 +284,18 @@
     "candidate_id": "CAND_0011687",
     "base_rank": 4,
     "base_score": 0.99504,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 4,
@@ -331,6 +379,18 @@
     "candidate_id": "CAND_0054394",
     "base_rank": 5,
     "base_score": 0.9944,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 5,
@@ -414,6 +474,18 @@
     "candidate_id": "CAND_0039754",
     "base_rank": 6,
     "base_score": 0.993637,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 6,
@@ -497,6 +569,18 @@
     "candidate_id": "CAND_0095619",
     "base_rank": 7,
     "base_score": 0.99203,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 7,
@@ -580,6 +664,18 @@
     "candidate_id": "CAND_0004402",
     "base_rank": 8,
     "base_score": 0.991023,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 8,
@@ -661,6 +757,18 @@
     "candidate_id": "CAND_0052682",
     "base_rank": 9,
     "base_score": 0.987287,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 9,
@@ -745,6 +853,18 @@
     "candidate_id": "CAND_0053591",
     "base_rank": 10,
     "base_score": 0.985635,
+    "tied_band": [
+      "CAND_0018499",
+      "CAND_0046525",
+      "CAND_0046064",
+      "CAND_0011687",
+      "CAND_0054394",
+      "CAND_0039754",
+      "CAND_0095619",
+      "CAND_0004402",
+      "CAND_0052682",
+      "CAND_0053591"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 10,
@@ -828,6 +948,7 @@
     "candidate_id": "CAND_0006567",
     "base_rank": 11,
     "base_score": 0.948038,
+    "tied_band": null,
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 11,
@@ -909,6 +1030,10 @@
     "candidate_id": "CAND_0033179",
     "base_rank": 12,
     "base_score": 0.895585,
+    "tied_band": [
+      "CAND_0033179",
+      "CAND_0061257"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 12,
@@ -990,6 +1115,10 @@
     "candidate_id": "CAND_0061257",
     "base_rank": 13,
     "base_score": 0.935166,
+    "tied_band": [
+      "CAND_0033179",
+      "CAND_0061257"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 12,
@@ -1066,6 +1195,7 @@
     "candidate_id": "CAND_0065195",
     "base_rank": 14,
     "base_score": 0.848871,
+    "tied_band": null,
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 14,
@@ -1149,6 +1279,11 @@
     "candidate_id": "CAND_0042506",
     "base_rank": 15,
     "base_score": 0.842429,
+    "tied_band": [
+      "CAND_0042506",
+      "CAND_0030348",
+      "CAND_0081852"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 15,
@@ -1232,6 +1367,11 @@
     "candidate_id": "CAND_0030348",
     "base_rank": 16,
     "base_score": 0.839796,
+    "tied_band": [
+      "CAND_0042506",
+      "CAND_0030348",
+      "CAND_0081852"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 15,
@@ -1316,6 +1456,11 @@
     "candidate_id": "CAND_0081852",
     "base_rank": 17,
     "base_score": 0.822016,
+    "tied_band": [
+      "CAND_0042506",
+      "CAND_0030348",
+      "CAND_0081852"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 17,
@@ -1397,6 +1542,11 @@
     "candidate_id": "CAND_0054318",
     "base_rank": 18,
     "base_score": 0.762743,
+    "tied_band": [
+      "CAND_0054318",
+      "CAND_0015097",
+      "CAND_0018549"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 18,
@@ -1481,6 +1631,11 @@
     "candidate_id": "CAND_0015097",
     "base_rank": 19,
     "base_score": 0.719485,
+    "tied_band": [
+      "CAND_0054318",
+      "CAND_0015097",
+      "CAND_0018549"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 20,
@@ -1564,6 +1719,11 @@
     "candidate_id": "CAND_0018549",
     "base_rank": 20,
     "base_score": 0.752069,
+    "tied_band": [
+      "CAND_0054318",
+      "CAND_0015097",
+      "CAND_0018549"
+    ],
     "counterfactuals": {
       "cosine_similarity": {
         "rank_if_removed": 20,

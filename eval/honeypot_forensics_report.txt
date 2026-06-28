@@ -1,0 +1,69 @@
+========================================================================
+HONEYPOT FORENSICS REPORT
+========================================================================
+Submission   : team_xxx.csv
+Candidates   : data\candidates.jsonl  (100000 total)
+Top-N cutoff : 100
+
+Total honeypots detected   : 40
+  Caught (never reached #100): 40
+  In final top-100           : 0
+
+[OK] CONFIRMED: 0 honeypots in final top-100
+
+Example honeypots (up to 5 with full contradictions):
+------------------------------------------------------------------------
+
+  Candidate: CAND_0003582  (3 contradiction(s))
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'MLflow' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'MLflow', 'proficiency': 'expert', 'duration_months': 0}
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'Photoshop' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'Photoshop', 'proficiency': 'expert', 'duration_months': 0}
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'Content Writing' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'Content Writing', 'proficiency': 'expert', 'duration_months': 0}
+
+  Candidate: CAND_0007353  (2 contradiction(s))
+    [TENURE_EXCEEDS_COMPANY]
+      Role 'Frontend Engineer' at 'Wayne Enterprises' claims 166 months of tenure, but the role started 2023-09-10 — only 33 months ago. The candidate claims more tenure than time elapsed.
+      Evidence: {'title': 'Frontend Engineer', 'company': 'Wayne Enterprises', 'start_date': '2023-09-10', 'claimed_duration_months': 166, 'max_plausible_months': 33}
+    [YOE_MISMATCH]
+      Stated years_of_experience (9.9 yrs) differs from career history sum (20.9 yrs, 251 months) by 11.0 years — exceeds the 3-year tolerance.
+      Evidence: {'stated_yoe': 9.9, 'career_months_sum': 251, 'career_yoe_equivalent': 20.9, 'gap_years': 11.0}
+
+  Candidate: CAND_0008960  (2 contradiction(s))
+    [TENURE_EXCEEDS_COMPANY]
+      Role 'Graphic Designer' at 'Stark Industries' claims 171 months of tenure, but the role started 2024-09-04 — only 21 months ago. The candidate claims more tenure than time elapsed.
+      Evidence: {'title': 'Graphic Designer', 'company': 'Stark Industries', 'start_date': '2024-09-04', 'claimed_duration_months': 171, 'max_plausible_months': 21}
+    [YOE_MISMATCH]
+      Stated years_of_experience (10.3 yrs) differs from career history sum (22.6 yrs, 271 months) by 12.3 years — exceeds the 3-year tolerance.
+      Evidence: {'stated_yoe': 10.3, 'career_months_sum': 271, 'career_yoe_equivalent': 22.6, 'gap_years': 12.3}
+
+  Candidate: CAND_0010294  (2 contradiction(s))
+    [TENURE_EXCEEDS_COMPANY]
+      Role '.NET Developer' at 'Mphasis' claims 144 months of tenure, but the role started 2024-11-03 — only 19 months ago. The candidate claims more tenure than time elapsed.
+      Evidence: {'title': '.NET Developer', 'company': 'Mphasis', 'start_date': '2024-11-03', 'claimed_duration_months': 144, 'max_plausible_months': 19}
+    [YOE_MISMATCH]
+      Stated years_of_experience (8.0 yrs) differs from career history sum (18.3 yrs, 220 months) by 10.3 years — exceeds the 3-year tolerance.
+      Evidence: {'stated_yoe': 8.0, 'career_months_sum': 220, 'career_yoe_equivalent': 18.3, 'gap_years': 10.3}
+
+  Candidate: CAND_0016000  (5 contradiction(s))
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'TypeScript' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'TypeScript', 'proficiency': 'expert', 'duration_months': 0}
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'Go' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'Go', 'proficiency': 'expert', 'duration_months': 0}
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'Docker' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'Docker', 'proficiency': 'expert', 'duration_months': 0}
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'Hadoop' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'Hadoop', 'proficiency': 'expert', 'duration_months': 0}
+    [SKILL_DURATION_IMPOSSIBLE]
+      Skill 'Photoshop' is claimed at expert level but has duration_months=0. Expert/advanced proficiency in zero months is impossible.
+      Evidence: {'skill': 'Photoshop', 'proficiency': 'expert', 'duration_months': 0}
+
+========================================================================
