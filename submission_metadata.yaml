@@ -8,7 +8,7 @@ contact_email: abhikokadwar2@gmail.com
 github_url: https://github.com/Abhishek86798/FitRank
 
 # ── Deployment ────────────────────────────────────────────────────────────────
-sandbox_url: "not deployed"
+sandbox_url: "https://fitrank.streamlit.app"
 streamlit_demo: true
 compute_environment: "CPU-only (no GPU). Ranking runs on any x86 machine with 4 GB RAM.
   Precompute requires ~2 GB RAM; was run on Google Colab free tier (T4 GPU available
