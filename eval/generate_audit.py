@@ -161,6 +161,17 @@ def main() -> None:
             role_model=role_model,
             tied_bands=bands,
         )
+        # Embed display metadata so the dashboard works without candidates.jsonl
+        p = cand.get("profile", {})
+        sig = cand.get("redrob_signals", {})
+        audit["candidate_meta"] = {
+            "title":       p.get("current_title", ""),
+            "company":     p.get("current_company", ""),
+            "yoe":         p.get("years_of_experience"),
+            "location":    p.get("location", ""),
+            "notice_days": sig.get("notice_period_days"),
+            "open_to_work": bool(sig.get("open_to_work_flag")),
+        }
         audits.append(audit)
         band_note = f"  [TIED BAND: {len(audit['tied_band'])} members]" if audit["tied_band"] else ""
         print(f"  #{rank:3d}  {cid}  base_score={audit['base_score']:.4f}  "

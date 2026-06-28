@@ -94,7 +94,15 @@
       }
     ],
     "confidence": 0.5001,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Staff Machine Learning Engineer",
+      "company": "LinkedIn",
+      "yoe": 8.0,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0006567",
@@ -191,7 +199,15 @@
       }
     ],
     "confidence": 0.5002,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Senior AI Engineer",
+      "company": "Meta",
+      "yoe": 7.9,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 60,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0095619",
@@ -290,7 +306,15 @@
     "confidence": 0.5056,
     "risk_flags": [
       "Significantly over-experienced: 15.6 yrs may signal seniority mismatch."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "NLP Engineer",
+      "company": "Nykaa",
+      "yoe": 15.6,
+      "location": "Mumbai, Maharashtra",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0046064",
@@ -389,7 +413,15 @@
     "confidence": 0.1923,
     "risk_flags": [
       "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "Senior NLP Engineer",
+      "company": "Salesforce",
+      "yoe": 8.9,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0046525",
@@ -486,7 +518,15 @@
       }
     ],
     "confidence": 0.4853,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Senior Machine Learning Engineer",
+      "company": "Genpact AI",
+      "yoe": 6.1,
+      "location": "Pune, Maharashtra",
+      "notice_days": 60,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0008295",
@@ -583,7 +623,15 @@
       }
     ],
     "confidence": 0.5018,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "AI Research Engineer",
+      "company": "Razorpay",
+      "yoe": 6.5,
+      "location": "Pune, Maharashtra",
+      "notice_days": 45,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0068351",
@@ -682,7 +730,15 @@
     "confidence": 0.4699,
     "risk_flags": [
       "Candidate is not flagged as open to work on platform."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "Lead AI Engineer",
+      "company": "Sarvam AI",
+      "yoe": 6.4,
+      "location": "Delhi, Delhi",
+      "notice_days": 0,
+      "open_to_work": false
+    }
   },
   {
     "candidate_id": "CAND_0016659",
@@ -777,7 +833,15 @@
     "risk_flags": [
       "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
       "Under-experienced: 4.4 yrs vs. preferred 5-9 yrs."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "ML Engineer",
+      "company": "Glance",
+      "yoe": 4.4,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 45,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0018499",
@@ -874,7 +938,15 @@
       }
     ],
     "confidence": 0.2864,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Senior Machine Learning Engineer",
+      "company": "Zomato",
+      "yoe": 7.2,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 15,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0039754",
@@ -973,7 +1045,15 @@
     "confidence": 0.4723,
     "risk_flags": [
       "Significantly over-experienced: 16.2 yrs may signal seniority mismatch."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "Senior Applied Scientist",
+      "company": "Meta",
+      "yoe": 16.2,
+      "location": "Indore, Madhya Pradesh",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0051615",
@@ -1074,7 +1154,15 @@
       "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
       "Profile inactive for ~3 month(s); outreach risk.",
       "Under-experienced: 4.6 yrs vs. preferred 5-9 yrs."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "Search Engineer",
+      "company": "Meta",
+      "yoe": 4.6,
+      "location": "Coimbatore, Tamil Nadu",
+      "notice_days": 60,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0046132",
@@ -1173,7 +1261,15 @@
     "confidence": 0.5427,
     "risk_flags": [
       "Under-experienced: 4.3 yrs vs. preferred 5-9 yrs."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "AI Research Engineer",
+      "company": "Verloop.io",
+      "yoe": 4.3,
+      "location": "Noida, Uttar Pradesh",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0065786",
@@ -1273,7 +1369,15 @@
     "risk_flags": [
       "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate.",
       "Under-experienced: 4.9 yrs vs. preferred 5-9 yrs."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "AI Specialist",
+      "company": "Swiggy",
+      "yoe": 4.9,
+      "location": "Indore, Madhya Pradesh",
+      "notice_days": 45,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0066999",
@@ -1370,7 +1474,15 @@
       }
     ],
     "confidence": 0.7935,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Recommendation Systems Engineer",
+      "company": "Microsoft",
+      "yoe": 5.9,
+      "location": "Delhi, Delhi",
+      "notice_days": 15,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0077337",
@@ -1456,7 +1568,15 @@
       }
     ],
     "confidence": 0.593,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "Staff Machine Learning Engineer",
+      "company": "Paytm",
+      "yoe": 7.0,
+      "location": "Kochi, Kerala",
+      "notice_days": 60,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0007460",
@@ -1545,7 +1665,15 @@
     "risk_flags": [
       "Long notice period (120d) exceeds preferred maximum (60d).",
       "Under-experienced: 4.7 yrs vs. preferred 5-9 yrs."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "AI Engineer",
+      "company": "Salesforce",
+      "yoe": 4.7,
+      "location": "Pune, Maharashtra",
+      "notice_days": 120,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0011687",
@@ -1633,7 +1761,15 @@
     "confidence": 0.7294,
     "risk_flags": [
       "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "Senior NLP Engineer",
+      "company": "Niramai",
+      "yoe": 7.8,
+      "location": "Indore, Madhya Pradesh",
+      "notice_days": 15,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0093193",
@@ -1707,7 +1843,15 @@
     "confidence": 0.7989,
     "risk_flags": [
       "Outside preferred hiring cities (Bangalore, Karnataka); not willing to relocate."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "Senior Machine Learning Engineer",
+      "company": "Niramai",
+      "yoe": 7.9,
+      "location": "Bangalore, Karnataka",
+      "notice_days": 45,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0099806",
@@ -1791,7 +1935,15 @@
     "confidence": 0.8034,
     "risk_flags": [
       "Under-experienced: 4.6 yrs vs. preferred 5-9 yrs."
-    ]
+    ],
+    "candidate_meta": {
+      "title": "AI Engineer",
+      "company": "Mad Street Den",
+      "yoe": 4.6,
+      "location": "Bhubaneswar, Odisha",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   },
   {
     "candidate_id": "CAND_0062247",
@@ -1857,6 +2009,14 @@
     },
     "top_reasons": [],
     "confidence": 0.99,
-    "risk_flags": []
+    "risk_flags": [],
+    "candidate_meta": {
+      "title": "AI Engineer",
+      "company": "Google",
+      "yoe": 7.3,
+      "location": "Kochi, Kerala",
+      "notice_days": 30,
+      "open_to_work": true
+    }
   }
 ]
