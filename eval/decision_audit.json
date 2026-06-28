@@ -1,0 +1,1628 @@
+[
+  {
+    "candidate_id": "CAND_0018499",
+    "base_rank": 1,
+    "base_score": 0.994439,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 5,
+        "rank_drop": 4,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 4,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 12,
+        "rank_drop": 11,
+        "score_drop": 0.101407
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 9,
+        "score_drop": 0.008636
+      },
+      "domain_alignment": {
+        "rank_if_removed": 11,
+        "rank_drop": 10,
+        "score_drop": 0.091475
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 4,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 19,
+        "score_drop": 0.874667
+      },
+      "consistency_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 4,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 10,
+        "score_drop": 0.074924
+      },
+      "notice_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 4,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 8,
+        "rank_drop": 7,
+        "score_drop": 0.005525
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 19,
+        "score_drop": 0.874667
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 11,
+        "score_drop": 0.101407
+      },
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 10,
+        "score_drop": 0.091475
+      }
+    ],
+    "confidence": 0.4896,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0046525",
+    "base_rank": 2,
+    "base_score": 0.995996,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 12,
+        "rank_drop": 10,
+        "score_drop": 0.100796
+      },
+      "production_ml_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 6,
+        "score_drop": 0.006352
+      },
+      "domain_alignment": {
+        "rank_if_removed": 11,
+        "rank_drop": 9,
+        "score_drop": 0.06539
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 18,
+        "score_drop": 0.788633
+      },
+      "consistency_score": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 9,
+        "score_drop": 0.087082
+      },
+      "notice_penalty": {
+        "rank_if_removed": 2,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 8,
+        "rank_drop": 6,
+        "score_drop": 0.005024
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 18,
+        "score_drop": 0.788633
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 10,
+        "score_drop": 0.100796
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 9,
+        "score_drop": 0.087082
+      }
+    ],
+    "confidence": 0.5006,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0046064",
+    "base_rank": 3,
+    "base_score": 0.994472,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 5,
+        "rank_drop": 2,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 2,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 13,
+        "rank_drop": 10,
+        "score_drop": 0.11372
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 7,
+        "score_drop": 0.00935
+      },
+      "domain_alignment": {
+        "rank_if_removed": 10,
+        "rank_drop": 7,
+        "score_drop": 0.012142
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 2,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 17,
+        "score_drop": 0.785615
+      },
+      "consistency_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 2,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 2,
+        "score_drop": 0.000847
+      },
+      "notice_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 2,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 13,
+        "rank_drop": 10,
+        "score_drop": 0.115351
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 17,
+        "score_drop": 0.785615
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 10,
+        "score_drop": 0.115351
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 10,
+        "score_drop": 0.11372
+      }
+    ],
+    "confidence": 0.4954,
+    "risk_flags": [
+      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0011687",
+    "base_rank": 4,
+    "base_score": 0.99504,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 4,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 4,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 13,
+        "rank_drop": 9,
+        "score_drop": 0.120022
+      },
+      "production_ml_score": {
+        "rank_if_removed": 9,
+        "rank_drop": 5,
+        "score_drop": 0.008097
+      },
+      "domain_alignment": {
+        "rank_if_removed": 10,
+        "rank_drop": 6,
+        "score_drop": 0.009763
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 4,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 16,
+        "score_drop": 0.791702
+      },
+      "consistency_score": {
+        "rank_if_removed": 4,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 1,
+        "score_drop": 0.000431
+      },
+      "notice_penalty": {
+        "rank_if_removed": 4,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 12,
+        "rank_drop": 8,
+        "score_drop": 0.104137
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 16,
+        "score_drop": 0.791702
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 9,
+        "score_drop": 0.120022
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 8,
+        "score_drop": 0.104137
+      }
+    ],
+    "confidence": 0.5005,
+    "risk_flags": [
+      "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0054394",
+    "base_rank": 5,
+    "base_score": 0.9944,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 12,
+        "rank_drop": 7,
+        "score_drop": 0.101368
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 5,
+        "score_drop": 0.008696
+      },
+      "domain_alignment": {
+        "rank_if_removed": 11,
+        "rank_drop": 6,
+        "score_drop": 0.091483
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 15,
+        "score_drop": 0.785649
+      },
+      "consistency_score": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 6,
+        "score_drop": 0.068375
+      },
+      "notice_penalty": {
+        "rank_if_removed": 5,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 8,
+        "rank_drop": 3,
+        "score_drop": 0.005486
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 15,
+        "score_drop": 0.785649
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 7,
+        "score_drop": 0.101368
+      },
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 6,
+        "score_drop": 0.091483
+      }
+    ],
+    "confidence": 0.5043,
+    "risk_flags": [
+      "Under-experienced: 4.1 yrs vs. preferred 5-9 yrs."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0039754",
+    "base_rank": 6,
+    "base_score": 0.993637,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 6,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 6,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 14,
+        "rank_drop": 8,
+        "score_drop": 0.147932
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 4,
+        "score_drop": 0.010528
+      },
+      "domain_alignment": {
+        "rank_if_removed": 10,
+        "rank_drop": 4,
+        "score_drop": 0.010008
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 6,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 14,
+        "score_drop": 0.78176
+      },
+      "consistency_score": {
+        "rank_if_removed": 6,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 6,
+        "rank_drop": 0,
+        "score_drop": -0.000941
+      },
+      "notice_penalty": {
+        "rank_if_removed": 6,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 12,
+        "rank_drop": 6,
+        "score_drop": 0.104495
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 14,
+        "score_drop": 0.78176
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 8,
+        "score_drop": 0.147932
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 6,
+        "score_drop": 0.104495
+      }
+    ],
+    "confidence": 0.5088,
+    "risk_flags": [
+      "Significantly over-experienced: 16.2 yrs may signal seniority mismatch."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0095619",
+    "base_rank": 7,
+    "base_score": 0.99203,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 7,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 7,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 17,
+        "rank_drop": 10,
+        "score_drop": 0.201221
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 3,
+        "score_drop": 0.014494
+      },
+      "domain_alignment": {
+        "rank_if_removed": 13,
+        "rank_drop": 6,
+        "score_drop": 0.124828
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 7,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 13,
+        "score_drop": 0.782707
+      },
+      "consistency_score": {
+        "rank_if_removed": 7,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 17,
+        "rank_drop": 10,
+        "score_drop": 0.229287
+      },
+      "notice_penalty": {
+        "rank_if_removed": 7,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 7,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 13,
+        "score_drop": 0.782707
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 10,
+        "score_drop": 0.229287
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 10,
+        "score_drop": 0.201221
+      }
+    ],
+    "confidence": 0.5011,
+    "risk_flags": [
+      "Significantly over-experienced: 15.6 yrs may signal seniority mismatch."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0004402",
+    "base_rank": 8,
+    "base_score": 0.991023,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 17,
+        "rank_drop": 9,
+        "score_drop": 0.200214
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 2,
+        "score_drop": 0.013992
+      },
+      "domain_alignment": {
+        "rank_if_removed": 14,
+        "rank_drop": 6,
+        "score_drop": 0.138255
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 12,
+        "score_drop": 0.764864
+      },
+      "consistency_score": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 17,
+        "rank_drop": 9,
+        "score_drop": 0.17553
+      },
+      "notice_penalty": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 8,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 12,
+        "score_drop": 0.764864
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 9,
+        "score_drop": 0.200214
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 9,
+        "score_drop": 0.17553
+      }
+    ],
+    "confidence": 0.5206,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0052682",
+    "base_rank": 9,
+    "base_score": 0.987287,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 9,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 9,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 11,
+        "score_drop": 0.246063
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 1,
+        "score_drop": 0.02219
+      },
+      "domain_alignment": {
+        "rank_if_removed": 10,
+        "rank_drop": 1,
+        "score_drop": 0.02315
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 9,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 11,
+        "score_drop": 0.778486
+      },
+      "consistency_score": {
+        "rank_if_removed": 9,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 1,
+        "score_drop": 0.001197
+      },
+      "notice_penalty": {
+        "rank_if_removed": 9,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 17,
+        "rank_drop": 8,
+        "score_drop": 0.224853
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 11,
+        "score_drop": 0.778486
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 11,
+        "score_drop": 0.246063
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 8,
+        "score_drop": 0.224853
+      }
+    ],
+    "confidence": 0.5021,
+    "risk_flags": [
+      "Outside preferred hiring cities (Vizag, Andhra Pradesh); not willing to relocate.",
+      "Profile inactive for ~3 month(s); outreach risk."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0053591",
+    "base_rank": 10,
+    "base_score": 0.985635,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 10,
+        "score_drop": 0.285088
+      },
+      "production_ml_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.021569
+      },
+      "domain_alignment": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 2.4e-05
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 10,
+        "score_drop": 0.359183
+      },
+      "consistency_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "notice_penalty": {
+        "rank_if_removed": 10,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 10,
+        "score_drop": 0.244434
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 10,
+        "score_drop": 0.359183
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 10,
+        "score_drop": 0.285088
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 10,
+        "score_drop": 0.244434
+      }
+    ],
+    "confidence": 0.7055,
+    "risk_flags": [
+      "Located outside India (Toronto) with no relocation intent."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0006567",
+    "base_rank": 11,
+    "base_score": 0.948038,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 9,
+        "score_drop": 0.53782
+      },
+      "production_ml_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 9,
+        "score_drop": 0.35067
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 9,
+        "score_drop": 0.933496
+      },
+      "consistency_score": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 9,
+        "score_drop": 0.516337
+      },
+      "notice_penalty": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": -0.020332
+      },
+      "github_activity": {
+        "rank_if_removed": 11,
+        "rank_drop": 0,
+        "score_drop": 0.004246
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 9,
+        "score_drop": 0.933496
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 9,
+        "score_drop": 0.53782
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 9,
+        "score_drop": 0.516337
+      }
+    ],
+    "confidence": 0.7867,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0033179",
+    "base_rank": 12,
+    "base_score": 0.895585,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 8,
+        "score_drop": 0.432147
+      },
+      "production_ml_score": {
+        "rank_if_removed": 17,
+        "rank_drop": 5,
+        "score_drop": 0.071914
+      },
+      "domain_alignment": {
+        "rank_if_removed": 17,
+        "rank_drop": 5,
+        "score_drop": 0.119341
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 8,
+        "score_drop": 0.681782
+      },
+      "consistency_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.000217
+      },
+      "notice_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 12,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 8,
+        "score_drop": 0.681782
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 8,
+        "score_drop": 0.432147
+      },
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 5,
+        "score_drop": 0.119341
+      }
+    ],
+    "confidence": 0.5493,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0061257",
+    "base_rank": 13,
+    "base_score": 0.935166,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 12,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 12,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 7,
+        "score_drop": 0.347907
+      },
+      "production_ml_score": {
+        "rank_if_removed": 13,
+        "rank_drop": 0,
+        "score_drop": 0.048593
+      },
+      "domain_alignment": {
+        "rank_if_removed": 12,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 7,
+        "score_drop": 0.731755
+      },
+      "consistency_score": {
+        "rank_if_removed": 12,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 13,
+        "rank_drop": 0,
+        "score_drop": 0.058609
+      },
+      "notice_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 13,
+        "rank_drop": 0,
+        "score_drop": 0.070665
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 7,
+        "score_drop": 0.731755
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 7,
+        "score_drop": 0.347907
+      }
+    ],
+    "confidence": 0.8943,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0065195",
+    "base_rank": 14,
+    "base_score": 0.848871,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 6,
+        "score_drop": 0.427443
+      },
+      "production_ml_score": {
+        "rank_if_removed": 17,
+        "rank_drop": 3,
+        "score_drop": 0.06434
+      },
+      "domain_alignment": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 6,
+        "score_drop": 0.750696
+      },
+      "consistency_score": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "notice_penalty": {
+        "rank_if_removed": 14,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 6,
+        "score_drop": 0.112155
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 6,
+        "score_drop": 0.750696
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 6,
+        "score_drop": 0.427443
+      },
+      {
+        "feature": "github_activity",
+        "rank_drop": 6,
+        "score_drop": 0.112155
+      }
+    ],
+    "confidence": 0.5581,
+    "risk_flags": [
+      "Outside preferred hiring cities (Kolkata, West Bengal); not willing to relocate."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0042506",
+    "base_rank": 15,
+    "base_score": 0.842429,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 5,
+        "score_drop": 0.60813
+      },
+      "production_ml_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 5,
+        "score_drop": 0.180553
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 5,
+        "score_drop": 0.262538
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 5,
+        "score_drop": 0.598695
+      },
+      "consistency_score": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 5,
+        "score_drop": 0.114271
+      },
+      "notice_penalty": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 15,
+        "rank_drop": 0,
+        "score_drop": 0.002407
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 5,
+        "score_drop": 0.60813
+      },
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 5,
+        "score_drop": 0.598695
+      },
+      {
+        "feature": "domain_alignment",
+        "rank_drop": 5,
+        "score_drop": 0.262538
+      }
+    ],
+    "confidence": 0.5376,
+    "risk_flags": [
+      "Under-experienced: 4.2 yrs vs. preferred 5-9 yrs."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0030348",
+    "base_rank": 16,
+    "base_score": 0.839796,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 15,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 15,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 4,
+        "score_drop": 0.605497
+      },
+      "production_ml_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 4,
+        "score_drop": 0.18223
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 4,
+        "score_drop": 0.264712
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 15,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 4,
+        "score_drop": 0.615048
+      },
+      "consistency_score": {
+        "rank_if_removed": 15,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 4,
+        "score_drop": 0.280651
+      },
+      "notice_penalty": {
+        "rank_if_removed": 15,
+        "rank_drop": -1,
+        "score_drop": -0.000226
+      },
+      "github_activity": {
+        "rank_if_removed": 15,
+        "rank_drop": -1,
+        "score_drop": 0.0
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 4,
+        "score_drop": 0.615048
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 4,
+        "score_drop": 0.605497
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 4,
+        "score_drop": 0.280651
+      }
+    ],
+    "confidence": 0.5421,
+    "risk_flags": [
+      "Profile inactive for ~3 month(s); outreach risk.",
+      "Under-experienced: 4.5 yrs vs. preferred 5-9 yrs."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0081852",
+    "base_rank": 17,
+    "base_score": 0.822016,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 17,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 17,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.587725
+      },
+      "production_ml_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.19513
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.278124
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 17,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.703702
+      },
+      "consistency_score": {
+        "rank_if_removed": 17,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 3,
+        "score_drop": 0.432523
+      },
+      "notice_penalty": {
+        "rank_if_removed": 17,
+        "rank_drop": 0,
+        "score_drop": -0.000246
+      },
+      "github_activity": {
+        "rank_if_removed": 15,
+        "rank_drop": -2,
+        "score_drop": -0.018645
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 3,
+        "score_drop": 0.703702
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 3,
+        "score_drop": 0.587725
+      },
+      {
+        "feature": "location_score",
+        "rank_drop": 3,
+        "score_drop": 0.432523
+      }
+    ],
+    "confidence": 0.8258,
+    "risk_flags": []
+  },
+  {
+    "candidate_id": "CAND_0054318",
+    "base_rank": 18,
+    "base_score": 0.762743,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 2,
+        "score_drop": 0.510682
+      },
+      "production_ml_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 2,
+        "score_drop": 0.117426
+      },
+      "domain_alignment": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 2,
+        "score_drop": 0.566248
+      },
+      "consistency_score": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "notice_penalty": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 18,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 2,
+        "score_drop": 0.566248
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 2,
+        "score_drop": 0.510682
+      },
+      {
+        "feature": "production_ml_score",
+        "rank_drop": 2,
+        "score_drop": 0.117426
+      }
+    ],
+    "confidence": 0.5159,
+    "risk_flags": [
+      "Outside preferred hiring cities (Chandigarh, Chandigarh); not willing to relocate.",
+      "Under-experienced: 3.5 yrs vs. preferred 5-9 yrs."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0015097",
+    "base_rank": 19,
+    "base_score": 0.719485,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.469999
+      },
+      "production_ml_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.128397
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.513427
+      },
+      "consistency_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.012167
+      },
+      "notice_penalty": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 1,
+        "score_drop": 0.0
+      }
+    },
+    "top_reasons": [
+      {
+        "feature": "behavioral_multiplier",
+        "rank_drop": 1,
+        "score_drop": 0.513427
+      },
+      {
+        "feature": "is_ml_engineer",
+        "rank_drop": 1,
+        "score_drop": 0.469999
+      },
+      {
+        "feature": "production_ml_score",
+        "rank_drop": 1,
+        "score_drop": 0.128397
+      }
+    ],
+    "confidence": 0.3219,
+    "risk_flags": [
+      "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
+    ]
+  },
+  {
+    "candidate_id": "CAND_0018549",
+    "base_rank": 20,
+    "base_score": 0.752069,
+    "counterfactuals": {
+      "cosine_similarity": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "experience_fit_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "is_ml_engineer": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.486749
+      },
+      "production_ml_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.124704
+      },
+      "domain_alignment": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.120954
+      },
+      "consulting_penalty": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "behavioral_multiplier": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.547009
+      },
+      "consistency_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.0
+      },
+      "location_score": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.019132
+      },
+      "notice_penalty": {
+        "rank_if_removed": 12,
+        "rank_drop": -8,
+        "score_drop": -0.189554
+      },
+      "github_activity": {
+        "rank_if_removed": 20,
+        "rank_drop": 0,
+        "score_drop": 0.043639
+      }
+    },
+    "top_reasons": [],
+    "confidence": 0.99,
+    "risk_flags": []
+  }
+]
