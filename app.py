@@ -308,7 +308,7 @@ for _a in audit_index.values():
         }
 
 # ── UI STATE ───────────────────────────────────────────────────────────────────
-# Premium SaaS CSS Injection
+# Premium SaaS CSS Injection (Blue Theme)
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
@@ -317,7 +317,7 @@ st.markdown("""
     font-family: 'Outfit', sans-serif;
     font-size: 3.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #4f46e5, #ec4899);
+    background: linear-gradient(135deg, #0ea5e9, #1e40af);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
@@ -333,28 +333,41 @@ st.markdown("""
     margin-bottom: 40px;
 }
 .glass-box {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
     border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.2);
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px rgba(14, 165, 233, 0.1);
     max-width: 800px;
     margin: 0 auto;
 }
-.stTextArea textarea {
-    border-radius: 12px !important;
-    border: 1px solid #e5e7eb !important;
-    background-color: #f9fafb !important;
-    transition: all 0.3s ease;
+.jd-preview {
+    background: #ffffff;
+    border: 1px solid #e0f2fe;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: left;
+    margin-bottom: 25px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 }
-.stTextArea textarea:focus {
-    border-color: #4f46e5 !important;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+.jd-header {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #0284c7;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+.jd-content {
+    font-family: sans-serif;
+    color: #1f2937;
+    line-height: 1.6;
+    font-size: 1.05rem;
 }
 .stButton button {
     border-radius: 12px !important;
-    background: linear-gradient(135deg, #4f46e5, #ec4899) !important;
+    background: linear-gradient(135deg, #0ea5e9, #1d4ed8) !important;
     color: white !important;
     border: none !important;
     font-weight: bold !important;
@@ -364,7 +377,7 @@ st.markdown("""
 }
 .stButton button:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3) !important;
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4) !important;
 }
 .spinner-container {
     display: flex;
@@ -373,28 +386,37 @@ st.markdown("""
     justify-content: center;
     height: 350px;
 }
-.pulsing-orb {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4f46e5, #ec4899);
-    animation: pulse 1.5s infinite alternate, glow 2s infinite linear;
+.wave-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 80px;
     margin-bottom: 30px;
 }
-@keyframes pulse {
-    0% { transform: scale(0.9); opacity: 0.8; }
-    100% { transform: scale(1.1); opacity: 1; }
+.wave-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    animation: wave 1.2s ease-in-out infinite alternate;
 }
-@keyframes glow {
-    0% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.5); }
-    50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.8); }
-    100% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.5); }
+.wave-dot:nth-child(1) { background-color: #7dd3fc; animation-delay: 0.0s; }
+.wave-dot:nth-child(2) { background-color: #38bdf8; animation-delay: 0.1s; }
+.wave-dot:nth-child(3) { background-color: #0ea5e9; animation-delay: 0.2s; }
+.wave-dot:nth-child(4) { background-color: #0284c7; animation-delay: 0.3s; }
+.wave-dot:nth-child(5) { background-color: #0369a1; animation-delay: 0.4s; }
+.wave-dot:nth-child(6) { background-color: #075985; animation-delay: 0.5s; }
+.wave-dot:nth-child(7) { background-color: #0f172a; animation-delay: 0.6s; }
+
+@keyframes wave {
+    0% { transform: translateY(-20px) scale(0.8); opacity: 0.5; }
+    100% { transform: translateY(20px) scale(1.2); opacity: 1; }
 }
 .loader-text {
     font-family: 'Outfit', sans-serif;
     font-size: 1.4rem;
     font-weight: 500;
-    color: #4b5563;
+    color: #0284c7;
     animation: fadeInOut 1.5s infinite;
 }
 @keyframes fadeInOut {
@@ -411,14 +433,20 @@ if st.session_state.ui_step == "input":
     st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
     st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
     
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
-    st.text_area(
-        "Job Description", 
-        value="Senior AI Engineer — Founding Team. Redrob AI.\nPune/Noida, India (Hybrid). 5-9 years experience.\n\nOwn the intelligence layer: ranking, retrieval, and matching systems...\n\nAbsolute requirements:\nProduction experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).", 
-        height=200,
-        label_visibility="hidden"
-    )
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("""
+    <div class='glass-box'>
+        <div class='jd-preview'>
+            <div class='jd-header'>🎯 Target Job Profile</div>
+            <div class='jd-content'>
+                <strong>Senior AI Engineer — Founding Team. Redrob AI.</strong><br>
+                Pune/Noida, India (Hybrid). 5-9 years experience.<br><br>
+                Own the intelligence layer: ranking, retrieval, and matching systems...<br><br>
+                <strong>Absolute requirements:</strong><br>
+                Production experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+    
     if st.button("🚀 Start Sourcing 100k+ Candidates", use_container_width=True):
         st.session_state.ui_step = "loading"
         st.rerun()
@@ -434,7 +462,15 @@ elif st.session_state.ui_step == "loading":
     def _show_loader(msg):
         status_placeholder.markdown(f"""
         <div class='spinner-container'>
-            <div class='pulsing-orb'></div>
+            <div class='wave-loader'>
+                <div class='wave-dot'></div>
+                <div class='wave-dot'></div>
+                <div class='wave-dot'></div>
+                <div class='wave-dot'></div>
+                <div class='wave-dot'></div>
+                <div class='wave-dot'></div>
+                <div class='wave-dot'></div>
+            </div>
             <div class='loader-text'>{msg}</div>
         </div>
         """, unsafe_allow_html=True)
