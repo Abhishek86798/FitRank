@@ -35,8 +35,17 @@ FEATURE_ORDER = [
     "location_score",
     "notice_penalty",
     "github_activity",
+    "ce_score",
     "open_to_work_score",
     "response_rate_score",
+    "recency_score",
+    "response_speed_score",
+    "interview_reliability",
+    "active_job_seeking",
+    "market_validation",
+    "skill_depth_score",
+    "education_tier_score",
+    "profile_completeness",
 ]
 
 
@@ -97,6 +106,13 @@ def run(
     candidate_ids = np.load(artifacts_dir / "candidate_ids.npy", allow_pickle=True)
     jd_vector     = np.load(artifacts_dir / "jd_vector.npy").astype(np.float32).squeeze()
 
+    import json as _json_ce
+    ce_scores_path = artifacts_dir / "ce_scores.json"
+    ce_scores: dict = {}
+    if ce_scores_path.exists():
+        ce_scores = _json_ce.loads(ce_scores_path.read_bytes())
+        print(f"  Loaded ce_scores for {len(ce_scores)} candidates", flush=True)
+
     print(f"  embeddings shape={embeddings.shape}  ids={len(candidate_ids)}", flush=True)
 
     # Build id→row index for fast cosine lookup
@@ -129,7 +145,7 @@ def run(
         idx = id_to_idx.get(cid)
         cosine = _cosine_sim(embeddings[idx], jd_vector) if idx is not None else 0.0
 
-        features = build_feature_vector(cand, role_model, cosine_sim=cosine)
+        features = build_feature_vector(cand, role_model, cosine_sim=cosine, ce_scores=ce_scores)
         X_rows.append([features.get(k, 0.0) for k in FEATURE_ORDER])
         y.append(label)
         ordered_ids.append(cid)

@@ -95,6 +95,14 @@ def run(
     candidate_ids = np.load(ids_path, allow_pickle=True)
     jd_vector     = np.load(jd_path).astype(np.float32)
 
+    # Load cross-encoder scores (optional — gracefully absent)
+    import json as _json_ce
+    ce_scores_path = artifacts_dir / "ce_scores.json"
+    ce_scores: dict = {}
+    if ce_scores_path.exists():
+        ce_scores = _json_ce.loads(ce_scores_path.read_bytes())
+        print(f"Loaded ce_scores for {len(ce_scores)} candidates from {ce_scores_path.name}")
+
     print(f"  embeddings shape={embeddings.shape}  ids={len(candidate_ids)}")
 
     # ── 3. Stage 1: Dense retrieval → top-K candidate IDs ────────────────────
@@ -192,7 +200,7 @@ def run(
         cid = cand["candidate_id"]
         cosine = float(dense_scores[dense_idx[cid]]) if cid in dense_idx else 0.0
         cids_to_score.append(cid)
-        feature_batch.append(build_feature_vector(cand, role_model, cosine_sim=cosine))
+        feature_batch.append(build_feature_vector(cand, role_model, cosine_sim=cosine, ce_scores=ce_scores))
 
     batch_scores = scorer.score_batch(feature_batch)
     scored: list[tuple[str, float]] = list(zip(cids_to_score, batch_scores))
@@ -213,7 +221,7 @@ def run(
         if cand is None:
             continue
         pad_cids.append(cid)
-        pad_feats.append(build_feature_vector(cand, role_model, cosine_sim=0.0))
+        pad_feats.append(build_feature_vector(cand, role_model, cosine_sim=0.0, ce_scores=ce_scores))
 
     if pad_cids:
         pad_scores = scorer.score_batch(pad_feats)
@@ -236,7 +244,7 @@ def run(
     for rank, cid, score in ranked:
         cand     = top_records[cid]
         cosine   = float(dense_scores[dense_idx[cid]]) if cid in dense_idx else 0.0
-        features  = build_feature_vector(cand, role_model, cosine_sim=cosine)
+        features  = build_feature_vector(cand, role_model, cosine_sim=cosine, ce_scores=ce_scores)
         reasoning = compose_reasoning(cand, features, rank)
         cited     = compose_reasoning_with_citations(cand, features, rank)
         citations_map[cid] = {

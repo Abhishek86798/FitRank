@@ -268,54 +268,105 @@ def _consulting_penalty(candidate: dict) -> float:
     return round(fraction ** 1.5, 4)
 
 
+def _recency_score(candidate: dict) -> float:
+    """
+    Step-function availability score from last_active_date.
+    >180 days inactive = effectively unavailable (per redrob_signals_doc.md).
+    """
+    signals = candidate.get("redrob_signals", {})
+    last_active_str = signals.get("last_active_date")
+    if not last_active_str:
+        return 0.5  # unknown → neutral
+    try:
+        last_active = date.fromisoformat(last_active_str)
+        days = (_today() - last_active).days
+    except ValueError:
+        return 0.5
+    if days < 30:
+        return 1.0
+    if days < 90:
+        return 0.75
+    if days < 180:
+        return 0.4
+    return 0.1
+
+
+def _response_speed_score(candidate: dict) -> float:
+    """
+    avg_response_time_hours → responsiveness score.
+    Absent or -1 → neutral 0.5.
+    """
+    signals = candidate.get("redrob_signals", {})
+    hours = signals.get("avg_response_time_hours")
+    if hours is None or hours < 0:
+        return 0.5
+    hours = float(hours)
+    if hours <= 4:
+        return 1.0
+    if hours <= 24:
+        return 0.75
+    if hours <= 72:
+        return 0.4
+    return 0.1
+
+
+def _active_job_seeking(candidate: dict) -> float:
+    """
+    applications_submitted_30d → active search intensity.
+    0 applications = passive candidate.
+    """
+    signals = candidate.get("redrob_signals", {})
+    apps = signals.get("applications_submitted_30d")
+    if apps is None or apps < 0:
+        return 0.3  # unknown → below neutral
+    apps = int(apps)
+    if apps >= 5:
+        return 1.0
+    if apps >= 2:
+        return 0.7
+    if apps >= 1:
+        return 0.5
+    return 0.2
+
+
+def _market_validation(candidate: dict) -> float:
+    """
+    saved_by_recruiters_30d → external recruiter interest signal.
+    Normalised to [0, 1], capped at 10 saves.
+    """
+    signals = candidate.get("redrob_signals", {})
+    saved = signals.get("saved_by_recruiters_30d")
+    if saved is None or saved < 0:
+        return 0.0
+    return min(1.0, float(saved) / 10.0)
+
+
 def _behavioral_multiplier(candidate: dict, role_model: dict) -> float:
     """
     Composite reachability/availability score from redrob_signals.
-    Weights from role_model.behavioral_weights.
+    Incorporates all six behavioral signals from redrob_signals_doc.md.
     Returns 0.0–1.0.
     """
     signals = candidate.get("redrob_signals", {})
-    weights = role_model.get("behavioral_weights", {})
 
-    # --- open_to_work (binary → float) ---
-    open_score = 1.0 if signals.get("open_to_work_flag") else 0.0
-
-    # --- recruiter_response_rate (already 0–1) ---
-    response_score = float(signals.get("recruiter_response_rate") or 0.0)
-
-    # --- last_active_recency: decay over 180 days ---
-    recency_score = 0.0
-    last_active_str = signals.get("last_active_date")
-    if last_active_str:
-        try:
-            last_active = date.fromisoformat(last_active_str)
-            days_ago = (_today() - last_active).days
-            recency_score = max(0.0, 1.0 - days_ago / 180.0)
-        except ValueError:
-            pass
-
-    # --- interview_completion_rate (already 0–1) ---
-    interview_score = float(signals.get("interview_completion_rate") or 0.0)
-
-    # --- profile_completeness_score (0–100 → 0–1) ---
-    completeness_score = float(signals.get("profile_completeness_score") or 0.0) / 100.0
-
-    w_open = weights.get("open_to_work_flag", 0.25)
-    w_resp = weights.get("recruiter_response_rate", 0.30)
-    w_rec  = weights.get("last_active_recency_days", 0.20)
-    w_int  = weights.get("interview_completion_rate", 0.15)
-    w_comp = weights.get("profile_completeness_score", 0.10)
+    open_score       = 1.0 if signals.get("open_to_work_flag") else 0.0
+    recency          = _recency_score(candidate)
+    response_rate    = float(signals.get("recruiter_response_rate") or 0.0)
+    response_speed   = _response_speed_score(candidate)
+    interview_rel    = float(signals.get("interview_completion_rate") or 0.0)
+    active_seeking   = _active_job_seeking(candidate)
+    mkt_validation   = _market_validation(candidate)
 
     total = (
-        w_open * open_score
-        + w_resp * response_score
-        + w_rec  * recency_score
-        + w_int  * interview_score
-        + w_comp * completeness_score
+        0.25 * open_score
+        + 0.20 * recency
+        + 0.20 * response_rate
+        + 0.15 * response_speed
+        + 0.10 * interview_rel
+        + 0.05 * active_seeking
+        + 0.05 * mkt_validation
     )
-    # normalise by sum of weights (should already be ~1.0 but be safe)
-    weight_sum = w_open + w_resp + w_rec + w_int + w_comp
-    return round(total / weight_sum, 4)
+    return round(total, 4)
 
 
 def _consistency_score(candidate: dict) -> float:
@@ -491,12 +542,105 @@ def _response_rate_score(candidate: dict) -> float:
     return float(min(1.0, max(0.0, val)))
 
 
+def _profile_completeness(candidate: dict) -> float:
+    """
+    Low completeness = less data to evaluate = penalize slightly.
+    Direct field from redrob_signals.profile_completeness_score (0-100).
+    Normalize to [0,1].
+    """
+    score = candidate.get('redrob_signals', {}).get(
+        'profile_completeness_score', 50.0
+    )
+    return round(float(score) / 100.0, 4)
+
+
+def _education_tier_score(candidate: dict) -> float:
+    """
+    Soft signal from education institution tier.
+    tier_1 = IIT/IIM/top NIT = 1.0
+    tier_2 = good college = 0.6
+    tier_3 = average = 0.3
+    tier_4/unknown = 0.1
+
+    Take the best tier across all education entries.
+    This is a weak signal — weight it low in LambdaMART.
+    """
+    TIER_SCORES = {
+        'tier_1': 1.0,
+        'tier_2': 0.6,
+        'tier_3': 0.3,
+        'tier_4': 0.1,
+        'unknown': 0.2,
+    }
+
+    education = candidate.get('education', [])
+    if not education:
+        return 0.2
+
+    best = max(
+        TIER_SCORES.get(e.get('tier', 'unknown'), 0.2)
+        for e in education
+    )
+    return best
+
+
+def _skill_depth_score(candidate: dict) -> float:
+    """
+    Measures genuine skill depth from duration_months.
+    Skills with advanced/expert proficiency AND high duration
+    score higher than skills just listed without time investment.
+
+    Focus only on ranking/retrieval/ML relevant skills.
+    """
+    RELEVANT_SKILLS = {
+        'faiss', 'pinecone', 'qdrant', 'milvus', 'weaviate', 'elasticsearch',
+        'opensearch', 'pgvector', 'bm25', 'sentence transformers', 'bge',
+        'learning to rank', 'lambdamart', 'xgboost', 'lightgbm',
+        'embeddings', 'vector search', 'semantic search', 'information retrieval',
+        'nlp', 'pytorch', 'hugging face transformers', 'fine-tuning llms',
+        'rag', 'ranking systems', 'recommendation systems'
+    }
+
+    skills = candidate.get('skills', [])
+    total_depth = 0.0
+    relevant_count = 0
+
+    for s in skills:
+        name = s.get('name', '').lower()
+        proficiency = s.get('proficiency', '')
+        duration = s.get('duration_months', 0) or 0
+
+        if name not in RELEVANT_SKILLS:
+            continue
+        if proficiency not in ('advanced', 'expert'):
+            continue
+
+        duration_score = min(1.0, duration / 36.0)
+        prof_weight = 1.0 if proficiency == 'expert' else 0.7
+
+        total_depth += duration_score * prof_weight
+        relevant_count += 1
+
+    if relevant_count == 0:
+        return 0.0
+
+    return min(1.0, total_depth / max(3, relevant_count))
+
+
 # ── public API ────────────────────────────────────────────────────────────────
+
+def _cross_encoder_score(candidate: dict, ce_scores: dict) -> float:
+    import math
+    cid = candidate.get('candidate_id', '')
+    raw = ce_scores.get(cid, 0.0)
+    return round(1.0 / (1.0 + math.exp(-raw)), 6)
+
 
 def build_feature_vector(
     candidate: dict,
     role_model: dict,
     cosine_sim: float,
+    ce_scores: dict | None = None,
 ) -> dict[str, float]:
     """
     Build a flat feature dict for a candidate.
@@ -506,6 +650,7 @@ def build_feature_vector(
     candidate   : raw candidate dict from candidates.jsonl
     role_model  : parsed role_model.yaml dict
     cosine_sim  : pre-computed cosine similarity from retriever.py (0–1)
+    ce_scores   : optional {candidate_id: raw_logit} from cross-encoder
 
     Returns
     -------
@@ -513,6 +658,7 @@ def build_feature_vector(
     title_disqualified is -1.0 or 0.0 (used as a hard gate by scorer.py).
     All other features are in 0.0–1.0 unless noted.
     """
+    _ce = ce_scores if ce_scores is not None else {}
     return {
         "cosine_similarity":    round(float(cosine_sim), 6),
         "experience_fit_score": _experience_fit_score(candidate, role_model),
@@ -527,6 +673,15 @@ def build_feature_vector(
         "location_score":       _location_score(candidate, role_model),
         "notice_penalty":       _notice_penalty(candidate, role_model),
         "github_activity":      _github_activity(candidate),
+        "ce_score":             _cross_encoder_score(candidate, _ce),
         "open_to_work_score":   _open_to_work_score(candidate),
         "response_rate_score":  _response_rate_score(candidate),
+        "recency_score":        _recency_score(candidate),
+        "response_speed_score": _response_speed_score(candidate),
+        "interview_reliability":float(candidate.get("redrob_signals", {}).get("interview_completion_rate") or 0.0),
+        "active_job_seeking":   _active_job_seeking(candidate),
+        "market_validation":    _market_validation(candidate),
+        "skill_depth_score":    _skill_depth_score(candidate),
+        "education_tier_score": _education_tier_score(candidate),
+        "profile_completeness": _profile_completeness(candidate),
     }
