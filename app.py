@@ -33,6 +33,7 @@ RICH_REASONING      = ROOT / "eval" / "rich_reasoning.json"
 CANDIDATES_JSONL    = ROOT / "data" / "candidates.jsonl"
 METADATA_YAML       = ROOT / "submission_metadata.yaml"
 FAITHFULNESS_REPORT = ROOT / "eval" / "faithfulness_report.json"
+ROBUSTNESS_REPORT   = ROOT / "eval" / "robustness_report.json"
 
 # ── feature display names ──────────────────────────────────────────────────────
 FEATURE_LABELS: dict[str, str] = {
@@ -157,6 +158,12 @@ def load_faithfulness_report() -> dict:
         return {}
     return json.loads(FAITHFULNESS_REPORT.read_bytes())
 
+@st.cache_data
+def load_robustness_report() -> dict:
+    if not ROBUSTNESS_REPORT.exists():
+        return {}
+    return json.loads(ROBUSTNESS_REPORT.read_bytes())
+
 
 # ── helpers ────────────────────────────────────────────────────────────────────
 
@@ -269,6 +276,7 @@ forensics           = load_forensics_text()
 rich_reasoning      = load_rich_reasoning()
 metadata            = load_metadata()
 faithfulness_report = load_faithfulness_report()
+robustness_report   = load_robustness_report()
 
 all_cids   = frozenset(r["candidate_id"] for r in submission)
 profiles   = load_profiles(all_cids)
@@ -315,6 +323,10 @@ with st.sidebar:
     if faithfulness_report:
         hr = faithfulness_report.get("global_hallucination_rate", 0.0)
         st.metric("Hallucination rate", f"{hr:.1%}")
+
+    if robustness_report:
+        stab = robustness_report.get("stability_score", 0.0)
+        st.metric("System Stability", f"{stab:.1%}", help="Rank overlap across 5 JD variations")
 
     st.divider()
     if any(_tier_counts.values()):
