@@ -1,0 +1,257 @@
+==============================================================================================================
+REASONING AUDIT REPORT — TOP-10 CANDIDATES (team_xxx.csv)
+Generated: 2026-06-29
+==============================================================================================================
+
+Methodology:
+  Each factual claim in the reasoning string was extracted and verified against
+  the raw candidate record in data/candidates.jsonl. Claims checked:
+  - Title, Company → profile.current_title / profile.current_company
+  - Years of experience → profile.years_of_experience
+  - Location → profile.location
+  - Notice period → redrob_signals.notice_period_days
+  - Open-to-work → redrob_signals.open_to_work_flag
+  - Assessment scores → redrob_signals.skill_assessment_scores (rounded)
+  - Skills at advanced/expert → skills[].proficiency in (advanced, expert)
+  - Career keywords → career_history[].description (substring match)
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 1 | CAND_0061257 | Score: 0.996356
+Profile: Staff Machine Learning Engineer @ LinkedIn | 8.0 yrs | Noida, Uttar Pradesh
+Reasoning: Currently Staff Machine Learning Engineer at LinkedIn (8.0 yrs exp). Career descriptions reference ranking — direct signal for this role. Declared advanced skills: PEFT, Haystack, Time Series, Machine Learning. Verified assessment: Haystack scored 70/100 on platform. Located in Noida, Uttar Pradesh — within preferred geography. Candidate has active open-to-work signal. 30-day notice; fits the sub-30-day preference or buyout ceiling.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Staff Machine Learning Engineer"                      profile.current_title                    Staff Machine Learning Eng   Staff Machine Learning Eng   ✅
+  Company = "LinkedIn"                                           profile.current_company                  LinkedIn                     LinkedIn                     ✅
+  YoE = 8.0                                                      profile.years_of_experience              8.0                          8.0                          ✅
+  Location = "Noida, Uttar Pradesh"                              profile.location                         Noida, Uttar Pradesh         Noida, Uttar Pradesh         ✅
+  Notice = 30 days                                               redrob_signals.notice_period_days        30                           30                           ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: Haystack = 70/100                                  redrob_signals.skill_assessment_scores   70                           70                           ✅
+  Advanced/expert skill: PEFT                                    skills[].proficiency in (advanced,expe   In advanced/expert           PEFT                         ✅
+  Advanced/expert skill: Haystack                                skills[].proficiency in (advanced,expe   In advanced/expert           Haystack                     ✅
+  Advanced/expert skill: Time Series                             skills[].proficiency in (advanced,expe   In advanced/expert           Time Series                  ✅
+  Advanced/expert skill: Machine Learning                        skills[].proficiency in (advanced,expe   In advanced/expert           Machine Learning             ✅
+  Career keyword: "ranking"                                      career_history[].description             FOUND                        ranking                      ✅
+
+  Candidate summary: 12 claims | ✅ 12 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 2 | CAND_0095619 | Score: 0.996352
+Profile: NLP Engineer @ Nykaa | 15.6 yrs | Mumbai, Maharashtra
+Reasoning: 15.6-year career, most recently as NLP Engineer at Nykaa. Explicit mentions of ranking in work history align with JD requirements. Skill profile highlights Feature Engineering, Pinecone, MLflow, Learning to Rank at advanced or expert level. Platform assessment score for MLflow: 90/100. Mumbai, Maharashtra location matches target cities. Open-to-work flag is set. 30-day notice period — within buyout window. No strong disqualifiers identified; recommend recruiter screen to verify depth.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "NLP Engineer"                                         profile.current_title                    NLP Engineer                 NLP Engineer                 ✅
+  Company = "Nykaa"                                              profile.current_company                  Nykaa                        Nykaa                        ✅
+  YoE = 15.6                                                     profile.years_of_experience              15.6                         15.6                         ✅
+  Location = "Mumbai, Maharashtra"                               profile.location                         Mumbai, Maharashtra          Mumbai, Maharashtra          ✅
+  Notice = 30 days                                               redrob_signals.notice_period_days        30                           30                           ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: MLflow = 90/100                                    redrob_signals.skill_assessment_scores   90                           90                           ✅
+  Advanced/expert skill: Feature Engineering                     skills[].proficiency in (advanced,expe   In advanced/expert           Feature Engineering          ✅
+  Advanced/expert skill: Pinecone                                skills[].proficiency in (advanced,expe   In advanced/expert           Pinecone                     ✅
+  Advanced/expert skill: MLflow                                  skills[].proficiency in (advanced,expe   In advanced/expert           MLflow                       ✅
+  Advanced/expert skill: Learning to Rank                        skills[].proficiency in (advanced,expe   In advanced/expert           Learning to Rank             ✅
+
+  Candidate summary: 11 claims | ✅ 11 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 3 | CAND_0068351 | Score: 0.996133
+Profile: Lead AI Engineer @ Sarvam AI | 6.4 yrs | Delhi, Delhi
+Reasoning: Lead AI Engineer at Sarvam AI with 6.4 years of experience. Production evidence for ranking found in career narrative. Advanced-proficiency skills include pgvector, Deep Learning, Qdrant, Elasticsearch. Based in Delhi, Delhi, consistent with role geography. Not currently flagged as open to work. Notice period: 0 days, manageable. No strong disqualifiers identified; recommend recruiter screen to verify depth.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Lead AI Engineer"                                     profile.current_title                    Lead AI Engineer             Lead AI Engineer             ✅
+  Company = "Sarvam AI"                                          profile.current_company                  Sarvam AI                    Sarvam AI                    ✅
+  YoE = 6.4                                                      profile.years_of_experience              6.4                          6.4                          ✅
+  Location = "Delhi, Delhi"                                      profile.location                         Delhi, Delhi                 Delhi, Delhi                 ✅
+  open_to_work = False (not flagged claimed)                     redrob_signals.open_to_work_flag         False                        False                        ✅
+  Advanced/expert skill: pgvector                                skills[].proficiency in (advanced,expe   In advanced/expert           pgvector                     ✅
+  Advanced/expert skill: Deep Learning                           skills[].proficiency in (advanced,expe   In advanced/expert           Deep Learning                ✅
+  Advanced/expert skill: Qdrant                                  skills[].proficiency in (advanced,expe   In advanced/expert           Qdrant                       ✅
+  Advanced/expert skill: Elasticsearch                           skills[].proficiency in (advanced,expe   In advanced/expert           Elasticsearch                ✅
+  Career keyword: "ranking"                                      career_history[].description             FOUND                        ranking                      ✅
+
+  Candidate summary: 10 claims | ✅ 10 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 4 | CAND_0046525 | Score: 0.995843
+Profile: Senior Machine Learning Engineer @ Genpact AI | 6.1 yrs | Pune, Maharashtra
+Reasoning: Currently Senior Machine Learning Engineer at Genpact AI (6.1 yrs exp). Career descriptions reference a/b test, dense retrieval, embedding — direct signal for this role. Declared advanced skills: Elasticsearch, LangChain, Machine Learning, LlamaIndex. Verified assessment: LangChain scored 96/100 on platform. Located in Pune, Maharashtra — within preferred geography. Candidate has active open-to-work signal. Long notice period (60d) may be a logistical blocker.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Senior Machine Learning Engineer"                     profile.current_title                    Senior Machine Learning En   Senior Machine Learning En   ✅
+  Company = "Genpact AI"                                         profile.current_company                  Genpact AI                   Genpact AI                   ✅
+  YoE = 6.1                                                      profile.years_of_experience              6.1                          6.1                          ✅
+  Location = "Pune, Maharashtra"                                 profile.location                         Pune, Maharashtra            Pune, Maharashtra            ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: LangChain = 96/100                                 redrob_signals.skill_assessment_scores   96                           96                           ✅
+  Advanced/expert skill: Elasticsearch                           skills[].proficiency in (advanced,expe   In advanced/expert           Elasticsearch                ✅
+  Advanced/expert skill: LangChain                               skills[].proficiency in (advanced,expe   In advanced/expert           LangChain                    ✅
+  Advanced/expert skill: Machine Learning                        skills[].proficiency in (advanced,expe   In advanced/expert           Machine Learning             ✅
+  Advanced/expert skill: LlamaIndex                              skills[].proficiency in (advanced,expe   In advanced/expert           LlamaIndex                   ✅
+  Career keyword: "a/b test"                                     career_history[].description             FOUND                        a/b test                     ✅
+  Career keyword: "dense retrieval"                              career_history[].description             FOUND                        dense retrieval              ✅
+  Career keyword: "embedding"                                    career_history[].description             FOUND                        embedding                    ✅
+
+  Candidate summary: 13 claims | ✅ 13 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 5 | CAND_0008295 | Score: 0.995559
+Profile: AI Research Engineer @ Razorpay | 6.5 yrs | Pune, Maharashtra
+Reasoning: 6.5-year career, most recently as AI Research Engineer at Razorpay. Skill profile highlights BM25, Python, TTS, BentoML at advanced or expert level. Platform assessment score for BM25: 59/100. Pune, Maharashtra location matches target cities. Open-to-work flag is set. Notice period of 45 days exceeds the 30-day buyout threshold. Skill claims (BM25, Python) lack supporting evidence in work history.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "AI Research Engineer"                                 profile.current_title                    AI Research Engineer         AI Research Engineer         ✅
+  Company = "Razorpay"                                           profile.current_company                  Razorpay                     Razorpay                     ✅
+  YoE = 6.5                                                      profile.years_of_experience              6.5                          6.5                          ✅
+  Location = "Pune, Maharashtra"                                 profile.location                         Pune, Maharashtra            Pune, Maharashtra            ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: BM25 = 59/100                                      redrob_signals.skill_assessment_scores   59                           59                           ✅
+  Advanced/expert skill: BM25                                    skills[].proficiency in (advanced,expe   In advanced/expert           BM25                         ✅
+  Advanced/expert skill: Python                                  skills[].proficiency in (advanced,expe   In advanced/expert           Python                       ✅
+  Advanced/expert skill: TTS                                     skills[].proficiency in (advanced,expe   In advanced/expert           TTS                          ✅
+  Advanced/expert skill: BentoML                                 skills[].proficiency in (advanced,expe   In advanced/expert           BentoML                      ✅
+
+  Candidate summary: 10 claims | ✅ 10 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 6 | CAND_0039754 | Score: 0.995504
+Profile: Senior Applied Scientist @ Meta | 16.2 yrs | Indore, Madhya Pradesh
+Reasoning: Senior Applied Scientist at Meta with 16.2 years of experience. Production evidence for a/b test, dense retrieval, embedding found in career narrative. Advanced-proficiency skills include Fine-tuning LLMs, LlamaIndex, Qdrant, NLP. Skill assessment on record — Fine-tuning LLMs: 96. Based in Indore, Madhya Pradesh, which is outside the preferred hiring zone. Profile marked open-to-work. Notice period: 30 days, manageable.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Senior Applied Scientist"                             profile.current_title                    Senior Applied Scientist     Senior Applied Scientist     ✅
+  Company = "Meta"                                               profile.current_company                  Meta                         Meta                         ✅
+  YoE = 16.2                                                     profile.years_of_experience              16.2                         16.2                         ✅
+  Location = "Indore, Madhya Pradesh"                            profile.location                         Indore, Madhya Pradesh       Indore, Madhya Pradesh       ✅
+  open_to_work = True (profile marked)                           redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: Fine-tuning LLMs = 96/100                          redrob_signals.skill_assessment_scores   96                           96                           ✅
+  Advanced/expert skill: Fine-tuning LLMs                        skills[].proficiency in (advanced,expe   In advanced/expert           Fine-tuning LLMs             ✅
+  Advanced/expert skill: LlamaIndex                              skills[].proficiency in (advanced,expe   In advanced/expert           LlamaIndex                   ✅
+  Advanced/expert skill: Qdrant                                  skills[].proficiency in (advanced,expe   In advanced/expert           Qdrant                       ✅
+  Advanced/expert skill: NLP                                     skills[].proficiency in (advanced,expe   In advanced/expert           NLP                          ✅
+  Career keyword: "a/b test"                                     career_history[].description             FOUND                        a/b test                     ✅
+  Career keyword: "dense retrieval"                              career_history[].description             FOUND                        dense retrieval              ✅
+  Career keyword: "embedding"                                    career_history[].description             FOUND                        embedding                    ✅
+
+  Candidate summary: 13 claims | ✅ 13 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 7 | CAND_0046064 | Score: 0.995193
+Profile: Senior NLP Engineer @ Salesforce | 8.9 yrs | Coimbatore, Tamil Nadu
+Reasoning: Currently Senior NLP Engineer at Salesforce (8.9 yrs exp). Career descriptions reference a/b test, dense retrieval, embedding — direct signal for this role. Declared advanced skills: Python, Image Classification, OpenCV, Pinecone. Verified assessment: Python scored 64/100 on platform. Located in Coimbatore, Tamil Nadu — outside preferred India cities; relocation unclear. Candidate has active open-to-work signal. 30-day notice; fits the sub-30-day preference or buyout ceiling.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Senior NLP Engineer"                                  profile.current_title                    Senior NLP Engineer          Senior NLP Engineer          ✅
+  Company = "Salesforce"                                         profile.current_company                  Salesforce                   Salesforce                   ✅
+  YoE = 8.9                                                      profile.years_of_experience              8.9                          8.9                          ✅
+  Location = "Coimbatore, Tamil Nadu"                            profile.location                         Coimbatore, Tamil Nadu       Coimbatore, Tamil Nadu       ✅
+  Notice = 30 days                                               redrob_signals.notice_period_days        30                           30                           ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: Python = 64/100                                    redrob_signals.skill_assessment_scores   64                           64                           ✅
+  Advanced/expert skill: Python                                  skills[].proficiency in (advanced,expe   In advanced/expert           Python                       ✅
+  Advanced/expert skill: Image Classification                    skills[].proficiency in (advanced,expe   In advanced/expert           Image Classification         ✅
+  Advanced/expert skill: OpenCV                                  skills[].proficiency in (advanced,expe   In advanced/expert           OpenCV                       ✅
+  Advanced/expert skill: Pinecone                                skills[].proficiency in (advanced,expe   In advanced/expert           Pinecone                     ✅
+  Career keyword: "a/b test"                                     career_history[].description             FOUND                        a/b test                     ✅
+  Career keyword: "dense retrieval"                              career_history[].description             FOUND                        dense retrieval              ✅
+  Career keyword: "embedding"                                    career_history[].description             FOUND                        embedding                    ✅
+
+  Candidate summary: 14 claims | ✅ 14 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 8 | CAND_0051615 | Score: 0.994746
+Profile: Search Engineer @ Meta | 4.6 yrs | Coimbatore, Tamil Nadu
+Reasoning: 4.6-year career, most recently as Search Engineer at Meta. Explicit mentions of ranking in work history align with JD requirements. Skill profile highlights RAG, Milvus, TTS, Sentence Transformers at advanced or expert level. Coimbatore, Tamil Nadu location is outside target geography. Open-to-work flag is set. Notice period of 60 days exceeds the 30-day buyout threshold. Profile inactive for approximately 3 months.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Search Engineer"                                      profile.current_title                    Search Engineer              Search Engineer              ✅
+  Company = "Meta"                                               profile.current_company                  Meta                         Meta                         ✅
+  YoE = 4.6                                                      profile.years_of_experience              4.6                          4.6                          ✅
+  Location = "Coimbatore, Tamil Nadu"                            profile.location                         Coimbatore, Tamil Nadu       Coimbatore, Tamil Nadu       ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Advanced/expert skill: RAG                                     skills[].proficiency in (advanced,expe   In advanced/expert           RAG                          ✅
+  Advanced/expert skill: Milvus                                  skills[].proficiency in (advanced,expe   In advanced/expert           Milvus                       ✅
+  Advanced/expert skill: TTS                                     skills[].proficiency in (advanced,expe   In advanced/expert           TTS                          ✅
+  Advanced/expert skill: Sentence Transformers                   skills[].proficiency in (advanced,expe   In advanced/expert           Sentence Transformers        ✅
+
+  Candidate summary: 9 claims | ✅ 9 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 9 | CAND_0018499 | Score: 0.994441
+Profile: Senior Machine Learning Engineer @ Zomato | 7.2 yrs | Noida, Uttar Pradesh
+Reasoning: Senior Machine Learning Engineer at Zomato with 7.2 years of experience. Production evidence for dense retrieval, embedding, faiss found in career narrative. Advanced-proficiency skills include Deep Learning, Weaviate, Recommendation Systems, scikit-learn. Skill assessment on record — Deep Learning: 94. Based in Noida, Uttar Pradesh, consistent with role geography. Profile marked open-to-work. Notice period: 15 days, manageable.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Senior Machine Learning Engineer"                     profile.current_title                    Senior Machine Learning En   Senior Machine Learning En   ✅
+  Company = "Zomato"                                             profile.current_company                  Zomato                       Zomato                       ✅
+  YoE = 7.2                                                      profile.years_of_experience              7.2                          7.2                          ✅
+  Location = "Noida, Uttar Pradesh"                              profile.location                         Noida, Uttar Pradesh         Noida, Uttar Pradesh         ✅
+  open_to_work = True (profile marked)                           redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: Deep Learning = 94/100                             redrob_signals.skill_assessment_scores   94                           94                           ✅
+  Advanced/expert skill: Deep Learning                           skills[].proficiency in (advanced,expe   In advanced/expert           Deep Learning                ✅
+  Advanced/expert skill: Weaviate                                skills[].proficiency in (advanced,expe   In advanced/expert           Weaviate                     ✅
+  Advanced/expert skill: Recommendation Systems                  skills[].proficiency in (advanced,expe   In advanced/expert           Recommendation Systems       ✅
+  Advanced/expert skill: scikit-learn                            skills[].proficiency in (advanced,expe   In advanced/expert           scikit-learn                 ✅
+
+  Candidate summary: 10 claims | ✅ 10 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+RANK 10 | CAND_0066999 | Score: 0.994117
+Profile: Recommendation Systems Engineer @ Microsoft | 5.9 yrs | Delhi, Delhi
+Reasoning: Currently Recommendation Systems Engineer at Microsoft (5.9 yrs exp). Career descriptions reference ranking — direct signal for this role. Declared advanced skills: Image Classification, OpenSearch, FAISS, LLMs. Verified assessment: Pinecone scored 90/100 on platform. Located in Delhi, Delhi — within preferred geography. Candidate has active open-to-work signal. 15-day notice; fits the sub-30-day preference or buyout ceiling.
+
+  Claim                                                          Source Field                             Data Value                   Claimed                      OK?
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Title = "Recommendation Systems Engineer"                      profile.current_title                    Recommendation Systems Eng   Recommendation Systems Eng   ✅
+  Company = "Microsoft"                                          profile.current_company                  Microsoft                    Microsoft                    ✅
+  YoE = 5.9                                                      profile.years_of_experience              5.9                          5.9                          ✅
+  Location = "Delhi, Delhi"                                      profile.location                         Delhi, Delhi                 Delhi, Delhi                 ✅
+  Notice = 15 days                                               redrob_signals.notice_period_days        15                           15                           ✅
+  open_to_work = True (active signal claimed)                    redrob_signals.open_to_work_flag         True                         True                         ✅
+  Assessment: Pinecone = 90/100                                  redrob_signals.skill_assessment_scores   90                           90                           ✅
+  Advanced/expert skill: Image Classification                    skills[].proficiency in (advanced,expe   In advanced/expert           Image Classification         ✅
+  Advanced/expert skill: OpenSearch                              skills[].proficiency in (advanced,expe   In advanced/expert           OpenSearch                   ✅
+  Advanced/expert skill: FAISS                                   skills[].proficiency in (advanced,expe   In advanced/expert           FAISS                        ✅
+  Advanced/expert skill: LLMs                                    skills[].proficiency in (advanced,expe   In advanced/expert           LLMs                         ✅
+  Career keyword: "ranking"                                      career_history[].description             FOUND                        ranking                      ✅
+
+  Candidate summary: 12 claims | ✅ 12 verified | ❌ 0 failed | Hallucination rate: 0.0%
+
+==============================================================================================================
+OVERALL SUMMARY
+==============================================================================================================
+  Total claims checked : 114
+  Verified ✅          : 114
+  Failed ❌            : 0
+  Hallucination rate   : 0.0%
+
+  Per-candidate breakdown:
+  Rank   Candidate ID     Title                                     Claims  Pass  Fail  Halluc%
+  ------------------------------------------------------------------------------------------
+  1      CAND_0061257     Staff Machine Learning Engineer               12    12     0     0.0%
+  2      CAND_0095619     NLP Engineer                                  11    11     0     0.0%
+  3      CAND_0068351     Lead AI Engineer                              10    10     0     0.0%
+  4      CAND_0046525     Senior Machine Learning Engineer              13    13     0     0.0%
+  5      CAND_0008295     AI Research Engineer                          10    10     0     0.0%
+  6      CAND_0039754     Senior Applied Scientist                      13    13     0     0.0%
+  7      CAND_0046064     Senior NLP Engineer                           14    14     0     0.0%
+  8      CAND_0051615     Search Engineer                                9     9     0     0.0%
+  9      CAND_0018499     Senior Machine Learning Engineer              10    10     0     0.0%
+  10     CAND_0066999     Recommendation Systems Engineer               12    12     0     0.0%
+
+NOTES:
+  - Score tolerances: assessment scores matched with ±1 rounding tolerance
+  - Career keywords searched as case-insensitive substring in all career_history[].description fields
+  - open_to_work deduplicated (only one claim checked per candidate per direction)
