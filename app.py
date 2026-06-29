@@ -387,13 +387,19 @@ st.markdown("""
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
-    margin-bottom: 40px;
+    height: 60px;
+    margin-bottom: 35px;
     margin-left: 20px;
+    opacity: 0;
+    animation: fadeInSlide 1s ease-out forwards;
+}
+@keyframes fadeInSlide {
+    0% { opacity: 0; transform: translateX(-20px) scale(0.8); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 .pacman {
-    width: 65px;
-    height: 65px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: #fbb117;
     clip-path: polygon(100% 74%, 50% 50%, 100% 26%, 100% 0, 0 0, 0 100%, 100% 100%);
@@ -406,22 +412,22 @@ st.markdown("""
 }
 .pacman-dots {
     display: flex;
-    gap: 25px;
-    margin-left: -15px;
-    width: 140px;
+    gap: 20px;
+    margin-left: -10px;
+    width: 120px;
     overflow: hidden;
 }
 .p-dot {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: #6ee7b7;
+    background: #0ea5e9; /* Blue dots to match theme */
     flex-shrink: 0;
     animation: moveLeft 0.35s infinite linear;
 }
 @keyframes moveLeft {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-41px); } /* dot width 16 + gap 25 */
+    100% { transform: translateX(-32px); } /* dot width 12 + gap 20 */
 }
 .loader-text {
     font-family: 'Outfit', sans-serif;
