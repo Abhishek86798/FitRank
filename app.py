@@ -268,44 +268,7 @@ def _parse_forensics_examples(text: str) -> list[dict]:
     return examples
 
 
-# ── load all data ──────────────────────────────────────────────────────────────
-
-submission          = load_submission()
-audit_index         = load_audit()
-forensics           = load_forensics_text()
-rich_reasoning      = load_rich_reasoning()
-metadata            = load_metadata()
-faithfulness_report = load_faithfulness_report()
-robustness_report   = load_robustness_report()
-
-all_cids   = frozenset(r["candidate_id"] for r in submission)
-profiles   = load_profiles(all_cids)
-
-scorer_mode    = metadata.get("scorer", "LambdaMART")
-hp_caught      = _parse_honeypots_caught(forensics)
-hp_total       = _parse_total_honeypots(forensics)
-top_n          = _parse_top_n(forensics)
-
-# Pre-compute tier counts from audit index
-_tier_counts: dict[str, int] = {"Strong Hire": 0, "Borderline": 0, "Verify": 0, "Pass": 0}
-for _a in audit_index.values():
-    _t = _a.get("hiring_recommendation", {}).get("tier")
-    if _t in _tier_counts:
-        _tier_counts[_t] += 1
-
-# Pre-compute the global "wow moment" — biggest rank drop across all candidates
-_wow: dict | None = None
-for _a in audit_index.values():
-    _d = _biggest_drop(_a)
-    if _d and (_wow is None or _d[1] > _wow["drop"]):
-        _wow = {
-            "cid":    _a["candidate_id"],
-            "feat":   _d[0],
-            "drop":   _d[1],
-            "from":   _d[2],
-            "to":     _d[3],
-            "meta":   _a.get("candidate_meta", {}),
-        }
+# Data loading has been deferred to prevent blocking initial render.
 
 # ── UI STATE ───────────────────────────────────────────────────────────────────
 # Premium SaaS CSS Injection (Blue Theme)
@@ -320,7 +283,11 @@ st.markdown("""
 }
 /* Reduce sidebar top padding */
 [data-testid="stSidebarUserContent"] {
-    padding-top: 2rem !important;
+    padding-top: 0rem !important;
+}
+[data-testid="stSidebarHeader"] {
+    padding-bottom: 0rem !important;
+    min-height: 2rem !important;
 }
 
 .hero-title {
@@ -456,79 +423,6 @@ if "ui_step" not in st.session_state:
 main_ui_container = st.empty()
 
 with main_ui_container.container():
-    # Theme Toggle placed at the very top right
-    import os
-    config_path = ".streamlit/config.toml"
-    current_theme = "dark"
-    if os.path.exists(config_path):
-        with open(config_path, "r") as f:
-            if 'base="light"' in f.read():
-                current_theme = "light"
-
-    # Inject dynamic CSS for the pill toggle
-    toggle_css = f"""
-    <style>
-    .stButton button[kind="secondary"] div {{
-        display: none !important;
-    }}
-    .stButton button[kind="secondary"] {{
-        position: fixed !important;
-        top: 13px !important;
-        right: 140px !important;
-        z-index: 999999 !important;
-        width: 64px !important;
-        height: 32px !important;
-        border-radius: 16px !important;
-        border: none !important;
-        padding: 0 !important;
-        cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        background: { '#0f172a' if current_theme == 'dark' else '#e2e8f0' } !important;
-        box-shadow: inset 0 1px 3px { 'rgba(0,0,0,0.5)' if current_theme == 'dark' else 'rgba(0,0,0,0.1)' } !important;
-    }}
-    .stButton button[kind="secondary"]::before {{
-        content: '{ '☀' if current_theme == 'dark' else '☾' }';
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        font-size: 1.1rem !important;
-        color: { '#475569' if current_theme == 'dark' else '#94a3b8' } !important;
-        { 'left: 10px' if current_theme == 'dark' else 'right: 10px' } !important;
-    }}
-    .stButton button[kind="secondary"]::after {{
-        content: '{ '☾' if current_theme == 'dark' else '☀' }';
-        position: absolute !important;
-        top: 3px !important;
-        { 'right: 3px' if current_theme == 'dark' else 'left: 3px' } !important;
-        width: 26px !important;
-        height: 26px !important;
-        background: { '#1e293b' if current_theme == 'dark' else '#ffffff' } !important;
-        color: { '#f8fafc' if current_theme == 'dark' else '#0f172a' } !important;
-        border-radius: 50% !important;
-        text-align: center !important;
-        line-height: 26px !important;
-        font-size: 1.1rem !important;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
-    }}
-    .stButton button[kind="secondary"]:hover {{
-        opacity: 0.8 !important;
-    }}
-    </style>
-    """
-    st.markdown(toggle_css, unsafe_allow_html=True)
-    
-    # The actual button
-    if st.button("theme_toggle"):
-        with open(config_path, "r") as f:
-            content = f.read()
-        if 'base="dark"' in content:
-            content = content.replace('base="dark"', 'base="light"')
-        else:
-            content = content.replace('base="light"', 'base="dark"')
-        with open(config_path, "w") as f:
-            f.write(content)
-        st.rerun()
-
     if st.session_state.ui_step == "input":
         st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
         st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
@@ -587,6 +481,50 @@ with main_ui_container.container():
         st.session_state.ui_step = "results"
         time.sleep(0.1)
         st.rerun()
+
+# ── guard ──────────────────────────────────────────────────────────────────────
+if not AUDIT_JSON.exists():
+    st.error("**decision_audit.json not found.** Run `python eval/generate_audit.py` first.")
+    st.stop()
+
+# ── load all data ──────────────────────────────────────────────────────────────
+# We only load data if we are on the results screen.
+submission          = load_submission()
+audit_index         = load_audit()
+forensics           = load_forensics_text()
+rich_reasoning      = load_rich_reasoning()
+metadata            = load_metadata()
+faithfulness_report = load_faithfulness_report()
+robustness_report   = load_robustness_report()
+
+all_cids   = frozenset(r["candidate_id"] for r in submission)
+profiles   = load_profiles(all_cids)
+
+scorer_mode    = metadata.get("scorer", "LambdaMART")
+hp_caught      = _parse_honeypots_caught(forensics)
+hp_total       = _parse_total_honeypots(forensics)
+top_n          = _parse_top_n(forensics)
+
+# Pre-compute tier counts from audit index
+_tier_counts: dict[str, int] = {"Strong Hire": 0, "Borderline": 0, "Verify": 0, "Pass": 0}
+for _a in audit_index.values():
+    _t = _a.get("hiring_recommendation", {}).get("tier")
+    if _t in _tier_counts:
+        _tier_counts[_t] += 1
+
+# Pre-compute the global "wow moment" — biggest rank drop across all candidates
+_wow: dict | None = None
+for _a in audit_index.values():
+    _d = _biggest_drop(_a)
+    if _d and (_wow is None or _d[1] > _wow["drop"]):
+        _wow = {
+            "cid":    _a["candidate_id"],
+            "feat":   _d[0],
+            "drop":   _d[1],
+            "from":   _d[2],
+            "to":     _d[3],
+            "meta":   _a.get("candidate_meta", {}),
+        }
 
 # ── sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
