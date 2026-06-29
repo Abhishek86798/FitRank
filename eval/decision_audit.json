@@ -103,7 +103,96 @@
       "location": "Noida, Uttar Pradesh",
       "notice_days": 30,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "ML engineer title confirmed \u2014 not research or data-only role",
+        "Preferred location (Noida, Uttar Pradesh), short notice period (30d)",
+        "Behavioral signal load-bearing (rank drops 7 without it)"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "8.0 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 8.0,
+        "verified": true
+      },
+      {
+        "claim": "current title: Staff Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Staff Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: LinkedIn",
+        "source_field": "profile.current_company",
+        "value": "LinkedIn",
+        "verified": true
+      },
+      {
+        "claim": "location: Noida, Uttar Pradesh",
+        "source_field": "profile.location",
+        "value": "Noida, Uttar Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: PEFT",
+        "source_field": "skills[].name=PEFT proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Haystack",
+        "source_field": "skills[].name=Haystack proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Time Series",
+        "source_field": "skills[].name=Time Series proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Machine Learning",
+        "source_field": "skills[].name=Machine Learning proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Haystack: 70/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Haystack]",
+        "value": 69.6,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 12,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0095619",
@@ -211,12 +300,103 @@
       "location": "Mumbai, Maharashtra",
       "notice_days": 30,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [
+        "Significantly over-experienced: 15.6 yrs may signal seniority mismatch."
+      ],
+      "strengths": [
+        "ML engineer title confirmed \u2014 not research or data-only role",
+        "Preferred location (Mumbai, Maharashtra), short notice period (30d)",
+        "Behavioral signal load-bearing (rank drops 6 without it)"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "15.6 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 15.6,
+        "verified": true
+      },
+      {
+        "claim": "current title: NLP Engineer",
+        "source_field": "profile.current_title",
+        "value": "NLP Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Nykaa",
+        "source_field": "profile.current_company",
+        "value": "Nykaa",
+        "verified": true
+      },
+      {
+        "claim": "location: Mumbai, Maharashtra",
+        "source_field": "profile.location",
+        "value": "Mumbai, Maharashtra",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Feature Engineering",
+        "source_field": "skills[].name=Feature Engineering proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Pinecone",
+        "source_field": "skills[].name=Pinecone proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: MLflow",
+        "source_field": "skills[].name=MLflow proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Learning to Rank",
+        "source_field": "skills[].name=Learning to Rank proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score MLflow: 90/100",
+        "source_field": "redrob_signals.skill_assessment_scores[MLflow]",
+        "value": 89.9,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 12,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0068351",
     "base_rank": 3,
-    "base_score": 0.99579,
+    "base_score": 0.995038,
     "tied_band": [
       "CAND_0061257",
       "CAND_0095619",
@@ -236,58 +416,58 @@
     ],
     "counterfactuals": {
       "cosine_similarity": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
+        "rank_if_removed": 7,
+        "rank_drop": 4,
         "score_drop": 0.0
       },
       "experience_fit_score": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
+        "rank_if_removed": 7,
+        "rank_drop": 4,
         "score_drop": 0.0
       },
       "is_ml_engineer": {
         "rank_if_removed": 12,
         "rank_drop": 9,
-        "score_drop": 0.003514
+        "score_drop": 0.004137
       },
       "production_ml_score": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
-        "score_drop": 7.2e-05
+        "rank_if_removed": 7,
+        "rank_drop": 4,
+        "score_drop": 8.5e-05
       },
       "domain_alignment": {
-        "rank_if_removed": 6,
-        "rank_drop": 3,
-        "score_drop": 0.000322
+        "rank_if_removed": 8,
+        "rank_drop": 5,
+        "score_drop": 0.00038
       },
       "consulting_penalty": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
+        "rank_if_removed": 7,
+        "rank_drop": 4,
         "score_drop": 0.0
       },
       "behavioral_multiplier": {
         "rank_if_removed": 7,
         "rank_drop": 4,
-        "score_drop": 0.000752
+        "score_drop": 0.0
       },
       "consistency_score": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
+        "rank_if_removed": 7,
+        "rank_drop": 4,
         "score_drop": 0.0
       },
       "location_score": {
         "rank_if_removed": 12,
         "rank_drop": 9,
-        "score_drop": 0.003967
+        "score_drop": 0.00467
       },
       "notice_penalty": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
+        "rank_if_removed": 7,
+        "rank_drop": 4,
         "score_drop": 0.0
       },
       "github_activity": {
-        "rank_if_removed": 4,
-        "rank_drop": 1,
+        "rank_if_removed": 7,
+        "rank_drop": 4,
         "score_drop": 0.0
       }
     },
@@ -295,20 +475,20 @@
       {
         "feature": "location_score",
         "rank_drop": 9,
-        "score_drop": 0.003967
+        "score_drop": 0.00467
       },
       {
         "feature": "is_ml_engineer",
         "rank_drop": 9,
-        "score_drop": 0.003514
+        "score_drop": 0.004137
       },
       {
-        "feature": "behavioral_multiplier",
-        "rank_drop": 4,
-        "score_drop": 0.000752
+        "feature": "domain_alignment",
+        "rank_drop": 5,
+        "score_drop": 0.00038
       }
     ],
-    "confidence": 0.4997,
+    "confidence": 0.496,
     "risk_flags": [
       "Candidate is not flagged as open to work on platform."
     ],
@@ -319,7 +499,26 @@
       "location": "Delhi, Delhi",
       "notice_days": 0,
       "open_to_work": false
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Borderline",
+      "action": "30-minute exploratory call to verify: Candidate is not flagged as open to work on platform.",
+      "color": "amber",
+      "primary_reason": "Strong score (0.995) but needs one verification step",
+      "blockers": [
+        "Candidate is not flagged as open to work on platform.",
+        "Not currently open to work \u2014 verify interest before outreach"
+      ],
+      "strengths": [
+        "Preferred location (Delhi, Delhi), short notice period (0d)",
+        "ML engineer title confirmed \u2014 not research or data-only role",
+        "Domain alignment with NLP/IR/RecSys verified"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0046525",
@@ -386,7 +585,7 @@
       "location_score": {
         "rank_if_removed": 15,
         "rank_drop": 11,
-        "score_drop": 0.030077
+        "score_drop": 0.027773
       },
       "notice_penalty": {
         "rank_if_removed": 8,
@@ -408,7 +607,7 @@
       {
         "feature": "location_score",
         "rank_drop": 11,
-        "score_drop": 0.030077
+        "score_drop": 0.027773
       },
       {
         "feature": "domain_alignment",
@@ -425,7 +624,108 @@
       "location": "Pune, Maharashtra",
       "notice_days": 60,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 16 without it)",
+        "Preferred location (Pune, Maharashtra)",
+        "Domain alignment with NLP/IR/RecSys verified"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "6.1 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 6.1,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Genpact AI",
+        "source_field": "profile.current_company",
+        "value": "Genpact AI",
+        "verified": true
+      },
+      {
+        "claim": "location: Pune, Maharashtra",
+        "source_field": "profile.location",
+        "value": "Pune, Maharashtra",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Elasticsearch",
+        "source_field": "skills[].name=Elasticsearch proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LangChain",
+        "source_field": "skills[].name=LangChain proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Machine Learning",
+        "source_field": "skills[].name=Machine Learning proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LlamaIndex",
+        "source_field": "skills[].name=LlamaIndex proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score LangChain: 96/100",
+        "source_field": "redrob_signals.skill_assessment_scores[LangChain]",
+        "value": 96.5,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: dense retrieval",
+        "source_field": "career_history[i].description",
+        "value": "dense retrieval",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0008295",
@@ -531,7 +831,23 @@
       "location": "Pune, Maharashtra",
       "notice_days": 45,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "Preferred location (Pune, Maharashtra)",
+        "ML engineer title confirmed \u2014 not research or data-only role",
+        "Behavioral signal load-bearing (rank drops 7 without it)"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0039754",
@@ -639,7 +955,110 @@
       "location": "Indore, Madhya Pradesh",
       "notice_days": 30,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [
+        "Significantly over-experienced: 16.2 yrs may signal seniority mismatch."
+      ],
+      "strengths": [
+        "Domain alignment with NLP/IR/RecSys verified",
+        "Behavioral signal load-bearing (rank drops 10 without it)",
+        "Preferred location (Indore, Madhya Pradesh), short notice period (30d)"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "16.2 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 16.2,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Applied Scientist",
+        "source_field": "profile.current_title",
+        "value": "Senior Applied Scientist",
+        "verified": true
+      },
+      {
+        "claim": "current company: Meta",
+        "source_field": "profile.current_company",
+        "value": "Meta",
+        "verified": true
+      },
+      {
+        "claim": "location: Indore, Madhya Pradesh",
+        "source_field": "profile.location",
+        "value": "Indore, Madhya Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Fine-tuning LLMs",
+        "source_field": "skills[].name=Fine-tuning LLMs proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LlamaIndex",
+        "source_field": "skills[].name=LlamaIndex proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Qdrant",
+        "source_field": "skills[].name=Qdrant proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: NLP",
+        "source_field": "skills[].name=NLP proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Fine-tuning LLMs: 96/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Fine-tuning LLMs]",
+        "value": 96.5,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: dense retrieval",
+        "source_field": "career_history[i].description",
+        "value": "dense retrieval",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0046064",
@@ -747,7 +1166,110 @@
       "location": "Coimbatore, Tamil Nadu",
       "notice_days": 30,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Pass",
+      "action": "Not a fit for this role",
+      "color": "red",
+      "primary_reason": "Score (0.650) below threshold; 1 blocking issue(s)",
+      "blockers": [
+        "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
+      ],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 13 without it)",
+        "Domain alignment with NLP/IR/RecSys verified",
+        "Preferred location (Coimbatore, Tamil Nadu), short notice period (30d)"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "8.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 8.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior NLP Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior NLP Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Salesforce",
+        "source_field": "profile.current_company",
+        "value": "Salesforce",
+        "verified": true
+      },
+      {
+        "claim": "location: Coimbatore, Tamil Nadu",
+        "source_field": "profile.location",
+        "value": "Coimbatore, Tamil Nadu",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Python",
+        "source_field": "skills[].name=Python proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Image Classification",
+        "source_field": "skills[].name=Image Classification proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: OpenCV",
+        "source_field": "skills[].name=OpenCV proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Pinecone",
+        "source_field": "skills[].name=Pinecone proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Python: 64/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Python]",
+        "value": 64.1,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: dense retrieval",
+        "source_field": "career_history[i].description",
+        "value": "dense retrieval",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0051615",
@@ -857,7 +1379,94 @@
       "location": "Coimbatore, Tamil Nadu",
       "notice_days": 60,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [
+        "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
+        "Profile inactive for ~3 month(s); outreach risk.",
+        "Under-experienced: 4.6 yrs vs. preferred 5-9 yrs."
+      ],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 4 without it)",
+        "ML engineer title confirmed \u2014 not research or data-only role",
+        "Active public GitHub portfolio \u2014 verifiable code evidence"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "4.6 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 4.6,
+        "verified": true
+      },
+      {
+        "claim": "current title: Search Engineer",
+        "source_field": "profile.current_title",
+        "value": "Search Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Meta",
+        "source_field": "profile.current_company",
+        "value": "Meta",
+        "verified": true
+      },
+      {
+        "claim": "location: Coimbatore, Tamil Nadu",
+        "source_field": "profile.location",
+        "value": "Coimbatore, Tamil Nadu",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: RAG",
+        "source_field": "skills[].name=RAG proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Milvus",
+        "source_field": "skills[].name=Milvus proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: TTS",
+        "source_field": "skills[].name=TTS proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Sentence Transformers",
+        "source_field": "skills[].name=Sentence Transformers proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 11,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0018499",
@@ -963,7 +1572,108 @@
       "location": "Noida, Uttar Pradesh",
       "notice_days": 15,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "Domain alignment with NLP/IR/RecSys verified",
+        "Active public GitHub portfolio \u2014 verifiable code evidence",
+        "Behavioral signal load-bearing (rank drops 8 without it)"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "7.2 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 7.2,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Zomato",
+        "source_field": "profile.current_company",
+        "value": "Zomato",
+        "verified": true
+      },
+      {
+        "claim": "location: Noida, Uttar Pradesh",
+        "source_field": "profile.location",
+        "value": "Noida, Uttar Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "15-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 15,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Deep Learning",
+        "source_field": "skills[].name=Deep Learning proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Weaviate",
+        "source_field": "skills[].name=Weaviate proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Recommendation Systems",
+        "source_field": "skills[].name=Recommendation Systems proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: scikit-learn",
+        "source_field": "skills[].name=scikit-learn proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Deep Learning: 94/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Deep Learning]",
+        "value": 94.0,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: dense retrieval",
+        "source_field": "career_history[i].description",
+        "value": "dense retrieval",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: faiss",
+        "source_field": "career_history[i].description",
+        "value": "faiss",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0066999",
@@ -1069,7 +1779,23 @@
       "location": "Delhi, Delhi",
       "notice_days": 15,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "Domain alignment with NLP/IR/RecSys verified",
+        "Active public GitHub portfolio \u2014 verifiable code evidence",
+        "Behavioral signal load-bearing (rank drops 6 without it)"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0006567",
@@ -1175,7 +1901,102 @@
       "location": "Noida, Uttar Pradesh",
       "notice_days": 60,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "Domain alignment with NLP/IR/RecSys verified",
+        "Behavioral signal load-bearing (rank drops 9 without it)",
+        "Active public GitHub portfolio \u2014 verifiable code evidence"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "7.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 7.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior AI Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior AI Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Meta",
+        "source_field": "profile.current_company",
+        "value": "Meta",
+        "verified": true
+      },
+      {
+        "claim": "location: Noida, Uttar Pradesh",
+        "source_field": "profile.location",
+        "value": "Noida, Uttar Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: scikit-learn",
+        "source_field": "skills[].name=scikit-learn proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Search Backend",
+        "source_field": "skills[].name=Search Backend proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Model Adaptation",
+        "source_field": "skills[].name=Model Adaptation proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Vector Representations",
+        "source_field": "skills[].name=Vector Representations proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score scikit-learn: 90/100",
+        "source_field": "redrob_signals.skill_assessment_scores[scikit-learn]",
+        "value": 89.9,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0016659",
@@ -1274,7 +2095,22 @@
       "location": "Coimbatore, Tamil Nadu",
       "notice_days": 45,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [
+        "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
+        "Under-experienced: 4.4 yrs vs. preferred 5-9 yrs."
+      ],
+      "strengths": []
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0065786",
@@ -1383,7 +2219,25 @@
       "location": "Indore, Madhya Pradesh",
       "notice_days": 45,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [
+        "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate.",
+        "Under-experienced: 4.9 yrs vs. preferred 5-9 yrs."
+      ],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 7 without it)",
+        "Preferred location (Indore, Madhya Pradesh)"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0077337",
@@ -1489,7 +2343,22 @@
       "location": "Kochi, Kerala",
       "notice_days": 60,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 6 without it)",
+        "Production ML evidence in career history"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0046132",
@@ -1597,7 +2466,25 @@
       "location": "Noida, Uttar Pradesh",
       "notice_days": 30,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Strong Hire",
+      "action": "Schedule technical screen immediately",
+      "color": "green",
+      "primary_reason": "Top-tier score with no blocking constraints",
+      "blockers": [
+        "Under-experienced: 4.3 yrs vs. preferred 5-9 yrs."
+      ],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 5 without it)",
+        "Production ML evidence in career history",
+        "Preferred location match"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0011687",
@@ -1684,7 +2571,109 @@
       "location": "Indore, Madhya Pradesh",
       "notice_days": 15,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Borderline",
+      "action": "30-minute exploratory call to verify: Outside preferred hiring cities",
+      "color": "amber",
+      "primary_reason": "Strong score (0.964) but needs one verification step",
+      "blockers": [
+        "Outside preferred hiring cities (Indore, Madhya Pradesh); not willing to relocate."
+      ],
+      "strengths": [
+        "Behavioral signal load-bearing (rank drops 4 without it)",
+        "Production ML evidence in career history"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "7.8 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 7.8,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior NLP Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior NLP Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Niramai",
+        "source_field": "profile.current_company",
+        "value": "Niramai",
+        "verified": true
+      },
+      {
+        "claim": "location: Indore, Madhya Pradesh",
+        "source_field": "profile.location",
+        "value": "Indore, Madhya Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "15-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 15,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: TensorFlow",
+        "source_field": "skills[].name=TensorFlow proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: OpenSearch",
+        "source_field": "skills[].name=OpenSearch proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: FAISS",
+        "source_field": "skills[].name=FAISS proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: PEFT",
+        "source_field": "skills[].name=PEFT proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score TensorFlow: 78/100",
+        "source_field": "redrob_signals.skill_assessment_scores[TensorFlow]",
+        "value": 78.1,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: pinecone",
+        "source_field": "career_history[i].description",
+        "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0005303",
@@ -1773,7 +2762,26 @@
       "location": "Chandigarh, Chandigarh",
       "notice_days": 45,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Verify",
+      "action": "Verify Outside preferred hiring cities before scheduling",
+      "color": "orange",
+      "primary_reason": "Score (0.845) is adequate but specific concern must resolve first",
+      "blockers": [
+        "Outside preferred hiring cities (Chandigarh, Chandigarh); not willing to relocate.",
+        "Profile inactive for ~3 month(s); outreach risk.",
+        "Under-experienced: 3.1 yrs vs. preferred 5-9 yrs."
+      ],
+      "strengths": [
+        "Domain alignment with NLP/IR/RecSys verified",
+        "Behavioral signal load-bearing (rank drops 3 without it)"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0078002",
@@ -1868,7 +2876,23 @@
       "location": "Coimbatore, Tamil Nadu",
       "notice_days": 60,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Pass",
+      "action": "Not a fit for this role",
+      "color": "red",
+      "primary_reason": "Score (0.747) below threshold; 1 blocking issue(s)",
+      "blockers": [
+        "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate."
+      ],
+      "strengths": [
+        "Production ML evidence in career history"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0093547",
@@ -1965,7 +2989,111 @@
       "location": "Coimbatore, Tamil Nadu",
       "notice_days": 60,
       "open_to_work": false
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Pass",
+      "action": "Not a fit for this role",
+      "color": "red",
+      "primary_reason": "Score (0.727) below threshold; 4 blocking issue(s)",
+      "blockers": [
+        "Candidate is not flagged as open to work on platform.",
+        "Outside preferred hiring cities (Coimbatore, Tamil Nadu); not willing to relocate.",
+        "Under-experienced: 2.9 yrs vs. preferred 5-9 yrs.",
+        "Not currently open to work \u2014 verify interest before outreach"
+      ],
+      "strengths": [
+        "Production ML evidence in career history"
+      ]
+    },
+    "citations": [
+      {
+        "claim": "2.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 2.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: PhonePe",
+        "source_field": "profile.current_company",
+        "value": "PhonePe",
+        "verified": true
+      },
+      {
+        "claim": "location: Coimbatore, Tamil Nadu",
+        "source_field": "profile.location",
+        "value": "Coimbatore, Tamil Nadu",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "not open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": false,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LLMs",
+        "source_field": "skills[].name=LLMs proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: RAG",
+        "source_field": "skills[].name=RAG proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Python",
+        "source_field": "skills[].name=Python proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: QLoRA",
+        "source_field": "skills[].name=QLoRA proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score RAG: 97/100",
+        "source_field": "redrob_signals.skill_assessment_scores[RAG]",
+        "value": 97.3,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: pinecone",
+        "source_field": "career_history[i].description",
+        "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14,
+    "hallucination_rate": 0.0
   },
   {
     "candidate_id": "CAND_0043860",
@@ -2039,6 +3167,20 @@
       "location": "Bhubaneswar, Odisha",
       "notice_days": 30,
       "open_to_work": true
-    }
+    },
+    "hiring_recommendation": {
+      "tier": "Pass",
+      "action": "Not a fit for this role",
+      "color": "red",
+      "primary_reason": "Score (0.693) below threshold",
+      "blockers": [],
+      "strengths": [
+        "Production ML evidence in career history"
+      ]
+    },
+    "citations": [],
+    "ungrounded_count": 0,
+    "total_claims": 0,
+    "hallucination_rate": 0.0
   }
 ]

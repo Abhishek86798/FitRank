@@ -6,6 +6,8 @@ from __future__ import annotations
 import re
 from datetime import date, datetime
 
+from src.ownership_classifier import ownership_score as _ownership_score
+
 # ── keyword sets (compiled once at import) ────────────────────────────────────
 
 _ML_TITLES = re.compile(
@@ -163,34 +165,42 @@ def _title_disqualified(candidate: dict, role_model: dict) -> float:
 
 def _production_ml_score(candidate: dict) -> float:
     """
-    Recency-weighted production-ML keyword density.
+    Recency-weighted production-ML keyword density, modulated by ownership intent.
 
-    Each career role is scored independently and multiplied by a recency weight:
-      - Role ended within 36 months (or is current): weight 3.0
-      - Role ended more than 36 months ago:          weight 1.0
+    Per role:
+      keyword_hits  = count of unique production-ML keyword matches
+      ownership     = ownership_score(description, DOMAIN_KEYWORDS)  [0–1]
+      contribution  = recency_weight × keyword_hits × (0.5 + 0.5 × ownership)
 
-    Per role, each unique production-ML keyword match contributes weight × 1.0.
+    Effect: same keywords but peripheral framing ("tested the ranking API") yield
+    half the score of genuine delivery framing ("built the ranking system").
+
     Skill-only hits (advanced/expert skill with duration > 0, keyword absent from
-    all career descriptions) add 0.4 each regardless of recency — skills don't
-    carry per-role timestamps.
+    all career descriptions) retain their flat 0.4 bonus — no per-role timestamps
+    to anchor ownership context, so we cannot penalise them.
 
-    Normalisation: 10 equivalent career-hit units → 1.0.  A single recent role
-    with 4 distinct keyword matches contributes 4 × 3.0 = 12 units → capped 1.0.
-    An older role with the same 4 matches contributes 4 units.
+    Normalisation: 10 equivalent career-hit units → 1.0.
     """
-    # Accumulate weighted career hits per role
     all_career_keywords: set[str] = set()
     weighted_career_score = 0.0
+
     for role in candidate.get("career_history", []):
         desc = role.get("description", "").strip()
         if not desc:
             continue
-        w = _role_recency_weight(role)
+        w       = _role_recency_weight(role)
         matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(desc))
-        weighted_career_score += w * len(matches)
-        all_career_keywords |= matches
+        if not matches:
+            continue
 
-    # Skill-only bonus: advanced/expert skills with duration > 0 not already in career text
+        # Ownership multiplier: 0.5 (passive) … 1.0 (full owner)
+        intent   = _ownership_score(desc, _DOMAIN_KEYWORDS)
+        own_mult = 0.5 + 0.5 * intent
+
+        weighted_career_score += w * len(matches) * own_mult
+        all_career_keywords   |= matches
+
+    # Skill-only bonus unchanged — no description context available
     credible_skills = " ".join(
         s.get("name", "") for s in candidate.get("skills", [])
         if isinstance(s, dict)
@@ -198,7 +208,7 @@ def _production_ml_score(candidate: dict) -> float:
         and (s.get("duration_months") or 0) > 0
     )
     skill_matches = set(m.group(0).lower() for m in _PRODUCTION_RE.finditer(credible_skills))
-    skill_only = skill_matches - all_career_keywords
+    skill_only    = skill_matches - all_career_keywords
 
     score = weighted_career_score + 0.4 * len(skill_only)
     return min(1.0, score / 10.0)

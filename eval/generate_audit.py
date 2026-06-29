@@ -108,6 +108,7 @@ def main() -> None:
     from src.feature_builder import build_feature_vector
     from src.scorer import LTRScorer
     from src.counterfactual import explain_candidate, detect_tied_bands
+    from src.hiring_recommendation import get_hiring_recommendation
 
     print(f"Loading role model from {args.role_model} ...")
     with open(args.role_model, encoding="utf-8") as f:
@@ -144,6 +145,7 @@ def main() -> None:
 
     print(f"\nGenerating counterfactual audits for top-{args.top_n} candidates ...")
     audits: list[dict] = []
+    features_map: dict[str, dict] = {}  # kept for hiring recommendation pass
     for rank, cid, score in top_rows:
         if cid not in records:
             continue
@@ -153,6 +155,7 @@ def main() -> None:
         # We use 0.0 here; feature_builder fills all other features from the record.
         # For a more accurate audit, pass the actual cosine sim if available.
         features = build_feature_vector(cand, role_model, cosine_sim=0.0)
+        features_map[cid] = features
         audit = explain_candidate(
             candidate_id=cid,
             features=features,
@@ -179,6 +182,16 @@ def main() -> None:
               f"confidence={audit['confidence']:.4f}  "
               f"top_reason={audit['top_reasons'][0]['feature'] if audit['top_reasons'] else 'n/a'}"
               f"{band_note}")
+
+    # ── Attach hiring recommendations ─────────────────────────────────────────
+    print("\nComputing hiring recommendations ...")
+    for audit in audits:
+        cid  = audit["candidate_id"]
+        rank = audit["base_rank"]
+        feat = features_map.get(cid, {})
+        rec  = get_hiring_recommendation(audit, feat, rank)
+        audit["hiring_recommendation"] = rec
+        print(f"  #{rank:3d}  {cid}  [{rec['tier']}]  {rec['primary_reason'][:70]}")
 
     # ── Load citations artifact if available ──────────────────────────────────
     citations_path = Path(args.citations)

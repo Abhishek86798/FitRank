@@ -278,6 +278,13 @@ hp_caught      = _parse_honeypots_caught(forensics)
 hp_total       = _parse_total_honeypots(forensics)
 top_n          = _parse_top_n(forensics)
 
+# Pre-compute tier counts from audit index
+_tier_counts: dict[str, int] = {"Strong Hire": 0, "Borderline": 0, "Verify": 0, "Pass": 0}
+for _a in audit_index.values():
+    _t = _a.get("hiring_recommendation", {}).get("tier")
+    if _t in _tier_counts:
+        _tier_counts[_t] += 1
+
 # Pre-compute the global "wow moment" — biggest rank drop across all candidates
 _wow: dict | None = None
 for _a in audit_index.values():
@@ -310,6 +317,25 @@ with st.sidebar:
         st.metric("Hallucination rate", f"{hr:.1%}")
 
     st.divider()
+    if any(_tier_counts.values()):
+        st.markdown("**Hiring tiers**")
+        _tier_colors = {
+            "Strong Hire": "#1b5e20",
+            "Borderline":  "#e65100",
+            "Verify":      "#bf360c",
+            "Pass":        "#b71c1c",
+        }
+        for tier_name, count in _tier_counts.items():
+            color = _tier_colors[tier_name]
+            st.markdown(
+                f'<div style="display:flex;justify-content:space-between;'
+                f'padding:2px 0;font-size:0.88rem">'
+                f'<span style="color:{color};font-weight:600">{tier_name}</span>'
+                f'<span style="color:{color};font-weight:700">{count}</span></div>',
+                unsafe_allow_html=True,
+            )
+        st.divider()
+
     if not AUDIT_JSON.exists():
         st.error("decision_audit.json missing")
     else:
@@ -402,8 +428,10 @@ with tab_rank:
             to_r   = cf_val.get("rank_if_removed", a["base_rank"] + t["rank_drop"])
             drop_hint = f"Remove {_feat_label(t['feature'])} → rank #{to_r}"
 
+        rec_tier = a.get("hiring_recommendation", {}).get("tier", "—")
         table_rows.append({
             "Rank":           row["rank"],
+            "Recommendation": rec_tier,
             "Title @ Company": f"{m.get('title','—')} @ {m.get('company','—')}",
             "Score":          row["score"],
             "Confidence":     conf if conf is not None else 0.0,
@@ -415,10 +443,19 @@ with tab_rank:
 
     df = pd.DataFrame(table_rows)
 
+    def _style_tier(val: str) -> str:
+        return {
+            "Strong Hire": "color: #1b5e20; font-weight: bold",
+            "Borderline":  "color: #e65100; font-weight: bold",
+            "Verify":      "color: #bf360c; font-weight: bold",
+            "Pass":        "color: #b71c1c; font-weight: bold",
+        }.get(val, "")
+
     styled = (
         df.style
         .format({"Score": "{:.4f}", "Confidence": "{:.2f}"})
         .map(_style_conf, subset=["Confidence"])
+        .map(_style_tier, subset=["Recommendation"])
     )
 
     st.dataframe(
@@ -427,6 +464,8 @@ with tab_rank:
         hide_index=True,
         column_config={
             "Rank":               st.column_config.NumberColumn(width="small"),
+            "Recommendation":     st.column_config.TextColumn(width="medium",
+                                      help="Strong Hire | Borderline | Verify | Pass"),
             "Score":              st.column_config.NumberColumn(format="%.4f"),
             "Confidence":         st.column_config.NumberColumn(format="%.2f",
                                       help="green >0.80 | amber 0.50–0.80 | red <0.50"),
@@ -479,6 +518,7 @@ with tab_audit:
     risk_flags = audit.get("risk_flags") or []
     cf         = audit.get("counterfactuals", {})
     top3       = audit.get("top_reasons", [])
+    rec        = audit.get("hiring_recommendation") or {}
 
     title   = meta.get("title", "—") or "—"
     company = meta.get("company", "—") or "—"
@@ -486,6 +526,71 @@ with tab_audit:
     loc     = meta.get("location", "") or ""
     notice  = meta.get("notice_days")
     open_w  = meta.get("open_to_work", False)
+
+    # ── HIRING RECOMMENDATION TIER BANNER ─────────────────────────────────────
+    if rec:
+        tier   = rec.get("tier", "—")
+        action = rec.get("action", "")
+        reason = rec.get("primary_reason", "")
+        color  = rec.get("color", "green")
+
+        _tier_bg = {
+            "green":  ("linear-gradient(135deg,#1b5e20,#2e7d32)", "#ffffff", "#a5d6a7"),
+            "amber":  ("linear-gradient(135deg,#e65100,#f57c00)", "#ffffff", "#ffe0b2"),
+            "orange": ("linear-gradient(135deg,#bf360c,#d84315)", "#ffffff", "#ffccbc"),
+            "red":    ("linear-gradient(135deg,#b71c1c,#c62828)", "#ffffff", "#ef9a9a"),
+        }
+        _tier_icons = {
+            "Strong Hire": "✅",
+            "Borderline":  "⚠️",
+            "Verify":      "🔍",
+            "Pass":        "✗",
+        }
+        bg, tx, chip_bg = _tier_bg.get(color, _tier_bg["green"])
+        icon = _tier_icons.get(tier, "•")
+
+        st.markdown(
+            f"""
+            <div style="background:{bg};border-radius:12px;padding:18px 24px;
+                        margin-bottom:16px;color:{tx}">
+              <div style="font-size:1.4rem;font-weight:700;letter-spacing:0.02em">
+                {icon} {tier}
+              </div>
+              <div style="font-size:1.0rem;margin-top:6px;opacity:0.95">{action}</div>
+              <div style="font-size:0.82rem;margin-top:4px;opacity:0.78">{reason}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Strengths (green chips) + Blockers (red chips)
+        strengths = rec.get("strengths") or []
+        blockers  = rec.get("blockers") or []
+
+        if strengths or blockers:
+            chip_col1, chip_col2 = st.columns(2)
+            with chip_col1:
+                if strengths:
+                    st.markdown("**Strengths**")
+                    for s in strengths:
+                        st.markdown(
+                            f'<span style="background:#e8f5e9;color:#1b5e20;border-radius:20px;'
+                            f'padding:4px 12px;display:inline-block;margin:3px 4px 3px 0;'
+                            f'font-size:0.83rem;border:1px solid #a5d6a7">✓ {s}</span>',
+                            unsafe_allow_html=True,
+                        )
+            with chip_col2:
+                if blockers:
+                    st.markdown("**Blockers**")
+                    for b in blockers:
+                        st.markdown(
+                            f'<span style="background:#ffebee;color:#b71c1c;border-radius:20px;'
+                            f'padding:4px 12px;display:inline-block;margin:3px 4px 3px 0;'
+                            f'font-size:0.83rem;border:1px solid #ef9a9a">✗ {b}</span>',
+                            unsafe_allow_html=True,
+                        )
+
+        st.divider()
 
     # ── candidate header ──
     st.markdown(f"### #{base_rank} — {title} @ {company}")
