@@ -53,22 +53,60 @@ def retrieve_top_k(
     return top_ids, top_scores
 
 
+# ── BM25 query expansion ──────────────────────────────────────────────────────
+
+def expand_query_with_clusters(query: str, skill_clusters: dict) -> str:
+    """
+    Expand a BM25 query using skill synonym clusters from role_model.yaml.
+
+    For each cluster, if any member term appears in the query, all sibling terms
+    are appended. Multi-word terms (e.g. "learning to rank") are matched as
+    substrings and added as space-joined tokens so BM25 scores each word.
+
+    Returns the expanded query string (lowercase, deduplicated tokens).
+    """
+    query_lower = query.lower()
+    extra: list[str] = []
+    for _cluster_name, terms in skill_clusters.items():
+        cluster_hit = False
+        for term in terms:
+            if term.lower() in query_lower:
+                cluster_hit = True
+                break
+        if cluster_hit:
+            for term in terms:
+                if term.lower() not in query_lower:
+                    extra.append(term.lower())
+    if not extra:
+        return query
+    return query + " " + " ".join(extra)
+
+
 # ── BM25 retrieval ────────────────────────────────────────────────────────────
 
 class BM25Retriever:
     """
     Thin wrapper around rank_bm25.BM25Okapi.
     Build once on candidate texts, query at retrieval time.
+    Optionally accepts skill_clusters (from role_model.yaml) for query expansion.
     """
 
-    def __init__(self, candidate_ids: list[str], texts: list[str]):
+    def __init__(
+        self,
+        candidate_ids: list[str],
+        texts: list[str],
+        skill_clusters: dict | None = None,
+    ):
         from rank_bm25 import BM25Okapi
         tokenized = [t.lower().split() for t in texts]
         self._bm25 = BM25Okapi(tokenized)
         self._ids  = candidate_ids
+        self._skill_clusters = skill_clusters or {}
 
     def retrieve_top_k(self, query: str, k: int = 50) -> tuple[list[str], np.ndarray]:
-        """Return top-k (ids, scores) by BM25."""
+        """Return top-k (ids, scores) by BM25, with cluster-based query expansion."""
+        if self._skill_clusters:
+            query = expand_query_with_clusters(query, self._skill_clusters)
         tokens = query.lower().split()
         scores = self._bm25.get_scores(tokens)
         k = min(k, len(scores))

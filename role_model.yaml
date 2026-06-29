@@ -143,3 +143,52 @@ feature_weights:
   location_score: 0.03
   notice_penalty: -0.02
   github_activity: 0.02
+
+# ── SKILL CLUSTERS (BM25 query expansion) ────────────────────────────────────
+# Each cluster is a synonym group. When any cluster member appears in the JD
+# query, all sibling terms are added to the BM25 query so vocabulary mismatch
+# cannot cause a qualified candidate to be missed.
+skill_clusters:
+  vector_databases:
+    - faiss
+    - pinecone
+    - qdrant
+    - milvus
+    - weaviate
+    - pgvector
+    - chroma
+    - hnsw
+    - annoy
+  ltr_frameworks:
+    - lightgbm
+    - xgboost
+    - lambdamart
+    - ranknet
+    - learning to rank
+    - ltr
+    - ranklib
+  embedding_models:
+    - bge
+    - sentence-transformers
+    - e5
+    - mpnet
+    - instructor
+    - openai embeddings
+    - ada
+  retrieval_frameworks:
+    - langchain
+    - llamaindex
+    - haystack
+    - ragatouille
+    - beir
+  ranking_keywords:
+    - ranking
+    - retrieval
+    - recsys
+    - recommendation system
+    - search relevance
+    - ndcg
+    - mrr
+    - learning to rank
+    - re-ranking
+    - candidate scoring

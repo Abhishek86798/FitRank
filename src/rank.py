@@ -136,7 +136,8 @@ def run(
 
     # ── 5. BM25 retrieval + RRF fusion → pool up to pool_size ────────────────
     print("Building BM25 index and retrieving ...")
-    bm25 = BM25Retriever(bm25_ids_list, bm25_texts)
+    skill_clusters = role_model.get("skill_clusters", {})
+    bm25 = BM25Retriever(bm25_ids_list, bm25_texts, skill_clusters=skill_clusters)
     bm25_ids, _ = bm25.retrieve_top_k(JD_TEXT, k=fetch_k)
 
     # RRF: merge dense + BM25; pool_size caps the fused set
