@@ -333,32 +333,33 @@ st.markdown("""
 .hero-subtitle {
     font-family: 'Outfit', sans-serif;
     font-size: 1.2rem;
-    color: #94a3b8; /* Lighter gray for dark mode */
+    color: var(--text-color);
+    opacity: 0.7;
     text-align: center;
     margin-top: 5px;
     margin-bottom: 30px;
 }
 .jd-preview {
-    background: rgba(30, 41, 59, 0.7); /* Dark slate with opacity */
+    background: var(--secondary-background-color);
     backdrop-filter: blur(12px);
     border-radius: 16px;
-    border: 1px solid rgba(14, 165, 233, 0.3);
+    border: 1px solid var(--primary-color);
     padding: 30px;
     text-align: left;
     margin-bottom: 30px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Darker shadow */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 .jd-header {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #38bdf8; /* Brighter blue for dark mode */
+    color: var(--primary-color);
     margin-bottom: 15px;
     font-weight: 700;
 }
 .jd-content {
     font-family: sans-serif;
-    color: #f1f5f9; /* Near white for dark mode */
+    color: var(--text-color);
     line-height: 1.6;
     font-size: 1.15rem;
 }
@@ -433,7 +434,7 @@ st.markdown("""
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #e2e8f0; /* Light gray for dark mode */
+    color: var(--text-color);
     animation: fadeInOut 1.5s infinite;
 }
 @keyframes fadeInOut {
@@ -511,6 +512,26 @@ with main_ui_container.container():
 
 # ── sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
+    st.header("Settings")
+    
+    # Theme Toggle
+    if st.button("🌓 Toggle Dark/Light Mode"):
+        import os
+        config_path = ".streamlit/config.toml"
+        if os.path.exists(config_path):
+            with open(config_path, "r") as f:
+                content = f.read()
+            if 'base="dark"' in content:
+                content = content.replace('base="dark"', 'base="light"')
+            else:
+                content = content.replace('base="light"', 'base="dark"')
+            with open(config_path, "w") as f:
+                f.write(content)
+            st.rerun()
+            
+    st.divider()
+    
+    st.markdown("### Controls")
     st.title("🎯 FitRank")
     st.caption("Counterfactual Ranking Audit")
     st.divider()
