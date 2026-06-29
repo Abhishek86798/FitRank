@@ -313,57 +313,54 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
 
+/* Reduce default Streamlit padding to fit in one screen */
+.block-container {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+}
+
 .hero-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 3.5rem;
+    font-size: 3.0rem;
     font-weight: 700;
     background: linear-gradient(135deg, #0ea5e9, #1e40af);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
     margin-bottom: 0px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 .hero-subtitle {
     font-family: 'Outfit', sans-serif;
     font-size: 1.2rem;
     color: #6b7280;
     text-align: center;
-    margin-top: -10px;
-    margin-bottom: 40px;
-}
-.glass-box {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    border: 1px solid rgba(14, 165, 233, 0.2);
-    padding: 30px;
-    box-shadow: 0 10px 40px rgba(14, 165, 233, 0.1);
-    max-width: 800px;
-    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 30px;
 }
 .jd-preview {
-    background: #ffffff;
-    border: 1px solid #e0f2fe;
-    border-radius: 12px;
-    padding: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    padding: 30px;
     text-align: left;
-    margin-bottom: 25px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(14, 165, 233, 0.15);
 }
 .jd-header {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #0284c7;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     font-weight: 700;
 }
 .jd-content {
     font-family: sans-serif;
     color: #1f2937;
     line-height: 1.6;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
 }
 .stButton button {
     border-radius: 12px !important;
@@ -371,9 +368,9 @@ st.markdown("""
     color: white !important;
     border: none !important;
     font-weight: bold !important;
-    font-size: 1.1rem !important;
+    font-size: 1.25rem !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-    height: 50px !important;
+    height: 60px !important;
 }
 .stButton button:hover {
     transform: translateY(-2px) !important;
@@ -384,37 +381,51 @@ st.markdown("""
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 350px;
+    height: 300px;
 }
-.wave-loader {
+.pacman-loader {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
     height: 80px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    margin-left: 20px;
 }
-.wave-dot {
-    width: 14px;
-    height: 14px;
+.pacman {
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    animation: wave 1.2s ease-in-out infinite alternate;
+    background: #fbb117;
+    clip-path: polygon(100% 74%, 50% 50%, 100% 26%, 100% 0, 0 0, 0 100%, 100% 100%);
+    animation: chomp 0.35s infinite alternate linear;
+    z-index: 10;
 }
-.wave-dot:nth-child(1) { background-color: #7dd3fc; animation-delay: 0.0s; }
-.wave-dot:nth-child(2) { background-color: #38bdf8; animation-delay: 0.1s; }
-.wave-dot:nth-child(3) { background-color: #0ea5e9; animation-delay: 0.2s; }
-.wave-dot:nth-child(4) { background-color: #0284c7; animation-delay: 0.3s; }
-.wave-dot:nth-child(5) { background-color: #0369a1; animation-delay: 0.4s; }
-.wave-dot:nth-child(6) { background-color: #075985; animation-delay: 0.5s; }
-.wave-dot:nth-child(7) { background-color: #0f172a; animation-delay: 0.6s; }
-
-@keyframes wave {
-    0% { transform: translateY(-20px) scale(0.8); opacity: 0.5; }
-    100% { transform: translateY(20px) scale(1.2); opacity: 1; }
+@keyframes chomp {
+    0% { clip-path: polygon(100% 74%, 50% 50%, 100% 26%, 100% 0, 0 0, 0 100%, 100% 100%); }
+    100% { clip-path: polygon(100% 52%, 50% 50%, 100% 48%, 100% 0, 0 0, 0 100%, 100% 100%); }
+}
+.pacman-dots {
+    display: flex;
+    gap: 25px;
+    margin-left: -15px;
+    width: 140px;
+    overflow: hidden;
+}
+.p-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #6ee7b7;
+    flex-shrink: 0;
+    animation: moveLeft 0.35s infinite linear;
+}
+@keyframes moveLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-41px); } /* dot width 16 + gap 25 */
 }
 .loader-text {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     color: #0284c7;
     animation: fadeInOut 1.5s infinite;
@@ -429,62 +440,67 @@ st.markdown("""
 if "ui_step" not in st.session_state:
     st.session_state.ui_step = "input"
 
-if st.session_state.ui_step == "input":
-    st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class='glass-box'>
-        <div class='jd-preview'>
-            <div class='jd-header'>🎯 Target Job Profile</div>
-            <div class='jd-content'>
-                <strong>Senior AI Engineer — Founding Team. Redrob AI.</strong><br>
-                Pune/Noida, India (Hybrid). 5-9 years experience.<br><br>
-                Own the intelligence layer: ranking, retrieval, and matching systems...<br><br>
-                <strong>Absolute requirements:</strong><br>
-                Production experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    if st.button("🚀 Start Sourcing 100k+ Candidates", use_container_width=True):
-        st.session_state.ui_step = "loading"
-        st.rerun()
-    st.markdown("</div>", unsafe_allow_html=True)
-    st.stop()
+# Wrap the initial UI in a single container to prevent stale elements from pushing content down
+main_ui_container = st.empty()
 
-elif st.session_state.ui_step == "loading":
-    st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
-    
-    status_placeholder = st.empty()
-    import time
-    
-    def _show_loader(msg):
-        status_placeholder.markdown(f"""
-        <div class='spinner-container'>
-            <div class='wave-loader'>
-                <div class='wave-dot'></div>
-                <div class='wave-dot'></div>
-                <div class='wave-dot'></div>
-                <div class='wave-dot'></div>
-                <div class='wave-dot'></div>
-                <div class='wave-dot'></div>
-                <div class='wave-dot'></div>
-            </div>
-            <div class='loader-text'>{msg}</div>
-        </div>
-        """, unsafe_allow_html=True)
-        time.sleep(1.2)
+with main_ui_container.container():
+    if st.session_state.ui_step == "input":
+        st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
+        st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
         
-    _show_loader("🧠 Extracting ideal persona from Job Description...")
-    _show_loader("🔍 Vector searching across 100,000 resumes...")
-    _show_loader("⚖️ Re-ranking top candidates with LambdaMART...")
-    _show_loader("🕵️ Running Faithfulness and Honeypot Verification...")
-    
-    status_placeholder.empty()
-    st.session_state.ui_step = "results"
-    time.sleep(0.1)
-    st.rerun()
+        col1, col2, col3 = st.columns([1, 6, 1])
+        with col2:
+            st.markdown("""
+            <div class='jd-preview'>
+                <div class='jd-header'>🎯 Target Job Profile</div>
+                <div class='jd-content'>
+                    <strong>Senior AI Engineer — Founding Team. Redrob AI.</strong><br>
+                    Pune/Noida, India (Hybrid). 5-9 years experience.<br>
+                    Own the intelligence layer: ranking, retrieval, and matching systems.<br><br>
+                    <strong>Absolute requirements:</strong><br>
+                    Production experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            if st.button("🚀 Start Sourcing 100k+ Candidates", use_container_width=True):
+                st.session_state.ui_step = "loading"
+                st.rerun()
+                
+        st.stop()
+
+    elif st.session_state.ui_step == "loading":
+        st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
+        
+        status_placeholder = st.empty()
+        import time
+        
+        def _show_loader(msg):
+            status_placeholder.markdown(f"""
+            <div class='spinner-container'>
+                <div class='pacman-loader'>
+                    <div class='pacman'></div>
+                    <div class='pacman-dots'>
+                        <div class='p-dot'></div>
+                        <div class='p-dot'></div>
+                        <div class='p-dot'></div>
+                        <div class='p-dot'></div>
+                    </div>
+                </div>
+                <div class='loader-text'>{msg}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            time.sleep(1.2)
+            
+        _show_loader("🧠 Extracting ideal persona from Job Description...")
+        _show_loader("🔍 Vector searching across 100,000 resumes...")
+        _show_loader("⚖️ Re-ranking top candidates with LambdaMART...")
+        _show_loader("🕵️ Running Faithfulness and Honeypot Verification...")
+        
+        status_placeholder.empty()
+        st.session_state.ui_step = "results"
+        time.sleep(0.1)
+        st.rerun()
 
 # ── sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
