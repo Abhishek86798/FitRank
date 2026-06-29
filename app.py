@@ -318,6 +318,10 @@ st.markdown("""
     padding-top: 2rem !important;
     padding-bottom: 1rem !important;
 }
+/* Reduce sidebar top padding */
+[data-testid="stSidebarUserContent"] {
+    padding-top: 2rem !important;
+}
 
 .hero-title {
     font-family: 'Outfit', sans-serif;
@@ -363,7 +367,7 @@ st.markdown("""
     line-height: 1.6;
     font-size: 1.15rem;
 }
-.stButton button {
+.stButton button[kind="primary"] {
     border-radius: 12px !important;
     background: linear-gradient(135deg, #0ea5e9, #1d4ed8) !important;
     color: white !important;
@@ -373,10 +377,11 @@ st.markdown("""
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     height: 60px !important;
 }
-.stButton button:hover {
+.stButton button[kind="primary"]:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4) !important;
 }
+/* Dynamic toggle CSS will handle the secondary button */
 .spinner-container {
     display: flex;
     flex-direction: column;
@@ -451,6 +456,79 @@ if "ui_step" not in st.session_state:
 main_ui_container = st.empty()
 
 with main_ui_container.container():
+    # Theme Toggle placed at the very top right
+    import os
+    config_path = ".streamlit/config.toml"
+    current_theme = "dark"
+    if os.path.exists(config_path):
+        with open(config_path, "r") as f:
+            if 'base="light"' in f.read():
+                current_theme = "light"
+
+    # Inject dynamic CSS for the pill toggle
+    toggle_css = f"""
+    <style>
+    .stButton button[kind="secondary"] div {{
+        display: none !important;
+    }}
+    .stButton button[kind="secondary"] {{
+        position: fixed !important;
+        top: 13px !important;
+        right: 140px !important;
+        z-index: 999999 !important;
+        width: 64px !important;
+        height: 32px !important;
+        border-radius: 16px !important;
+        border: none !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        background: { '#0f172a' if current_theme == 'dark' else '#e2e8f0' } !important;
+        box-shadow: inset 0 1px 3px { 'rgba(0,0,0,0.5)' if current_theme == 'dark' else 'rgba(0,0,0,0.1)' } !important;
+    }}
+    .stButton button[kind="secondary"]::before {{
+        content: '{ '☀' if current_theme == 'dark' else '☾' }';
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 1.1rem !important;
+        color: { '#475569' if current_theme == 'dark' else '#94a3b8' } !important;
+        { 'left: 10px' if current_theme == 'dark' else 'right: 10px' } !important;
+    }}
+    .stButton button[kind="secondary"]::after {{
+        content: '{ '☾' if current_theme == 'dark' else '☀' }';
+        position: absolute !important;
+        top: 3px !important;
+        { 'right: 3px' if current_theme == 'dark' else 'left: 3px' } !important;
+        width: 26px !important;
+        height: 26px !important;
+        background: { '#1e293b' if current_theme == 'dark' else '#ffffff' } !important;
+        color: { '#f8fafc' if current_theme == 'dark' else '#0f172a' } !important;
+        border-radius: 50% !important;
+        text-align: center !important;
+        line-height: 26px !important;
+        font-size: 1.1rem !important;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+    }}
+    .stButton button[kind="secondary"]:hover {{
+        opacity: 0.8 !important;
+    }}
+    </style>
+    """
+    st.markdown(toggle_css, unsafe_allow_html=True)
+    
+    # The actual button
+    if st.button("theme_toggle"):
+        with open(config_path, "r") as f:
+            content = f.read()
+        if 'base="dark"' in content:
+            content = content.replace('base="dark"', 'base="light"')
+        else:
+            content = content.replace('base="light"', 'base="dark"')
+        with open(config_path, "w") as f:
+            f.write(content)
+        st.rerun()
+
     if st.session_state.ui_step == "input":
         st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
         st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
@@ -471,7 +549,7 @@ with main_ui_container.container():
             </div>
             """, unsafe_allow_html=True)
             
-            if st.button("🚀 Start Sourcing 100k+ Candidates", use_container_width=True):
+            if st.button("🚀 Start Sourcing 100k+ Candidates", type="primary", use_container_width=True):
                 st.session_state.ui_step = "loading"
                 st.rerun()
                 
@@ -512,26 +590,6 @@ with main_ui_container.container():
 
 # ── sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.header("Settings")
-    
-    # Theme Toggle
-    if st.button("🌓 Toggle Dark/Light Mode"):
-        import os
-        config_path = ".streamlit/config.toml"
-        if os.path.exists(config_path):
-            with open(config_path, "r") as f:
-                content = f.read()
-            if 'base="dark"' in content:
-                content = content.replace('base="dark"', 'base="light"')
-            else:
-                content = content.replace('base="light"', 'base="dark"')
-            with open(config_path, "w") as f:
-                f.write(content)
-            st.rerun()
-            
-    st.divider()
-    
-    st.markdown("### Controls")
     st.title("🎯 FitRank")
     st.caption("Counterfactual Ranking Audit")
     st.divider()
