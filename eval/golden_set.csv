@@ -132,3 +132,21 @@ CAND_0073204,0,3.4yr forecasting only 120d max penalty
 CAND_0045250,2,Shipped ranking models Rephrase.ai Delhi preferred 15d notice; not open only penalty
 CAND_0093763,1,Forecasting+NLP no ranking Noida 90d
 CAND_0041918,0,Churn+NLP 3 skills Ahmedabad 90d
+CAND_0077337,2,Semantic search 35M items Razorpay + recsys Paytm; Kochi relocates; 60d notice
+CAND_0052335,2,Owned LTR pipeline relevance labeling Aganitha; Berlin location penalty; 60d
+CAND_0051615,2,Owned LTR ranking layer Meta + Krutrim; 4.6yr below band; Coimbatore wont relocate
+CAND_0093547,1,Strong pipeline PhonePe but 2.9yr hard disqualifier; not open; Coimbatore
+CAND_0089726,0,3.1yr hard disqualifier; Junior title; Bhubaneswar; not open; CV career
+CAND_0078002,2,Shipped ranking models Meta + recsys Genpact; 6.3yr; Coimbatore wont relocate; 60d
+CAND_0005303,0,3.1yr hard disqualifier; Junior title; NLP sentiment+recsys; Chandigarh
+CAND_0037117,0,CV engineer; NLP sentiment career; Trivandrum; not open; 4.6yr
+CAND_0008628,0,3.2yr hard disqualifier; AI Specialist; Sydney; not open; recsys side work
+CAND_0099806,2,Shipped ranking models XGBoost LightGBM MSD+upGrad; owned feature design; Bhubaneswar relocates; 30d
+CAND_0008202,1,NLP sentiment+Infosys recsys; 5.7yr; Vizag non-preferred; not open; resp=0.50
+CAND_0091899,1,NLP sentiment+CV career; no ranking production; Delhi preferred but not open; resp=0.51
+CAND_0038328,0,4.0yr below band; Junior title; CV career; not open; Mumbai
+CAND_0092245,2,Shipped ranking models XGBoost LightGBM Ola; owned feature design; 4.1yr below band; Coimbatore; 60d
+CAND_0096172,1,Semantic search 500K docs+recsys; NLP not ranking; Chennai; not open; resp=0.47
+CAND_0043860,0,Junior title 6.1yr; recsys boilerplate+CV; Bhubaneswar; thin skills
+CAND_0091348,0,3.7yr below band; fraud ML+forecasting; TCS consulting; not open
+CAND_0054829,0,CV engineer title and career; recsys boilerplate; Noida preferred but CV-only
