@@ -33,6 +33,7 @@ RICH_REASONING      = ROOT / "eval" / "rich_reasoning.json"
 CANDIDATES_JSONL    = ROOT / "data" / "candidates.jsonl"
 METADATA_YAML       = ROOT / "submission_metadata.yaml"
 FAITHFULNESS_REPORT = ROOT / "eval" / "faithfulness_report.json"
+ROLE_ANALYSIS_JSON  = ROOT / "eval" / "role_analysis.json"
 
 # ── feature display names ──────────────────────────────────────────────────────
 FEATURE_LABELS: dict[str, str] = {
@@ -158,6 +159,13 @@ def load_faithfulness_report() -> dict:
     return json.loads(FAITHFULNESS_REPORT.read_bytes())
 
 
+@st.cache_data
+def load_role_analysis() -> dict:
+    if not ROLE_ANALYSIS_JSON.exists():
+        return {}
+    return json.loads(ROLE_ANALYSIS_JSON.read_bytes())
+
+
 # ── helpers ────────────────────────────────────────────────────────────────────
 
 def _confidence_color(conf: float) -> str:
@@ -269,6 +277,7 @@ forensics           = load_forensics_text()
 rich_reasoning      = load_rich_reasoning()
 metadata            = load_metadata()
 faithfulness_report = load_faithfulness_report()
+role_analysis       = load_role_analysis()
 
 all_cids   = frozenset(r["candidate_id"] for r in submission)
 profiles   = load_profiles(all_cids)
@@ -399,11 +408,12 @@ st.caption("Redrob · Founding Team · Senior AI Engineer · Counterfactual rank
 # ══════════════════════════════════════════════════════════════════════════════
 # TABS
 # ══════════════════════════════════════════════════════════════════════════════
-tab_rank, tab_audit, tab_forensics, tab_missed = st.tabs([
+tab_rank, tab_audit, tab_forensics, tab_missed, tab_role = st.tabs([
     "📊 Ranked Table",
     "🔬 Candidate Audit",
     "🕵️ Honeypot Forensics",
     "🔍 Missed by Keyword Search",
+    "🧠 Role Understanding",
 ])
 
 
@@ -1004,3 +1014,125 @@ with tab_missed:
         making every placement explainable and auditable.
         """
     )
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TAB 5 — ROLE UNDERSTANDING
+# ══════════════════════════════════════════════════════════════════════════════
+with tab_role:
+    st.subheader("🧠 AI Role Analysis — " + (role_analysis.get("role_title") or "Senior AI Engineer"))
+    st.caption(
+        "Extracted from the job description before any candidate was scored. "
+        "This is exactly what the system searched for — no post-hoc rationalisation."
+    )
+
+    if not role_analysis:
+        st.warning(
+            "role_analysis.json not found. "
+            "Run `python eval/generate_audit.py` to generate it."
+        )
+    else:
+        exp_band = role_analysis.get("experience_band", "")
+        if exp_band:
+            st.info(f"**Experience target:** {exp_band}")
+
+        st.divider()
+
+        # ── What we looked for vs What we ruled out ──────────────────────────
+        col_must, col_dis = st.columns(2)
+
+        with col_must:
+            st.markdown("### ✅ What we looked for")
+            for item in role_analysis.get("must_haves", []):
+                st.markdown(
+                    f'<div style="display:flex;align-items:flex-start;gap:8px;'
+                    f'margin-bottom:10px;padding:10px 14px;background:#e8f5e9;'
+                    f'border-radius:8px;border-left:3px solid #2e7d32">'
+                    f'<span style="color:#2e7d32;font-weight:700;margin-top:1px">✓</span>'
+                    f'<span style="font-size:0.9rem;color:#1b5e20">{item}</span></div>',
+                    unsafe_allow_html=True,
+                )
+
+        with col_dis:
+            st.markdown("### ✗ What we ruled out")
+            for item in role_analysis.get("hard_disqualifiers", []):
+                st.markdown(
+                    f'<div style="display:flex;align-items:flex-start;gap:8px;'
+                    f'margin-bottom:10px;padding:10px 14px;background:#ffebee;'
+                    f'border-radius:8px;border-left:3px solid #c62828">'
+                    f'<span style="color:#c62828;font-weight:700;margin-top:1px">✗</span>'
+                    f'<span style="font-size:0.9rem;color:#b71c1c">{item}</span></div>',
+                    unsafe_allow_html=True,
+                )
+
+        st.divider()
+
+        # ── Ideal signals ─────────────────────────────────────────────────────
+        st.markdown("### 🎯 Ideal production signals")
+        st.caption("Evidence patterns the scorer looked for in career descriptions.")
+        sig_cols = st.columns(2)
+        signals = role_analysis.get("ideal_signals", [])
+        for i, sig in enumerate(signals):
+            sig_cols[i % 2].markdown(
+                f'<div style="padding:8px 12px;margin-bottom:8px;background:#e3f2fd;'
+                f'border-radius:6px;font-size:0.88rem;color:#0d47a1;'
+                f'border-left:3px solid #1565c0">🔹 {sig}</div>',
+                unsafe_allow_html=True,
+            )
+
+        st.divider()
+
+        # ── Behavioral expectations ───────────────────────────────────────────
+        st.markdown("### 📶 Behavioral signals weighted")
+        st.caption(
+            "A perfect-on-paper candidate who hasn't logged in for 6 months "
+            "and has a 5% recruiter response rate is, for hiring purposes, not actually available."
+        )
+        beh_cols = st.columns(len(role_analysis.get("behavioral_expectations", [])) or 1)
+        for i, beh in enumerate(role_analysis.get("behavioral_expectations", [])):
+            # Split "Label (N% weight)" for display
+            if "(" in beh and "%" in beh:
+                label, pct_part = beh.rsplit("(", 1)
+                pct = pct_part.replace("% weight)", "").replace("%)", "").strip()
+                beh_cols[i].markdown(
+                    f'<div style="text-align:center;padding:14px 10px;background:#f3e5f5;'
+                    f'border-radius:8px;border:1px solid #ce93d8">'
+                    f'<div style="font-size:1.4rem;font-weight:700;color:#6a1b9a">{pct}%</div>'
+                    f'<div style="font-size:0.78rem;color:#4a148c;margin-top:4px;line-height:1.3">'
+                    f'{label.strip()}</div></div>',
+                    unsafe_allow_html=True,
+                )
+            else:
+                beh_cols[i].markdown(f"- {beh}")
+
+        st.divider()
+
+        # ── Location preferences ──────────────────────────────────────────────
+        st.markdown("### 📍 Location & availability")
+        for pref in role_analysis.get("location_preferences", []):
+            st.markdown(f"- {pref}")
+
+        st.divider()
+
+        # ── Key traps ─────────────────────────────────────────────────────────
+        st.markdown("### ⚠️ Key traps in this dataset")
+        st.caption(
+            "Patterns that look like a fit on the surface but are not. "
+            "The pipeline was tuned to catch these specifically."
+        )
+        for trap in role_analysis.get("key_traps", []):
+            st.markdown(
+                f'<div style="display:flex;align-items:flex-start;gap:8px;'
+                f'margin-bottom:8px;padding:10px 14px;background:#fff8e1;'
+                f'border-radius:8px;border-left:3px solid #f9a825">'
+                f'<span style="color:#f57f17;font-weight:700">⚠</span>'
+                f'<span style="font-size:0.88rem;color:#e65100">{trap}</span></div>',
+                unsafe_allow_html=True,
+            )
+
+        st.divider()
+        st.caption(
+            "Source: `role_model.yaml` — the single config file that drives every feature, "
+            "weight, and penalty in the ranking pipeline. "
+            "This panel is auto-generated; no human wrote these descriptions post-hoc."
+        )

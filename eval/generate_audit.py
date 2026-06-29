@@ -109,10 +109,18 @@ def main() -> None:
     from src.scorer import LTRScorer
     from src.counterfactual import explain_candidate, detect_tied_bands
     from src.hiring_recommendation import get_hiring_recommendation
+    from src.role_analyzer import summarize_role_model
 
     print(f"Loading role model from {args.role_model} ...")
     with open(args.role_model, encoding="utf-8") as f:
         role_model: dict = yaml.safe_load(f)
+
+    # ── Write role analysis ───────────────────────────────────────────────────
+    role_analysis = summarize_role_model(role_model)
+    ra_path = Path(args.output).parent / "role_analysis.json"
+    ra_path.parent.mkdir(parents=True, exist_ok=True)
+    ra_path.write_text(json.dumps(role_analysis, indent=2), encoding="utf-8")
+    print(f"Wrote role analysis to {ra_path}")
 
     print(f"Loading submission from {args.submission} ...")
     top_rows = _load_submission(Path(args.submission), args.top_n)
