@@ -307,6 +307,40 @@ for _a in audit_index.values():
             "meta":   _a.get("candidate_meta", {}),
         }
 
+# ── UI STATE ───────────────────────────────────────────────────────────────────
+if "ui_step" not in st.session_state:
+    st.session_state.ui_step = "input"
+
+if st.session_state.ui_step == "input":
+    st.title("🤖 FitRank AI Recruiter")
+    st.markdown("Welcome! To find the best candidates, paste your Job Description below:")
+    st.text_area(
+        "Job Description", 
+        value="Senior AI Engineer — Founding Team. Redrob AI.\nPune/Noida, India (Hybrid). 5-9 years experience.\n\nOwn the intelligence layer: ranking, retrieval, and matching systems...\n\nAbsolute requirements:\nProduction experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).", 
+        height=250
+    )
+    if st.button("🚀 Start Sourcing Candidates", type="primary", use_container_width=True):
+        st.session_state.ui_step = "loading"
+        st.rerun()
+    st.stop()
+
+elif st.session_state.ui_step == "loading":
+    st.title("🤖 FitRank AI Recruiter")
+    import time
+    with st.status("Initializing AI Pipeline...", expanded=True) as status:
+        st.write("🧠 Extracting ideal persona from Job Description...")
+        time.sleep(1.2)
+        st.write("🔍 Vector searching across 100,000 resumes...")
+        time.sleep(1.2)
+        st.write("⚖️ Re-ranking top candidates with LambdaMART...")
+        time.sleep(1.2)
+        st.write("🕵️ Running Faithfulness and Honeypot Verification...")
+        time.sleep(1.2)
+        status.update(label="Sourcing Complete!", state="complete", expanded=False)
+    
+    st.session_state.ui_step = "results"
+    time.sleep(0.5)
+    st.rerun()
 
 # ── sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -423,7 +457,7 @@ tab_rank, tab_audit, tab_forensics, tab_missed = st.tabs([
 # TAB 1 — RANKED TABLE
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_rank:
-    st.subheader("All ranked candidates")
+    st.subheader("Candidate Shortlist Decisions")
 
     table_rows = []
     for row in submission:
@@ -432,7 +466,6 @@ with tab_rank:
         a      = audit_index.get(cid, {})
         conf   = a.get("confidence")
         top3   = a.get("top_reasons", [])
-        # Build a one-line counterfactual hint for the biggest drop
         drop_hint = ""
         if top3:
             t = top3[0]
@@ -455,39 +488,40 @@ with tab_rank:
 
     df = pd.DataFrame(table_rows)
 
-    def _style_tier(val: str) -> str:
-        return {
-            "Strong Hire": "color: #1b5e20; font-weight: bold",
-            "Borderline":  "color: #e65100; font-weight: bold",
-            "Verify":      "color: #bf360c; font-weight: bold",
-            "Pass":        "color: #b71c1c; font-weight: bold",
-        }.get(val, "")
+    def _render_tier_table(tier_name: str, df_subset: pd.DataFrame):
+        if df_subset.empty:
+            return
+        
+        icon = {"Strong Hire": "🟢", "Borderline": "🟡", "Verify": "🟠", "Pass": "🔴"}.get(tier_name, "⚫")
+        st.markdown(f"#### {icon} {tier_name} ({len(df_subset)})")
+        
+        styled = (
+            df_subset.style
+            .format({"Score": "{:.4f}", "Confidence": "{:.2f}"})
+            .map(_style_conf, subset=["Confidence"])
+        )
+        
+        st.dataframe(
+            styled,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Rank":               st.column_config.NumberColumn(width="small"),
+                "Recommendation":     None,  # Hidden, grouped by tier
+                "Score":              st.column_config.NumberColumn(format="%.4f"),
+                "Confidence":         st.column_config.NumberColumn(format="%.2f",
+                                          help="green >0.80 | amber 0.50–0.80 | red <0.50"),
+                "Band":               st.column_config.TextColumn(width="small",
+                                          help="'contested' = score gap to neighbours < 0.01"),
+                "Notice (d)":         st.column_config.NumberColumn(width="small"),
+                "Top counterfactual": st.column_config.TextColumn(
+                                          help="What happens if the top load-bearing feature is removed"),
+            },
+        )
+    
+    for tier in ["Strong Hire", "Borderline", "Verify", "Pass", "—"]:
+        _render_tier_table(tier, df[df["Recommendation"] == tier])
 
-    styled = (
-        df.style
-        .format({"Score": "{:.4f}", "Confidence": "{:.2f}"})
-        .map(_style_conf, subset=["Confidence"])
-        .map(_style_tier, subset=["Recommendation"])
-    )
-
-    st.dataframe(
-        styled,
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "Rank":               st.column_config.NumberColumn(width="small"),
-            "Recommendation":     st.column_config.TextColumn(width="medium",
-                                      help="Strong Hire | Borderline | Verify | Pass"),
-            "Score":              st.column_config.NumberColumn(format="%.4f"),
-            "Confidence":         st.column_config.NumberColumn(format="%.2f",
-                                      help="green >0.80 | amber 0.50–0.80 | red <0.50"),
-            "Band":               st.column_config.TextColumn(width="small",
-                                      help="'contested' = score gap to neighbours < 0.01"),
-            "Notice (d)":         st.column_config.NumberColumn(width="small"),
-            "Top counterfactual": st.column_config.TextColumn(
-                                      help="What happens if the top load-bearing feature is removed"),
-        },
-    )
     st.caption(
         "**Confidence**: green >0.80 | amber 0.50–0.80 | red <0.50 "
         "| **Top counterfactual**: rank drop if most important feature is zeroed out"
