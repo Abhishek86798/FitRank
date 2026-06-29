@@ -775,8 +775,9 @@ with tab_audit:
             if rich_text:
                 st.markdown(rich_text)
                 if csv_text:
-                    with st.expander("Raw scoring summary", expanded=False):
-                        st.markdown(csv_text)
+                    st.divider()
+                    st.caption("Raw scoring summary:")
+                    st.markdown(csv_text)
             else:
                 st.markdown(csv_text)
 
