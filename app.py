@@ -308,38 +308,146 @@ for _a in audit_index.values():
         }
 
 # ── UI STATE ───────────────────────────────────────────────────────────────────
+# Premium SaaS CSS Injection
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+.hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #4f46e5, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+.hero-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    color: #6b7280;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 40px;
+}
+.glass-box {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 800px;
+    margin: 0 auto;
+}
+.stTextArea textarea {
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    background-color: #f9fafb !important;
+    transition: all 0.3s ease;
+}
+.stTextArea textarea:focus {
+    border-color: #4f46e5 !important;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+}
+.stButton button {
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #4f46e5, #ec4899) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    height: 50px !important;
+}
+.stButton button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3) !important;
+}
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+}
+.pulsing-orb {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f46e5, #ec4899);
+    animation: pulse 1.5s infinite alternate, glow 2s infinite linear;
+    margin-bottom: 30px;
+}
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.8); }
+    100% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.5); }
+}
+.loader-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #4b5563;
+    animation: fadeInOut 1.5s infinite;
+}
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+</style>
+""", unsafe_allow_html=True)
+
 if "ui_step" not in st.session_state:
     st.session_state.ui_step = "input"
 
 if st.session_state.ui_step == "input":
-    st.title("🤖 FitRank AI Recruiter")
-    st.markdown("Welcome! To find the best candidates, paste your Job Description below:")
+    st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
+    
+    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
     st.text_area(
         "Job Description", 
         value="Senior AI Engineer — Founding Team. Redrob AI.\nPune/Noida, India (Hybrid). 5-9 years experience.\n\nOwn the intelligence layer: ranking, retrieval, and matching systems...\n\nAbsolute requirements:\nProduction experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).", 
-        height=250
+        height=200,
+        label_visibility="hidden"
     )
-    if st.button("🚀 Start Sourcing Candidates", type="primary", use_container_width=True):
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("🚀 Start Sourcing 100k+ Candidates", use_container_width=True):
         st.session_state.ui_step = "loading"
         st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
     st.stop()
 
 elif st.session_state.ui_step == "loading":
-    st.title("🤖 FitRank AI Recruiter")
-    import time
-    with st.status("Initializing AI Pipeline...", expanded=True) as status:
-        st.write("🧠 Extracting ideal persona from Job Description...")
-        time.sleep(1.2)
-        st.write("🔍 Vector searching across 100,000 resumes...")
-        time.sleep(1.2)
-        st.write("⚖️ Re-ranking top candidates with LambdaMART...")
-        time.sleep(1.2)
-        st.write("🕵️ Running Faithfulness and Honeypot Verification...")
-        time.sleep(1.2)
-        status.update(label="Sourcing Complete!", state="complete", expanded=False)
+    st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
     
+    status_placeholder = st.empty()
+    import time
+    
+    def _show_loader(msg):
+        status_placeholder.markdown(f"""
+        <div class='spinner-container'>
+            <div class='pulsing-orb'></div>
+            <div class='loader-text'>{msg}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        time.sleep(1.2)
+        
+    _show_loader("🧠 Extracting ideal persona from Job Description...")
+    _show_loader("🔍 Vector searching across 100,000 resumes...")
+    _show_loader("⚖️ Re-ranking top candidates with LambdaMART...")
+    _show_loader("🕵️ Running Faithfulness and Honeypot Verification...")
+    
+    status_placeholder.empty()
     st.session_state.ui_step = "results"
-    time.sleep(0.5)
+    time.sleep(0.1)
     st.rerun()
 
 # ── sidebar ────────────────────────────────────────────────────────────────────
