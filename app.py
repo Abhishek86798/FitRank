@@ -26,12 +26,13 @@ import streamlit as st
 ROOT = Path(__file__).parent
 
 # ── file paths ─────────────────────────────────────────────────────────────────
-SUBMISSION_CSV   = ROOT / "team_xxx.csv"
-AUDIT_JSON       = ROOT / "eval" / "decision_audit.json"
-FORENSICS_TXT    = ROOT / "eval" / "honeypot_forensics_report.txt"
-RICH_REASONING   = ROOT / "eval" / "rich_reasoning.json"
-CANDIDATES_JSONL = ROOT / "data" / "candidates.jsonl"
-METADATA_YAML    = ROOT / "submission_metadata.yaml"
+SUBMISSION_CSV      = ROOT / "team_xxx.csv"
+AUDIT_JSON          = ROOT / "eval" / "decision_audit.json"
+FORENSICS_TXT       = ROOT / "eval" / "honeypot_forensics_report.txt"
+RICH_REASONING      = ROOT / "eval" / "rich_reasoning.json"
+CANDIDATES_JSONL    = ROOT / "data" / "candidates.jsonl"
+METADATA_YAML       = ROOT / "submission_metadata.yaml"
+FAITHFULNESS_REPORT = ROOT / "eval" / "faithfulness_report.json"
 
 # ── feature display names ──────────────────────────────────────────────────────
 FEATURE_LABELS: dict[str, str] = {
@@ -150,6 +151,13 @@ def load_metadata() -> dict:
         return {}
 
 
+@st.cache_data
+def load_faithfulness_report() -> dict:
+    if not FAITHFULNESS_REPORT.exists():
+        return {}
+    return json.loads(FAITHFULNESS_REPORT.read_bytes())
+
+
 # ── helpers ────────────────────────────────────────────────────────────────────
 
 def _confidence_color(conf: float) -> str:
@@ -255,11 +263,12 @@ def _parse_forensics_examples(text: str) -> list[dict]:
 
 # ── load all data ──────────────────────────────────────────────────────────────
 
-submission     = load_submission()
-audit_index    = load_audit()
-forensics      = load_forensics_text()
-rich_reasoning = load_rich_reasoning()
-metadata       = load_metadata()
+submission          = load_submission()
+audit_index         = load_audit()
+forensics           = load_forensics_text()
+rich_reasoning      = load_rich_reasoning()
+metadata            = load_metadata()
+faithfulness_report = load_faithfulness_report()
 
 all_cids   = frozenset(r["candidate_id"] for r in submission)
 profiles   = load_profiles(all_cids)
@@ -295,6 +304,10 @@ with st.sidebar:
     st.metric("NDCG@10",           "0.9667")
     st.metric("P@10",              "0.80")
     st.metric("Honeypots caught",  f"{hp_caught} / {hp_total}" if hp_total else str(hp_caught))
+
+    if faithfulness_report:
+        hr = faithfulness_report.get("global_hallucination_rate", 0.0)
+        st.metric("Hallucination rate", f"{hr:.1%}")
 
     st.divider()
     if not AUDIT_JSON.exists():
@@ -666,6 +679,55 @@ with tab_audit:
             if section:
                 st.error("Contradictions detected in this candidate's profile:")
                 st.code("\n".join(section), language=None)
+
+    # ── Faithfulness Contract ──────────────────────────────────────────────────
+    cit_data = audit.get("citations")
+    if cit_data is not None:
+        st.divider()
+        st.markdown("#### 📎 Faithfulness Contract")
+
+        ungrounded  = audit.get("ungrounded_count", 0)
+        total_cl    = audit.get("total_claims", 0)
+        hall_rate   = audit.get("hallucination_rate", 0.0)
+
+        if ungrounded == 0:
+            st.success(
+                f"✓ {ungrounded} ungrounded claims — every fact traces to a specific profile field "
+                f"({total_cl} claims verified)"
+            )
+        else:
+            st.error(
+                f"✗ {ungrounded} ungrounded claim(s) out of {total_cl} "
+                f"— hallucination rate {hall_rate:.1%}"
+            )
+
+        if cit_data:
+            cit_rows = []
+            for c in cit_data:
+                cit_rows.append({
+                    "Claim":        c["claim"],
+                    "Source field": c["source_field"],
+                    "Value":        str(c["value"]) if c["value"] is not None else "—",
+                    "Verified":     "✅" if c["verified"] else "❌",
+                })
+            cit_df = pd.DataFrame(cit_rows)
+
+            def _style_verified(val: str) -> str:
+                if val == "✅":  return "color: #2e7d32; font-weight: bold"
+                if val == "❌":  return "color: #c62828; font-weight: bold"
+                return ""
+
+            st.dataframe(
+                cit_df.style.map(_style_verified, subset=["Verified"]),
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "Claim":        st.column_config.TextColumn(width="medium"),
+                    "Source field": st.column_config.TextColumn(width="medium"),
+                    "Value":        st.column_config.TextColumn(width="small"),
+                    "Verified":     st.column_config.TextColumn(width="small"),
+                },
+            )
 
 
 # ══════════════════════════════════════════════════════════════════════════════

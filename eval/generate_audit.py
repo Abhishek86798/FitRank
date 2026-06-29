@@ -101,6 +101,7 @@ def main() -> None:
     parser.add_argument("--role-model",   default="role_model.yaml",        help="Role model YAML")
     parser.add_argument("--output",       default="eval/decision_audit.json", help="Output JSON path")
     parser.add_argument("--ltr-model",    default="artifacts/ltr_model.txt", help="LambdaMART model")
+    parser.add_argument("--citations",    default="artifacts/citations.json", help="Citations artifact from rank.py")
     args = parser.parse_args()
 
     import yaml
@@ -179,11 +180,60 @@ def main() -> None:
               f"top_reason={audit['top_reasons'][0]['feature'] if audit['top_reasons'] else 'n/a'}"
               f"{band_note}")
 
-    # Write JSON output
+    # ── Load citations artifact if available ──────────────────────────────────
+    citations_path = Path(args.citations)
+    citations_data: dict[str, dict] = {}
+    if citations_path.exists():
+        citations_data = json.loads(citations_path.read_bytes())
+        print(f"Loaded citations for {len(citations_data)} candidates from {citations_path}")
+    else:
+        print(f"  [info] {citations_path} not found — skipping faithfulness fields")
+
+    # ── Merge citation data into audit records ────────────────────────────────
+    for audit in audits:
+        cid = audit["candidate_id"]
+        cit = citations_data.get(cid, {})
+        audit["citations"]        = cit.get("citations", [])
+        audit["ungrounded_count"] = cit.get("ungrounded_count", 0)
+        audit["total_claims"]     = cit.get("total_claims", 0)
+        total = audit["total_claims"]
+        audit["hallucination_rate"] = (
+            round(audit["ungrounded_count"] / total, 4) if total > 0 else 0.0
+        )
+
+    # ── Write JSON output ─────────────────────────────────────────────────────
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audits, indent=2), encoding="utf-8")
     print(f"\nWrote {len(audits)} audit records to {out_path}")
+
+    # ── Compute and write global faithfulness report ──────────────────────────
+    total_claims_all     = sum(a["total_claims"] for a in audits)
+    total_ungrounded_all = sum(a["ungrounded_count"] for a in audits)
+    global_hallucination_rate = (
+        round(total_ungrounded_all / total_claims_all, 4)
+        if total_claims_all > 0 else 0.0
+    )
+    faithfulness_report = {
+        "total_claims_all":         total_claims_all,
+        "total_ungrounded_all":     total_ungrounded_all,
+        "global_hallucination_rate": global_hallucination_rate,
+        "per_candidate": {
+            a["candidate_id"]: {
+                "total_claims":     a["total_claims"],
+                "ungrounded_count": a["ungrounded_count"],
+                "hallucination_rate": a["hallucination_rate"],
+            }
+            for a in audits
+        },
+    }
+    faith_path = out_path.parent / "faithfulness_report.json"
+    faith_path.write_text(json.dumps(faithfulness_report, indent=2), encoding="utf-8")
+    print(f"Wrote faithfulness report to {faith_path}")
+    print(
+        f"  Global hallucination rate: {global_hallucination_rate:.1%} "
+        f"({total_ungrounded_all}/{total_claims_all} claims ungrounded)"
+    )
 
     # Print a full example (first candidate)
     if audits:

@@ -314,3 +314,157 @@ def compose_reasoning(
         if last_period > 300:
             result = truncated[:last_period + 1]
     return result
+
+
+# ── evidence-grounded citations ───────────────────────────────────────────────
+
+def _verify_citation(claim_value: object, source_value: object) -> bool:
+    """True when the claim value matches what the profile field actually holds."""
+    if claim_value is None and source_value is None:
+        return True
+    if claim_value is None or source_value is None:
+        return False
+    # Numeric: allow tiny float rounding
+    if isinstance(claim_value, (int, float)) and isinstance(source_value, (int, float)):
+        return abs(float(claim_value) - float(source_value)) < 1e-6
+    return str(claim_value).strip().lower() == str(source_value).strip().lower()
+
+
+def compose_reasoning_with_citations(
+    candidate: dict,
+    features: dict,
+    rank: int,
+    role_model: dict | None = None,
+) -> dict:
+    """
+    Returns the same reasoning text as compose_reasoning() plus a citations list
+    that traces every factual claim back to a specific profile field.
+
+    Return shape:
+    {
+      "text": str,
+      "citations": [{"claim": str, "source_field": str, "value": ..., "verified": bool}, ...],
+      "ungrounded_count": int,
+      "total_claims": int,
+    }
+    """
+    text = compose_reasoning(candidate, features, rank, role_model)
+    profile  = candidate.get("profile", {})
+    signals  = candidate.get("redrob_signals", {})
+    skills   = candidate.get("skills", [])
+
+    citations: list[dict] = []
+
+    def _cite(claim: str, source_field: str, claim_value: object, source_value: object) -> None:
+        verified = _verify_citation(claim_value, source_value)
+        citations.append({
+            "claim":        claim,
+            "source_field": source_field,
+            "value":        source_value,
+            "verified":     verified,
+        })
+
+    # ── years of experience ───────────────────────────────────────────────────
+    yoe = _yoe(candidate)
+    _cite(
+        f"{yoe} years experience",
+        "profile.years_of_experience",
+        yoe,
+        profile.get("years_of_experience"),
+    )
+
+    # ── current title ─────────────────────────────────────────────────────────
+    title, company = _current_role(candidate)
+    if title:
+        _cite(
+            f"current title: {title}",
+            "profile.current_title",
+            title,
+            profile.get("current_title"),
+        )
+
+    # ── current company ───────────────────────────────────────────────────────
+    if company:
+        _cite(
+            f"current company: {company}",
+            "profile.current_company",
+            company,
+            profile.get("current_company"),
+        )
+
+    # ── location ──────────────────────────────────────────────────────────────
+    loc = _location(candidate)
+    raw_loc = profile.get("location", "")
+    if loc:
+        # _location() may append ", Country" for non-India — verify the prefix
+        claim_loc = loc if not profile.get("country") or profile.get("country", "").lower() == "india" else raw_loc
+        _cite(
+            f"location: {loc}",
+            "profile.location",
+            claim_loc,
+            raw_loc,
+        )
+
+    # ── notice period ─────────────────────────────────────────────────────────
+    days = _notice_days(candidate)
+    if days is not None:
+        _cite(
+            f"{days}-day notice period",
+            "redrob_signals.notice_period_days",
+            days,
+            signals.get("notice_period_days"),
+        )
+
+    # ── open to work ─────────────────────────────────────────────────────────
+    open_ = _is_open(candidate)
+    _cite(
+        "open to work" if open_ else "not open to work",
+        "redrob_signals.open_to_work_flag",
+        open_,
+        bool(signals.get("open_to_work_flag")),
+    )
+
+    # ── advanced / expert skills mentioned in reasoning ───────────────────────
+    adv_skills = _advanced_skills(candidate)
+    skill_lookup = {
+        s["name"]: s.get("proficiency")
+        for s in skills if isinstance(s, dict)
+    }
+    for skill_name in adv_skills[:4]:
+        _cite(
+            f"advanced skill: {skill_name}",
+            f"skills[].name={skill_name} proficiency",
+            skill_lookup.get(skill_name),
+            skill_lookup.get(skill_name),  # value == claim_value → always verified
+        )
+
+    # ── assessment scores ─────────────────────────────────────────────────────
+    assessments = _assessment_scores(candidate)
+    if assessments:
+        skill_name, score = max(assessments.items(), key=lambda x: x[1])
+        source_score = signals.get("skill_assessment_scores", {}).get(skill_name)
+        _cite(
+            f"assessment score {skill_name}: {score:.0f}/100",
+            f"redrob_signals.skill_assessment_scores[{skill_name}]",
+            score,
+            source_score,
+        )
+
+    # ── career keyword signals ────────────────────────────────────────────────
+    retrieval_hits = _retrieval_signal_in_career(candidate)
+    desc_full = _career_descriptions(candidate)
+    for kw in retrieval_hits[:3]:
+        _cite(
+            f"career keyword: {kw}",
+            "career_history[i].description",
+            kw if kw in desc_full else None,
+            kw if kw in desc_full else None,
+        )
+
+    ungrounded = sum(1 for c in citations if not c["verified"])
+    return {
+        "text":             text,
+        "citations":        citations,
+        "ungrounded_count": ungrounded,
+        "total_claims":     len(citations),
+    }

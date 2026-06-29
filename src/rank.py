@@ -61,7 +61,7 @@ def run(
     from src.retriever import retrieve_top_k, BM25Retriever, reciprocal_rank_fusion
     from src.feature_builder import build_feature_vector
     from src.scorer import LTRScorer, score_with_weighted_sum
-    from src.reasoning import compose_reasoning
+    from src.reasoning import compose_reasoning, compose_reasoning_with_citations
     from src.fast_filter import fast_filter
 
     # ── 1. Load role model ────────────────────────────────────────────────────
@@ -227,20 +227,33 @@ def run(
     # ── 7. Assign ranks (with tie-break) ──────────────────────────────────────
     ranked = _assign_ranks(scored)   # [(rank, cid, score), ...]
 
-    # ── 8. Build reasoning strings ────────────────────────────────────────────
+    # ── 8. Build reasoning strings + citations ───────────────────────────────
     print("Generating reasoning strings ...")
+    import json as _json
     rows: list[dict] = []
+    citations_map: dict[str, dict] = {}
     for rank, cid, score in ranked:
         cand     = top_records[cid]
         cosine   = float(dense_scores[dense_idx[cid]]) if cid in dense_idx else 0.0
         features  = build_feature_vector(cand, role_model, cosine_sim=cosine)
         reasoning = compose_reasoning(cand, features, rank)
+        cited     = compose_reasoning_with_citations(cand, features, rank)
+        citations_map[cid] = {
+            "citations":       cited["citations"],
+            "ungrounded_count": cited["ungrounded_count"],
+            "total_claims":    cited["total_claims"],
+        }
         rows.append({
             "candidate_id": cid,
             "rank":         rank,
             "score":        score,
             "reasoning":    reasoning,
         })
+
+    # Write citations artifact alongside the submission
+    citations_path = artifacts_dir / "citations.json"
+    citations_path.write_text(_json.dumps(citations_map, indent=2), encoding="utf-8")
+    print(f"Wrote citations to {citations_path}")
 
     # ── 9. Write submission.csv ───────────────────────────────────────────────
     output_path.parent.mkdir(parents=True, exist_ok=True)
