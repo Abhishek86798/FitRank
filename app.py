@@ -333,32 +333,32 @@ st.markdown("""
 .hero-subtitle {
     font-family: 'Outfit', sans-serif;
     font-size: 1.2rem;
-    color: #6b7280;
+    color: #94a3b8; /* Lighter gray for dark mode */
     text-align: center;
     margin-top: 5px;
     margin-bottom: 30px;
 }
 .jd-preview {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(30, 41, 59, 0.7); /* Dark slate with opacity */
     backdrop-filter: blur(12px);
     border-radius: 16px;
     border: 1px solid rgba(14, 165, 233, 0.3);
     padding: 30px;
     text-align: left;
     margin-bottom: 30px;
-    box-shadow: 0 10px 40px rgba(14, 165, 233, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Darker shadow */
 }
 .jd-header {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #0284c7;
+    color: #38bdf8; /* Brighter blue for dark mode */
     margin-bottom: 15px;
     font-weight: 700;
 }
 .jd-content {
     font-family: sans-serif;
-    color: #1f2937;
+    color: #f1f5f9; /* Near white for dark mode */
     line-height: 1.6;
     font-size: 1.15rem;
 }
@@ -433,7 +433,7 @@ st.markdown("""
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #0284c7;
+    color: #e2e8f0; /* Light gray for dark mode */
     animation: fadeInOut 1.5s infinite;
 }
 @keyframes fadeInOut {
@@ -462,7 +462,8 @@ with main_ui_container.container():
                 <div class='jd-content'>
                     <strong>Senior AI Engineer — Founding Team. Redrob AI.</strong><br>
                     Pune/Noida, India (Hybrid). 5-9 years experience.<br>
-                    Own the intelligence layer: ranking, retrieval, and matching systems.<br><br>
+                    Own the intelligence layer: ranking, retrieval, and matching systems.<br>
+                    <em>Responsibilities include building scalable vector search pipelines, fine-tuning embedding models, and deploying high-performance ML services. Expected to lead technical architecture decisions.</em><br><br>
                     <strong>Absolute requirements:</strong><br>
                     Production experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).
                 </div>
