@@ -448,8 +448,8 @@ with tab_rank:
             "Score":          row["score"],
             "Confidence":     conf if conf is not None else 0.0,
             "Band":           "⚠ contested" if a.get("tied_band") else "✓ clear",
-            "YoE":            m.get("yoe", "—"),
-            "Notice (d)":     m.get("notice_days", "—"),
+            "YoE":            m.get("yoe", None),
+            "Notice (d)":     m.get("notice_days", None),
             "Top counterfactual": drop_hint,
         })
 
