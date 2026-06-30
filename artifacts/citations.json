@@ -239,6 +239,78 @@
     "ungrounded_count": 0,
     "total_claims": 12
   },
+  "CAND_0068351": {
+    "citations": [
+      {
+        "claim": "6.4 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 6.4,
+        "verified": true
+      },
+      {
+        "claim": "current title: Lead AI Engineer",
+        "source_field": "profile.current_title",
+        "value": "Lead AI Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Sarvam AI",
+        "source_field": "profile.current_company",
+        "value": "Sarvam AI",
+        "verified": true
+      },
+      {
+        "claim": "location: Delhi, Delhi",
+        "source_field": "profile.location",
+        "value": "Delhi, Delhi",
+        "verified": true
+      },
+      {
+        "claim": "0-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 0,
+        "verified": true
+      },
+      {
+        "claim": "not open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": false,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: pgvector",
+        "source_field": "skills[].name=pgvector proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Deep Learning",
+        "source_field": "skills[].name=Deep Learning proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Qdrant",
+        "source_field": "skills[].name=Qdrant proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Elasticsearch",
+        "source_field": "skills[].name=Elasticsearch proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 11
+  },
   "CAND_0046525": {
     "citations": [
       {
@@ -328,78 +400,6 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 14
-  },
-  "CAND_0068351": {
-    "citations": [
-      {
-        "claim": "6.4 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 6.4,
-        "verified": true
-      },
-      {
-        "claim": "current title: Lead AI Engineer",
-        "source_field": "profile.current_title",
-        "value": "Lead AI Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Sarvam AI",
-        "source_field": "profile.current_company",
-        "value": "Sarvam AI",
-        "verified": true
-      },
-      {
-        "claim": "location: Delhi, Delhi",
-        "source_field": "profile.location",
-        "value": "Delhi, Delhi",
-        "verified": true
-      },
-      {
-        "claim": "0-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 0,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: pgvector",
-        "source_field": "skills[].name=pgvector proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Deep Learning",
-        "source_field": "skills[].name=Deep Learning proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Qdrant",
-        "source_field": "skills[].name=Qdrant proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Elasticsearch",
-        "source_field": "skills[].name=Elasticsearch proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 11
   },
   "CAND_0018499": {
     "citations": [
@@ -1109,78 +1109,6 @@
     "ungrounded_count": 0,
     "total_claims": 14
   },
-  "CAND_0093193": {
-    "citations": [
-      {
-        "claim": "7.9 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 7.9,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Machine Learning Engineer",
-        "source_field": "profile.current_title",
-        "value": "Senior Machine Learning Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Niramai",
-        "source_field": "profile.current_company",
-        "value": "Niramai",
-        "verified": true
-      },
-      {
-        "claim": "location: Bangalore, Karnataka",
-        "source_field": "profile.location",
-        "value": "Bangalore, Karnataka",
-        "verified": true
-      },
-      {
-        "claim": "45-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 45,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Ranking Systems",
-        "source_field": "skills[].name=Ranking Systems proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Text Encoders",
-        "source_field": "skills[].name=Text Encoders proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Indexing Algorithms",
-        "source_field": "skills[].name=Indexing Algorithms proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Forecasting",
-        "source_field": "skills[].name=Forecasting proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score Learning to Rank: 87/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Learning to Rank]",
-        "value": 86.6,
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 11
-  },
   "CAND_0006418": {
     "citations": [
       {
@@ -1601,6 +1529,90 @@
     "ungrounded_count": 0,
     "total_claims": 13
   },
+  "CAND_0099806": {
+    "citations": [
+      {
+        "claim": "4.6 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 4.6,
+        "verified": true
+      },
+      {
+        "claim": "current title: AI Engineer",
+        "source_field": "profile.current_title",
+        "value": "AI Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Mad Street Den",
+        "source_field": "profile.current_company",
+        "value": "Mad Street Den",
+        "verified": true
+      },
+      {
+        "claim": "location: Bhubaneswar, Odisha",
+        "source_field": "profile.location",
+        "value": "Bhubaneswar, Odisha",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LoRA",
+        "source_field": "skills[].name=LoRA proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Statistical Modeling",
+        "source_field": "skills[].name=Statistical Modeling proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: RAG",
+        "source_field": "skills[].name=RAG proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Prompt Engineering",
+        "source_field": "skills[].name=Prompt Engineering proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score LoRA: 69/100",
+        "source_field": "redrob_signals.skill_assessment_scores[LoRA]",
+        "value": 69.0,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
+  },
   "CAND_0055905": {
     "citations": [
       {
@@ -1685,6 +1697,96 @@
         "claim": "career keyword: faiss",
         "source_field": "career_history[i].description",
         "value": "faiss",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14
+  },
+  "CAND_0077337": {
+    "citations": [
+      {
+        "claim": "7.0 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 7.0,
+        "verified": true
+      },
+      {
+        "claim": "current title: Staff Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Staff Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Paytm",
+        "source_field": "profile.current_company",
+        "value": "Paytm",
+        "verified": true
+      },
+      {
+        "claim": "location: Kochi, Kerala",
+        "source_field": "profile.location",
+        "value": "Kochi, Kerala",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Semantic Search",
+        "source_field": "skills[].name=Semantic Search proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: QLoRA",
+        "source_field": "skills[].name=QLoRA proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: pgvector",
+        "source_field": "skills[].name=pgvector proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Pinecone",
+        "source_field": "skills[].name=Pinecone proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Semantic Search: 63/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Semantic Search]",
+        "value": 63.2,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ndcg",
+        "source_field": "career_history[i].description",
+        "value": "ndcg",
         "verified": true
       }
     ],
@@ -2026,6 +2128,78 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 13
+  },
+  "CAND_0093193": {
+    "citations": [
+      {
+        "claim": "7.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 7.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Niramai",
+        "source_field": "profile.current_company",
+        "value": "Niramai",
+        "verified": true
+      },
+      {
+        "claim": "location: Bangalore, Karnataka",
+        "source_field": "profile.location",
+        "value": "Bangalore, Karnataka",
+        "verified": true
+      },
+      {
+        "claim": "45-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 45,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Ranking Systems",
+        "source_field": "skills[].name=Ranking Systems proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Text Encoders",
+        "source_field": "skills[].name=Text Encoders proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Indexing Algorithms",
+        "source_field": "skills[].name=Indexing Algorithms proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Forecasting",
+        "source_field": "skills[].name=Forecasting proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Learning to Rank: 87/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Learning to Rank]",
+        "value": 86.6,
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 11
   },
   "CAND_0075249": {
     "citations": [
@@ -3899,6 +4073,90 @@
     "ungrounded_count": 0,
     "total_claims": 13
   },
+  "CAND_0013536": {
+    "citations": [
+      {
+        "claim": "14.1 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 14.1,
+        "verified": true
+      },
+      {
+        "claim": "current title: Applied ML Engineer",
+        "source_field": "profile.current_title",
+        "value": "Applied ML Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Haptik",
+        "source_field": "profile.current_company",
+        "value": "Haptik",
+        "verified": true
+      },
+      {
+        "claim": "location: Trivandrum, Kerala",
+        "source_field": "profile.location",
+        "value": "Trivandrum, Kerala",
+        "verified": true
+      },
+      {
+        "claim": "90-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 90,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: PyTorch",
+        "source_field": "skills[].name=PyTorch proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Prompt Engineering",
+        "source_field": "skills[].name=Prompt Engineering proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LLMs",
+        "source_field": "skills[].name=LLMs proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: NLP",
+        "source_field": "skills[].name=NLP proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score PyTorch: 85/100",
+        "source_field": "redrob_signals.skill_assessment_scores[PyTorch]",
+        "value": 84.7,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
+  },
   "CAND_0052682": {
     "citations": [
       {
@@ -4151,36 +4409,36 @@
     "ungrounded_count": 0,
     "total_claims": 11
   },
-  "CAND_0095528": {
+  "CAND_0046132": {
     "citations": [
       {
-        "claim": "5.3 years experience",
+        "claim": "4.3 years experience",
         "source_field": "profile.years_of_experience",
-        "value": 5.3,
+        "value": 4.3,
         "verified": true
       },
       {
-        "claim": "current title: Senior Data Scientist",
+        "claim": "current title: AI Research Engineer",
         "source_field": "profile.current_title",
-        "value": "Senior Data Scientist",
+        "value": "AI Research Engineer",
         "verified": true
       },
       {
-        "claim": "current company: Netflix",
+        "claim": "current company: Verloop.io",
         "source_field": "profile.current_company",
-        "value": "Netflix",
+        "value": "Verloop.io",
         "verified": true
       },
       {
-        "claim": "location: Indore, Madhya Pradesh",
+        "claim": "location: Noida, Uttar Pradesh",
         "source_field": "profile.location",
-        "value": "Indore, Madhya Pradesh",
+        "value": "Noida, Uttar Pradesh",
         "verified": true
       },
       {
-        "claim": "45-day notice period",
+        "claim": "30-day notice period",
         "source_field": "redrob_signals.notice_period_days",
-        "value": 45,
+        "value": 30,
         "verified": true
       },
       {
@@ -4190,45 +4448,33 @@
         "verified": true
       },
       {
-        "claim": "advanced skill: OpenSearch",
-        "source_field": "skills[].name=OpenSearch proficiency",
+        "claim": "advanced skill: Data Science",
+        "source_field": "skills[].name=Data Science proficiency",
         "value": "advanced",
         "verified": true
       },
       {
-        "claim": "advanced skill: PyTorch",
-        "source_field": "skills[].name=PyTorch proficiency",
-        "value": "expert",
+        "claim": "advanced skill: OpenCV",
+        "source_field": "skills[].name=OpenCV proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "advanced skill: Semantic Search",
-        "source_field": "skills[].name=Semantic Search proficiency",
-        "value": "expert",
+        "claim": "advanced skill: GANs",
+        "source_field": "skills[].name=GANs proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "advanced skill: Vector Search",
-        "source_field": "skills[].name=Vector Search proficiency",
-        "value": "expert",
+        "claim": "advanced skill: MLOps",
+        "source_field": "skills[].name=MLOps proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "assessment score pgvector: 87/100",
-        "source_field": "redrob_signals.skill_assessment_scores[pgvector]",
-        "value": 86.8,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: embedding",
-        "source_field": "career_history[i].description",
-        "value": "embedding",
+        "claim": "assessment score Data Science: 61/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Data Science]",
+        "value": 60.6,
         "verified": true
       },
       {
@@ -4236,10 +4482,16 @@
         "source_field": "career_history[i].description",
         "value": "ranking",
         "verified": true
+      },
+      {
+        "claim": "career keyword: recommendation",
+        "source_field": "career_history[i].description",
+        "value": "recommendation",
+        "verified": true
       }
     ],
     "ungrounded_count": 0,
-    "total_claims": 14
+    "total_claims": 13
   },
   "CAND_0065195": {
     "citations": [
@@ -4319,6 +4571,90 @@
         "claim": "career keyword: pinecone",
         "source_field": "career_history[i].description",
         "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
+  },
+  "CAND_0005649": {
+    "citations": [
+      {
+        "claim": "7.4 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 7.4,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Data Scientist",
+        "source_field": "profile.current_title",
+        "value": "Senior Data Scientist",
+        "verified": true
+      },
+      {
+        "claim": "current company: Sarvam AI",
+        "source_field": "profile.current_company",
+        "value": "Sarvam AI",
+        "verified": true
+      },
+      {
+        "claim": "location: Delhi, Delhi",
+        "source_field": "profile.location",
+        "value": "Delhi, Delhi",
+        "verified": true
+      },
+      {
+        "claim": "90-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 90,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Haystack",
+        "source_field": "skills[].name=Haystack proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Prompt Engineering",
+        "source_field": "skills[].name=Prompt Engineering proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Deep Learning",
+        "source_field": "skills[].name=Deep Learning proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: TensorFlow",
+        "source_field": "skills[].name=TensorFlow proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: elasticsearch",
+        "source_field": "career_history[i].description",
+        "value": "elasticsearch",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
         "verified": true
       }
     ],
@@ -4768,6 +5104,90 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 14
+  },
+  "CAND_0053605": {
+    "citations": [
+      {
+        "claim": "6.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 6.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Software Engineer (ML)",
+        "source_field": "profile.current_title",
+        "value": "Senior Software Engineer (ML)",
+        "verified": true
+      },
+      {
+        "claim": "current company: Verloop.io",
+        "source_field": "profile.current_company",
+        "value": "Verloop.io",
+        "verified": true
+      },
+      {
+        "claim": "location: Noida, Uttar Pradesh",
+        "source_field": "profile.location",
+        "value": "Noida, Uttar Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LangChain",
+        "source_field": "skills[].name=LangChain proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: CNN",
+        "source_field": "skills[].name=CNN proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: pgvector",
+        "source_field": "skills[].name=pgvector proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Semantic Search",
+        "source_field": "skills[].name=Semantic Search proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score pgvector: 80/100",
+        "source_field": "redrob_signals.skill_assessment_scores[pgvector]",
+        "value": 79.9,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: recommendation",
+        "source_field": "career_history[i].description",
+        "value": "recommendation",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
   },
   "CAND_0091909": {
     "citations": [
@@ -5273,6 +5693,96 @@
     "ungrounded_count": 0,
     "total_claims": 13
   },
+  "CAND_0095528": {
+    "citations": [
+      {
+        "claim": "5.3 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 5.3,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Data Scientist",
+        "source_field": "profile.current_title",
+        "value": "Senior Data Scientist",
+        "verified": true
+      },
+      {
+        "claim": "current company: Netflix",
+        "source_field": "profile.current_company",
+        "value": "Netflix",
+        "verified": true
+      },
+      {
+        "claim": "location: Indore, Madhya Pradesh",
+        "source_field": "profile.location",
+        "value": "Indore, Madhya Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "45-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 45,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: OpenSearch",
+        "source_field": "skills[].name=OpenSearch proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: PyTorch",
+        "source_field": "skills[].name=PyTorch proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Semantic Search",
+        "source_field": "skills[].name=Semantic Search proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Vector Search",
+        "source_field": "skills[].name=Vector Search proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "assessment score pgvector: 87/100",
+        "source_field": "redrob_signals.skill_assessment_scores[pgvector]",
+        "value": 86.8,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14
+  },
   "CAND_0054123": {
     "citations": [
       {
@@ -5362,6 +5872,90 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 14
+  },
+  "CAND_0037566": {
+    "citations": [
+      {
+        "claim": "6.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 6.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: LinkedIn",
+        "source_field": "profile.current_company",
+        "value": "LinkedIn",
+        "verified": true
+      },
+      {
+        "claim": "location: Bangalore, Karnataka",
+        "source_field": "profile.location",
+        "value": "Bangalore, Karnataka",
+        "verified": true
+      },
+      {
+        "claim": "15-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 15,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Pinecone",
+        "source_field": "skills[].name=Pinecone proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Time Series",
+        "source_field": "skills[].name=Time Series proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LlamaIndex",
+        "source_field": "skills[].name=LlamaIndex proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: NLP",
+        "source_field": "skills[].name=NLP proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Pinecone: 82/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Pinecone]",
+        "value": 82.4,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: pinecone",
+        "source_field": "career_history[i].description",
+        "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
   },
   "CAND_0045250": {
     "citations": [
@@ -5879,6 +6473,174 @@
     "ungrounded_count": 0,
     "total_claims": 14
   },
+  "CAND_0015578": {
+    "citations": [
+      {
+        "claim": "5.4 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 5.4,
+        "verified": true
+      },
+      {
+        "claim": "current title: AI Engineer",
+        "source_field": "profile.current_title",
+        "value": "AI Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: Zoho",
+        "source_field": "profile.current_company",
+        "value": "Zoho",
+        "verified": true
+      },
+      {
+        "claim": "location: Delhi, Delhi",
+        "source_field": "profile.location",
+        "value": "Delhi, Delhi",
+        "verified": true
+      },
+      {
+        "claim": "90-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 90,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Diffusion Models",
+        "source_field": "skills[].name=Diffusion Models proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Embeddings",
+        "source_field": "skills[].name=Embeddings proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: NLP",
+        "source_field": "skills[].name=NLP proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Speech Recognition",
+        "source_field": "skills[].name=Speech Recognition proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Diffusion Models: 80/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Diffusion Models]",
+        "value": 79.9,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: pinecone",
+        "source_field": "career_history[i].description",
+        "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
+  },
+  "CAND_0025640": {
+    "citations": [
+      {
+        "claim": "5.6 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 5.6,
+        "verified": true
+      },
+      {
+        "claim": "current title: AI Research Engineer",
+        "source_field": "profile.current_title",
+        "value": "AI Research Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: HCL",
+        "source_field": "profile.current_company",
+        "value": "HCL",
+        "verified": true
+      },
+      {
+        "claim": "location: Jaipur, Rajasthan",
+        "source_field": "profile.location",
+        "value": "Jaipur, Rajasthan",
+        "verified": true
+      },
+      {
+        "claim": "30-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 30,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Semantic Search",
+        "source_field": "skills[].name=Semantic Search proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: FAISS",
+        "source_field": "skills[].name=FAISS proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Recommendation Systems",
+        "source_field": "skills[].name=Recommendation Systems proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Elasticsearch",
+        "source_field": "skills[].name=Elasticsearch proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score FAISS: 75/100",
+        "source_field": "redrob_signals.skill_assessment_scores[FAISS]",
+        "value": 74.9,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: recommendation",
+        "source_field": "career_history[i].description",
+        "value": "recommendation",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
+  },
   "CAND_0018549": {
     "citations": [
       {
@@ -6149,6 +6911,78 @@
     "ungrounded_count": 0,
     "total_claims": 14
   },
+  "CAND_0046313": {
+    "citations": [
+      {
+        "claim": "5.8 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 5.8,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Software Engineer (ML)",
+        "source_field": "profile.current_title",
+        "value": "Senior Software Engineer (ML)",
+        "verified": true
+      },
+      {
+        "claim": "current company: Flipkart",
+        "source_field": "profile.current_company",
+        "value": "Flipkart",
+        "verified": true
+      },
+      {
+        "claim": "location: San Francisco, USA",
+        "source_field": "profile.location",
+        "value": "San Francisco",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Fine-tuning LLMs",
+        "source_field": "skills[].name=Fine-tuning LLMs proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: CNN",
+        "source_field": "skills[].name=CNN proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LangChain",
+        "source_field": "skills[].name=LangChain proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: pgvector",
+        "source_field": "skills[].name=pgvector proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score Fine-tuning LLMs: 85/100",
+        "source_field": "redrob_signals.skill_assessment_scores[Fine-tuning LLMs]",
+        "value": 85.4,
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 11
+  },
   "CAND_0094056": {
     "citations": [
       {
@@ -6407,12 +7241,12 @@
     "ungrounded_count": 0,
     "total_claims": 14
   },
-  "CAND_0090300": {
+  "CAND_0008295": {
     "citations": [
       {
-        "claim": "5.3 years experience",
+        "claim": "6.5 years experience",
         "source_field": "profile.years_of_experience",
-        "value": 5.3,
+        "value": 6.5,
         "verified": true
       },
       {
@@ -6422,21 +7256,21 @@
         "verified": true
       },
       {
-        "claim": "current company: Dream11",
+        "claim": "current company: Razorpay",
         "source_field": "profile.current_company",
-        "value": "Dream11",
+        "value": "Razorpay",
         "verified": true
       },
       {
-        "claim": "location: San Francisco, USA",
+        "claim": "location: Pune, Maharashtra",
         "source_field": "profile.location",
-        "value": "San Francisco",
+        "value": "Pune, Maharashtra",
         "verified": true
       },
       {
-        "claim": "120-day notice period",
+        "claim": "45-day notice period",
         "source_field": "redrob_signals.notice_period_days",
-        "value": 120,
+        "value": 45,
         "verified": true
       },
       {
@@ -6446,33 +7280,33 @@
         "verified": true
       },
       {
-        "claim": "advanced skill: Fine-tuning LLMs",
-        "source_field": "skills[].name=Fine-tuning LLMs proficiency",
+        "claim": "advanced skill: BM25",
+        "source_field": "skills[].name=BM25 proficiency",
         "value": "advanced",
         "verified": true
       },
       {
-        "claim": "advanced skill: Feature Engineering",
-        "source_field": "skills[].name=Feature Engineering proficiency",
+        "claim": "advanced skill: Python",
+        "source_field": "skills[].name=Python proficiency",
         "value": "advanced",
         "verified": true
       },
       {
-        "claim": "assessment score Fine-tuning LLMs: 70/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Fine-tuning LLMs]",
-        "value": 70.1,
+        "claim": "advanced skill: TTS",
+        "source_field": "skills[].name=TTS proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
+        "claim": "advanced skill: BentoML",
+        "source_field": "skills[].name=BentoML proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "career keyword: recommendation",
-        "source_field": "career_history[i].description",
-        "value": "recommendation",
+        "claim": "assessment score BM25: 59/100",
+        "source_field": "redrob_signals.skill_assessment_scores[BM25]",
+        "value": 59.1,
         "verified": true
       }
     ],
@@ -6562,6 +7396,78 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 13
+  },
+  "CAND_0051003": {
+    "citations": [
+      {
+        "claim": "4.0 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 4.0,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Software Engineer (ML)",
+        "source_field": "profile.current_title",
+        "value": "Senior Software Engineer (ML)",
+        "verified": true
+      },
+      {
+        "claim": "current company: Genpact AI",
+        "source_field": "profile.current_company",
+        "value": "Genpact AI",
+        "verified": true
+      },
+      {
+        "claim": "location: London, UK",
+        "source_field": "profile.location",
+        "value": "London",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: QLoRA",
+        "source_field": "skills[].name=QLoRA proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: TTS",
+        "source_field": "skills[].name=TTS proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Time Series",
+        "source_field": "skills[].name=Time Series proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Semantic Search",
+        "source_field": "skills[].name=Semantic Search proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score QLoRA: 76/100",
+        "source_field": "redrob_signals.skill_assessment_scores[QLoRA]",
+        "value": 75.7,
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 11
   },
   "CAND_0020877": {
     "citations": [
@@ -6833,95 +7739,89 @@
     "ungrounded_count": 0,
     "total_claims": 14
   },
-  "CAND_0093547": {
+  "CAND_0055960": {
     "citations": [
       {
-        "claim": "2.9 years experience",
+        "claim": "4.9 years experience",
         "source_field": "profile.years_of_experience",
-        "value": 2.9,
+        "value": 4.9,
         "verified": true
       },
       {
-        "claim": "current title: Senior Machine Learning Engineer",
+        "claim": "current title: AI Specialist",
         "source_field": "profile.current_title",
-        "value": "Senior Machine Learning Engineer",
+        "value": "AI Specialist",
         "verified": true
       },
       {
-        "claim": "current company: PhonePe",
+        "claim": "current company: Dream11",
         "source_field": "profile.current_company",
-        "value": "PhonePe",
+        "value": "Dream11",
         "verified": true
       },
       {
-        "claim": "location: Coimbatore, Tamil Nadu",
+        "claim": "location: San Francisco, USA",
         "source_field": "profile.location",
-        "value": "Coimbatore, Tamil Nadu",
+        "value": "San Francisco",
         "verified": true
       },
       {
-        "claim": "60-day notice period",
+        "claim": "90-day notice period",
         "source_field": "redrob_signals.notice_period_days",
-        "value": 60,
+        "value": 90,
         "verified": true
       },
       {
-        "claim": "not open to work",
+        "claim": "open to work",
         "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
+        "value": true,
         "verified": true
       },
       {
-        "claim": "advanced skill: LLMs",
-        "source_field": "skills[].name=LLMs proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: RAG",
-        "source_field": "skills[].name=RAG proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Python",
-        "source_field": "skills[].name=Python proficiency",
+        "claim": "advanced skill: Reinforcement Learning",
+        "source_field": "skills[].name=Reinforcement Learning proficiency",
         "value": "advanced",
         "verified": true
       },
       {
-        "claim": "advanced skill: QLoRA",
-        "source_field": "skills[].name=QLoRA proficiency",
+        "claim": "advanced skill: BentoML",
+        "source_field": "skills[].name=BentoML proficiency",
         "value": "advanced",
         "verified": true
       },
       {
-        "claim": "assessment score RAG: 97/100",
-        "source_field": "redrob_signals.skill_assessment_scores[RAG]",
-        "value": 97.3,
+        "claim": "advanced skill: Machine Learning",
+        "source_field": "skills[].name=Machine Learning proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
+        "claim": "advanced skill: PyTorch",
+        "source_field": "skills[].name=PyTorch proficiency",
+        "value": "advanced",
         "verified": true
       },
       {
-        "claim": "career keyword: embedding",
-        "source_field": "career_history[i].description",
-        "value": "embedding",
+        "claim": "assessment score BentoML: 87/100",
+        "source_field": "redrob_signals.skill_assessment_scores[BentoML]",
+        "value": 87.3,
         "verified": true
       },
       {
-        "claim": "career keyword: pinecone",
+        "claim": "career keyword: ranking",
         "source_field": "career_history[i].description",
-        "value": "pinecone",
+        "value": "ranking",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: recommendation",
+        "source_field": "career_history[i].description",
+        "value": "recommendation",
         "verified": true
       }
     ],
     "ungrounded_count": 0,
-    "total_claims": 14
+    "total_claims": 13
   },
   "CAND_0081852": {
     "citations": [
@@ -7000,6 +7900,90 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 12
+  },
+  "CAND_0032807": {
+    "citations": [
+      {
+        "claim": "4.2 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 4.2,
+        "verified": true
+      },
+      {
+        "claim": "current title: Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: CRED",
+        "source_field": "profile.current_company",
+        "value": "CRED",
+        "verified": true
+      },
+      {
+        "claim": "location: Trivandrum, Kerala",
+        "source_field": "profile.location",
+        "value": "Trivandrum, Kerala",
+        "verified": true
+      },
+      {
+        "claim": "90-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 90,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: OpenSearch",
+        "source_field": "skills[].name=OpenSearch proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: OpenCV",
+        "source_field": "skills[].name=OpenCV proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: scikit-learn",
+        "source_field": "skills[].name=scikit-learn proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Python",
+        "source_field": "skills[].name=Python proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score OpenSearch: 89/100",
+        "source_field": "redrob_signals.skill_assessment_scores[OpenSearch]",
+        "value": 88.9,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: pinecone",
+        "source_field": "career_history[i].description",
+        "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 13
   },
   "CAND_0024466": {
     "citations": [
@@ -7265,6 +8249,174 @@
     "ungrounded_count": 0,
     "total_claims": 13
   },
+  "CAND_0014063": {
+    "citations": [
+      {
+        "claim": "5.4 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 5.4,
+        "verified": true
+      },
+      {
+        "claim": "current title: AI Specialist",
+        "source_field": "profile.current_title",
+        "value": "AI Specialist",
+        "verified": true
+      },
+      {
+        "claim": "current company: Sarvam AI",
+        "source_field": "profile.current_company",
+        "value": "Sarvam AI",
+        "verified": true
+      },
+      {
+        "claim": "location: Vizag, Andhra Pradesh",
+        "source_field": "profile.location",
+        "value": "Vizag, Andhra Pradesh",
+        "verified": true
+      },
+      {
+        "claim": "45-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 45,
+        "verified": true
+      },
+      {
+        "claim": "open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": true,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Weights & Biases",
+        "source_field": "skills[].name=Weights & Biases proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Diffusion Models",
+        "source_field": "skills[].name=Diffusion Models proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: FAISS",
+        "source_field": "skills[].name=FAISS proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Learning to Rank",
+        "source_field": "skills[].name=Learning to Rank proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: ranking",
+        "source_field": "career_history[i].description",
+        "value": "ranking",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: recommendation",
+        "source_field": "career_history[i].description",
+        "value": "recommendation",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 12
+  },
+  "CAND_0093547": {
+    "citations": [
+      {
+        "claim": "2.9 years experience",
+        "source_field": "profile.years_of_experience",
+        "value": 2.9,
+        "verified": true
+      },
+      {
+        "claim": "current title: Senior Machine Learning Engineer",
+        "source_field": "profile.current_title",
+        "value": "Senior Machine Learning Engineer",
+        "verified": true
+      },
+      {
+        "claim": "current company: PhonePe",
+        "source_field": "profile.current_company",
+        "value": "PhonePe",
+        "verified": true
+      },
+      {
+        "claim": "location: Coimbatore, Tamil Nadu",
+        "source_field": "profile.location",
+        "value": "Coimbatore, Tamil Nadu",
+        "verified": true
+      },
+      {
+        "claim": "60-day notice period",
+        "source_field": "redrob_signals.notice_period_days",
+        "value": 60,
+        "verified": true
+      },
+      {
+        "claim": "not open to work",
+        "source_field": "redrob_signals.open_to_work_flag",
+        "value": false,
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: LLMs",
+        "source_field": "skills[].name=LLMs proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: RAG",
+        "source_field": "skills[].name=RAG proficiency",
+        "value": "expert",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: Python",
+        "source_field": "skills[].name=Python proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "advanced skill: QLoRA",
+        "source_field": "skills[].name=QLoRA proficiency",
+        "value": "advanced",
+        "verified": true
+      },
+      {
+        "claim": "assessment score RAG: 97/100",
+        "source_field": "redrob_signals.skill_assessment_scores[RAG]",
+        "value": 97.3,
+        "verified": true
+      },
+      {
+        "claim": "career keyword: a/b test",
+        "source_field": "career_history[i].description",
+        "value": "a/b test",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: embedding",
+        "source_field": "career_history[i].description",
+        "value": "embedding",
+        "verified": true
+      },
+      {
+        "claim": "career keyword: pinecone",
+        "source_field": "career_history[i].description",
+        "value": "pinecone",
+        "verified": true
+      }
+    ],
+    "ungrounded_count": 0,
+    "total_claims": 14
+  },
   "CAND_0056881": {
     "citations": [
       {
@@ -7348,1181 +8500,5 @@
     ],
     "ungrounded_count": 0,
     "total_claims": 13
-  },
-  "CAND_0042506": {
-    "citations": [
-      {
-        "claim": "4.2 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 4.2,
-        "verified": true
-      },
-      {
-        "claim": "current title: Search Engineer",
-        "source_field": "profile.current_title",
-        "value": "Search Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Verloop.io",
-        "source_field": "profile.current_company",
-        "value": "Verloop.io",
-        "verified": true
-      },
-      {
-        "claim": "location: Mumbai, Maharashtra",
-        "source_field": "profile.location",
-        "value": "Mumbai, Maharashtra",
-        "verified": true
-      },
-      {
-        "claim": "15-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 15,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: PEFT",
-        "source_field": "skills[].name=PEFT proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: TTS",
-        "source_field": "skills[].name=TTS proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: scikit-learn",
-        "source_field": "skills[].name=scikit-learn proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: OpenCV",
-        "source_field": "skills[].name=OpenCV proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score OpenCV: 84/100",
-        "source_field": "redrob_signals.skill_assessment_scores[OpenCV]",
-        "value": 83.7,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: embedding",
-        "source_field": "career_history[i].description",
-        "value": "embedding",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: pinecone",
-        "source_field": "career_history[i].description",
-        "value": "pinecone",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 14
-  },
-  "CAND_0047721": {
-    "citations": [
-      {
-        "claim": "7.0 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 7.0,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Data Scientist",
-        "source_field": "profile.current_title",
-        "value": "Senior Data Scientist",
-        "verified": true
-      },
-      {
-        "claim": "current company: Microsoft",
-        "source_field": "profile.current_company",
-        "value": "Microsoft",
-        "verified": true
-      },
-      {
-        "claim": "location: Coimbatore, Tamil Nadu",
-        "source_field": "profile.location",
-        "value": "Coimbatore, Tamil Nadu",
-        "verified": true
-      },
-      {
-        "claim": "90-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 90,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Learning to Rank",
-        "source_field": "skills[].name=Learning to Rank proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Milvus",
-        "source_field": "skills[].name=Milvus proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: BM25",
-        "source_field": "skills[].name=BM25 proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: RAG",
-        "source_field": "skills[].name=RAG proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score Information Retrieval: 88/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Information Retrieval]",
-        "value": 87.8,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: embedding",
-        "source_field": "career_history[i].description",
-        "value": "embedding",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 14
-  },
-  "CAND_0066376": {
-    "citations": [
-      {
-        "claim": "5.7 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 5.7,
-        "verified": true
-      },
-      {
-        "claim": "current title: Applied ML Engineer",
-        "source_field": "profile.current_title",
-        "value": "Applied ML Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Dream11",
-        "source_field": "profile.current_company",
-        "value": "Dream11",
-        "verified": true
-      },
-      {
-        "claim": "location: Mumbai, Maharashtra",
-        "source_field": "profile.location",
-        "value": "Mumbai, Maharashtra",
-        "verified": true
-      },
-      {
-        "claim": "90-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 90,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Recommendation Systems",
-        "source_field": "skills[].name=Recommendation Systems proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: LoRA",
-        "source_field": "skills[].name=LoRA proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Learning to Rank",
-        "source_field": "skills[].name=Learning to Rank proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: LLMs",
-        "source_field": "skills[].name=LLMs proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "assessment score LoRA: 82/100",
-        "source_field": "redrob_signals.skill_assessment_scores[LoRA]",
-        "value": 81.8,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: elasticsearch",
-        "source_field": "career_history[i].description",
-        "value": "elasticsearch",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: embedding",
-        "source_field": "career_history[i].description",
-        "value": "embedding",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 14
-  },
-  "CAND_0023458": {
-    "citations": [
-      {
-        "claim": "5.0 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 5.0,
-        "verified": true
-      },
-      {
-        "claim": "current title: AI Research Engineer",
-        "source_field": "profile.current_title",
-        "value": "AI Research Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: BYJU'S",
-        "source_field": "profile.current_company",
-        "value": "BYJU'S",
-        "verified": true
-      },
-      {
-        "claim": "location: Chandigarh, Chandigarh",
-        "source_field": "profile.location",
-        "value": "Chandigarh, Chandigarh",
-        "verified": true
-      },
-      {
-        "claim": "60-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 60,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Prompt Engineering",
-        "source_field": "skills[].name=Prompt Engineering proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: BM25",
-        "source_field": "skills[].name=BM25 proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: RAG",
-        "source_field": "skills[].name=RAG proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Diffusion Models",
-        "source_field": "skills[].name=Diffusion Models proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score RAG: 82/100",
-        "source_field": "redrob_signals.skill_assessment_scores[RAG]",
-        "value": 82.2,
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 11
-  },
-  "CAND_0005269": {
-    "citations": [
-      {
-        "claim": "6.1 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 6.1,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Software Engineer (ML)",
-        "source_field": "profile.current_title",
-        "value": "Senior Software Engineer (ML)",
-        "verified": true
-      },
-      {
-        "claim": "current company: Sarvam AI",
-        "source_field": "profile.current_company",
-        "value": "Sarvam AI",
-        "verified": true
-      },
-      {
-        "claim": "location: Kochi, Kerala",
-        "source_field": "profile.location",
-        "value": "Kochi, Kerala",
-        "verified": true
-      },
-      {
-        "claim": "45-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 45,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Machine Learning",
-        "source_field": "skills[].name=Machine Learning proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Weights & Biases",
-        "source_field": "skills[].name=Weights & Biases proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Elasticsearch",
-        "source_field": "skills[].name=Elasticsearch proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: FAISS",
-        "source_field": "skills[].name=FAISS proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score Machine Learning: 88/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Machine Learning]",
-        "value": 87.8,
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 11
-  },
-  "CAND_0066309": {
-    "citations": [
-      {
-        "claim": "5.3 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 5.3,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Software Engineer (ML)",
-        "source_field": "profile.current_title",
-        "value": "Senior Software Engineer (ML)",
-        "verified": true
-      },
-      {
-        "claim": "current company: PharmEasy",
-        "source_field": "profile.current_company",
-        "value": "PharmEasy",
-        "verified": true
-      },
-      {
-        "claim": "location: Trivandrum, Kerala",
-        "source_field": "profile.location",
-        "value": "Trivandrum, Kerala",
-        "verified": true
-      },
-      {
-        "claim": "90-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 90,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: TTS",
-        "source_field": "skills[].name=TTS proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Diffusion Models",
-        "source_field": "skills[].name=Diffusion Models proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: OpenCV",
-        "source_field": "skills[].name=OpenCV proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: LangChain",
-        "source_field": "skills[].name=LangChain proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score TTS: 66/100",
-        "source_field": "redrob_signals.skill_assessment_scores[TTS]",
-        "value": 66.1,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: recommendation",
-        "source_field": "career_history[i].description",
-        "value": "recommendation",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 13
-  },
-  "CAND_0009837": {
-    "citations": [
-      {
-        "claim": "4.3 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 4.3,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Data Scientist",
-        "source_field": "profile.current_title",
-        "value": "Senior Data Scientist",
-        "verified": true
-      },
-      {
-        "claim": "current company: Rephrase.ai",
-        "source_field": "profile.current_company",
-        "value": "Rephrase.ai",
-        "verified": true
-      },
-      {
-        "claim": "location: Noida, Uttar Pradesh",
-        "source_field": "profile.location",
-        "value": "Noida, Uttar Pradesh",
-        "verified": true
-      },
-      {
-        "claim": "60-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 60,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: scikit-learn",
-        "source_field": "skills[].name=scikit-learn proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: LangChain",
-        "source_field": "skills[].name=LangChain proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: TensorFlow",
-        "source_field": "skills[].name=TensorFlow proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Image Classification",
-        "source_field": "skills[].name=Image Classification proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score LangChain: 91/100",
-        "source_field": "redrob_signals.skill_assessment_scores[LangChain]",
-        "value": 90.6,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 13
-  },
-  "CAND_0070485": {
-    "citations": [
-      {
-        "claim": "6.4 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 6.4,
-        "verified": true
-      },
-      {
-        "claim": "current title: Search Engineer",
-        "source_field": "profile.current_title",
-        "value": "Search Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Saarthi.ai",
-        "source_field": "profile.current_company",
-        "value": "Saarthi.ai",
-        "verified": true
-      },
-      {
-        "claim": "location: Coimbatore, Tamil Nadu",
-        "source_field": "profile.location",
-        "value": "Coimbatore, Tamil Nadu",
-        "verified": true
-      },
-      {
-        "claim": "120-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 120,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Haystack",
-        "source_field": "skills[].name=Haystack proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: PEFT",
-        "source_field": "skills[].name=PEFT proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: FAISS",
-        "source_field": "skills[].name=FAISS proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Deep Learning",
-        "source_field": "skills[].name=Deep Learning proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "assessment score Deep Learning: 66/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Deep Learning]",
-        "value": 66.4,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: elasticsearch",
-        "source_field": "career_history[i].description",
-        "value": "elasticsearch",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: faiss",
-        "source_field": "career_history[i].description",
-        "value": "faiss",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 14
-  },
-  "CAND_0060315": {
-    "citations": [
-      {
-        "claim": "5.4 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 5.4,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Software Engineer (ML)",
-        "source_field": "profile.current_title",
-        "value": "Senior Software Engineer (ML)",
-        "verified": true
-      },
-      {
-        "claim": "current company: Glance",
-        "source_field": "profile.current_company",
-        "value": "Glance",
-        "verified": true
-      },
-      {
-        "claim": "location: Bangalore, Karnataka",
-        "source_field": "profile.location",
-        "value": "Bangalore, Karnataka",
-        "verified": true
-      },
-      {
-        "claim": "90-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 90,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Computer Vision",
-        "source_field": "skills[].name=Computer Vision proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Reinforcement Learning",
-        "source_field": "skills[].name=Reinforcement Learning proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Fine-tuning LLMs",
-        "source_field": "skills[].name=Fine-tuning LLMs proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Kubeflow",
-        "source_field": "skills[].name=Kubeflow proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score Computer Vision: 55/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Computer Vision]",
-        "value": 55.3,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: recommendation",
-        "source_field": "career_history[i].description",
-        "value": "recommendation",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 13
-  },
-  "CAND_0041611": {
-    "citations": [
-      {
-        "claim": "6.4 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 6.4,
-        "verified": true
-      },
-      {
-        "claim": "current title: Staff Machine Learning Engineer",
-        "source_field": "profile.current_title",
-        "value": "Staff Machine Learning Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Locobuzz",
-        "source_field": "profile.current_company",
-        "value": "Locobuzz",
-        "verified": true
-      },
-      {
-        "claim": "location: Austin, USA",
-        "source_field": "profile.location",
-        "value": "Austin",
-        "verified": true
-      },
-      {
-        "claim": "30-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 30,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: LlamaIndex",
-        "source_field": "skills[].name=LlamaIndex proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Prompt Engineering",
-        "source_field": "skills[].name=Prompt Engineering proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: PyTorch",
-        "source_field": "skills[].name=PyTorch proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Qdrant",
-        "source_field": "skills[].name=Qdrant proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "assessment score LlamaIndex: 94/100",
-        "source_field": "redrob_signals.skill_assessment_scores[LlamaIndex]",
-        "value": 93.9,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: a/b test",
-        "source_field": "career_history[i].description",
-        "value": "a/b test",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: dense retrieval",
-        "source_field": "career_history[i].description",
-        "value": "dense retrieval",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: embedding",
-        "source_field": "career_history[i].description",
-        "value": "embedding",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 14
-  },
-  "CAND_0004402": {
-    "citations": [
-      {
-        "claim": "6.0 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 6.0,
-        "verified": true
-      },
-      {
-        "claim": "current title: AI Research Engineer",
-        "source_field": "profile.current_title",
-        "value": "AI Research Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Yellow.ai",
-        "source_field": "profile.current_company",
-        "value": "Yellow.ai",
-        "verified": true
-      },
-      {
-        "claim": "location: Delhi, Delhi",
-        "source_field": "profile.location",
-        "value": "Delhi, Delhi",
-        "verified": true
-      },
-      {
-        "claim": "60-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 60,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: TTS",
-        "source_field": "skills[].name=TTS proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Speech Recognition",
-        "source_field": "skills[].name=Speech Recognition proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: PEFT",
-        "source_field": "skills[].name=PEFT proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: PyTorch",
-        "source_field": "skills[].name=PyTorch proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score TTS: 86/100",
-        "source_field": "redrob_signals.skill_assessment_scores[TTS]",
-        "value": 85.8,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: recommendation",
-        "source_field": "career_history[i].description",
-        "value": "recommendation",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 13
-  },
-  "CAND_0013665": {
-    "citations": [
-      {
-        "claim": "5.2 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 5.2,
-        "verified": true
-      },
-      {
-        "claim": "current title: Senior Software Engineer (ML)",
-        "source_field": "profile.current_title",
-        "value": "Senior Software Engineer (ML)",
-        "verified": true
-      },
-      {
-        "claim": "current company: InMobi",
-        "source_field": "profile.current_company",
-        "value": "InMobi",
-        "verified": true
-      },
-      {
-        "claim": "location: Trivandrum, Kerala",
-        "source_field": "profile.location",
-        "value": "Trivandrum, Kerala",
-        "verified": true
-      },
-      {
-        "claim": "30-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 30,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Image Classification",
-        "source_field": "skills[].name=Image Classification proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: ASR",
-        "source_field": "skills[].name=ASR proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: MLOps",
-        "source_field": "skills[].name=MLOps proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Machine Learning",
-        "source_field": "skills[].name=Machine Learning proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "assessment score ASR: 86/100",
-        "source_field": "redrob_signals.skill_assessment_scores[ASR]",
-        "value": 85.8,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: recommendation",
-        "source_field": "career_history[i].description",
-        "value": "recommendation",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 13
-  },
-  "CAND_0018925": {
-    "citations": [
-      {
-        "claim": "5.8 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 5.8,
-        "verified": true
-      },
-      {
-        "claim": "current title: AI Research Engineer",
-        "source_field": "profile.current_title",
-        "value": "AI Research Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Rephrase.ai",
-        "source_field": "profile.current_company",
-        "value": "Rephrase.ai",
-        "verified": true
-      },
-      {
-        "claim": "location: Chandigarh, Chandigarh",
-        "source_field": "profile.location",
-        "value": "Chandigarh, Chandigarh",
-        "verified": true
-      },
-      {
-        "claim": "90-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 90,
-        "verified": true
-      },
-      {
-        "claim": "open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": true,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Sentence Transformers",
-        "source_field": "skills[].name=Sentence Transformers proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Haystack",
-        "source_field": "skills[].name=Haystack proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Speech Recognition",
-        "source_field": "skills[].name=Speech Recognition proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: ranking",
-        "source_field": "career_history[i].description",
-        "value": "ranking",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: recommendation",
-        "source_field": "career_history[i].description",
-        "value": "recommendation",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 11
-  },
-  "CAND_0003977": {
-    "citations": [
-      {
-        "claim": "4.6 years experience",
-        "source_field": "profile.years_of_experience",
-        "value": 4.6,
-        "verified": true
-      },
-      {
-        "claim": "current title: Recommendation Systems Engineer",
-        "source_field": "profile.current_title",
-        "value": "Recommendation Systems Engineer",
-        "verified": true
-      },
-      {
-        "claim": "current company: Google",
-        "source_field": "profile.current_company",
-        "value": "Google",
-        "verified": true
-      },
-      {
-        "claim": "location: Delhi, Delhi",
-        "source_field": "profile.location",
-        "value": "Delhi, Delhi",
-        "verified": true
-      },
-      {
-        "claim": "45-day notice period",
-        "source_field": "redrob_signals.notice_period_days",
-        "value": 45,
-        "verified": true
-      },
-      {
-        "claim": "not open to work",
-        "source_field": "redrob_signals.open_to_work_flag",
-        "value": false,
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Learning to Rank",
-        "source_field": "skills[].name=Learning to Rank proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: NLP",
-        "source_field": "skills[].name=NLP proficiency",
-        "value": "advanced",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Embeddings",
-        "source_field": "skills[].name=Embeddings proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "advanced skill: Semantic Search",
-        "source_field": "skills[].name=Semantic Search proficiency",
-        "value": "expert",
-        "verified": true
-      },
-      {
-        "claim": "assessment score Learning to Rank: 90/100",
-        "source_field": "redrob_signals.skill_assessment_scores[Learning to Rank]",
-        "value": 90.2,
-        "verified": true
-      },
-      {
-        "claim": "career keyword: elasticsearch",
-        "source_field": "career_history[i].description",
-        "value": "elasticsearch",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: faiss",
-        "source_field": "career_history[i].description",
-        "value": "faiss",
-        "verified": true
-      },
-      {
-        "claim": "career keyword: retrieval",
-        "source_field": "career_history[i].description",
-        "value": "retrieval",
-        "verified": true
-      }
-    ],
-    "ungrounded_count": 0,
-    "total_claims": 14
   }
 }
