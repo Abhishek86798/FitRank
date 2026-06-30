@@ -45,7 +45,9 @@ submission path for no scoring benefit.
 
 FitRank is a two-stage pipeline that separates genuine ML engineers from keyword-stuffed profiles at 100k-candidate scale. **Stage 1 (Hybrid Retrieval)** encodes every candidate and the job description with BAAI/bge-base-en-v1.5 (768-dim, L2-normalised) and retrieves the top-K by cosine similarity. A BM25Okapi index runs in parallel on the same corpus; both ranked lists are merged via Reciprocal Rank Fusion (k=60) so that candidates strong on either semantic meaning or exact keyword match survive into the scoring stage.
 
-**Stage 2 (LambdaMART Scoring)** applies a 12-feature signal vector to every retrieved candidate. Three signals carry the most weight (0.20 each): `cosine_similarity` (semantic fit), `domain_alignment` (NLP/IR/ranking keyword density corroborated against career descriptions, not just skill lists), and `production_ml_score` (evidence of shipped retrieval/ranking systems). A behavioral composite (`open_to_work`, recruiter response rate, recency, interview completion) adds a further 0.10 and proved critical in ablation — removing it drops NDCG@10 by 57.6%. Hard gates (`title_disqualified`, domain cap) ensure no non-engineer can outrank genuine ML candidates regardless of behavioral or cosine scores.
+**Stage 2 (LambdaMART Scoring)** applies a 15-feature signal vector to every retrieved candidate and scores it with a trained LightGBM LambdaMART model (`artifacts/ltr_model.txt`) — this is the scorer that actually produces `team_xxx.csv`. LambdaMART learns its own feature weights from the golden set during training; there are no static per-feature weights at inference time. Top signals include `cosine_similarity` (semantic fit), `domain_alignment` (NLP/IR/ranking keyword density corroborated against career descriptions, not just skill lists), and `production_ml_score` (evidence of shipped retrieval/ranking systems). `behavioral_multiplier` (open-to-work, recruiter response rate, recency, interview completion) proved critical in ablation — removing it drops NDCG@10 by 57.6%. Hard gates (`title_disqualified`, `impossibility_flag`, domain cap) ensure no non-engineer or fabricated profile can outrank genuine ML candidates regardless of other scores.
+
+If `artifacts/ltr_model.txt` is missing, `LTRScorer` falls back to `score_with_weighted_sum()` — a simpler, hand-tuned static-weight scorer (the weight table below) used only when the trained model is unavailable.
 
 ```
 candidates.jsonl
@@ -59,7 +61,7 @@ candidates.jsonl
       │
       ▼
 ┌─────────────────────────────────────────────────────┐
-│  Stage 2 — LambdaMART Scoring (12 features)         │
+│  Stage 2 — LambdaMART Scoring (15 features)         │
 │  + domain cap (hard gate for non-ML profiles)       │
 │  + corroborated signals (career desc vs skill only) │
 └─────────────────────────────────────────────────────┘
@@ -68,7 +70,48 @@ candidates.jsonl
 team_xxx.csv  (candidate_id, rank, score, reasoning)
 ```
 
-### Feature vector (12 features)
+### Feature vector — 15 features (LambdaMART, the scorer that produces `team_xxx.csv`)
+
+`LTRScorer.FEATURE_ORDER` in `src/scorer.py` and `src/train_ltr.py` (kept in sync —
+must match exactly). LambdaMART learns weights for these during training; there is
+no static per-feature weight at inference time.
+
+| Feature | What it measures |
+|---|---|
+| `cosine_similarity` | Semantic match of candidate text to JD embedding (BGE) |
+| `experience_fit_score` | YoE vs 5–9 year band, soft taper outside |
+| `is_ml_engineer` | Current or past ML engineering title match |
+| `production_ml_score` | Evidence of shipping real systems (ranking, retrieval, eval infra, vector DBs) |
+| `domain_alignment` | NLP/IR/ranking keyword density — **career description corroborated only** |
+| `consulting_penalty` | Fraction of career at consulting firms (soft, career-wide only) |
+| `behavioral_multiplier` | Composite of open-to-work, recruiter response rate, recency, interview completion |
+| `location_score` | Preferred Indian city / willing to relocate |
+| `notice_penalty` | Stepped penalty: >30d / >60d / >90d / >120d |
+| `github_activity` | Normalised `github_activity_score` from redrob signals |
+| `ce_score` | Cross-encoder relevance score (offline, GPU-precomputed; see step 2b) |
+| `response_rate_score` | Recruiter response rate, as-is from redrob signals |
+| `active_job_seeking` | Applications submitted in the last 30 days |
+| `skill_depth_score` | Duration + proficiency depth of ranking/retrieval/ML-relevant skills |
+| `profile_completeness` | Normalised `profile_completeness_score` from redrob signals |
+
+**Hard gates** (not in `FEATURE_ORDER` — applied before scoring, both modes):
+
+| Feature | Effect |
+|---|---|
+| `title_disqualified` | Non-engineer title + no ML career history → score forced to 0.01 |
+| `impossibility_flag` | Fabricated-credential signal (e.g. expert skill with 0 months duration) → score forced to 0.01 |
+
+**Domain cap:** candidates with `is_ml_engineer=0` AND `domain_alignment=0` are
+hard-capped at 0.25, preventing high behavioral scores from lifting non-engineers.
+
+**Computed but not in `FEATURE_ORDER`:** `build_feature_vector()` also computes
+`consistency_score` (honeypot detector — expert skills with zero duration, YoE vs
+career-month gap). It's excluded from the LambdaMART feature set but is still read
+directly by `score_with_weighted_sum()` (the fallback scorer below), by
+`fast_filter.py`'s Stage-2 honeypot gate, and by `counterfactual.py`'s
+explainability tooling.
+
+### Weighted-sum fallback scorer (used only if `artifacts/ltr_model.txt` is absent)
 
 | Feature | Weight | What it measures |
 |---|---|---|
@@ -84,9 +127,6 @@ team_xxx.csv  (candidate_id, rank, score, reasoning)
 | `title_disqualified` | –1.0 | **Hard gate** — non-engineer title + no ML career history → score 0.01 |
 | `consulting_penalty` | –0.08 | Fraction of career at consulting firms (soft, career-wide only) |
 | `notice_penalty` | –0.02 | Stepped penalty: >30d / >60d / >90d / >120d |
-
-**Domain cap:** candidates with `is_ml_engineer=0` AND `domain_alignment=0` are
-hard-capped at 0.25, preventing high behavioral scores from lifting non-engineers.
 
 **Corroboration rule:** skill-name-only keyword hits count at 0.3× (domain) and 0.4×
 (production ML) vs career-description hits. A frontend engineer claiming FAISS expertise
@@ -211,7 +251,7 @@ FitRank/
 │   ├── precompute.py      # Offline: embed candidates + JD with BGE-base-en-v1.5
 │   ├── rank.py            # Entrypoint: retrieve → feature → score → reason → CSV
 │   ├── retriever.py       # Dense cosine + BM25 + RRF fusion
-│   ├── feature_builder.py # 12-feature vector engineering (all signal logic here)
+│   ├── feature_builder.py # 15-feature vector engineering (all signal logic here)
 │   ├── scorer.py          # Weighted-sum + LambdaMART LTR scorer (auto-fallback)
 │   ├── reasoning.py       # Natural language reasoning string per candidate
 │   ├── data_loader.py     # Streaming JSONL reader, candidate text builder

@@ -75,21 +75,33 @@ methodology: >
     fused with BM25Okapi sparse retrieval via Reciprocal Rank Fusion (k=60).
     Top-100 candidates from the fused list advance to scoring.
 
-  Stage 2 — LambdaMART Scoring (12 features):
-    • cosine_similarity (0.20)        — semantic match to JD BGE embedding
-    • domain_alignment (0.20)         — NLP/IR/ranking keyword density, career-desc corroborated
-    • production_ml_score (0.20)      — shipped-ML signals (ranking, retrieval, vector DBs, eval infra)
-    • experience_fit_score (0.10)     — YoE vs 5-9 year band with soft taper
-    • is_ml_engineer (0.10)           — current/past ML engineering title match
-    • behavioral_multiplier (0.10)    — open-to-work, recruiter response rate, recency,
-                                        interview completion, profile completeness
-    • consistency_score (0.05)        — honeypot detector (zero-duration expert skills,
-                                        YoE vs career-months gap, title/desc mismatch)
-    • location_score (0.03)           — preferred India cities (Pune/Noida/Delhi/Hyderabad/Mumbai)
-    • github_activity (0.02)          — normalised github_activity_score from redrob signals
-    • title_disqualified (hard gate)  — non-engineer title + no ML history -> score 0.01
-    • consulting_penalty (soft)       — fraction of career at IT services firms
-    • notice_penalty (soft)           — stepped: 0 / 0.25 / 0.5 / 0.75 / 1.0 at 30/60/90/120+ days
+  Stage 2 — LambdaMART Scoring (15 features, weights learned during training,
+  no static per-feature weights at inference time):
+    • cosine_similarity        — semantic match to JD BGE embedding
+    • experience_fit_score     — YoE vs 5-9 year band with soft taper
+    • is_ml_engineer           — current/past ML engineering title match
+    • production_ml_score      — shipped-ML signals (ranking, retrieval, vector DBs, eval infra)
+    • domain_alignment         — NLP/IR/ranking keyword density, career-desc corroborated
+    • consulting_penalty       — fraction of career at IT services firms
+    • behavioral_multiplier    — open-to-work, recruiter response rate, recency,
+                                  interview completion, profile completeness
+    • location_score           — preferred India cities (Pune/Noida/Delhi/Hyderabad/Mumbai)
+    • notice_penalty           — stepped: 0 / 0.25 / 0.5 / 0.75 / 1.0 at 30/60/90/120+ days
+    • github_activity          — normalised github_activity_score from redrob signals
+    • ce_score                 — cross-encoder relevance score (offline, GPU-precomputed)
+    • response_rate_score      — recruiter response rate, as-is from redrob signals
+    • active_job_seeking       — applications submitted in the last 30 days
+    • skill_depth_score        — duration + proficiency depth of ranking/retrieval/ML skills
+    • profile_completeness     — normalised profile_completeness_score from redrob signals
+
+  Hard gates (applied before scoring, not in the 15-feature set):
+    • title_disqualified  — non-engineer title + no ML history -> score 0.01
+    • impossibility_flag  — fabricated-credential signal -> score 0.01
+
+  consistency_score (honeypot detector: zero-duration expert skills, YoE vs
+  career-months gap, title/desc mismatch) is computed but excluded from the
+  LambdaMART feature set; it is read directly by the weighted-sum fallback
+  scorer and by the Stage-2 fast_filter honeypot gate.
 
   Corroboration rule:
     Skill-list-only keyword hits count at 0.3x (domain) and 0.4x (production ML)

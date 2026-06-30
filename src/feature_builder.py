@@ -529,11 +529,6 @@ def _github_activity(candidate: dict) -> float:
     return min(1.0, float(score) / 100.0)
 
 
-def _open_to_work_score(candidate: dict) -> float:
-    """1.0 if open_to_work_flag is True, 0.0 otherwise."""
-    return 1.0 if candidate.get("redrob_signals", {}).get("open_to_work_flag") else 0.0
-
-
 def _response_rate_score(candidate: dict) -> float:
     """recruiter_response_rate is already 0–1; return as-is (missing → 0.0)."""
     val = candidate.get("redrob_signals", {}).get("recruiter_response_rate")
@@ -552,36 +547,6 @@ def _profile_completeness(candidate: dict) -> float:
         'profile_completeness_score', 50.0
     )
     return round(float(score) / 100.0, 4)
-
-
-def _education_tier_score(candidate: dict) -> float:
-    """
-    Soft signal from education institution tier.
-    tier_1 = IIT/IIM/top NIT = 1.0
-    tier_2 = good college = 0.6
-    tier_3 = average = 0.3
-    tier_4/unknown = 0.1
-
-    Take the best tier across all education entries.
-    This is a weak signal — weight it low in LambdaMART.
-    """
-    TIER_SCORES = {
-        'tier_1': 1.0,
-        'tier_2': 0.6,
-        'tier_3': 0.3,
-        'tier_4': 0.1,
-        'unknown': 0.2,
-    }
-
-    education = candidate.get('education', [])
-    if not education:
-        return 0.2
-
-    best = max(
-        TIER_SCORES.get(e.get('tier', 'unknown'), 0.2)
-        for e in education
-    )
-    return best
 
 
 def _skill_depth_score(candidate: dict) -> float:
@@ -662,6 +627,14 @@ def build_feature_vector(
     dict with all feature keys as floats.
     title_disqualified is -1.0 or 0.0 (used as a hard gate by scorer.py).
     All other features are in 0.0–1.0 unless noted.
+
+    Note: open_to_work_score, recency_score, response_speed_score,
+    interview_reliability, market_validation, and education_tier_score were
+    dropped from this dict (overfitting cleanup, see commit history) — their
+    signal is absorbed into behavioral_multiplier instead. consistency_score
+    is kept: it's read directly by score_with_weighted_sum() (the fallback
+    scorer), fast_filter.py's Stage-2 honeypot gate, and counterfactual.py's
+    maskable-feature list, even though it's not in the LambdaMART FEATURE_ORDER.
     """
     _ce = ce_scores if ce_scores is not None else {}
     return {
@@ -679,14 +652,8 @@ def build_feature_vector(
         "notice_penalty":       _notice_penalty(candidate, role_model),
         "github_activity":      _github_activity(candidate),
         "ce_score":             _cross_encoder_score(candidate, _ce),
-        "open_to_work_score":   _open_to_work_score(candidate),
         "response_rate_score":  _response_rate_score(candidate),
-        "recency_score":        _recency_score(candidate),
-        "response_speed_score": _response_speed_score(candidate),
-        "interview_reliability":float(candidate.get("redrob_signals", {}).get("interview_completion_rate") or 0.0),
         "active_job_seeking":   _active_job_seeking(candidate),
-        "market_validation":    _market_validation(candidate),
         "skill_depth_score":    _skill_depth_score(candidate),
-        "education_tier_score": _education_tier_score(candidate),
         "profile_completeness": _profile_completeness(candidate),
     }

@@ -183,7 +183,7 @@ These also run as **scripts** (not pytest-style), so `pytest` won't collect them
 ---
 
 ### `src/feature_builder.py` — 426 LOC
-**Purpose:** All signal engineering — converts raw candidate dict + role_model into a 12-feature float vector.
+**Purpose:** All signal engineering — converts raw candidate dict + role_model into a 15-feature float vector (LambdaMART `FEATURE_ORDER`).
 
 **Public API:**
 - `build_feature_vector(candidate, role_model, cosine_sim)` → `dict[str, float]`
@@ -401,7 +401,7 @@ These also run as **scripts** (not pytest-style), so `pytest` won't collect them
 | File | What it tests | How to run |
 |---|---|---|
 | `test_data_loader.py` | `stream_candidates` and `build_candidate_text` on sample JSON | `python test_data_loader.py` |
-| `test_feature_builder.py` | All 12 features for all sample candidates; spot-checks disqualifier | `python test_feature_builder.py` |
+| `test_feature_builder.py` | All 15 features for all sample candidates; spot-checks disqualifier | `python test_feature_builder.py` |
 | `test_scorer.py` | Weighted-sum + LTR scoring on 5 representative candidates; sanity assertions | `python test_scorer.py` |
 
 ### Critical paths with NO test coverage
