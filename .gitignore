@@ -16,6 +16,10 @@ artifacts/candidate_ids.npy
 artifacts/sample_embeddings.npy
 artifacts/sample_candidate_ids.npy
 
+# Dev-run submission outputs — regenerable, not tracked in git
+submission_sample.csv
+submission_ownership.csv
+
 # Python cache
 __pycache__/
 *.pyc
