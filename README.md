@@ -18,7 +18,7 @@ Produces `team_xxx.csv`. Pure CPU, no network calls, runs in under 5 minutes ins
 sandbox. This is the only track that's actually scored.
 
 ```bash
-python -m src.rank --candidates data/candidates.jsonl --output team_xxx.csv
+python -m src.rank --candidates ./data/candidates.jsonl --out ./team_xxx.csv
 ```
 
 **Track 2 — Explainability layer (`eval/generate_audit.py`, `app.py`)**
@@ -138,8 +138,8 @@ with no retrieval work in their history scores near zero on both signals.
 
 ```bash
 pip install -r requirements.txt
-python src/precompute.py
-python src/rank.py --candidates ./data/candidates.jsonl --out ./team_xxx.csv
+python -m src.precompute
+python -m src.rank --candidates ./data/candidates.jsonl --out ./team_xxx.csv
 ```
 
 `precompute.py` defaults to `data/sample_candidates.json`; for the full 100k corpus pass
@@ -193,11 +193,11 @@ python scripts/precompute_cross_encoder.py \
 ```bash
 # On sample (50 candidates → 50 rows)
 python -m src.rank --candidates data/sample_candidates.json \
-    --output submission_sample.csv
+    --out submission_sample.csv
 
 # On full corpus (produces 100-row submission.csv for validator)
 python -m src.rank --candidates data/candidates.jsonl \
-    --output submission.csv --top-k 150 --submission-size 100
+    --out submission.csv --top-k 150 --submission-size 100
 ```
 
 ### 4. Evaluate
@@ -280,7 +280,7 @@ re-run the pipeline on the sample, and check NDCG@10:
 
 ```bash
 # Edit role_model.yaml, then:
-python -m src.rank --candidates data/sample_candidates.json --output submission_sample.csv
+python -m src.rank --candidates data/sample_candidates.json --out submission_sample.csv
 python eval/evaluate.py submission_sample.csv --golden eval/golden_set.csv
 ```
 

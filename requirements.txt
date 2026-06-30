@@ -1,11 +1,8 @@
 # NOTE: Pinned to latest Python-3.14-compatible versions (dev machine).
 # Contest submission targets Python 3.11 — re-pin to the contest spec versions before submitting.
-# The full pipeline (precompute + rank) requires sentence-transformers and lightgbm;
-# install those manually in the dev environment. Streamlit Cloud only needs the dashboard deps below.
 anthropic==0.112.0
 lightgbm==4.6.0
 rank-bm25==0.2.2
-polars==1.42.0
 orjson==3.11.9
 numpy==2.2.6
 pyyaml==6.0.1
@@ -15,3 +12,6 @@ streamlit==1.45.1
 altair==5.5.0
 pandas>=2.0.0
 google-genai>=1.0.0
+# Only needed for the offline precompute step (src/precompute.py,
+# scripts/precompute_cross_encoder.py) -- not imported by rank.py itself.
+sentence-transformers==3.3.1
