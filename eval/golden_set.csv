@@ -150,3 +150,9 @@ CAND_0096172,1,Semantic search 500K docs+recsys; NLP not ranking; Chennai; not o
 CAND_0043860,0,Junior title 6.1yr; recsys boilerplate+CV; Bhubaneswar; thin skills
 CAND_0091348,0,3.7yr below band; fraud ML+forecasting; TCS consulting; not open
 CAND_0054829,0,CV engineer title and career; recsys boilerplate; Noida preferred but CV-only
+CAND_0005538,3,Unique on-topic narrative; infra/ranking at scale; Senior title; 5.9yr in band
+CAND_0080766,3,Strongest candidate; unique text both roles; Staff title; 8.8yr; search&discovery+A/B testing
+CAND_0030827,2,Templated text but 2nd-highest ce_score 0.126; Singapore location penalty
+CAND_0009837,1,Highest ce_score 0.174 but not open to work per JD down-weight rule
+CAND_0070333,0,TCS named JD disqualifier; templated; off-topic
+CAND_0039521,0,YoE=3.0 below band; not open; templated

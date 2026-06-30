@@ -20,6 +20,7 @@ artifacts/sample_candidate_ids.npy
 submission_sample.csv
 submission_ownership.csv
 
+CLAUDE.md
 # Python cache
 __pycache__/
 *.pyc

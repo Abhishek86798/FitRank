@@ -108,12 +108,11 @@ class LTRScorer:
         FEATURE_ORDER = [
             "cosine_similarity", "experience_fit_score", "is_ml_engineer",
             "production_ml_score", "domain_alignment", "consulting_penalty",
-            "behavioral_multiplier", "consistency_score", "location_score",
+            "behavioral_multiplier", "location_score",
             "notice_penalty", "github_activity", "ce_score",
-            "open_to_work_score", "response_rate_score",
-            "recency_score", "response_speed_score", "interview_reliability",
-            "active_job_seeking", "market_validation", "skill_depth_score",
-            "education_tier_score", "profile_completeness",
+            "response_rate_score",
+            "active_job_seeking", "skill_depth_score",
+            "profile_completeness",
         ]
         vec = np.array([[features.get(k, 0.0) for k in FEATURE_ORDER]], dtype=np.float32)
         raw = float(self._booster.predict(vec)[0])
@@ -135,12 +134,11 @@ class LTRScorer:
         FEATURE_ORDER = [
             "cosine_similarity", "experience_fit_score", "is_ml_engineer",
             "production_ml_score", "domain_alignment", "consulting_penalty",
-            "behavioral_multiplier", "consistency_score", "location_score",
+            "behavioral_multiplier", "location_score",
             "notice_penalty", "github_activity", "ce_score",
-            "open_to_work_score", "response_rate_score",
-            "recency_score", "response_speed_score", "interview_reliability",
-            "active_job_seeking", "market_validation", "skill_depth_score",
-            "education_tier_score", "profile_completeness",
+            "response_rate_score",
+            "active_job_seeking", "skill_depth_score",
+            "profile_completeness",
         ]
         matrix = np.array(
             [[f.get(k, 0.0) for k in FEATURE_ORDER] for f in feature_list],
