@@ -180,7 +180,9 @@ def run(
         "ndcg_eval_at":     [10],
         "num_leaves":       31,
         "learning_rate":    0.05,
-        "min_data_in_leaf": 1,   # golden set is small; allow single-example leaves
+        "min_data_in_leaf": 5,   # was 1 — single-example leaves encouraged memorization
+        "feature_fraction": 0.6,  # randomly drop 40% of features per round — caps any single feature's dominance
+        "feature_fraction_seed": 42,
         "verbose":          -1,
     }
 

@@ -630,10 +630,15 @@ def _skill_depth_score(candidate: dict) -> float:
 # ── public API ────────────────────────────────────────────────────────────────
 
 def _cross_encoder_score(candidate: dict, ce_scores: dict) -> float:
+    # Scaled 0.5x post-sigmoid — ce_score was dominating LambdaMART gain
+    # (42% of total) because it carries cross-encoder-level signal density
+    # no other feature has. Halving its dynamic range forces the model to
+    # spread weight across more features instead of overfitting to one
+    # artifact of unverified reproducibility.
     import math
     cid = candidate.get('candidate_id', '')
     raw = ce_scores.get(cid, 0.0)
-    return round(1.0 / (1.0 + math.exp(-raw)), 6)
+    return round(0.5 / (1.0 + math.exp(-raw)), 6)
 
 
 def build_feature_vector(

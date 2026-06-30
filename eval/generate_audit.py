@@ -1,9 +1,9 @@
 """
-Generate a counterfactual decision audit for the top-20 candidates in team_xxx.csv.
+Generate a counterfactual decision audit for the top-100 candidates in team_xxx.csv.
 
 Usage
 -----
-    python eval/generate_audit.py [--submission team_xxx.csv] [--top-n 20]
+    python eval/generate_audit.py [--submission team_xxx.csv] [--top-n 100]
                                   [--candidates data/candidates.jsonl]
                                   [--role-model role_model.yaml]
                                   [--output eval/decision_audit.json]
@@ -96,7 +96,7 @@ def _print_audit_summary(audit: dict) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate counterfactual decision audit")
     parser.add_argument("--submission",   default="team_xxx.csv",          help="Ranked submission CSV")
-    parser.add_argument("--top-n",        type=int, default=20,             help="Number of top candidates to audit")
+    parser.add_argument("--top-n",        type=int, default=100,            help="Number of top candidates to audit")
     parser.add_argument("--candidates",   default="data/candidates.jsonl",  help="Candidate data file")
     parser.add_argument("--role-model",   default="role_model.yaml",        help="Role model YAML")
     parser.add_argument("--output",       default="eval/decision_audit.json", help="Output JSON path")

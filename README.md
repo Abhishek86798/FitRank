@@ -8,6 +8,39 @@ from keyword-stuffed profiles.
 
 ---
 
+## Two-track architecture
+
+This repo intentionally separates the competition submission from the explainability
+tooling built on top of it. They run different code paths on purpose — not an oversight.
+
+**Track 1 — Competition submission (`src/rank.py`)**
+Produces `team_xxx.csv`. Pure CPU, no network calls, runs in under 5 minutes inside the
+sandbox. This is the only track that's actually scored.
+
+```bash
+python -m src.rank --candidates data/candidates.jsonl --output team_xxx.csv
+```
+
+**Track 2 — Explainability layer (`eval/generate_audit.py`, `app.py`)**
+Produces `eval/decision_audit.json` — hiring-tier labels, counterfactual feature-ablation
+analysis, and role-fit summaries for the candidates in `team_xxx.csv`. This is what powers
+the Streamlit dashboard. It is **not** part of the competition-time ranking pipeline and
+does not influence `team_xxx.csv` in any way.
+
+```bash
+python eval/generate_audit.py --submission team_xxx.csv --top-n 100
+```
+
+`--top-n` defaults to 100 (the full submission) rather than a smaller sample, since
+reviewers may sample any row from the submission, not just the top of it.
+
+This is why `src/rank.py` never imports `src/hiring_recommendation.py`,
+`src/counterfactual.py`, or `src/role_analyzer.py` — those modules belong entirely to
+Track 2 and would add risk (LLM calls, extra dependencies, runtime) to the sandboxed
+submission path for no scoring benefit.
+
+---
+
 ## How it works
 
 FitRank is a two-stage pipeline that separates genuine ML engineers from keyword-stuffed profiles at 100k-candidate scale. **Stage 1 (Hybrid Retrieval)** encodes every candidate and the job description with BAAI/bge-base-en-v1.5 (768-dim, L2-normalised) and retrieves the top-K by cosine similarity. A BM25Okapi index runs in parallel on the same corpus; both ranked lists are merged via Reciprocal Rank Fusion (k=60) so that candidates strong on either semantic meaning or exact keyword match survive into the scoring stage.
@@ -98,6 +131,23 @@ python -m src.precompute --candidates data/candidates.jsonl \
     --artifacts-dir artifacts
 ```
 
+### 2b. Precompute cross-encoder scores (offline, Colab GPU only)
+
+`ce_score` (one of the LTR features) comes from `artifacts/ce_scores.json`, a
+`{candidate_id: raw_logit}` map produced by a sentence-transformers
+`CrossEncoder`. Cross-encoders score every (JD, candidate) pair through a full
+transformer forward pass with no caching, which is too slow for 100k
+candidates on CPU — this step **must run on a GPU runtime (e.g. Colab)**,
+never in the CPU-only competition sandbox. `rank.py` only consumes the
+resulting JSON; it does not generate it.
+
+```bash
+# Run on Colab (or any CUDA machine), then download ce_scores.json into artifacts/
+python scripts/precompute_cross_encoder.py \
+    --candidates data/candidates.jsonl \
+    --artifacts-dir artifacts
+```
+
 ### 3. Run the ranking pipeline
 
 ```bash
@@ -166,6 +216,8 @@ FitRank/
 │   ├── reasoning.py       # Natural language reasoning string per candidate
 │   ├── data_loader.py     # Streaming JSONL reader, candidate text builder
 │   └── train_ltr.py       # LightGBM LambdaMART training script
+├── scripts/
+│   └── precompute_cross_encoder.py  # Offline (Colab GPU): generates artifacts/ce_scores.json
 ├── eval/
 │   ├── evaluate.py        # NDCG@10, NDCG@50, MAP, P@10 against golden set
 │   ├── honeypot_audit.py  # Print top-N full profiles for manual inspection
