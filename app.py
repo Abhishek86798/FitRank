@@ -33,6 +33,7 @@ RICH_REASONING      = ROOT / "eval" / "rich_reasoning.json"
 CANDIDATES_JSONL    = ROOT / "data" / "candidates.jsonl"
 METADATA_YAML       = ROOT / "submission_metadata.yaml"
 FAITHFULNESS_REPORT = ROOT / "eval" / "faithfulness_report.json"
+ROBUSTNESS_REPORT   = ROOT / "eval" / "robustness_report.json"
 
 # ── feature display names ──────────────────────────────────────────────────────
 FEATURE_LABELS: dict[str, str] = {
@@ -157,6 +158,12 @@ def load_faithfulness_report() -> dict:
         return {}
     return json.loads(FAITHFULNESS_REPORT.read_bytes())
 
+@st.cache_data
+def load_robustness_report() -> dict:
+    if not ROBUSTNESS_REPORT.exists():
+        return {}
+    return json.loads(ROBUSTNESS_REPORT.read_bytes())
+
 
 # ── helpers ────────────────────────────────────────────────────────────────────
 
@@ -261,14 +268,234 @@ def _parse_forensics_examples(text: str) -> list[dict]:
     return examples
 
 
-# ── load all data ──────────────────────────────────────────────────────────────
+# Data loading has been deferred to prevent blocking initial render.
 
+# ── UI STATE ───────────────────────────────────────────────────────────────────
+# Premium SaaS CSS Injection (Blue Theme)
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+/* Reduce default Streamlit padding to fit in one screen */
+.block-container {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+}
+/* Reduce sidebar top padding */
+[data-testid="stSidebarUserContent"] {
+    padding-top: 0rem !important;
+}
+[data-testid="stSidebarHeader"] {
+    padding-bottom: 0rem !important;
+    min-height: 2rem !important;
+}
+
+.hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.0rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0ea5e9, #1e40af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+.hero-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+.jd-preview {
+    background: var(--secondary-background-color);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid var(--primary-color);
+    padding: 30px;
+    text-align: left;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+.jd-header {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.jd-content {
+    font-family: sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 1.15rem;
+}
+.stButton button[kind="primary"] {
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #0ea5e9, #1d4ed8) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: bold !important;
+    font-size: 1.25rem !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    height: 60px !important;
+}
+.stButton button[kind="primary"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4) !important;
+}
+/* Dynamic toggle CSS will handle the secondary button */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+.pacman-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    margin-bottom: 35px;
+    margin-left: 20px;
+    opacity: 0;
+    animation: fadeInSlide 1s ease-out forwards;
+}
+@keyframes fadeInSlide {
+    0% { opacity: 0; transform: translateX(-20px) scale(0.8); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+.pacman {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #fbb117;
+    clip-path: polygon(100% 74%, 50% 50%, 100% 26%, 100% 0, 0 0, 0 100%, 100% 100%);
+    animation: chomp 0.35s infinite alternate linear;
+    z-index: 10;
+}
+@keyframes chomp {
+    0% { clip-path: polygon(100% 74%, 50% 50%, 100% 26%, 100% 0, 0 0, 0 100%, 100% 100%); }
+    100% { clip-path: polygon(100% 52%, 50% 50%, 100% 48%, 100% 0, 0 0, 0 100%, 100% 100%); }
+}
+.pacman-dots {
+    display: flex;
+    gap: 20px;
+    margin-left: -10px;
+    width: 120px;
+    overflow: hidden;
+}
+.p-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #0ea5e9; /* Blue dots to match theme */
+    flex-shrink: 0;
+    animation: moveLeft 0.35s infinite linear;
+}
+@keyframes moveLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-32px); } /* dot width 12 + gap 20 */
+}
+.loader-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+    animation: fadeInOut 1.5s infinite;
+}
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+</style>
+""", unsafe_allow_html=True)
+
+if "ui_step" not in st.session_state:
+    st.session_state.ui_step = "input"
+
+# Wrap the initial UI in a single container to prevent stale elements from pushing content down
+main_ui_container = st.empty()
+
+with main_ui_container.container():
+    if st.session_state.ui_step == "input":
+        st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
+        st.markdown("<p class='hero-subtitle'>The Ultimate Intelligence Layer for Talent Matching</p>", unsafe_allow_html=True)
+        
+        col1, col2, col3 = st.columns([1, 6, 1])
+        with col2:
+            st.markdown("""
+            <div class='jd-preview'>
+                <div class='jd-header'>🎯 Target Job Profile</div>
+                <div class='jd-content'>
+                    <strong>Senior AI Engineer — Founding Team. Redrob AI.</strong><br>
+                    Pune/Noida, India (Hybrid). 5-9 years experience.<br>
+                    Own the intelligence layer: ranking, retrieval, and matching systems.<br>
+                    <em>Responsibilities include building scalable vector search pipelines, fine-tuning embedding models, and deploying high-performance ML services. Expected to lead technical architecture decisions.</em><br><br>
+                    <strong>Absolute requirements:</strong><br>
+                    Production experience with embeddings-based retrieval systems (sentence-transformers, BGE, E5).
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            if st.button("🚀 Start Sourcing 100k+ Candidates", type="primary", use_container_width=True):
+                st.session_state.ui_step = "loading"
+                st.rerun()
+                
+        st.stop()
+
+    elif st.session_state.ui_step == "loading":
+        st.markdown("<h1 class='hero-title'>FitRank AI Recruiter</h1>", unsafe_allow_html=True)
+        
+        status_placeholder = st.empty()
+        import time
+        
+        def _show_loader(msg):
+            status_placeholder.markdown(f"""
+            <div class='spinner-container'>
+                <div class='pacman-loader'>
+                    <div class='pacman'></div>
+                    <div class='pacman-dots'>
+                        <div class='p-dot'></div>
+                        <div class='p-dot'></div>
+                        <div class='p-dot'></div>
+                        <div class='p-dot'></div>
+                    </div>
+                </div>
+                <div class='loader-text'>{msg}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            time.sleep(1.2)
+            
+        _show_loader("🧠 Extracting ideal persona from Job Description...")
+        _show_loader("🔍 Vector searching across 100,000 resumes...")
+        _show_loader("⚖️ Re-ranking top candidates with LambdaMART...")
+        _show_loader("🕵️ Running Faithfulness and Honeypot Verification...")
+        
+        status_placeholder.empty()
+        st.session_state.ui_step = "results"
+        time.sleep(0.1)
+        st.rerun()
+
+# ── guard ──────────────────────────────────────────────────────────────────────
+if not AUDIT_JSON.exists():
+    st.error("**decision_audit.json not found.** Run `python eval/generate_audit.py` first.")
+    st.stop()
+
+# ── load all data ──────────────────────────────────────────────────────────────
+# We only load data if we are on the results screen.
 submission          = load_submission()
 audit_index         = load_audit()
 forensics           = load_forensics_text()
 rich_reasoning      = load_rich_reasoning()
 metadata            = load_metadata()
 faithfulness_report = load_faithfulness_report()
+robustness_report   = load_robustness_report()
 
 all_cids   = frozenset(r["candidate_id"] for r in submission)
 profiles   = load_profiles(all_cids)
@@ -299,7 +526,6 @@ for _a in audit_index.values():
             "meta":   _a.get("candidate_meta", {}),
         }
 
-
 # ── sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("🎯 FitRank")
@@ -315,6 +541,10 @@ with st.sidebar:
     if faithfulness_report:
         hr = faithfulness_report.get("global_hallucination_rate", 0.0)
         st.metric("Hallucination rate", f"{hr:.1%}")
+
+    if robustness_report:
+        stab = robustness_report.get("stability_score", 0.0)
+        st.metric("System Stability", f"{stab:.1%}", help="Rank overlap across 5 JD variations")
 
     st.divider()
     if any(_tier_counts.values()):
@@ -411,7 +641,7 @@ tab_rank, tab_audit, tab_forensics, tab_missed = st.tabs([
 # TAB 1 — RANKED TABLE
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_rank:
-    st.subheader("All ranked candidates")
+    st.subheader("Candidate Shortlist Decisions")
 
     table_rows = []
     for row in submission:
@@ -420,7 +650,6 @@ with tab_rank:
         a      = audit_index.get(cid, {})
         conf   = a.get("confidence")
         top3   = a.get("top_reasons", [])
-        # Build a one-line counterfactual hint for the biggest drop
         drop_hint = ""
         if top3:
             t = top3[0]
@@ -436,46 +665,47 @@ with tab_rank:
             "Score":          row["score"],
             "Confidence":     conf if conf is not None else 0.0,
             "Band":           "⚠ contested" if a.get("tied_band") else "✓ clear",
-            "YoE":            m.get("yoe", "—"),
-            "Notice (d)":     m.get("notice_days", "—"),
+            "YoE":            m.get("yoe", None),
+            "Notice (d)":     m.get("notice_days", None),
             "Top counterfactual": drop_hint,
         })
 
     df = pd.DataFrame(table_rows)
 
-    def _style_tier(val: str) -> str:
-        return {
-            "Strong Hire": "color: #1b5e20; font-weight: bold",
-            "Borderline":  "color: #e65100; font-weight: bold",
-            "Verify":      "color: #bf360c; font-weight: bold",
-            "Pass":        "color: #b71c1c; font-weight: bold",
-        }.get(val, "")
+    def _render_tier_table(tier_name: str, df_subset: pd.DataFrame):
+        if df_subset.empty:
+            return
+        
+        icon = {"Strong Hire": "🟢", "Borderline": "🟡", "Verify": "🟠", "Pass": "🔴"}.get(tier_name, "⚫")
+        st.markdown(f"#### {icon} {tier_name} ({len(df_subset)})")
+        
+        styled = (
+            df_subset.style
+            .format({"Score": "{:.4f}", "Confidence": "{:.2f}"})
+            .map(_style_conf, subset=["Confidence"])
+        )
+        
+        st.dataframe(
+            styled,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Rank":               st.column_config.NumberColumn(width="small"),
+                "Recommendation":     None,  # Hidden, grouped by tier
+                "Score":              st.column_config.NumberColumn(format="%.4f"),
+                "Confidence":         st.column_config.NumberColumn(format="%.2f",
+                                          help="green >0.80 | amber 0.50–0.80 | red <0.50"),
+                "Band":               st.column_config.TextColumn(width="small",
+                                          help="'contested' = score gap to neighbours < 0.01"),
+                "Notice (d)":         st.column_config.NumberColumn(width="small"),
+                "Top counterfactual": st.column_config.TextColumn(
+                                          help="What happens if the top load-bearing feature is removed"),
+            },
+        )
+    
+    for tier in ["Strong Hire", "Borderline", "Verify", "Pass", "—"]:
+        _render_tier_table(tier, df[df["Recommendation"] == tier])
 
-    styled = (
-        df.style
-        .format({"Score": "{:.4f}", "Confidence": "{:.2f}"})
-        .map(_style_conf, subset=["Confidence"])
-        .map(_style_tier, subset=["Recommendation"])
-    )
-
-    st.dataframe(
-        styled,
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "Rank":               st.column_config.NumberColumn(width="small"),
-            "Recommendation":     st.column_config.TextColumn(width="medium",
-                                      help="Strong Hire | Borderline | Verify | Pass"),
-            "Score":              st.column_config.NumberColumn(format="%.4f"),
-            "Confidence":         st.column_config.NumberColumn(format="%.2f",
-                                      help="green >0.80 | amber 0.50–0.80 | red <0.50"),
-            "Band":               st.column_config.TextColumn(width="small",
-                                      help="'contested' = score gap to neighbours < 0.01"),
-            "Notice (d)":         st.column_config.NumberColumn(width="small"),
-            "Top counterfactual": st.column_config.TextColumn(
-                                      help="What happens if the top load-bearing feature is removed"),
-        },
-    )
     st.caption(
         "**Confidence**: green >0.80 | amber 0.50–0.80 | red <0.50 "
         "| **Top counterfactual**: rank drop if most important feature is zeroed out"
@@ -763,8 +993,9 @@ with tab_audit:
             if rich_text:
                 st.markdown(rich_text)
                 if csv_text:
-                    with st.expander("Raw scoring summary", expanded=False):
-                        st.markdown(csv_text)
+                    st.divider()
+                    st.caption("Raw scoring summary:")
+                    st.markdown(csv_text)
             else:
                 st.markdown(csv_text)
 
