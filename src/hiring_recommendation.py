@@ -154,18 +154,18 @@ def get_hiring_recommendation(
     strengths    = _build_strengths(audit, features)
 
     # ── Tier logic ────────────────────────────────────────────────────────────
-    if score >= 0.97 and not hard_blocker:
+    if score >= 0.80 and not hard_blocker:
         tier           = "Strong Hire"
         primary_reason = "Top-tier score with no blocking constraints"
         action         = "Schedule technical screen immediately"
-    elif score >= 0.95 and confidence >= 0.60 and not hard_blocker and top_drop >= 5:
+    elif score >= 0.75 and confidence >= 0.40 and not hard_blocker and top_drop >= 3:
         tier           = "Strong Hire"
         primary_reason = (
             f"High score ({score:.3f}), strong confidence, "
             f"and {_feat_label(top_reasons[0]['feature'])} is load-bearing"
         )
         action = "Schedule technical screen immediately"
-    elif score >= 0.88 and (len(blockers) <= 2 or confidence < 0.55):
+    elif score >= 0.60 and (len(blockers) <= 2 or confidence < 0.55):
         tier = "Borderline"
         if blockers:
             top_blocker    = blockers[0].split("—")[0].split("(")[0].strip()
@@ -174,12 +174,12 @@ def get_hiring_recommendation(
         else:
             action         = "30-minute exploratory call — contested band, confirm fit"
             primary_reason = f"Good score ({score:.3f}) with low confidence; rank is approximate"
-    elif score >= 0.75 and blockers:
+    elif score >= 0.40 and blockers:
         tier           = "Verify"
         top_blocker    = blockers[0].split("—")[0].split("(")[0].strip()
         action         = f"Verify {top_blocker} before scheduling"
         primary_reason = f"Score ({score:.3f}) is adequate but specific concern must resolve first"
-    elif score >= 0.75:
+    elif score >= 0.40:
         tier           = "Verify"
         action         = "Request work sample or code link before scheduling"
         primary_reason = f"Score ({score:.3f}) is moderate; verify depth before investing screen time"

@@ -1,9 +1,14 @@
 {
-  "total_claims_all": 132,
+  "total_claims_all": 1147,
   "total_ungrounded_all": 0,
   "global_hallucination_rate": 0.0,
   "per_candidate": {
-    "CAND_0061257": {
+    "CAND_0006567": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0066999": {
       "total_claims": 12,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
@@ -14,7 +19,7 @@
       "hallucination_rate": 0.0
     },
     "CAND_0068351": {
-      "total_claims": 0,
+      "total_claims": 11,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
@@ -23,8 +28,18 @@
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0008295": {
-      "total_claims": 0,
+    "CAND_0018499": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0061257": {
+      "total_claims": 12,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0046064": {
+      "total_claims": 14,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
@@ -33,7 +48,212 @@
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0046064": {
+    "CAND_0005538": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0011687": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0080766": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0081846": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0006418": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0002025": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0054394": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0078042": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0052335": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0099806": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0055905": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0077337": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0071974": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0008239": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0044222": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0042100": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0093193": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0075249": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0008425": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0040887": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0076163": {
+      "total_claims": 12,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0084819": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0092245": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0040117": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0061655": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0020708": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0052328": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0007460": {
+      "total_claims": 12,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0036184": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0078492": {
+      "total_claims": 12,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0081053": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0079064": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0076904": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0076831": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0007008": {
+      "total_claims": 10,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0058688": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0020350": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0088025": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0062247": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0013536": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0052682": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0005260": {
       "total_claims": 14,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
@@ -43,53 +263,233 @@
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0018499": {
-      "total_claims": 14,
-      "ungrounded_count": 0,
-      "hallucination_rate": 0.0
-    },
-    "CAND_0066999": {
-      "total_claims": 0,
-      "ungrounded_count": 0,
-      "hallucination_rate": 0.0
-    },
-    "CAND_0006567": {
+    "CAND_0046132": {
       "total_claims": 13,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0016659": {
-      "total_claims": 0,
+    "CAND_0065195": {
+      "total_claims": 13,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0065786": {
-      "total_claims": 0,
+    "CAND_0005649": {
+      "total_claims": 13,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0077337": {
-      "total_claims": 0,
-      "ungrounded_count": 0,
-      "hallucination_rate": 0.0
-    },
-    "CAND_0046132": {
-      "total_claims": 0,
-      "ungrounded_count": 0,
-      "hallucination_rate": 0.0
-    },
-    "CAND_0011687": {
+    "CAND_0086022": {
       "total_claims": 14,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0005303": {
+    "CAND_0064270": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0026532": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0074225": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0075439": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0053605": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0091909": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0049896": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0089546": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0037980": {
       "total_claims": 0,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0078002": {
+    "CAND_0053591": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0039838": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0095528": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0054123": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0037566": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0045250": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0070202": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0096142": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0071115": {
       "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0012957": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0079284": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0015578": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0025640": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0018549": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0009024": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0030348": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0046313": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0094056": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0030827": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0064904": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0008295": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0001930": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0051003": {
+      "total_claims": 11,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0020877": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0094759": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0042029": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0055960": {
+      "total_claims": 13,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0081852": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0032807": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0024466": {
+      "total_claims": 14,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0006557": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0057701": {
+      "total_claims": 0,
+      "ungrounded_count": 0,
+      "hallucination_rate": 0.0
+    },
+    "CAND_0014063": {
+      "total_claims": 12,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
@@ -98,7 +498,7 @@
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
     },
-    "CAND_0043860": {
+    "CAND_0056881": {
       "total_claims": 0,
       "ungrounded_count": 0,
       "hallucination_rate": 0.0
