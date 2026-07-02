@@ -171,10 +171,10 @@ def run(
         "objective":        "lambdarank",
         "metric":           "ndcg",
         "ndcg_eval_at":     [10],
-        "num_leaves":       31,
-        "learning_rate":    0.05,
-        "min_data_in_leaf": 5,   # was 1 — single-example leaves encouraged memorization
-        "feature_fraction": 0.6,  # randomly drop 40% of features per round — caps any single feature's dominance
+        "num_leaves":       7,        # Reduced from 31 to prevent overfitting on 157 examples
+        "learning_rate":    0.01,     # Slower, more stable learning
+        "min_data_in_leaf": 4,        # Force branches to have at least 4 examples
+        "feature_fraction": 0.8,      # Keep 80% of features per round to not lose critical signals
         "feature_fraction_seed": 42,
         "verbose":          -1,
     }
@@ -184,7 +184,7 @@ def run(
     booster = lgb.train(
         params,
         train_data,
-        num_boost_round=100,
+        num_boost_round=300,          # Increased from 100 due to lower learning rate
         valid_sets=[train_data],
         valid_names=["train"],
         callbacks=callbacks,

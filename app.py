@@ -636,10 +636,43 @@ st.caption("Redrob · Founding Team · Senior AI Engineer · Counterfactual rank
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# DATA PREP FOR RANKED TABLES
+# ══════════════════════════════════════════════════════════════════════════════
+table_rows = []
+for row in submission:
+    cid    = row["candidate_id"]
+    m      = _meta(cid)
+    a      = audit_index.get(cid, {})
+    conf   = a.get("confidence")
+    top3   = a.get("top_reasons", [])
+    drop_hint = ""
+    if top3:
+        t = top3[0]
+        cf_val = a.get("counterfactuals", {}).get(t["feature"], {})
+        to_r   = cf_val.get("rank_if_removed", a["base_rank"] + t["rank_drop"])
+        drop_hint = f"Remove {_feat_label(t['feature'])} → rank #{to_r}"
+
+    rec_tier = a.get("hiring_recommendation", {}).get("tier", "—")
+    table_rows.append({
+        "Rank":           row["rank"],
+        "Recommendation": rec_tier,
+        "Title @ Company": f"{m.get('title','—')} @ {m.get('company','—')}",
+        "Score":          row["score"],
+        "Confidence":     conf if conf is not None else 0.0,
+        "Band":           "⚠ contested" if a.get("tied_band") else "✓ clear",
+        "YoE":            m.get("yoe", None),
+        "Notice (d)":     m.get("notice_days", None),
+        "Top counterfactual": drop_hint,
+    })
+
+df = pd.DataFrame(table_rows)
+
+# ══════════════════════════════════════════════════════════════════════════════
 # TABS
 # ══════════════════════════════════════════════════════════════════════════════
-tab_rank, tab_audit, tab_forensics, tab_missed, tab_role = st.tabs([
-    "📊 Ranked Table",
+tab_full, tab_rank, tab_audit, tab_forensics, tab_missed, tab_role = st.tabs([
+    "📋 Top 100 List",
+    "📊 Tiers Breakdown",
     "🔬 Candidate Audit",
     "🕵️ Honeypot Forensics",
     "🔍 Missed by Keyword Search",
@@ -648,46 +681,49 @@ tab_rank, tab_audit, tab_forensics, tab_missed, tab_role = st.tabs([
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 1 — RANKED TABLE
+# TAB 0 — FULL MASTER LIST
+# ══════════════════════════════════════════════════════════════════════════════
+with tab_full:
+    st.subheader("Master List: Top 100 Candidates")
+    styled_full = (
+        df.style
+        .format({"Score": "{:.4f}", "Confidence": "{:.2f}"})
+        .map(_style_conf, subset=["Confidence"])
+    )
+    st.dataframe(
+        styled_full,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "Rank":               st.column_config.NumberColumn(width="small"),
+            "Recommendation":     st.column_config.TextColumn(),
+            "Score":              st.column_config.NumberColumn(format="%.4f"),
+            "Confidence":         st.column_config.NumberColumn(format="%.2f",
+                                      help="green >0.80 | amber 0.50–0.80 | red <0.50"),
+            "Band":               st.column_config.TextColumn(width="small",
+                                      help="'contested' = score gap to neighbours < 0.01"),
+            "Notice (d)":         st.column_config.NumberColumn(width="small"),
+            "Top counterfactual": st.column_config.TextColumn(
+                                      help="What happens if the top load-bearing feature is removed"),
+        },
+    )
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TAB 1 — RANKED TABLE (TIERS)
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_rank:
-    st.subheader("Candidate Shortlist Decisions")
-
-    table_rows = []
-    for row in submission:
-        cid    = row["candidate_id"]
-        m      = _meta(cid)
-        a      = audit_index.get(cid, {})
-        conf   = a.get("confidence")
-        top3   = a.get("top_reasons", [])
-        drop_hint = ""
-        if top3:
-            t = top3[0]
-            cf_val = a.get("counterfactuals", {}).get(t["feature"], {})
-            to_r   = cf_val.get("rank_if_removed", a["base_rank"] + t["rank_drop"])
-            drop_hint = f"Remove {_feat_label(t['feature'])} → rank #{to_r}"
-
-        rec_tier = a.get("hiring_recommendation", {}).get("tier", "—")
-        table_rows.append({
-            "Rank":           row["rank"],
-            "Recommendation": rec_tier,
-            "Title @ Company": f"{m.get('title','—')} @ {m.get('company','—')}",
-            "Score":          row["score"],
-            "Confidence":     conf if conf is not None else 0.0,
-            "Band":           "⚠ contested" if a.get("tied_band") else "✓ clear",
-            "YoE":            m.get("yoe", None),
-            "Notice (d)":     m.get("notice_days", None),
-            "Top counterfactual": drop_hint,
-        })
-
-    df = pd.DataFrame(table_rows)
+    st.subheader("Candidate Shortlist Decisions (By Tier)")
 
     def _render_tier_table(tier_name: str, df_subset: pd.DataFrame):
-        if df_subset.empty:
+        if tier_name == "—" and df_subset.empty:
             return
         
         icon = {"Strong Hire": "🟢", "Borderline": "🟡", "Verify": "🟠", "Pass": "🔴"}.get(tier_name, "⚫")
         st.markdown(f"#### {icon} {tier_name} ({len(df_subset)})")
+        
+        if df_subset.empty:
+            st.info(f"No candidates classified as **{tier_name}** in the Top 100.")
+            return
         
         styled = (
             df_subset.style
